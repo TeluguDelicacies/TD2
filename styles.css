@@ -9,20 +9,36 @@ Last Updated: 2024
 
 /* Container styles */
 .container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2rem;
 }
 
 @media (min-width: 768px) {
     .container {
-        padding: 0 2rem;
+        max-width: 1400px;
+        padding: 0 3rem;
     }
 }
 
 @media (min-width: 1024px) {
     .container {
-        padding: 0 3rem;
+        max-width: 1600px;
+        padding: 0 4rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1800px;
+        padding: 0 5rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: none;
+        padding: 0 8rem;
     }
 }
 
@@ -777,9 +793,24 @@ Responsive grid layout for different screen sizes
 /* Product categories grid */
 .product-categories {
     display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
+    grid-template-columns: 1fr;
     gap: 1.875rem; /* 30px */
     margin-top: 40px;
+}
+
+/* Responsive grid for desktop */
+@media (min-width: 768px) {
+    .product-categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .product-categories {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
 }
 
 /* Individual category cards */
@@ -1073,9 +1104,17 @@ Responsive layout with form validation styles
 /* Contact content grid */
 .contact-content {
     display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
+    grid-template-columns: 1fr;
     gap: 2.5rem; /* 40px */
     margin-top: 40px;
+}
+
+/* Desktop contact grid layout */
+@media (min-width: 1024px) {
+    .contact-content {
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+    }
 }
 
 /* Contact form container */
@@ -1240,9 +1279,17 @@ Responsive grid layout
 /* Footer content grid */
 .footer-content {
     display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
+    grid-template-columns: 1fr;
     gap: 1.875rem; /* 30px */
     margin-bottom: 25px;
+}
+
+/* Desktop footer grid layout */
+@media (min-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
 }
 
 /* Footer section titles */
