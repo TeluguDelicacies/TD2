@@ -18,20 +18,21 @@ RESET AND BASE STYLES
     box-sizing: border-box;
 }
 
-/* Base body styles with modern font stack */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap');
+
+/* Base Styles & Global Reset */
+:root {
+    /* Define a base font size for rem units */
+    font-size: 16px; /* Default for desktop */
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    /* Body Text Font: Roboto */
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #ffffff;
-}
-
-/* Custom font face for Telugu headings */
-@font-face {
-    font-family: 'Chathura-Bold';
-    src: url('./assets/Chathura-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-display: swap;
 }
 
 /* Container for responsive layout */
@@ -52,7 +53,7 @@ Mobile-first responsive design
     background: linear-gradient(135deg, #228B22, #32CD32);
     color: white;
     padding: 8px 0;
-    position: fixed;
+    position: fixed; /* Keep fixed for now, but consider if this should be rem-based */
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -69,7 +70,7 @@ Mobile-first responsive design
     align-items: center;
     gap: 20px;
     text-align: left;
-    min-height: 50px;
+    min-height: 3.125rem; /* 50px */
     flex-wrap: wrap;
 }
 
@@ -85,8 +86,8 @@ Mobile-first responsive design
 
 /* Main logo image */
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
     border-radius: 8px;
     object-fit: cover;
     border: 3px solid rgba(255,215,0,0.3);
@@ -100,8 +101,8 @@ Mobile-first responsive design
 
 /* Fallback logo when image fails to load */
 .logo-fallback {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem; /* 40px */
+    height: 2.5rem; /* 40px */
     border-radius: 8px;
     background: linear-gradient(135deg, #228B22, #32CD32);
     display: flex;
@@ -112,16 +113,16 @@ Mobile-first responsive design
 
 /* Fallback logo text */
 .logo-text {
-    color: #FFD700;
-    font-weight: bold;
-    font-size: 18px;
+    color: var(--accent-gold);
+    font-weight: 700;
+    font-size: 1.125rem; /* 18px */
 }
 
 /* Brand name styling */
 .brand-name {
-    font-family: 'MOD20', 'Times New Roman', serif;
-    font-size: 20px; /* ENHANCED: Increased from 16px for better brand visibility */
-    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem; /* 20px */
+    font-weight: 700; /* Changed to 700 for Montserrat */
     margin-bottom: 1px;
     color: #FFD700;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
@@ -130,9 +131,9 @@ Mobile-first responsive design
 
 /* Brand tagline */
 .tagline {
-    font-family: 'MOD20', 'Times New Roman', serif;
-    /* ENHANCED: Further increased for optimal readability */
-    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    /* Adjusted for Montserrat */
+    font-size: 1.125rem; /* 18px */
     font-weight: 300;
     opacity: 0.9;
     font-style: italic;
@@ -151,17 +152,17 @@ Mobile-first responsive design
 .nav-btn {
     background: rgba(255,215,0,0.15);
     border: 2px solid rgba(255,215,0,0.3);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 25px;
+    color: #ffffff;
+    padding: 0.375rem 0.75rem; /* 6px 12px */
+    border-radius: 1.5625rem; /* 25px */
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 12px;
-    min-height: 32px;
+    font-size: 0.75rem; /* 12px */
+    min-height: 2rem; /* 32px */
     width: 100px;
     justify-content: center;
     text-decoration: none;
@@ -179,13 +180,13 @@ Mobile-first responsive design
 ========================================
 HERO SECTION
 New approach: Auto height based on content with proper spacing
-Eliminates all cutoff issues by letting content determine size
+Elimates all cutoff issues by letting content determine size
 ========================================
 */
-.hero {
-    margin-top: 100px; /* increased from 80px to add more space at top */
+.hero { /* Adjusted margin-top to rem */
+    margin-top: 6.25rem; /* 100px */
     position: relative;
-    /* FIXED: Responsive height system for all orientations */
+    /* Responsive height system for all orientations */
     height: 60vh;
     min-height: 350px;
     max-height: 450px;
@@ -232,7 +233,7 @@ Eliminates all cutoff issues by letting content determine size
     justify-content: center;
     padding: 20px;
 }
-
+/* Headings Font: Montserrat */
 /* Hero content styling */
 .hero-content {
     position: relative;
@@ -247,29 +248,29 @@ Eliminates all cutoff issues by letting content determine size
 /* Main hero title */
 .hero-title {
     /* ENHANCED: Dramatically increased for maximum visual impact */
-    font-size: clamp(24px, 8vw, 48px);
-    width: 70%;
-    max-width: 70%;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #FFD700;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 4rem); /* Scales from 40px to 64px */
+    width: 70%; /* Adjusted width for single line */
+    max-width: 70%; /* Adjusted max-width for single line */
+    font-weight: 700; /* Changed to 700 for Montserrat */
+    margin-bottom: 0.9375rem; /* 15px */
+    color: var(--accent-gold);
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.5); /* 2px 2px 4px */
     line-height: 1.2;
     background: rgba(0,0,0,0.2);
-    padding: 10px 15px;
-    border-radius: 12px;
+    padding: 0.625rem 0.9375rem; /* 10px 15px */
+    border-radius: 0.75rem; /* 12px */
     display: inline-block;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    /* FIXED: Ensure text fits within specified width */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
+    backdrop-filter: blur(0.3125rem); /* 5px */
+    -webkit-backdrop-filter: blur(0.3125rem); /* 5px */
+    white-space: nowrap; /* Ensure text fits within specified width */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
+/* Headings Font: Montserrat */
 /* Hero title fonts */
 .hero-title .english {
-    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     display: block;
     font-size: 1em;
@@ -277,63 +278,62 @@ Eliminates all cutoff issues by letting content determine size
 
 .hero-title .telugu {
     font-family: 'Chatura', sans-serif;
-    font-weight: 700;
+    font-family: 'Noto Sans Telugu', 'Roboto', sans-serif;
+    font-weight: 700; /* Changed to 700 for Noto Sans Telugu */
     display: block;
     font-size: 0.9em; /* ENHANCED: Increased from 0.85em for better Telugu readability */
-    margin-top: 5px;
+    margin-top: 0.3125rem; /* 5px */
     line-height: 1.4; /* added for better vertical spacing */
     letter-spacing: 0.04em; /* added for better character spacing */
 }
 
 /* Hero subtitle */
 .hero-subtitle {
-    font-size: 18px;
+    font-size: 1.125rem; /* 18px */
     font-weight: 300;
-    margin-bottom: 20px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 1.25rem; /* 20px */
+    color: #ffffff;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.5); /* 2px 2px 4px */
     line-height: 1.3;
     text-align: center; /* Ensure center alignment */
 }
 
 /* Hero description content */
 .hero-description {
-    margin-bottom: 25px;
-    font-size: 14px;
-    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 1.5625rem; /* 25px */
+    font-size: 0.875rem; /* 14px */
     font-weight: 400;
     line-height: 1.6;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    color: #ffffff;
+    text-shadow: 0.125rem 0.125rem 0.25rem rgba(0,0,0,0.6); /* 2px 2px 4px */
     text-align: center; /* Ensure center alignment */
-    max-width: 600px; /* Limit width for better readability */
-    margin: 0 auto 25px auto; /* Center the description block */
+    max-width: 37.5rem; /* 600px */ /* Limit width for better readability */
+    margin: 0 auto 1.5625rem auto; /* 25px */ /* Center the description block */
 }
 
 .hero-description p {
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem; /* 12px */
     font-weight: 300;
-    font-family: 'Roboto Mono', monospace;
     text-align: center; /* Ensure all paragraphs are centered */
 }
 
 /* Call-to-action button */
 .cta-button {
     background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #FF6B35;
+    color: var(--accent-orange);
     border: none;
-    padding: 16px 32px;
-    border-radius: 25px;
-    font-size: 16px;
+    padding: 1rem 2rem; /* 16px 32px */
+    border-radius: 1.5625rem; /* 25px */
+    font-size: 1rem; /* 16px */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    min-height: 52px;
+    gap: 0.5rem; /* 8px */
+    min-height: 3.25rem; /* 52px */
     text-shadow: none;
-    box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+    box-shadow: 0 0.25rem 0.75rem rgba(255,215,0,0.3); /* 0 4px 12px */
     text-decoration: none;
     margin: 0 auto;
     position: relative;
@@ -343,7 +343,7 @@ Eliminates all cutoff issues by letting content determine size
 /* CTA button hover effects */
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255,215,0,0.4);
+    box-shadow: 0 0.375rem 1rem rgba(255,215,0,0.4); /* 0 6px 16px */
     background: linear-gradient(135deg, #FFA500, #FFD700);
 }
 
@@ -354,15 +354,20 @@ Continuous horizontal scrolling ticker for all products
 News ticker style with infinite loop
 ========================================
 */
-.product-showcase {
-    padding: 30px 0; /* Reduced padding for compact design */
+.product-showcase { /* Adjusted padding to rem */
+    padding: 1.875rem 0; /* 30px */
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    
+    /* CSS variables for responsive product item sizing */
+    --product-item-width: 10rem; /* 160px at 16px root */
+    --product-gap-width: 1.25rem; /* 20px at 16px root */
 }
 
 /* Section title styling */
 .section-title {
     text-align: center;
-    font-size: 38px; /* ENHANCED: Increased from 28px for stronger section hierarchy */
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 6vw, 3rem); /* Scales from 32px to 48px */
     font-weight: 700;
     margin-bottom: 20px; /* Streamlined gap */
     color: #228B22;
@@ -372,7 +377,7 @@ News ticker style with infinite loop
 /* Scroll container with fade edges */
 .scroll-container {
     overflow: hidden;
-    padding: 10px 0; /* Reduced padding for tighter spacing */
+    padding: 0.625rem 0; /* 10px */ /* Reduced padding for tighter spacing */
     position: relative;
     /* Gradient fade effect on edges for professional ticker look */
     background: linear-gradient(90deg, 
@@ -408,7 +413,7 @@ News ticker style with infinite loop
 .product-scroll {
     display: flex;
     animation: tickerMobile 30s linear infinite;
-    gap: 20px;
+    gap: var(--product-gap-width);
     will-change: transform; /* Optimize for smooth animation */
     /* ADDED: Touch interaction support */
     transition: transform 0.3s ease-out;
@@ -428,13 +433,13 @@ News ticker style with infinite loop
 
 /* Individual product items in ticker */
 .product-item {
-    min-width: 160px;
+    min-width: var(--product-item-width);
     flex-shrink: 0;
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
+    background: #ffffff;
+    border-radius: 0.75rem; /* 12px */
+    padding: 0.9375rem; /* 15px */
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1); /* 0 4px 12px */
     transition: transform 0.3s ease, border-color 0.3s ease;
     border: 2px solid rgba(255,215,0,0.2);
 }
@@ -443,7 +448,7 @@ News ticker style with infinite loop
 .product-item:hover {
     transform: translateY(-3px);
     border-color: rgba(255,215,0,0.5);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    box-shadow: 0 0.375rem 1rem rgba(0,0,0,0.15); /* 0 6px 16px */
 }
 
 /* Product images in ticker */
@@ -451,26 +456,26 @@ News ticker style with infinite loop
     width: 100%;
     height: 100px;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    border-radius: 0.5rem; /* 8px */
+    margin-bottom: 0.75rem; /* 12px */
     transition: opacity 0.3s ease;
 }
 
 /* Product titles in ticker */
 .product-item h3 {
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     font-weight: 600;
     color: #228B22;
     line-height: 1.3;
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem; /* 4px */
 }
 
 /* Telugu product names in ticker */
 .product-item .telugu-name {
-    font-family: 'Chathura-Bold', 'Noto Sans Telugu', sans-serif;
-    /* ENHANCED: Increased size with better scaling for optimal readability */
-    font-size: 16px;
-    transform: scaleX(1.3);
+    font-family: 'Noto Sans Telugu', 'Roboto', sans-serif;
+    /* Adjusted for Noto Sans Telugu */
+    font-size: 1rem; /* 16px */
+    transform: scaleX(1.1); /* Adjusted scale for Noto Sans Telugu */
     transform-origin: center;
     color: #FF6B35;
     line-height: 1.4; /* increased from 1.2 for better vertical spacing */
@@ -489,7 +494,7 @@ News ticker style with infinite loop
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-160px * 15 - 20px * 15));
+        transform: translateX(calc(-1 * (var(--product-item-width) * 19 + var(--product-gap-width) * 19)));
     }
 }
 
@@ -500,16 +505,16 @@ Detailed product categories with interactive dropdowns
 Responsive grid layout for different screen sizes
 ========================================
 */
-.products-section {
-    padding: 60px 0;
+.products-section { /* Adjusted padding to rem */
+    padding: 3.75rem 0; /* 60px */
     background: white;
 }
 
 /* Product categories grid */
 .product-categories {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 1.875rem; /* 30px */
     margin-top: 40px;
 }
 
@@ -517,9 +522,9 @@ Responsive grid layout for different screen sizes
 .category-card {
     background: linear-gradient(135deg, #fff, #f8f9fa);
     border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    border: 2px solid rgba(255,215,0,0.2);
+    padding: 1.25rem; /* 20px */
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1); /* 0 8px 24px */
+    border: 0.125rem solid rgba(255,215,0,0.2); /* 2px */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -529,7 +534,7 @@ Responsive grid layout for different screen sizes
 .category-card::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 0; /* Keep 0 */
     left: 0;
     right: 0;
     height: 4px;
@@ -540,7 +545,7 @@ Responsive grid layout for different screen sizes
 /* Category card hover effects */
 .category-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    box-shadow: 0 0.75rem 1.75rem rgba(0,0,0,0.15); /* 0 12px 28px */
     border-color: rgba(255,215,0,0.4);
 }
 
@@ -548,7 +553,7 @@ Responsive grid layout for different screen sizes
 .category-header {
     text-align: center;
     margin-bottom: 25px;
-}
+} /* Adjusted margin-bottom to rem */
 
 /* Category images */
 .category-image {
@@ -556,7 +561,7 @@ Responsive grid layout for different screen sizes
     height: 160px;
     object-fit: cover;
     border-radius: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem; /* 15px */
     transition: transform 0.3s ease;
 }
 
@@ -567,18 +572,18 @@ Responsive grid layout for different screen sizes
 /* Category titles */
 .category-title {
     /* ENHANCED: Significantly increased for better category prominence */
-    font-size: clamp(20px, 6vw, 36px);
-    width: 60%;
-    max-width: 60%;
-    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.25rem, 6vw, 2.25rem); /* Scales from 20px to 36px */
+    width: 80%; /* Increased width for single line */
+    max-width: 80%; /* Increased max-width for single line */
+    font-weight: 700; /* Changed to 700 for Montserrat */
     color: #228B22;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem; /* 8px */
     line-height: 1.3;
-    font-family: 'Chathura-Bold', 'Chatura', sans-serif;
-    /* FIXED: Ensure text fits within specified width */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    margin: 0 auto 8px auto;
+    white-space: nowrap; /* Ensure text fits within specified width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto 0.5rem auto; /* 8px */
     text-align: center;
 }
 
@@ -591,17 +596,17 @@ Responsive grid layout for different screen sizes
 }
 
 .bilingual-title .english {
-    font-size: 1em;
-    font-family: 'Chathura-Bold', 'Chatura', sans-serif;
+    font-size: 1em; /* Keep as em for relative scaling */
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     display: block;
     line-height: 1.2;
 }
 
 .bilingual-title .telugu {
-    font-size: 0.9em; /* ENHANCED: Increased for better Telugu visibility */
-    font-family: 'Chathura-Bold', 'Chatura', sans-serif;
-    font-weight: 700;
+    font-size: 0.9em; /* Keep as em for relative scaling */
+    font-family: 'Noto Sans Telugu', 'Roboto', sans-serif;
+    font-weight: 700; /* Changed to 700 for Noto Sans Telugu */
     color: #FF6B35;
     display: block;
     line-height: 1.5; /* increased from 1.3 for better vertical spacing */
@@ -612,25 +617,24 @@ Responsive grid layout for different screen sizes
 
 /* Category descriptions */
 .category-description {
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
     color: #666;
     line-height: 1.5;
 }
 
 /* Product dropdown container */
 .product-dropdown {
-    margin-top: 20px;
+    margin-top: 1.25rem; /* 20px */
 }
-
+/* Body Text Font: Roboto */
 /* Product selection dropdown */
 .product-select {
     width: 100%;
-    padding: 16px 20px;
+    padding: 1rem 1.25rem; /* 16px 20px */
     padding-right: 50px; /* Space for custom arrow */
     border: 2px solid rgba(34,139,34,0.2);
     border-radius: 12px;
-    /* FIXED: Font size for proper Telugu text display */
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px */
     background: linear-gradient(135deg, #ffffff, #f8fffe);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23228B22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -641,12 +645,11 @@ Responsive grid layout for different screen sizes
     -moz-appearance: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-height: 44px;
+    min-height: 2.75rem; /* 44px */
     font-weight: 500;
     color: #333;
     box-shadow: 0 2px 8px rgba(34,139,34,0.08);
-    /* FIXED: Removed Chatura-Bold for cleaner dropdown appearance */
-    font-family: 'Inter', 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.4;
 }
 
@@ -669,13 +672,12 @@ Responsive grid layout for different screen sizes
 
 /* Dropdown option styling */
 .product-select option {
-    padding: 12px 20px;
-    background: white;
+    padding: 0.75rem 1.25rem; /* 12px 20px */
+    background: #ffffff;
     color: #333;
-    font-weight: 500;
-    /* FIXED: Removed Chatura-Bold for cleaner dropdown options */
-    font-family: 'Inter', 'Arial', sans-serif;
-    font-size: 14px;
+    font-weight: 400; /* Changed to 400 for Roboto */
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.875rem; /* 14px */
     line-height: 1.5;
     white-space: normal;
     word-wrap: break-word;
@@ -703,9 +705,9 @@ Responsive grid layout for different screen sizes
 }
 
 .bilingual-option {
-    /* FIXED: Removed Chatura-Bold for cleaner bilingual options */
-    font-family: 'Inter', 'Arial', sans-serif !important;
-    font-size: 14px !important;
+    /* Adjusted for Noto Sans Telugu */
+    font-family: 'Noto Sans Telugu', 'Roboto', sans-serif !important;
+    font-size: 0.875rem !important; /* 14px */
     line-height: 1.6 !important;
     padding: 10px 15px !important;
     white-space: pre-line !important;
@@ -717,13 +719,13 @@ Responsive grid layout for different screen sizes
     font-style: italic;
     color: #666;
 }
-</Action>
+
 /* Product description container */
 .product-description {
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 1.25rem; /* 20px */
+    padding: 1.25rem; /* 20px */
     background: linear-gradient(135deg, #F0FFF0, #FFFACD);
-    border-radius: 12px;
+    border-radius: 0.75rem; /* 12px */
     border-left: 4px solid #228B22;
     animation: slideIn 0.3s ease;
 }
@@ -744,16 +746,16 @@ Responsive grid layout for different screen sizes
 .podi-image {
     width: 100%;
     max-width: 200px;
-    height: 120px;
+    height: 7.5rem; /* 120px */
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    border-radius: 0.5rem; /* 8px */
+    margin-bottom: 0.75rem; /* 12px */
     transition: transform 0.3s ease;
 }
 
 .podi-image:hover {
     transform: scale(1.05);
-}
+} /* Keep scale as is */
 
 /* Product description titles */
 .product-description h4 {
@@ -761,14 +763,14 @@ Responsive grid layout for different screen sizes
     font-weight: 600;
     color: #FF6B35;
     margin-bottom: 8px;
-}
+} /* Adjusted margin-bottom to rem */
 
 /* Product description text */
 .product-description p {
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem; /* 12px */
     line-height: 1.6;
     color: #333;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
 }
 
 /* Product feature lists */
@@ -781,7 +783,7 @@ Responsive grid layout for different screen sizes
 .product-description li {
     padding: 4px 0;
     padding-left: 18px;
-    position: relative;
+    position: relative; /* Keep relative */
     color: #555;
     font-size: 14px;
     line-height: 1.4;
@@ -804,16 +806,16 @@ Contact form and business information
 Responsive layout with form validation styles
 ========================================
 */
-.contact-section {
-    padding: 60px 0;
+.contact-section { /* Adjusted padding to rem */
+    padding: 3.75rem 0; /* 60px */
     background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
 /* Contact content grid */
 .contact-content {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 2.5rem; /* 40px */
     margin-top: 40px;
 }
 
@@ -821,8 +823,8 @@ Responsive layout with form validation styles
 .contact-form {
     background: white;
     padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-radius: 0.9375rem; /* 15px */
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1); /* 0 8px 24px */
     border: 2px solid rgba(255,215,0,0.2);
     transition: box-shadow 0.3s ease;
 }
@@ -833,16 +835,16 @@ Responsive layout with form validation styles
 
 /* Form groups */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem; /* 20px */
 }
 
 /* Form labels */
 .form-group label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 0.375rem; /* 6px */
     font-weight: 500;
     color: #333;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
 }
 
 /* Form inputs and controls */
@@ -850,10 +852,10 @@ Responsive layout with form validation styles
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 0.75rem 0.9375rem; /* 12px 15px */
+    border: 0.125rem solid #ddd; /* 2px */
+    border-radius: 0.5rem; /* 8px */
+    font-size: 1rem; /* 16px */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     min-height: 44px;
     font-family: inherit;
@@ -871,17 +873,17 @@ Responsive layout with form validation styles
 /* Submit button */
 .submit-btn {
     background: linear-gradient(135deg, #228B22, #32CD32);
-    color: #FFD700;
+    color: var(--accent-gold);
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    border-radius: 0.5rem; /* 8px */
+    font-size: 1rem; /* 16px */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem; /* 8px */
     width: 100%;
     justify-content: center;
     min-height: 44px;
@@ -890,7 +892,7 @@ Responsive layout with form validation styles
 /* Submit button hover effects */
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(34,139,34,0.3);
+    box-shadow: 0 0.25rem 0.75rem rgba(34,139,34,0.3); /* 0 4px 12px */
     background: linear-gradient(135deg, #32CD32, #228B22);
 }
 
@@ -904,16 +906,16 @@ Responsive layout with form validation styles
 /* Contact information cards */
 .contact-info {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: column; /* Keep column */
+    gap: 1.25rem; /* 20px */
 }
 
 /* Individual info cards */
 .info-card {
     background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1.25rem; /* 20px */
+    border-radius: 0.75rem; /* 12px */
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1); /* 0 4px 12px */
     text-align: center;
     border: 2px solid rgba(255,215,0,0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -922,20 +924,21 @@ Responsive layout with form validation styles
 /* Info card hover effects */
 .info-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    box-shadow: 0 0.375rem 1rem rgba(0,0,0,0.15); /* 0 6px 16px */
     border-color: rgba(255,215,0,0.4);
 }
 
 /* Info card icons */
 .info-card i {
-    font-size: 28px;
+    font-size: 1.75rem; /* 28px */
     color: #228B22;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem; /* 12px */
 }
 
 /* Info card titles */
 .info-card h3 {
-    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem; /* 18px */
     font-weight: 600;
     margin-bottom: 8px;
     color: #228B22;
@@ -945,7 +948,7 @@ Responsive layout with form validation styles
 .info-card p {
     color: #666;
     line-height: 1.5;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
 }
 
 /* Contact links styling */
@@ -968,25 +971,26 @@ Responsive grid layout
 ========================================
 */
 .footer {
-    background: linear-gradient(135deg, #2F4F2F, #228B22);
-    color: white;
-    padding: 40px 0 15px;
+    background: linear-gradient(135deg, #2F4F2F, #228B22); /* Keep as is */
+    color: #ffffff;
+    padding: 2.5rem 0 0.9375rem; /* 40px 0 15px */
 }
 
 /* Footer content grid */
 .footer-content {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
+    grid-template-columns: 1fr; /* Default to single column */
+    gap: 1.875rem; /* 30px */
     margin-bottom: 25px;
 }
 
 /* Footer section titles */
 .footer-section h3 {
-    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem; /* 20px */
     font-weight: 600;
-    margin-bottom: 12px;
-    color: #FFD700;
+    margin-bottom: 0.75rem; /* 12px */
+    color: var(--accent-gold);
 }
 
 /* Footer company information */
@@ -996,14 +1000,14 @@ Responsive grid layout
 
 .footer-info p {
     margin-bottom: 8px;
-    line-height: 1.5;
-    font-size: 14px;
+    line-height: 1.5; /* Keep as is */
+    font-size: 0.875rem; /* 14px */
     opacity: 0.9;
 }
 
 /* Map container */
 .map-container {
-    border-radius: 8px;
+    border-radius: 0.5rem; /* 8px */
     overflow: hidden;
     margin-top: 12px;
 }
@@ -1011,7 +1015,7 @@ Responsive grid layout
 .map-container iframe {
     width: 100%;
     height: 180px;
-    border: none;
+    border: none; /* Keep none */
     filter: grayscale(20%);
     transition: filter 0.3s ease;
 }
@@ -1023,10 +1027,10 @@ Responsive grid layout
 /* Footer bottom section */
 .footer-bottom {
     text-align: center;
-    padding-top: 25px;
+    padding-top: 1.5625rem; /* 25px */
     border-top: 1px solid rgba(255,215,0,0.3);
     color: #ccc;
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px */
 }
 
 /* 
@@ -1037,7 +1041,7 @@ Error states and validation feedback
 */
 .form-group input.error,
 .form-group select.error,
-.form-group textarea.error {
+.form-group textarea.error { /* Keep as is */
     border-color: #dc3545;
     background-color: #fff5f5;
     box-shadow: 0 0 0 3px rgba(220,53,69,0.1);
@@ -1045,7 +1049,7 @@ Error states and validation feedback
 
 /* Error message styling */
 .error-message {
-    color: #dc3545;
+    color: #dc3545; /* Keep as is */
     font-size: 14px;
     margin-top: 5px;
     display: block;
@@ -1060,10 +1064,10 @@ RESPONSIVE DESIGN - TABLET STYLES
 */
 @media (min-width: 768px) {
     /* Container adjustments */
-    .container {
-        padding: 0 20px;
+    .container { /* Adjusted padding to rem */
+        padding: 0 1.25rem; /* 20px */
     }
-    
+    /* Headers Font: Montserrat */
     /* Header adjustments */
     .header {
         padding: 10px 0;
@@ -1071,105 +1075,113 @@ RESPONSIVE DESIGN - TABLET STYLES
     
     .logo,
     .logo-fallback {
-        width: 50px;
-        height: 50px;
-        border-radius: 10px;
+        width: 3.125rem; /* 50px */
+        height: 3.125rem; /* 50px */
+        border-radius: 0.625rem; /* 10px */
     }
     
     .logo-text {
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px */
     }
     
     .brand-name {
-        font-size: 20px;
+        font-size: 1.5rem; /* 24px */
     }
     
     .tagline {
-        /* FIXED: Enhanced tagline size for tablet */
-        font-size: 16px;
+        font-size: 1.25rem; /* 20px */
     }
     
     .nav-buttons {
         flex-direction: row;
-        gap: 10px;
+        gap: 0.625rem; /* 10px */
     }
-    
+    /* Headers Font: Montserrat */
     .nav-btn {
-        padding: 8px 16px;
-        font-size: 14px;
-        min-height: 36px;
+        padding: 0.5rem 1rem; /* 8px 16px */
+        font-size: 0.875rem; /* 14px */
+        min-height: 2.25rem; /* 36px */
         width: auto;
     }
     
     /* Hero adjustments */
-    .hero {
-        margin-top: 110px; /* increased for tablet spacing */
+    .hero { /* Adjusted margin-top to rem */
+        margin-top: 6.875rem; /* 110px */
         height: 90vh;
         max-height: 700px;
         min-height: 500px;
     }
     
     .hero-title {
-        font-size: clamp(28px, 10vw, 56px);
-        margin-bottom: 22px;
-        padding: 18px 25px;
+        font-size: clamp(2rem, 7vw, 3rem); /* Scales from 32px to 48px */
+        margin-bottom: 1.375rem; /* 22px */
+        padding: 1.125rem 1.5625rem; /* 18px 25px */
     }
     
     .hero-subtitle {
-        font-size: 22px;
-        margin-bottom: 25px;
+        font-size: 1.375rem; /* 22px */
+        margin-bottom: 1.5625rem; /* 25px */
     }
     
     .hero-description {
-        font-size: 16px;
-        margin-bottom: 30px;
+        font-size: 1rem; /* 16px */
+        margin-bottom: 1.875rem; /* 30px */
     }
     
     .cta-button {
-        font-size: 18px;
-        padding: 18px 34px;
-        min-height: 56px;
+        font-size: 1.125rem; /* 18px */
+        padding: 1.125rem 2.125rem; /* 18px 34px */
+        min-height: 3.5rem; /* 56px */
     }
     
     .hero-description p {
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem; /* 10px */
     }
     
     /* Section adjustments */
     .section-title {
-        font-size: 32px;
+        font-size: clamp(2.5rem, 8vw, 4rem); /* Scales from 40px to 64px */
     }
     
     /* Product categories grid */
     .product-categories {
         grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
+        gap: 2.5rem; /* 40px */
     }
     
     /* Contact section adjustments */
     .contact-content {
         grid-template-columns: 1fr 1fr;
-        gap: 50px;
+        gap: 3.125rem; /* 50px */
     }
     
     .contact-form {
-        padding: 35px;
+        padding: 2.1875rem; /* 35px */
     }
     
     /* Footer adjustments */
     .footer-content {
         grid-template-columns: 1fr 1fr;
-        gap: 40px;
+        gap: 2.5rem; /* 40px */
     }
     
     /* Product showcase adjustments */
-    .product-scroll {
-        animation: tickerTablet 35s linear infinite;
-        gap: 25px;
+    .product-showcase {
+        /* Adjust CSS variables for tablet */
+        --product-item-width: 12.5rem; /* 200px at 15px root */
+        --product-gap-width: 1.5625rem; /* 25px at 15px root */
     }
     
-    .product-item {
-        min-width: 200px;
+    .product-scroll {
+        animation: tickerTablet 35s linear infinite;
+    }
+    
+    /* Adjusted for Noto Sans Telugu */
+    .product-item .telugu-name {
+        font-size: 1.125rem; /* 18px */
+        transform: scaleX(1.1); /* Adjusted scale for Noto Sans Telugu */
+        line-height: 1.4; /* maintained consistent spacing */
+        letter-spacing: 0.06em; /* maintained consistent spacing */
     }
     
     /* Tablet ticker animation */
@@ -1178,7 +1190,7 @@ RESPONSIVE DESIGN - TABLET STYLES
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-200px * 15 - 25px * 15));
+            transform: translateX(calc(-1 * (var(--product-item-width) * 19 + var(--product-gap-width) * 19)));
         }
     }
 }
@@ -1193,9 +1205,9 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     /* Logo size adjustments */
     .logo,
     .logo-fallback {
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
+        width: 3.75rem; /* 60px */
+        height: 3.75rem; /* 60px */
+        border-radius: 0.75rem; /* 12px */
     }
     
     .brand-name {
@@ -1203,8 +1215,8 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     }
     
     /* Hero adjustments */
-    .hero {
-        margin-top: 120px; /* increased for desktop spacing */
+    .hero { /* Adjusted margin-top to rem */
+        margin-top: 7.5rem; /* 120px */
         /* FIXED: Optimized for landscape and desktop */
         height: clamp(400px, 45vh, 550px);
         max-height: 550px;
@@ -1222,28 +1234,28 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     }
     
     .hero-title {
-        /* FIXED: Responsive font sizing for 50% width */
-        font-size: clamp(28px, 10vw, 56px);
-        font-weight: normal; /* MOD20 uses normal weight */
-        margin-bottom: 25px;
-        padding: 20px 30px;
+        font-size: clamp(2.5rem, 8vw, 4rem); /* Scales from 40px to 64px */
+        font-weight: 700; /* Changed to 700 for Montserrat */
+        margin-bottom: 1.5625rem; /* 25px */
+        padding: 1.25rem 1.875rem; /* 20px 30px */
     }
     
     .hero-subtitle {
-        font-size: 32px; /* Maximum size for desktop */
-        margin-bottom: 30px;
+        font-size: 2rem; /* 32px */ /* Maximum size for desktop */
+        margin-bottom: 1.875rem; /* 30px */
     }
     
     .hero-description {
-        font-size: 18px;
-        margin-bottom: 35px;
+        font-size: 1.125rem; /* 18px */
+        margin-bottom: 2.1875rem; /* 35px */
     }
     
     /* Section title adjustments */
     .section-title {
-        font-size: 56px; /* ENHANCED: Maximum section impact on desktop */
-        font-size: clamp(32px, 12vw, 64px);
+        font-size: clamp(3rem, 9vw, 4.5rem); /* Scales from 48px to 72px */
     }
+    /* Headers Font: Montserrat */
+
     /* Category title tablet adjustments */
     .category-title {
         font-size: clamp(22px, 7vw, 40px);
@@ -1252,66 +1264,72 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     
     /* ENHANCED: Category title adjustments */
     .category-title {
-        /* ENHANCED: Maximum category prominence on desktop */
-        font-size: clamp(24px, 8vw, 44px);
+        font-size: clamp(1.5rem, 7vw, 2.75rem); /* Scales from 24px to 44px */
     }
     
     .tagline {
-        /* ENHANCED: Maximum tagline visibility on desktop */
-        font-size: 22px;
+        font-size: 1.375rem; /* 22px */
+    }
+    
+    .brand-name {
+        font-size: 2rem; /* 32px */
     }
     
     /* Section padding adjustments */
     .product-showcase {
-        padding: 40px 0;
+        padding: 2.5rem 0; /* 40px */
     }
     
     .products-section,
     .contact-section {
-        padding: 80px 0;
+        padding: 5rem 0; /* 80px */
     }
     
     /* Form adjustments */
     .contact-form {
-        padding: 40px;
+        padding: 2.5rem; /* 40px */
     }
     
     /* Footer adjustments */
     .footer {
-        padding: 50px 0 20px;
+        padding: 3.125rem 0 1.25rem; /* 50px 0 20px */
     }
     
     /* Product showcase adjustments */
+    .product-showcase {
+        /* Adjust CSS variables for desktop */
+        --product-item-width: 13.75rem; /* 220px at 16px root */
+        --product-gap-width: 1.875rem; /* 30px at 16px root */
+    }
+    
     .product-scroll {
-        gap: 30px;
         animation: tickerDesktop 40s linear infinite;
     }
     
     .product-item {
-        min-width: 220px;
-        padding: 20px;
+        padding: 1.25rem; /* 20px */
     }
     
-    /* FIXED: Telugu text scaling for tablet */
+    /* Adjusted for Noto Sans Telugu */
     .product-item .telugu-name {
-        font-size: 15px;
-        transform: scaleX(1.3);
+        font-size: 1.125rem; /* 18px */
+        transform: scaleX(1.1); /* Adjusted scale for Noto Sans Telugu */
         line-height: 1.4; /* maintained consistent spacing */
         letter-spacing: 0.06em; /* maintained consistent spacing */
     }
     
     .product-item img {
-        height: 120px;
+        height: 7.5rem; /* 120px */
     }
     
     .product-item h3 {
-        font-size: 20px; /* ENHANCED: Maximum desktop product name visibility */
+        font-size: 1.25rem; /* 20px */ /* ENHANCED: Maximum desktop product name visibility */
     }
     
-    /* ENHANCED: Telugu text scaling for desktop */
+    /* Adjusted for Noto Sans Telugu */
     .product-item .telugu-name {
-        font-size: 20px;
-        transform: scaleX(1.5);
+        font-size: 1.25rem; /* 20px */
+        transform: scaleX(1.1); /* Adjusted scale for Noto Sans Telugu */
         line-height: 1.4; /* maintained consistent spacing */
         letter-spacing: 0.06em; /* maintained consistent spacing */
     }
@@ -1326,7 +1344,7 @@ RESPONSIVE DESIGN - DESKTOP STYLES
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-220px * 19 - 30px * 19));
+            transform: translateX(calc(-1 * (var(--product-item-width) * 19 + var(--product-gap-width) * 19)));
         }
     }
 }
@@ -1340,47 +1358,47 @@ RESPONSIVE DESIGN - LARGE DESKTOP STYLES
 @media (min-width: 1440px) {
     .container {
         max-width: 1400px;
-    }
-    
+    } /* Keep max-width as is */
+    /* Headers Font: Montserrat */
     .product-categories {
         grid-template-columns: repeat(2, 1fr);
-        gap: 50px;
+        gap: 3.125rem; /* 50px */
     }
     
     .category-card {
-        padding: 30px;
+        padding: 1.875rem; /* 30px */
     }
     
     /* ENHANCED: Large desktop maximum impact sizing */
     .hero-title {
-        font-size: clamp(36px, 14vw, 72px);
+        font-size: clamp(3rem, 9vw, 4.5rem); /* Scales from 48px to 72px */
     }
     
     .category-title {
-        font-size: clamp(24px, 8vw, 44px);
+        font-size: clamp(1.75rem, 8vw, 3rem); /* Scales from 28px to 48px */
     }
     
     .tagline {
-        font-size: 24px; /* ENHANCED: Maximum tagline impact */
+        font-size: 1.5rem; /* 24px */ /* ENHANCED: Maximum tagline impact */
     }
     
     .brand-name {
-        font-size: 32px; /* ENHANCED: Maximum brand presence */
+        font-size: 2rem; /* 32px */ /* ENHANCED: Maximum brand presence */
     }
     
     .product-item .telugu-name {
-        font-size: 19px;
-        transform: scaleX(1.5);
+        font-size: 1.25rem; /* 20px */
+        transform: scaleX(1.1); /* Adjusted scale for Noto Sans Telugu */
         line-height: 1.3;
         letter-spacing: 0.02em;
     }
     
     .product-item h3 {
-        font-size: 22px; /* ENHANCED: Maximum product name impact */
+        font-size: 1.375rem; /* 22px */ /* ENHANCED: Maximum product name impact */
     }
     
     .section-title {
-        font-size: 64px; /* ENHANCED: Maximum section hierarchy */
+        font-size: clamp(3.5rem, 10vw, 5rem); /* Scales from 56px to 80px */
     }
 }
 
@@ -1393,25 +1411,25 @@ ACCESSIBILITY AND PERFORMANCE OPTIMIZATIONS
 /* FIXED: Landscape orientation support */
 @media screen and (orientation: landscape) and (max-height: 500px) {
     .hero {
-        height: 90vh;
-        min-height: 300px;
-        max-height: 400px;
+        height: 90vh; /* Keep as is */
+        min-height: 18.75rem; /* 300px */
+        max-height: 25rem; /* 400px */
     }
     
     .hero-title {
-        font-size: clamp(18px, 5vw, 32px);
-        margin-bottom: 10px;
-        padding: 8px 12px;
+        font-size: clamp(1.125rem, 5vw, 2rem); /* Scales from 18px to 32px */
+        margin-bottom: 0.625rem; /* 10px */
+        padding: 0.5rem 0.75rem; /* 8px 12px */
     }
     
     .hero-subtitle {
-        font-size: clamp(16px, 4vw, 24px);
-        margin-bottom: 15px;
+        font-size: clamp(1rem, 4vw, 1.5rem); /* Scales from 16px to 24px */
+        margin-bottom: 0.9375rem; /* 15px */
     }
     
     .hero-description {
-        font-size: clamp(12px, 3vw, 16px);
-        margin-bottom: 20px;
+        font-size: clamp(0.75rem, 3vw, 1rem); /* Scales from 12px to 16px */
+        margin-bottom: 1.25rem; /* 20px */
     }
 }
 
@@ -1419,7 +1437,7 @@ ACCESSIBILITY AND PERFORMANCE OPTIMIZATIONS
 html {
     scroll-behavior: smooth;
 }
-
+/* Body Text Font: Roboto */
 /* Image loading optimization */
 img {
     transition: opacity 0.3s ease;
@@ -1440,7 +1458,7 @@ img:not([src]) {
         scroll-behavior: auto !important;
     }
     
-    .product-scroll {
+    .product-scroll { /* Keep as is */
         animation: none;
     }
 }
@@ -1448,13 +1466,13 @@ img:not([src]) {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
     .header {
-        background: #006400;
-        border-bottom: 2px solid #FFD700;
+        background: #006400; /* Keep as is */
+        border-bottom: 0.125rem solid #FFD700; /* 2px */
     }
     
     .nav-btn {
-        border: 2px solid #FFD700;
-        background: transparent;
+        border: 0.125rem solid #FFD700; /* 2px */
+        background: transparent; /* Keep as is */
     }
     
     .category-card,
@@ -1468,7 +1486,7 @@ img:not([src]) {
 button:focus,
 select:focus,
 input:focus,
-textarea:focus {
+textarea:focus { /* Keep as is */
     outline: 2px solid #228B22;
     outline-offset: 2px;
 }
@@ -1476,7 +1494,7 @@ textarea:focus {
 /* Print styles */
 @media print {
     .header,
-    .product-showcase,
+    .product-showcase, /* Keep as is */
     .footer {
         display: none;
     }
@@ -1484,7 +1502,7 @@ textarea:focus {
     .hero {
         margin-top: 0;
         height: auto;
-    }
+    } /* Keep as is */
     
     .hero-bg {
         display: none;
@@ -1492,6 +1510,6 @@ textarea:focus {
     
     body {
         font-size: 12pt;
-        line-height: 1.4;
+        line-height: 1.4; /* Keep as is */
     }
 }
