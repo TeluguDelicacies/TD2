@@ -410,8 +410,8 @@ Grid of individual product cards
 
 /* 
 ========================================
-INFO TOGGLE BUTTON
-Toggle button for showing/hiding product descriptions
+INFO OVERLAY MODAL
+Modal overlay for displaying product information
 ========================================
 */
 .info-toggle-btn {
@@ -460,34 +460,113 @@ Toggle button for showing/hiding product descriptions
     }
 }
 
-/* 
-========================================
-DESCRIPTION TEXT CONTENT TOGGLE
-Smooth animation for showing/hiding description text
-========================================
-*/
-.description-text-content {
-    max-height: 500px;
+/* Info Overlay Styles */
+.info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 1;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.3s ease,
-                padding 0.3s ease;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
-    background: rgba(240, 255, 240, 0.3);
-    border-radius: 8px;
-    padding: 1rem;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.description-text-content.hidden {
-    max-height: 0;
+.info-overlay.hidden {
     opacity: 0;
-    padding: 0;
-    margin-bottom: 0;
+    visibility: hidden;
 }
 
-.description-text-content p {
+.overlay-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.overlay-content {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    max-width: 90vw;
+    max-height: 85vh;
+    width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-overlay.hidden .overlay-content {
+    transform: scale(0.95);
+}
+
+.close-overlay-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #666;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-overlay-btn:hover {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    transform: scale(1.1);
+}
+
+.overlay-body {
+    padding: 2rem;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.overlay-product {
+    text-align: center;
+}
+
+.overlay-product-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.overlay-product-title {
+    font-family: var(--font-primary);
+    font-size: var(--font-xl);
+    font-weight: var(--weight-bold);
+    color: #228B22;
+    margin-bottom: 1.5rem;
+    line-height: var(--leading-snug);
+}
+
+.overlay-description {
+    text-align: left;
+}
+
+.overlay-description p {
     font-family: var(--font-body);
     font-size: var(--font-sm);
     color: #555;
@@ -495,13 +574,13 @@ Smooth animation for showing/hiding description text
     margin-bottom: 0.75rem;
 }
 
-.description-text-content ul {
+.overlay-description ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.description-text-content li {
+.overlay-description li {
     padding: 0.25rem 0;
     padding-left: 1.5rem;
     position: relative;
@@ -511,13 +590,45 @@ Smooth animation for showing/hiding description text
     line-height: var(--leading-normal);
 }
 
-.description-text-content li::before {
+.overlay-description li::before {
     content: "✓";
     position: absolute;
     left: 0;
     color: #228B22;
     font-weight: var(--weight-bold);
     font-size: var(--font-sm);
+}
+
+/* Hidden description content (no longer used for display but kept for data) */
+.description-text-content {
+    display: none;
+}
+
+/* Mobile adjustments for overlay */
+@media (max-width: 768px) {
+    .overlay-content {
+        width: 95vw;
+        max-height: 90vh;
+    }
+    
+    .overlay-body {
+        padding: 1.5rem;
+    }
+    
+    .overlay-product-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .overlay-product-title {
+        font-size: var(--font-lg);
+    }
+    
+    .close-overlay-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
 }
 
 /* 
