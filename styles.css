@@ -180,16 +180,25 @@ Eliminates all cutoff issues by letting content determine size
 ========================================
 */
 .hero {
-    padding-top: 120px; /* Header clearance */
-    padding-bottom: 40px; /* Bottom spacing */
+    margin-top: 80px; /* Header clearance - fixed value */
     position: relative;
-    min-height: 400px; /* Minimum height for visual impact */
+    height: 100vh; /* Full viewport height */
+    min-height: 600px; /* Minimum height for content visibility */
+    max-height: 800px; /* Maximum height to prevent excessive size */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Hero image container */
 .hero-image {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
     height: 100%;
     width: 100%;
 }
@@ -199,7 +208,8 @@ Eliminates all cutoff issues by letting content determine size
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
+    display: block;
 }
 
 /* Hero overlay for text readability */
@@ -209,19 +219,22 @@ Eliminates all cutoff issues by letting content determine size
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 2;
     background: linear-gradient(135deg, rgba(34,139,34,0.8), rgba(50,205,50,0.6));
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
 /* Hero content styling */
 .hero-content {
+    position: relative;
+    z-index: 3;
     text-align: center;
     color: white;
-    padding: 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -294,7 +307,7 @@ Eliminates all cutoff issues by letting content determine size
     background: linear-gradient(135deg, #FFD700, #FFA500);
     color: #FF6B35;
     border: none;
-    padding: 14px 28px;
+    padding: 16px 32px;
     border-radius: 25px;
     font-size: 16px;
     font-weight: 600;
@@ -303,11 +316,13 @@ Eliminates all cutoff issues by letting content determine size
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    min-height: 48px;
+    min-height: 52px;
     text-shadow: none;
     box-shadow: 0 4px 12px rgba(255,215,0,0.3);
     text-decoration: none;
-    margin: 0 auto; /* Center the button */
+    margin: 0 auto;
+    position: relative;
+    z-index: 4;
 }
 
 /* CTA button hover effects */
@@ -493,20 +508,27 @@ Responsive grid layout for different screen sizes
 .bilingual-title {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    text-align: center;
 }
 
 .bilingual-title .english {
     font-size: 1em;
     font-family: 'Chathura-Bold', 'Chatura', sans-serif;
     font-weight: 800;
+    display: block;
+    line-height: 1.2;
 }
 
 .bilingual-title .telugu {
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-family: 'Chathura-Bold', 'Chatura', sans-serif;
     font-weight: 700;
     color: #FF6B35;
+    display: block;
+    line-height: 1.3;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Category descriptions */
@@ -966,29 +988,31 @@ RESPONSIVE DESIGN - TABLET STYLES
     /* Hero adjustments */
     .hero {
         margin-top: 90px;
-        height: 500px; /* Larger fixed height for tablet */
+        height: 90vh;
+        max-height: 700px;
+        min-height: 500px;
     }
     
     .hero-title {
-        font-size: 28px;
-        margin-bottom: 18px;
-        padding: 12px 20px;
+        font-size: 32px;
+        margin-bottom: 22px;
+        padding: 18px 25px;
     }
     
     .hero-subtitle {
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-    
-    .hero-description {
-        font-size: 14px;
+        font-size: 22px;
         margin-bottom: 25px;
     }
     
-    .cta-button {
+    .hero-description {
         font-size: 16px;
-        padding: 14px 28px;
-        min-height: 44px;
+        margin-bottom: 30px;
+    }
+    
+    .cta-button {
+        font-size: 18px;
+        padding: 18px 34px;
+        min-height: 56px;
     }
     
     .hero-description p {
@@ -1060,9 +1084,10 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     
     /* Hero adjustments */
     .hero {
-        padding-top: 150px;
-        padding-bottom: 60px;
-        min-height: 600px;
+        margin-top: 100px;
+        height: 85vh;
+        max-height: 800px;
+        min-height: 650px;
     }
     
     .hero-title .english {
@@ -1075,25 +1100,25 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     }
     
     .hero-title {
-        font-size: 36px;
-        margin-bottom: 20px;
-        padding: 15px 25px;
+        font-size: 42px;
+        margin-bottom: 25px;
+        padding: 20px 30px;
     }
     
     .hero-subtitle {
-        font-size: 24px;
-        margin-bottom: 25px;
-    }
-    
-    .hero-description {
-        font-size: 16px;
+        font-size: 28px;
         margin-bottom: 30px;
     }
     
-    .cta-button {
+    .hero-description {
         font-size: 18px;
-        padding: 16px 32px;
-        min-height: 48px;
+        margin-bottom: 35px;
+    }
+    
+    .cta-button {
+        font-size: 20px;
+        padding: 20px 40px;
+        min-height: 60px;
     }
     
     /* Section title adjustments */
