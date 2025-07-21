@@ -650,6 +650,19 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
     
+    <!-- Info Overlay Modal -->
+    <div id="infoOverlay" class="info-overlay hidden">
+        <div class="overlay-backdrop"></div>
+        <div class="overlay-content">
+            <button class="close-overlay-btn" id="closeOverlay">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="overlay-body" id="overlayBody">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+    
     <!-- Shop Interface JavaScript -->
     <script>
         // Shop Interface Functionality
@@ -680,14 +693,54 @@
             
             // Info toggle functionality
             const infoButtons = document.querySelectorAll('.info-toggle-btn');
+            const overlay = document.getElementById('infoOverlay');
+            const overlayBody = document.getElementById('overlayBody');
+            const closeOverlay = document.getElementById('closeOverlay');
+            
             infoButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const card = this.closest('.product-shop-card');
                     const descriptionContent = card.querySelector('.description-text-content');
+                    const productName = card.querySelector('.product-name').textContent;
+                    const productImage = card.querySelector('.product-image').src;
                     
-                    descriptionContent.classList.toggle('hidden');
-                    this.setAttribute('aria-expanded', !descriptionContent.classList.contains('hidden'));
+                    // Create overlay content
+                    overlayBody.innerHTML = `
+                        <div class="overlay-product">
+                            <img src="${productImage}" alt="${productName}" class="overlay-product-image">
+                            <h3 class="overlay-product-title">${productName}</h3>
+                            <div class="overlay-description">
+                                ${descriptionContent.innerHTML}
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Show overlay
+                    overlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
                 });
+            });
+            
+            // Close overlay functionality
+            function closeOverlayModal() {
+                overlay.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Restore scroll
+            }
+            
+            closeOverlay.addEventListener('click', closeOverlayModal);
+            
+            // Close overlay when clicking backdrop
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay || e.target.classList.contains('overlay-backdrop')) {
+                    closeOverlayModal();
+                }
+            });
+            
+            // Close overlay with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+                    closeOverlayModal();
+                }
             });
             
             // Quantity dropdown and price update functionality
