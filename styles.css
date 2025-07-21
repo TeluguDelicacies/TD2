@@ -26,6 +26,14 @@ body {
     background-color: #ffffff;
 }
 
+/* Custom font face for Telugu headings */
+@font-face {
+    font-family: 'Chathura-Bold';
+    src: url('./assets/Chathura-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-display: swap;
+}
+
 /* Container for responsive layout */
 .container {
     max-width: 1200px;
@@ -167,14 +175,15 @@ Mobile-first responsive design
 /* 
 ========================================
 HERO SECTION
-Complete redesign with fixed heights and simple positioning
-No more vh issues or cutoff problems
+New approach: Auto height based on content with proper spacing
+Eliminates all cutoff issues by letting content determine size
 ========================================
 */
 .hero {
-    margin-top: 80px; /* Simple header clearance */
+    padding-top: 120px; /* Header clearance */
+    padding-bottom: 40px; /* Bottom spacing */
     position: relative;
-    height: 400px; /* Fixed height - no vh issues */
+    min-height: 400px; /* Minimum height for visual impact */
     overflow: hidden;
 }
 
@@ -472,12 +481,32 @@ Responsive grid layout for different screen sizes
 
 /* Category titles */
 .category-title {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: #228B22;
     margin-bottom: 8px;
     line-height: 1.3;
-    font-family: 'Playfair Display', 'Times New Roman', serif;
+    font-family: 'Chathura-Bold', 'Chatura', sans-serif;
+}
+
+/* Bilingual title styling for categories */
+.bilingual-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.bilingual-title .english {
+    font-size: 1em;
+    font-family: 'Chathura-Bold', 'Chatura', sans-serif;
+    font-weight: 800;
+}
+
+.bilingual-title .telugu {
+    font-size: 0.9em;
+    font-family: 'Chathura-Bold', 'Chatura', sans-serif;
+    font-weight: 700;
+    color: #FF6B35;
 }
 
 /* Category descriptions */
@@ -1031,8 +1060,9 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     
     /* Hero adjustments */
     .hero {
-        height: 600px; /* Large fixed height for desktop */
-        margin-top: 90px;
+        padding-top: 150px;
+        padding-bottom: 60px;
+        min-height: 600px;
     }
     
     .hero-title .english {
