@@ -1,0 +1,1139 @@
+/* 
+========================================
+TELUGU DELICACIES WEBSITE STYLES
+========================================
+Author: Telugu Delicacies
+Description: Responsive CSS for authentic South Indian food company website
+Last Updated: 2024
+*/
+
+/* 
+========================================
+RESET AND BASE STYLES
+========================================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base body styles with modern font stack */
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #ffffff;
+}
+
+/* Container for responsive layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 
+========================================
+HEADER STYLES
+Fixed navigation header with brand and navigation
+Mobile-first responsive design
+========================================
+*/
+.header {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    color: white;
+    padding: 8px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-height: 60px;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Header content layout */
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    min-height: 50px;
+    justify-content: center;
+}
+
+/* Logo section with brand information */
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Main logo image */
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 3px solid rgba(255,215,0,0.3);
+    background: #228B22;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* Fallback logo when image fails to load */
+.logo-fallback {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255,215,0,0.3);
+}
+
+/* Fallback logo text */
+.logo-text {
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Brand name styling */
+.brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 1px;
+    color: #FFD700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Brand tagline */
+.tagline {
+    font-size: 11px;
+    font-weight: 300;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+/* Navigation buttons container */
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Individual navigation buttons */
+.nav-btn {
+    background: rgba(255,215,0,0.15);
+    border: 2px solid rgba(255,215,0,0.3);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    min-height: 36px;
+    text-decoration: none;
+}
+
+/* Navigation button hover effects */
+.nav-btn:hover {
+    background: rgba(255,215,0,0.25);
+    border-color: rgba(255,215,0,0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 
+========================================
+HERO SECTION
+Main banner with background image and overlay content
+Responsive design with proper spacing
+========================================
+*/
+.hero {
+    margin-top: 110px; /* Account for fixed header */
+    position: relative;
+    height: 85vh;
+    overflow: hidden;
+}
+
+/* Hero image container */
+.hero-image {
+    position: relative;
+    height: 100%;
+}
+
+/* Hero background image */
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Hero overlay for text readability */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(34,139,34,0.85), rgba(50,205,50,0.7));
+    display: flex;
+    align-items: center;
+}
+
+/* Hero content styling */
+.hero-content {
+    color: #FFD700;
+    padding: 50px 15px 30px 15px;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Main hero title */
+.hero-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 25px auto 12px auto;
+    text-shadow: 
+        2px 2px 4px rgba(0,0,0,1), 
+        0px 0px 8px rgba(0,0,0,0.8),
+        1px 1px 0px rgba(0,0,0,1),
+        -1px -1px 0px rgba(0,0,0,1),
+        1px -1px 0px rgba(0,0,0,1),
+        -1px 1px 0px rgba(0,0,0,1);
+    color: #FFD700;
+    line-height: 1.2;
+    display: block;
+    position: relative;
+    z-index: 10;
+    background: rgba(0,0,0,0.3);
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto 12px auto;
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.3;
+}
+
+/* Hero description content */
+.hero-description {
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-description p {
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+
+/* Call-to-action button */
+.cta-button {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #FF6B35;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 48px;
+    text-shadow: none;
+    box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+    text-decoration: none;
+}
+
+/* CTA button hover effects */
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255,215,0,0.4);
+    background: linear-gradient(135deg, #FFA500, #FFD700);
+}
+
+/* 
+========================================
+PRODUCT SHOWCASE SECTION
+Continuous horizontal scrolling ticker for all products
+News ticker style with infinite loop
+========================================
+*/
+.product-showcase {
+    padding: 30px 0; /* Reduced padding for compact design */
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+/* Section title styling */
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px; /* Streamlined gap */
+    color: #228B22;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Scroll container with fade edges */
+.scroll-container {
+    overflow: hidden;
+    padding: 10px 0; /* Reduced padding for tighter spacing */
+    position: relative;
+    /* Gradient fade effect on edges for professional ticker look */
+    background: linear-gradient(90deg, 
+        rgba(248,249,250,1) 0%, 
+        rgba(248,249,250,0) 5%, 
+        rgba(248,249,250,0) 95%, 
+        rgba(248,249,250,1) 100%);
+}
+
+/* Continuous scrolling product container */
+.product-scroll {
+    display: flex;
+    animation: tickerMobile 30s linear infinite;
+    gap: 20px;
+    will-change: transform; /* Optimize for smooth animation */
+}
+
+/* Individual product items in ticker */
+.product-item {
+    min-width: 160px;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid rgba(255,215,0,0.2);
+}
+
+/* Product item hover effects */
+.product-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,215,0,0.5);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Product images in ticker */
+.product-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: opacity 0.3s ease;
+}
+
+/* Product titles in ticker */
+.product-item h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #228B22;
+    line-height: 1.3;
+}
+
+/* Mobile ticker animation */
+@keyframes tickerMobile {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-160px * 15 - 20px * 15));
+    }
+}
+
+/* 
+========================================
+PRODUCTS SECTION
+Detailed product categories with interactive dropdowns
+Responsive grid layout for different screen sizes
+========================================
+*/
+.products-section {
+    padding: 60px 0;
+    background: white;
+}
+
+/* Product categories grid */
+.product-categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Individual category cards */
+.category-card {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,215,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Category card hover effects */
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    border-color: rgba(255,215,0,0.4);
+}
+
+/* Category header section */
+.category-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Category images */
+.category-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.category-image:hover {
+    transform: scale(1.02);
+}
+
+/* Category titles */
+.category-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #228B22;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+/* Category descriptions */
+.category-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Product dropdown container */
+.product-dropdown {
+    margin-top: 20px;
+}
+
+/* Product selection dropdown */
+.product-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    min-height: 44px;
+}
+
+/* Dropdown focus styles */
+.product-select:focus {
+    outline: none;
+    border-color: #228B22;
+    box-shadow: 0 0 0 3px rgba(34,139,34,0.1);
+}
+
+/* Product description container */
+.product-description {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #F0FFF0, #FFFACD);
+    border-radius: 12px;
+    border-left: 4px solid #228B22;
+    animation: slideIn 0.3s ease;
+}
+
+/* Slide-in animation for product descriptions */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Product images in descriptions */
+.podi-image {
+    width: 100%;
+    max-width: 200px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+}
+
+.podi-image:hover {
+    transform: scale(1.05);
+}
+
+/* Product description titles */
+.product-description h4 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FF6B35;
+    margin-bottom: 8px;
+}
+
+/* Product description text */
+.product-description p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Product feature lists */
+.product-description ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 12px;
+}
+
+.product-description li {
+    padding: 4px 0;
+    padding-left: 18px;
+    position: relative;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Checkmark bullets for features */
+.product-description li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #228B22;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 
+========================================
+CONTACT SECTION
+Contact form and business information
+Responsive layout with form validation styles
+========================================
+*/
+.contact-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+/* Contact content grid */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Contact form container */
+.contact-form {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,215,0,0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.contact-form:hover {
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Form labels */
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Form inputs and controls */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    min-height: 44px;
+    font-family: inherit;
+}
+
+/* Focus styles for form controls */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #228B22;
+    box-shadow: 0 0 0 3px rgba(34,139,34,0.1);
+}
+
+/* Submit button */
+.submit-btn {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    color: #FFD700;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+}
+
+/* Submit button hover effects */
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(34,139,34,0.3);
+    background: linear-gradient(135deg, #32CD32, #228B22);
+}
+
+/* Submit button disabled state */
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Contact information cards */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Individual info cards */
+.info-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 2px solid rgba(255,215,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Info card hover effects */
+.info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    border-color: rgba(255,215,0,0.4);
+}
+
+/* Info card icons */
+.info-card i {
+    font-size: 28px;
+    color: #228B22;
+    margin-bottom: 12px;
+}
+
+/* Info card titles */
+.info-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #228B22;
+}
+
+/* Info card content */
+.info-card p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/* Contact links styling */
+.info-card a {
+    color: #228B22;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-card a:hover {
+    color: #32CD32;
+    text-decoration: underline;
+}
+
+/* 
+========================================
+FOOTER SECTION
+Company information and location map
+Responsive grid layout
+========================================
+*/
+.footer {
+    background: linear-gradient(135deg, #2F4F2F, #228B22);
+    color: white;
+    padding: 40px 0 15px;
+}
+
+/* Footer content grid */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+/* Footer section titles */
+.footer-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #FFD700;
+}
+
+/* Footer company information */
+.footer-info {
+    margin-top: 15px;
+}
+
+.footer-info p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Map container */
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 180px;
+    border: none;
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+}
+
+.map-container:hover iframe {
+    filter: grayscale(0%);
+}
+
+/* Footer bottom section */
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255,215,0,0.3);
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* 
+========================================
+FORM VALIDATION STYLES
+Error states and validation feedback
+========================================
+*/
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+    box-shadow: 0 0 0 3px rgba(220,53,69,0.1);
+}
+
+/* Error message styling */
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
+
+/* 
+========================================
+RESPONSIVE DESIGN - TABLET STYLES
+768px and up
+========================================
+*/
+@media (min-width: 768px) {
+    /* Container adjustments */
+    .container {
+        padding: 0 20px;
+    }
+    
+    /* Header adjustments */
+    .header {
+        padding: 10px 0;
+    }
+    
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        gap: 15px;
+    }
+    
+    .logo-section {
+        flex-direction: row;
+        gap: 12px;
+    }
+    
+    .logo,
+    .logo-fallback {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .brand-name {
+        font-size: 22px;
+    }
+    
+    .tagline {
+        font-size: 13px;
+    }
+    
+    .nav-buttons {
+        gap: 12px;
+    }
+    
+    .nav-btn {
+        padding: 10px 18px;
+        font-size: 15px;
+        min-height: 40px;
+    }
+    
+    /* Hero adjustments */
+    .hero {
+        margin-top: 60px;
+        height: 60vh;
+    }
+    
+    .hero-content {
+        max-width: 600px;
+        text-align: left;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .hero-description {
+        font-size: 15px;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 16px;
+        min-height: 44px;
+    }
+    
+    /* Section adjustments */
+    .section-title {
+        font-size: 32px;
+    }
+    
+    /* Product categories grid */
+    .product-categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    /* Contact section adjustments */
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+    }
+    
+    .contact-form {
+        padding: 35px;
+    }
+    
+    /* Footer adjustments */
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    
+    /* Product showcase adjustments */
+    .product-scroll {
+        animation: tickerTablet 35s linear infinite;
+        gap: 25px;
+    }
+    
+    .product-item {
+        min-width: 200px;
+    }
+    
+    /* Tablet ticker animation */
+    @keyframes tickerTablet {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-200px * 15 - 25px * 15));
+        }
+    }
+}
+
+/* 
+========================================
+RESPONSIVE DESIGN - DESKTOP STYLES
+1024px and up
+========================================
+*/
+@media (min-width: 1024px) {
+    /* Logo size adjustments */
+    .logo,
+    .logo-fallback {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+    }
+    
+    /* Hero adjustments */
+    .hero {
+        height: 65vh;
+    }
+    
+    .hero-title {
+        font-size: 40px;
+    }
+    
+    .hero-subtitle {
+        font-size: 24px;
+    }
+    
+    .hero-description {
+        font-size: 16px;
+    }
+    
+    /* Section title adjustments */
+    .section-title {
+        font-size: 36px;
+    }
+    
+    /* Section padding adjustments */
+    .product-showcase {
+        padding: 40px 0;
+    }
+    
+    .products-section,
+    .contact-section {
+        padding: 80px 0;
+    }
+    
+    /* Form adjustments */
+    .contact-form {
+        padding: 40px;
+    }
+    
+    /* Footer adjustments */
+    .footer {
+        padding: 50px 0 20px;
+    }
+    
+    /* Product showcase adjustments */
+    .product-scroll {
+        gap: 30px;
+        animation: tickerDesktop 40s linear infinite;
+    }
+    
+    .product-item {
+        min-width: 220px;
+        padding: 20px;
+    }
+    
+    .product-item img {
+        height: 120px;
+    }
+    
+    .product-item h3 {
+        font-size: 16px;
+    }
+    
+    .logo-text {
+        font-size: 22px;
+    }
+    
+    /* Desktop ticker animation */
+    @keyframes tickerDesktop {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-220px * 15 - 30px * 15));
+        }
+    }
+}
+
+/* 
+========================================
+RESPONSIVE DESIGN - LARGE DESKTOP STYLES
+1440px and up
+========================================
+*/
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .product-categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+    }
+    
+    .category-card {
+        padding: 30px;
+    }
+}
+
+/* 
+========================================
+ACCESSIBILITY AND PERFORMANCE OPTIMIZATIONS
+========================================
+*/
+
+/* Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Image loading optimization */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+    opacity: 0;
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .product-scroll {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .header {
+        background: #006400;
+        border-bottom: 2px solid #FFD700;
+    }
+    
+    .nav-btn {
+        border: 2px solid #FFD700;
+        background: transparent;
+    }
+    
+    .category-card,
+    .info-card,
+    .contact-form {
+        border: 2px solid #228B22;
+    }
+}
+
+/* Focus indicators for keyboard navigation */
+button:focus,
+select:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid #228B22;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .product-showcase,
+    .footer {
+        display: none;
+    }
+    
+    .hero {
+        margin-top: 0;
+        height: auto;
+    }
+    
+    .hero-bg {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+}
