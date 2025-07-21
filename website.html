@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>South Indian Foods | Modern Yet Traditional</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ========= SOUTH INDIAN FOODS - MOBILE FIRST CSS ========== */
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #fffefb;
+      color: #222;
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .brand-logo {
+      height: 44px;
+      width: 44px;
+      border-radius: 8px;
+      margin-right: 10px;
+      background: #fffbe9;
+      object-fit: contain;
+      border: 1px solid #eee;
+    }
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .brand-name {
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: #db793b;
+      letter-spacing: 1px;
+    }
+    .tagline {
+      font-size: 0.95rem;
+      color: #778;
+    }
+    .header-right {
+      display: flex;
+      gap: 10px;
+    }
+    .header-btn {
+      background: #db793b;
+      color: #fff;
+      border: none;
+      border-radius: 99px;
+      padding: 8px 18px;
+      margin-left: 6px;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.1s;
+    }
+    .header-btn:hover {
+      background: #b35310;
+    }
+
+    /* Landing */
+    .landing {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 10px 8px 10px;
+      background: linear-gradient(150deg,#fffbe9 50%,#ffe8cb 100%);
+    }
+    .landing-img {
+      width: 100%;
+      min-height: 110px;
+      max-width: 440px;
+      border-radius: 16px;
+      box-shadow: 0 3px 18px 0 rgba(210,125,30,0.12);
+      object-fit: cover;
+    }
+    .about {
+      text-align: center;
+      margin-top: 5px;
+    }
+    .about h2 {
+      font-weight: 600;
+      color: #c47f1d;
+      margin-bottom: 8px;
+      font-size: 1.24rem;
+    }
+    .about p {
+      margin: 0;
+      color: #775502;
+      font-size: 1.06rem;
+      line-height: 1.5;
+    }
+
+    /* Reel */
+    .product-reel {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 0 10px 2vw;
+      background: #f7f7eb;
+      border-top: 1px solid #ffe2ae;
+      border-bottom: 1px solid #ffe2ae;
+      margin: 0;
+    }
+    .reel-track {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scrollReel 17s linear infinite;
+    }
+    .reel-item {
+      display: inline-block;
+      padding: 8px 18px;
+      margin-right: 10px;
+      font-size: 1.07rem;
+      font-weight: 500;
+      border-radius: 99px;
+      background: #fffbe9;
+      border: 1px solid #ffe2ae;
+      color: #a77314;
+      letter-spacing: .4px;
+      box-shadow: 0 2px 6px 0 rgba(210,125,30,.06);
+    }
+    @keyframes scrollReel {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Product List */
+    .products {
+      padding: 18px 3vw 6px 3vw;
+      background: #fff;
+    }
+    .products h2 {
+      color: #b35310;
+      margin-bottom: 2px;
+      font-size: 1.19rem;
+    }
+    .category {
+      margin-bottom: 18px;
+    }
+    .category h3 {
+      font-size: 1.08rem;
+      color: #684301;
+      margin-bottom: 6px;
+      margin-top: 14px;
+    }
+    .products ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .products li {
+      margin-bottom: 7px;
+      border-radius: 8px;
+    }
+    .product-name {
+      font-weight: 500;
+      color: #753c04;
+      vertical-align: middle;
+      font-size: 1rem;
+      display: inline-block;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      color: #db793b;
+      font-weight: 600;
+      font-size: 1.03rem;
+      margin-left: 12px;
+      cursor: pointer;
+      padding: 2px 0 2px 8px;
+      vertical-align: middle;
+    }
+    .dropdown-content {
+      display: none;
+      padding-left: 5px;
+      font-size: 0.97rem;
+      color: #444;
+      margin-top: 2px;
+      margin-bottom: 4px;
+      background: #fff8e1;
+      border-left: 3px solid #db793b;
+      border-radius: 0 8px 8px 0;
+      padding: 6px 10px 6px 12px;
+      line-height: 1.55;
+    }
+    .products li.active .dropdown-content {
+      display: block;
+      animation: fadeIn 0.35s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Contact Us */
+    .contact-form {
+      padding: 20px 6vw 6px 6vw;
+      background: #fffbe9;
+    }
+    .contact-form h2 {
+      color: #a77314;
+      margin-bottom: 10px;
+      font-size: 1.13rem;
+    }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      border: 1px solid #e0c997;
+      padding: 12px;
+      border-radius: 7px;
+      font-size: 1rem;
+      background: #fffdfa;
+      resize: none;
+      font-family: inherit;
+    }
+    .contact-form textarea { min-height: 72px;}
+    .contact-form button {
+      width: 100%;
+      background: #db793b;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 13px 0;
+      font-size: 1.08rem;
+      font-weight: 600;
+      letter-spacing: .4px;
+      cursor: pointer;
+      margin-top: 4px;
+      box-shadow: 0 1px 4px #be9d6925;
+      transition: background 0.13s;
+    }
+    .contact-form button:hover { background: #b35310; }
+
+    /* Footer */
+    footer {
+      background: #f7f7eb;
+      color: #555134;
+      padding: 20px 5vw 15px 5vw;
+      font-size: 0.99rem;
+    }
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-info p {
+      margin: 0 0 2px 1px;
+      font-size: 0.97rem;
+    }
+    .google-map {
+      margin: 12px 0 0 0;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 100vw;
+    }
+    .google-map iframe { width: 100%; height: 175px; border: 0; }
+
+    /* Responsive for larger screens */
+    @media (min-width: 700px) {
+      .landing {
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+      }
+      .landing-img {
+        width: 49vw;
+        margin-right: 7vw;
+        max-width: 360px;
+        min-width: 180px;
+      }
+      .about {
+        max-width: 400px;
+        margin-top: 0;
+        text-align: left;
+      }
+      .contact-form,
+      .products {
+        padding-left: 23vw;
+        padding-right: 23vw;
+      }
+    }
+
+    /* Hide scrollbars on mobile reel */
+    .product-reel::-webkit-scrollbar { display: none;}
+    .product-reel { -ms-overflow-style: none;  scrollbar-width: none; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-left">
+    <img src="logo.jpg" alt="Brand Logo" class="brand-logo">
+    <div class="brand-info">
+      <span class="brand-name">South Indian Foods</span>
+      <span class="tagline">Modern Yet Traditional</span>
+    </div>
+  </div>
+  <nav class="header-right">
+    <a href="#catalog" class="header-btn">Catalog</a>
+    <a href="#contact" class="header-btn">Contact</a>
+  </nav>
+</header>
+
+<!-- Landing Section -->
+<section class="landing">
+  <img src="landing-photo.jpg" alt="Traditional South Indian Food" class="landing-img">
+  <div class="about">
+    <h2>Welcome to South Indian Foods</h2>
+    <p>We bring you authentic, ready-to-eat <b>Parota</b> and <b>Chapathi</b>, and over 15 kinds of traditional South Indian podis. Our passion: quality, convenience, and preservative-free foods – made for busy, modern lifestyles but rooted in time-honored recipes. Relish tradition in every bite!</p>
+  </div>
+</section>
+
+<!-- Infinite Product Reel -->
+<section class="product-reel" aria-label="Product Scroll">
+  <div class="reel-track">
+    <div class="reel-item">Parota</div>
+    <div class="reel-item">Chapathi</div>
+    <div class="reel-item">Idli Podi</div>
+    <div class="reel-item">Curry Leaf Podi</div>
+    <div class="reel-item">Pudhina Podi</div>
+    <div class="reel-item">Dosa Podi</div>
+    <div class="reel-item">Sambar Podi</div>
+    <div class="reel-item">Rasam Podi</div>
+    <div class="reel-item">Ellu Podi</div>
+    <div class="reel-item">Karuveppilai Podi</div>
+    <div class="reel-item">Vathakulambu Podi</div>
+    <div class="reel-item">Idiyappam Podi</div>
+    <div class="reel-item">Thengai Podi</div>
+    <div class="reel-item">Kothamalli Podi</div>
+    <div class="reel-item">Tomato Podi</div>
+    <div class="reel-item">Paruppu Podi</div>
+    <div class="reel-item">Gun Powder</div>
+    <!-- Repeat for smooth infinite scrolling -->
+    <div class="reel-item">Parota</div>
+    <div class="reel-item">Chapathi</div>
+    <div class="reel-item">Idli Podi</div>
+    <div class="reel-item">Curry Leaf Podi</div>
+    <div class="reel-item">Pudhina Podi</div>
+    <div class="reel-item">Dosa Podi</div>
+    <div class="reel-item">Sambar Podi</div>
+    <div class="reel-item">Rasam Podi</div>
+    <div class="reel-item">Ellu Podi</div>
+    <div class="reel-item">Karuveppilai Podi</div>
+    <div class="reel-item">Vathakulambu Podi</div>
+    <div class="reel-item">Idiyappam Podi</div>
+    <div class="reel-item">Thengai Podi</div>
+    <div class="reel-item">Kothamalli Podi</div>
+    <div class="reel-item">Tomato Podi</div>
+    <div class="reel-item">Paruppu Podi</div>
+    <div class="reel-item">Gun Powder</div>
+  </div>
+</section>
+
+<!-- Product Catalog -->
+<section class="products" id="catalog">
+  <h2>Our Products</h2>
+  
+  <div class="category">
+    <h3>Ready to Eat</h3>
+    <ul>
+      <li>
+        <span class="product-name">Chapathi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Fresh, soft whole-wheat chapathis. Just heat and serve – perfect for breakfast, lunchboxes, or dinner.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Parota</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Flaky, layered Malabar Parota. Made with love, ready in minutes – a true South Indian classic!</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="category">
+    <h3>Ready to Cook – Podis</h3>
+    <ul>
+      <li>
+        <span class="product-name">Idli Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Traditional idli chilli powder made from roasted lentils and chillies. Mix with ghee or oil for an authentic dip.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Curry Leaf Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Rich in curry leaves and loaded with flavor – a nutrient-rich accompaniment.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Dosa Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Aromatic spicy powder for dosas, sprinkled or as a dip – elevates every dosa bite!</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Sambar Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Classic sambar blend of roasted spices for that perfect sambar taste every time.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Rasam Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Fragrant, tangy rasam powder – just add to hot water and tomatoes for instant rasam.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Ellu Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Black sesame seed chutney powder, nutty and healthy – delicious with rice.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Karuveppilai Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Curry leaf-centric podi for health and taste; a South Indian staple.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Vathakulambu Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Mix of spices for authentic vathakulambu – tangy, spicy, and very flavorful.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Idiyappam Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Finely ground rice flour for making soft, lacy idiyappam at home.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Thengai Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Roasted coconut podi – delicious with hot rice or dosai!</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Kothamalli Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Cilantro/coriander leaves podi – tangy, fresh, and perfect for rice.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Tomato Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Zesty tomato-based blend for mixing with rice or sprinkling on toast.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Paruppu Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Protein-packed dal/lentil podi – best with hot rice and a dollop of ghee.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Gun Powder (Milagai Podi)</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Fiery blend of roasted spices – traditional for idli/dosa lovers.</p>
+        </div>
+      </li>
+      <li>
+        <span class="product-name">Pudhina Podi</span>
+        <button class="dropdown-btn" aria-expanded="false">Details</button>
+        <div class="dropdown-content">
+          <p>Minty, aromatic pudina podi for a refreshing twist to rice or sides.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Contact Us -->
+<section id="contact" class="contact-form">
+  <h2>Contact Us</h2>
+  <form autocomplete="off" onsubmit="alert('Thank you! We will get in touch soon.');return false;">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-info">
+    <p>Address: 123, Tasty Street, Chennai, Tamil Nadu, India</p>
+    <p>FSSAI Code: 12345678901234</p>
+    <div class="google-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.00135694668!2d80.27878771744384!3d13.082680256889492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7eabdc2283f03d8d!2sChennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1709277897956!5m2!1sen!2sin"
+              width="200"
+              height="150"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dropdown expand/collapse for each product
+  document.querySelectorAll('.dropdown-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      // Close other open dropdowns
+      document.querySelectorAll('.products li').forEach(function(li){
+        if(li !== btn.parentNode) li.classList.remove('active');
+      });
+      // Toggle this one
+      btn.parentNode.classList.toggle('active');
+      // ARIA
+      btn.setAttribute('aria-expanded', btn.parentNode.classList.contains('active'));
+    });
+  });
+</script>
+
+</body>
+</html>
