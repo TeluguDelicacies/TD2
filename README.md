@@ -40,7 +40,12 @@ A modern, responsive website for Telugu Delicacies - an authentic South Indian f
    cd telugu-delicacies-website
    ```
 
-2. **Open in browser**
+2. **Add Images**
+   - Create the required folder structure as outlined in `image-requirements.md`
+   - Add all product and category images to the respective folders
+   - Ensure all image filenames match exactly as specified in the requirements
+
+3. **Open in browser**
    - Simply open `index.html` in your web browser
    - Or use a local server like `Live Server` extension in VS Code
 
