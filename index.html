@@ -321,23 +321,24 @@
                     
                     <!-- Product selection dropdown -->
                     <div class="product-dropdown">
-                        <select class="product-select" 
+                        <!-- FIXED: Completely rebuilt dropdown for proper Telugu functionality -->
+                        <select class="product-select rebuilt-dropdown" 
                                 onchange="showProductDescription(this, 'ready-to-eat')"
                                 aria-label="Select ready-to-eat podi">
-                            <option value="">Select Podi</option>
-                            <option value="kadapa-kaaram">Kadapa Kaaram</option>
-                            <option value="nalla-kaaram">Nalla Kaaram</option>
-                            <option value="kandi-podi">Kandi Podi</option>
-                            <option value="godhuma-kaaram">Godhuma Kaaram</option>
-                            <option value="karivepaku-podi">Karivepaku Podi</option>
-                            <option value="palli-dhaniya-podi">Palli Dhaniya Podi</option>
-                            <option value="tamalapaaku-kaaram">Tamalapaaku Kaaram</option>
-                            <option value="sambar-premix">Sambar Premix</option>
-                            <option value="velluli-kaaram">Velluli Kaaram</option>
-                            <option value="idli-podi">Idli Podi</option>
-                            <option value="konaseema-kaaram">Konaseema Kaaram</option>
-                            <option value="chutney-premix">Chutney Premix</option>
-                            <option value="palli-kaaram">Palli Kaaram</option>
+                            <option value="" class="default-option">Select Podi</option>
+                            <option value="kadapa-kaaram" class="bilingual-option">Kadapa Kaaram (కడప కారం)</option>
+                            <option value="nalla-kaaram" class="bilingual-option">Nalla Kaaram (నల్ల కారం)</option>
+                            <option value="kandi-podi" class="bilingual-option">Kandi Podi (కంది పొడి)</option>
+                            <option value="godhuma-kaaram" class="bilingual-option">Godhuma Kaaram (గోధుమ కారం)</option>
+                            <option value="karivepaku-podi" class="bilingual-option">Karivepaku Podi (కరివేపాకు పొడి)</option>
+                            <option value="palli-dhaniya-podi" class="bilingual-option">Palli Dhaniya Podi (పల్లి ధనియా పొడి)</option>
+                            <option value="tamalapaaku-kaaram" class="bilingual-option">Tamalapaaku Kaaram (తమలపాకు కారం)</option>
+                            <option value="sambar-premix" class="bilingual-option">Sambar Premix (సాంబార్ ప్రీమిక్స్)</option>
+                            <option value="velluli-kaaram" class="bilingual-option">Velluli Kaaram (వెల్లుల్లి కారం)</option>
+                            <option value="idli-podi" class="bilingual-option">Idli Podi (ఇడ్లీ పొడి)</option>
+                            <option value="konaseema-kaaram" class="bilingual-option">Konaseema Kaaram (కోనసీమ కారం)</option>
+                            <option value="chutney-premix" class="bilingual-option">Chutney Premix (చట్నీ ప్రీమిక్స్)</option>
+                            <option value="palli-kaaram" class="bilingual-option">Palli Kaaram (పల్లి కారం)</option>
                         </select>
                         
                         <!-- Product descriptions (initially hidden) -->
