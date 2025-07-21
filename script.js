@@ -170,22 +170,36 @@ Dynamic header styling based on scroll position
 
 /**
  * Updates header appearance based on scroll position
- * Creates a more prominent header background when scrolling
+ * Creates auto-hide behavior and background changes when scrolling
  */
 function updateHeaderOnScroll() {
     const header = document.querySelector('.header');
     if (!header) return;
     
-    if (window.scrollY > 100) {
-        // Scrolled state - more opaque background with blur effect
+    const scrollY = window.scrollY;
+    const scrollDirection = scrollY > (window.lastScrollY || 0) ? 'down' : 'up';
+    window.lastScrollY = scrollY;
+    
+    if (scrollY > 100) {
+        // Scrolled state - change background
         header.style.background = 'linear-gradient(135deg, rgba(34,139,34,0.95), rgba(50,205,50,0.95))';
         header.style.backdropFilter = 'blur(10px)';
         header.style.webkitBackdropFilter = 'blur(10px)'; // Safari support
+        
+        // Auto-hide logic
+        if (scrollDirection === 'down' && scrollY > 200) {
+            // Hide header when scrolling down
+            header.classList.add('hidden');
+        } else if (scrollDirection === 'up') {
+            // Show header when scrolling up
+            header.classList.remove('hidden');
+        }
     } else {
         // Top of page state - original gradient
         header.style.background = 'linear-gradient(135deg, #228B22, #32CD32)';
         header.style.backdropFilter = 'none';
         header.style.webkitBackdropFilter = 'none';
+        header.classList.remove('hidden');
     }
 }
 
@@ -258,126 +272,50 @@ function initializeProductShowcaseControls() {
         productScroll.style.animationPlayState = 'running';
     });
     
-    // ENHANCED: Advanced touch scrolling support
-    // Variables to track touch interaction state
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchStartTime = 0;
-    let isScrolling = false;
-    let autoScrollPaused = false;
-    let scrollTimeout;
+    // SIMPLIFIED: Touch scrolling support that doesn't interfere with native scrolling
+    let isUserInteracting = false;
+    let interactionTimeout;
     
-    // Touch start handler - detects beginning of touch interaction
-    scrollContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-        touchStartTime = Date.now();
-        isScrolling = false;
-        
-        // Pause auto-scroll animation during touch interaction
-        if (!autoScrollPaused) {
+    // Simple touch interaction detection
+    const handleInteractionStart = () => {
+        if (!isUserInteracting) {
             productScroll.style.animationPlayState = 'paused';
-            autoScrollPaused = true;
+            isUserInteracting = true;
         }
         
-        // Clear any existing auto-resume timeout
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
+        // Clear any existing timeout
+        if (interactionTimeout) {
+            clearTimeout(interactionTimeout);
         }
-    }, { passive: true });
+    };
     
-    // Touch move handler for swipe detection
-    // Handles horizontal swipe gestures for manual scrolling
-    scrollContainer.addEventListener('touchmove', (e) => {
-        if (!touchStartX) return;
-        
-        const touchX = e.touches[0].clientX;
-        const touchY = e.touches[0].clientY;
-        const deltaX = touchStartX - touchX;
-        const deltaY = touchStartY - touchY;
-        
-        // Determine if this is a horizontal swipe (not vertical scroll)
-        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-            if (!isScrolling) {
-                isScrolling = true;
-                scrollContainer.classList.add('manual-scroll');
-                productScroll.classList.add('manual-control');
-            }
-            
-            // Prevent default page scrolling during horizontal swipe
-            e.preventDefault();
-            
-            // Apply smooth manual scrolling with resistance factor
-            scrollContainer.scrollLeft += deltaX * 0.8; // Smooth scrolling factor
-            touchStartX = touchX; // Update start position for continuous scrolling
-        }
-    }, { passive: false });
+    const handleInteractionEnd = () => {
+        // Resume animation after user stops interacting
+        interactionTimeout = setTimeout(() => {
+            productScroll.style.animationPlayState = 'running';
+            isUserInteracting = false;
+        }, 1500); // Resume after 1.5 seconds of inactivity
+    };
     
-    // Touch end handler
-    // Handles end of touch interaction and auto-resume logic
-    scrollContainer.addEventListener('touchend', (e) => {
-        const touchEndTime = Date.now();
-        const touchDuration = touchEndTime - touchStartTime;
-        
-        // Reset touch tracking variables
-        touchStartX = 0;
-        touchStartY = 0;
-        
-        // Remove manual control styling classes
-        scrollContainer.classList.remove('manual-scroll');
-        productScroll.classList.remove('manual-control');
-        
-        // Resume auto-scroll after a delay to allow user to finish viewing
-        scrollTimeout = setTimeout(() => {
-            if (autoScrollPaused) {
-                productScroll.style.animationPlayState = 'running';
-                autoScrollPaused = false;
-                isScrolling = false;
-            }
-        }, 2000); // Resume after 2 seconds of no interaction
-        
-    }, { passive: true });
+    // Touch events - let browser handle native scrolling
+    scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
+    scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
     
-    // Handle scroll events for better UX
-    // Manages auto-resume during manual scrolling with mouse/trackpad
-    let scrollEndTimeout;
+    // Scroll events - pause animation when user manually scrolls
     scrollContainer.addEventListener('scroll', () => {
-        // Clear existing scroll end detection timeout
-        if (scrollEndTimeout) {
-            clearTimeout(scrollEndTimeout);
-        }
-        
-        // Set new timeout to detect when scrolling has stopped
-        scrollEndTimeout = setTimeout(() => {
-            // Auto-resume animation if not being manually controlled
-            if (!isScrolling && autoScrollPaused) {
-                productScroll.style.animationPlayState = 'running';
-                autoScrollPaused = false;
-            }
-        }, 1500); // Resume after 1.5 seconds of scroll inactivity
+        handleInteractionStart();
+        handleInteractionEnd();
     }, { passive: true });
     
-    // Enhanced wheel scrolling for desktop
+    // Wheel events for desktop
     scrollContainer.addEventListener('wheel', (e) => {
-        // Pause animation during wheel scroll
-        productScroll.style.animationPlayState = 'paused';
-        autoScrollPaused = true;
+        handleInteractionStart();
         
-        // Horizontal scroll with wheel
+        // Allow horizontal scrolling with wheel
         scrollContainer.scrollLeft += e.deltaY * 0.5;
         e.preventDefault();
         
-        // Clear existing timeout
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        
-        // Resume animation after wheel scroll ends
-        scrollTimeout = setTimeout(() => {
-            productScroll.style.animationPlayState = 'running';
-            autoScrollPaused = false;
-        }, 2000);
-        
+        handleInteractionEnd();
     }, { passive: false });
 }
 
@@ -785,6 +723,9 @@ function initializeWebsite() {
     if (hamburgerBtn) {
         console.log('Mobile hamburger menu initialized');
     }
+    
+    // Initialize click outside to close functionality
+    initializeClickOutsideClose();
     
     // Handle escape key to close mobile menu
     document.addEventListener('keydown', (e) => {
