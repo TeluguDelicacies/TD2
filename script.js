@@ -613,6 +613,48 @@ Helper functions for various website features
 */
 
 /**
+ * Randomizes the order of products in the showcase section
+ * Shuffles the product items for variety on each page load
+ */
+function randomizeProductShowcase() {
+    const productScroll = document.getElementById('productScroll');
+    if (!productScroll) return;
+    
+    const items = Array.from(productScroll.children);
+    const firstHalf = items.slice(0, Math.floor(items.length / 2));
+    const secondHalf = items.slice(Math.floor(items.length / 2));
+    
+    // Shuffle first half (main products)
+    const shuffled = shuffleArray([...firstHalf]);
+    
+    // Clear container
+    productScroll.innerHTML = '';
+    
+    // Add shuffled items
+    shuffled.forEach(item => productScroll.appendChild(item));
+    
+    // Add duplicate items for infinite loop
+    shuffled.forEach(item => {
+        const duplicate = item.cloneNode(true);
+        productScroll.appendChild(duplicate);
+    });
+}
+
+/**
+ * Fisher-Yates shuffle algorithm for array randomization
+ * @param {Array} array - Array to shuffle
+ * @returns {Array} - Shuffled array
+ */
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+/**
  * Utility function to safely query DOM elements
  * @param {string} selector - CSS selector
  * @returns {Element|null} - The element or null if not found
