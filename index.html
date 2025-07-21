@@ -45,15 +45,26 @@
                 </div>
                 
                 <!-- Navigation Buttons -->
-                <nav class="nav-buttons">
-                    <button class="nav-btn" onclick="scrollToSection('products')" aria-label="View product catalog">
-                        <i class="fas fa-book"></i> Catalog
-                    </button>
-                    <button class="nav-btn" onclick="scrollToSection('call-us')" aria-label="Call us directly">
-                        <i class="fas fa-phone"></i> Contact
-                    </button>
-                </nav>
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <nav class="mobile-nav" id="mobileNav">
+                <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('products'); closeMobileMenu()" aria-label="View product catalog">
+                    <i class="fas fa-book"></i> Catalog
+                </button>
+                <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('call-us'); closeMobileMenu()" aria-label="Call us directly">
+                    <i class="fas fa-phone"></i> Contact
+                </button>
+                <button class="nav-btn mobile-nav-btn" onclick="window.open('#shop', '_blank'); closeMobileMenu()" aria-label="Visit our online shop">
+                    <i class="fas fa-shopping-cart"></i> Shop
+                </button>
+            </nav>
         </div>
     </header>
 
