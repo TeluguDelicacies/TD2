@@ -3,9 +3,11 @@
 TELUGU DELICACIES WEBSITE JAVASCRIPT
 ========================================
 Author: Telugu Delicacies
-Description: Interactive functionality for the website
-Features: Smooth scrolling, form handling, animations, product showcase
-Last Updated: 2024
+Description: Interactive functionality for responsive Telugu Delicacies website
+Features: Smooth scrolling, form handling, animations, enhanced product showcase with rem-based scaling
+Fonts: Montserrat (headers), Roboto (body text), Noto Sans Telugu (Telugu content)
+Scaling: Responsive rem-based system with fluid typography using clamp()
+Last Updated: 2024 - Updated for comprehensive font and scaling strategy
 */
 
 /*
@@ -239,13 +241,14 @@ Interactive controls for the product ticker
 /**
  * Initializes hover and touch controls for the product showcase
  * Pauses animation on interaction for better user experience
+ * Now works seamlessly with rem-based responsive scaling
  */
 function initializeProductShowcaseControls() {
     const productScroll = document.getElementById('productScroll');
     const scrollContainer = productScroll?.parentElement;
     if (!productScroll) return;
     
-    // Pause animation on mouse hover
+    // Pause animation on mouse hover for better desktop UX
     productScroll.addEventListener('mouseenter', () => {
         productScroll.style.animationPlayState = 'paused';
     });
@@ -256,6 +259,7 @@ function initializeProductShowcaseControls() {
     });
     
     // ENHANCED: Advanced touch scrolling support
+    // Variables to track touch interaction state
     let touchStartX = 0;
     let touchStartY = 0;
     let touchStartTime = 0;
@@ -263,26 +267,27 @@ function initializeProductShowcaseControls() {
     let autoScrollPaused = false;
     let scrollTimeout;
     
-    // Touch start handler
+    // Touch start handler - detects beginning of touch interaction
     scrollContainer.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
         touchStartTime = Date.now();
         isScrolling = false;
         
-        // Pause auto-scroll animation
+        // Pause auto-scroll animation during touch interaction
         if (!autoScrollPaused) {
             productScroll.style.animationPlayState = 'paused';
             autoScrollPaused = true;
         }
         
-        // Clear any existing scroll timeout
+        // Clear any existing auto-resume timeout
         if (scrollTimeout) {
             clearTimeout(scrollTimeout);
         }
     }, { passive: true });
     
     // Touch move handler for swipe detection
+    // Handles horizontal swipe gestures for manual scrolling
     scrollContainer.addEventListener('touchmove', (e) => {
         if (!touchStartX) return;
         
@@ -291,7 +296,7 @@ function initializeProductShowcaseControls() {
         const deltaX = touchStartX - touchX;
         const deltaY = touchStartY - touchY;
         
-        // Determine if this is a horizontal swipe
+        // Determine if this is a horizontal swipe (not vertical scroll)
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
             if (!isScrolling) {
                 isScrolling = true;
@@ -299,29 +304,30 @@ function initializeProductShowcaseControls() {
                 productScroll.classList.add('manual-control');
             }
             
-            // Prevent default to avoid page scroll
+            // Prevent default page scrolling during horizontal swipe
             e.preventDefault();
             
-            // Scroll the container
+            // Apply smooth manual scrolling with resistance factor
             scrollContainer.scrollLeft += deltaX * 0.8; // Smooth scrolling factor
-            touchStartX = touchX; // Update for continuous scrolling
+            touchStartX = touchX; // Update start position for continuous scrolling
         }
     }, { passive: false });
     
     // Touch end handler
+    // Handles end of touch interaction and auto-resume logic
     scrollContainer.addEventListener('touchend', (e) => {
         const touchEndTime = Date.now();
         const touchDuration = touchEndTime - touchStartTime;
         
-        // Reset touch variables
+        // Reset touch tracking variables
         touchStartX = 0;
         touchStartY = 0;
         
-        // Remove manual control classes
+        // Remove manual control styling classes
         scrollContainer.classList.remove('manual-scroll');
         productScroll.classList.remove('manual-control');
         
-        // Resume auto-scroll after a delay
+        // Resume auto-scroll after a delay to allow user to finish viewing
         scrollTimeout = setTimeout(() => {
             if (autoScrollPaused) {
                 productScroll.style.animationPlayState = 'running';
@@ -333,21 +339,22 @@ function initializeProductShowcaseControls() {
     }, { passive: true });
     
     // Handle scroll events for better UX
+    // Manages auto-resume during manual scrolling with mouse/trackpad
     let scrollEndTimeout;
     scrollContainer.addEventListener('scroll', () => {
-        // Clear existing timeout
+        // Clear existing scroll end detection timeout
         if (scrollEndTimeout) {
             clearTimeout(scrollEndTimeout);
         }
         
-        // Set new timeout to detect scroll end
+        // Set new timeout to detect when scrolling has stopped
         scrollEndTimeout = setTimeout(() => {
-            // Auto-resume animation if not manually controlled
+            // Auto-resume animation if not being manually controlled
             if (!isScrolling && autoScrollPaused) {
                 productScroll.style.animationPlayState = 'running';
                 autoScrollPaused = false;
             }
-        }, 1500);
+        }, 1500); // Resume after 1.5 seconds of scroll inactivity
     }, { passive: true });
     
     // Enhanced wheel scrolling for desktop
@@ -683,35 +690,36 @@ Sets up all functionality when the page loads
 /**
  * Main initialization function
  * Called when the DOM is fully loaded
+ * Initializes all interactive features with rem-based responsive scaling
  */
 function initializeWebsite() {
-    // Initialize all interactive features
+    // Initialize all interactive features for responsive design
     initializeScrollAnimations();
     initializeProductShowcaseControls();
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
     
-    // ADDED: Initialize smooth scrolling for product showcase
+    // Initialize enhanced smooth scrolling for product showcase
     const scrollContainer = document.querySelector('.scroll-container');
     if (scrollContainer) {
         enableSmoothScrolling(scrollContainer);
-        console.log('Touch scrolling enabled for product showcase');
+        console.log('Enhanced touch scrolling enabled for product showcase with rem-based scaling');
     }
     
-    // Set up scroll event listener with debouncing
+    // Set up optimized scroll event listener with debouncing for performance
     const debouncedScrollHandler = debounce(updateHeaderOnScroll, 10);
     window.addEventListener('scroll', debouncedScrollHandler);
     
-    // Add smooth page entrance animation
+    // Add smooth page entrance animation for better UX
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '1';
     }, 100);
     
-    // Log initialization completion (for debugging)
-    console.log('Telugu Delicacies website initialized successfully');
+    // Log successful initialization with font information
+    console.log('Telugu Delicacies website initialized successfully with Montserrat headers and Roboto body text');
 }
 
 /*
