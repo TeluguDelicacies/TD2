@@ -4,12 +4,12 @@
     <!-- Meta tags for proper rendering and SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Telugu Delicacies Online Shop - Browse and purchase authentic South Indian foods with quantities and pricing.">
-    <meta name="keywords" content="Telugu Delicacies Shop, South Indian Food Online, Parota, Chapathi, Telugu Podis">
+    <meta name="description" content="Telugu Delicacies Shop - Browse and purchase authentic South Indian foods with quantities and pricing">
+    <meta name="keywords" content="Telugu Delicacies, South Indian Food, Shop, Buy Online, Parota, Chapathi, Telugu Podis">
     <meta name="author" content="Telugu Delicacies">
     
     <!-- Page Title -->
-    <title>Telugu Delicacies - Online Shop</title>
+    <title>Shop - Telugu Delicacies</title>
     
     <!-- External Stylesheets and Fonts -->
     <link rel="stylesheet" href="sales.css">
@@ -19,934 +19,697 @@
 <body>
     <!-- 
     ========================================
-    PRODUCT CATEGORIES SECTION
-    Detailed product information with interactive dropdowns, quantities and prices
+    SHOP HEADER SECTION
+    Navigation with back button and category tabs
+    ========================================
+    -->
+    <header class="shop-header">
+        <div class="container">
+            <div class="shop-header-content">
+                <!-- Back Button -->
+                <a href="index.html" class="back-button" aria-label="Back to main website">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                
+                <!-- Category Navigation -->
+                <nav class="category-nav">
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="all">All Products</button>
+                        <button class="category-tab" data-category="ready-to-eat">Ready To Eat</button>
+                        <button class="category-tab" data-category="ready-to-cook">Ready To Cook</button>
+                        <button class="category-tab" data-category="ready-to-use">Ready To Use</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 
+    ========================================
+    PRODUCTS SECTION
+    Grid of individual product cards with filtering
     ========================================
     -->
     <section id="products" class="products-section">
         <div class="container">
-            <h2 class="section-title">Our Product Catalog</h2>
             <div class="product-categories">
                 
-                <!-- Ready To Eat Category (All Podis) -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <img src="./images/categories/ready-to-eat-podis.jpg" 
-                             alt="Ready To Eat Podis" 
-                             class="category-image"
-                             loading="lazy">
-                        <h3 class="category-title">
-                            <span class="bilingual-title">
-                                <span class="english">Ready To Eat</span>
-                                <span class="telugu">పచ్చళ్ళు - పొడులు - తినుబండారాలు</span>
-                            </span>
-                        </h3>
-                        <p class="category-description">Traditional Telugu spice powders ready to eat with rice, idli, or dosa. Just mix with oil or ghee and enjoy authentic flavors instantly.</p>
+                <!-- READY TO EAT PRODUCTS -->
+                
+                <!-- Kadapa Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/kadapa-kaaram.jpg" alt="Kadapa Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Kadapa Kaaram</h3>
+                    <p class="telugu-name">కడప కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>A fiery and flavorful spice blend from the Kadapa region, known for its perfect balance of heat and taste. Made with carefully selected red chilies and traditional spices.</p>
+                        <ul>
+                            <li>Authentic Kadapa region recipe</li>
+                            <li>Perfect balance of heat and flavor</li>
+                            <li>Made with premium red chilies</li>
+                            <li>Ready to eat with rice and ghee</li>
+                        </ul>
                     </div>
                     
-                    <!-- Product selection dropdown -->
-                    <div class="product-dropdown">
-                        <select class="product-select rebuilt-dropdown" 
-                                onchange="showProductDescription(this, 'ready-to-eat')"
-                                aria-label="Select ready-to-eat podi">
-                            <option value="" class="default-option">Select Podi</option>
-                            <option value="kadapa-kaaram" class="bilingual-option">Kadapa Kaaram (కడప కారం)</option>
-                            <option value="nalla-kaaram" class="bilingual-option">Nalla Kaaram (నల్ల కారం)</option>
-                            <option value="kandi-podi" class="bilingual-option">Kandi Podi (కంది పొడి)</option>
-                            <option value="godhuma-kaaram" class="bilingual-option">Godhuma Kaaram (గోధుమ కారం)</option>
-                            <option value="karivepaku-podi" class="bilingual-option">Karivepaku Podi (కరివేపాకు పొడి)</option>
-                            <option value="palli-dhaniya-podi" class="bilingual-option">Palli Dhaniya Podi (పల్లి ధనియా పొడి)</option>
-                            <option value="tamalapaaku-kaaram" class="bilingual-option">Tamalapaaku Kaaram (తమలపాకు కారం)</option>
-                            <option value="sambar-premix" class="bilingual-option">Sambar Premix (సాంబార్ ప్రీమిక్స్)</option>
-                            <option value="velluli-kaaram" class="bilingual-option">Velluli Kaaram (వెల్లుల్లి కారం)</option>
-                            <option value="idli-podi" class="bilingual-option">Idli Podi (ఇడ్లీ పొడి)</option>
-                            <option value="konaseema-kaaram" class="bilingual-option">Konaseema Kaaram (కోనసీమ కారం)</option>
-                            <option value="chutney-premix" class="bilingual-option">Chutney Premix (చట్నీ ప్రీమిక్స్)</option>
-                            <option value="palli-kaaram" class="bilingual-option">Palli Kaaram (పల్లి కారం)</option>
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="70">100g</option>
+                            <option value="250g" data-price="160">250g</option>
+                            <option value="500g" data-price="300">500g</option>
+                            <option value="1000g" data-price="550">1000g</option>
                         </select>
-                        
-                        <!-- Product descriptions (initially hidden) -->
-                        <div class="product-descriptions">
-                            <!-- Kadapa Kaaram -->
-                            <div id="ready-to-eat-kadapa-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/kadapa-kaaram-detail.jpg" 
-                                     alt="Kadapa Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Kadapa Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>A fiery and flavorful spice blend from the Kadapa region, known for its perfect balance of heat and taste. Made with carefully selected red chilies and traditional spices.</p>
-                                    <ul>
-                                        <li>Authentic Kadapa region recipe</li>
-                                        <li>Perfect balance of heat and flavor</li>
-                                        <li>Made with premium red chilies</li>
-                                        <li>Ready to eat with rice and ghee</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹100</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹220</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹400</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹750</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Nalla Kaaram -->
-                            <div id="ready-to-eat-nalla-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/nalla-kaaram-detail.jpg" 
-                                     alt="Nalla Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Nalla Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Premium black pepper powder blend that adds warmth and depth to any dish. Rich in antioxidants and known for its digestive properties.</p>
-                                    <ul>
-                                        <li>Premium black pepper blend</li>
-                                        <li>Rich in antioxidants</li>
-                                        <li>Aids digestion</li>
-                                        <li>Perfect with idli and dosa</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹120</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹260</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹480</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹900</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Kandi Podi -->
-                            <div id="ready-to-eat-kandi-podi" class="product-description" style="display: none;">
-                                <img src="./images/products/kandi-podi-detail.jpg" 
-                                     alt="Kandi Podi" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Kandi Podi</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Traditional lentil-based spice powder that's protein-rich and flavorful. Perfect for mixing with rice and ghee for a nutritious meal.</p>
-                                    <ul>
-                                        <li>High protein lentil base</li>
-                                        <li>Traditional Telugu recipe</li>
-                                        <li>Nutritious and filling</li>
-                                        <li>Great with hot rice</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹90</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹200</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹380</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹720</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Godhuma Kaaram -->
-                            <div id="ready-to-eat-godhuma-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/godhuma-kaaram-detail.jpg" 
-                                     alt="Godhuma Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Godhuma Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Roasted wheat-based spice powder with aromatic spices. A healthy and wholesome option that adds texture and flavor to your meals.</p>
-                                    <ul>
-                                        <li>Roasted wheat base</li>
-                                        <li>Aromatic spice blend</li>
-                                        <li>High fiber content</li>
-                                        <li>Crunchy texture</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹80</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹180</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹340</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹650</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Karivepaku Podi -->
-                            <div id="ready-to-eat-karivepaku-podi" class="product-description" style="display: none;">
-                                <img src="./images/products/karivepaku-podi-detail.jpg" 
-                                     alt="Karivepaku Podi" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Karivepaku Podi</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Fresh curry leaves dried and ground with traditional spices. Adds authentic South Indian aroma and is known for its health benefits.</p>
-                                    <ul>
-                                        <li>Fresh curry leaves</li>
-                                        <li>Authentic aroma</li>
-                                        <li>Rich in vitamins</li>
-                                        <li>Traditional preparation</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹110</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹240</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹450</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹820</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Palli Dhaniya Podi -->
-                            <div id="ready-to-eat-palli-dhaniya-podi" class="product-description" style="display: none;">
-                                <img src="./images/products/palli-dhaniya-podi-detail.jpg" 
-                                     alt="Palli Dhaniya Podi" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Palli Dhaniya Podi</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>A unique blend of roasted groundnuts and coriander seeds. Rich in protein and adds a nutty, aromatic flavor to rice and rotis.</p>
-                                    <ul>
-                                        <li>Roasted groundnuts and coriander</li>
-                                        <li>High protein content</li>
-                                        <li>Nutty aromatic flavor</li>
-                                        <li>Great with rotis</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹95</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹210</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹390</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹740</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Tamalapaaku Kaaram -->
-                            <div id="ready-to-eat-tamalapaaku-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/tamalapaaku-kaaram-detail.jpg" 
-                                     alt="Tamalapaaku Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Tamalapaaku Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Bay leaf spice powder that adds a distinctive aroma and flavor. Used traditionally in Telugu cuisine for its medicinal properties.</p>
-                                    <ul>
-                                        <li>Distinctive bay leaf aroma</li>
-                                        <li>Medicinal properties</li>
-                                        <li>Traditional Telugu cuisine</li>
-                                        <li>Unique flavor profile</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹130</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹280</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹520</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹960</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Sambar Premix -->
-                            <div id="ready-to-eat-sambar-premix" class="product-description" style="display: none;">
-                                <img src="./images/products/sambar-premix-detail.jpg" 
-                                     alt="Sambar Premix" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Sambar Premix</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Ready-to-use sambar masala powder with the perfect balance of tangy and spicy flavors. Makes authentic sambar in minutes.</p>
-                                    <ul>
-                                        <li>Perfect tangy-spicy balance</li>
-                                        <li>Instant sambar preparation</li>
-                                        <li>Authentic South Indian taste</li>
-                                        <li>No artificial colors</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹85</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹190</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹360</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹680</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Velluli Kaaram -->
-                            <div id="ready-to-eat-velluli-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/velluli-kaaram-detail.jpg" 
-                                     alt="Velluli Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Velluli Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Fresh garlic dried and ground with aromatic spices. Known for its health benefits and bold flavor that enhances any dish.</p>
-                                    <ul>
-                                        <li>Fresh garlic base</li>
-                                        <li>Bold flavor enhancement</li>
-                                        <li>Health benefits</li>
-                                        <li>Aromatic spice blend</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹125</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹270</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹500</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹920</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Idli Podi -->
-                            <div id="ready-to-eat-idli-podi" class="product-description" style="display: none;">
-                                <img src="./images/products/idli-podi-detail.jpg" 
-                                     alt="Idli Podi" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Idli Podi</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>The classic accompaniment for idli and dosa. A perfect blend of lentils, chilies, and spices ground to perfection.</p>
-                                    <ul>
-                                        <li>Classic idli companion</li>
-                                        <li>Perfect spice blend</li>
-                                        <li>Traditional recipe</li>
-                                        <li>Ground to perfection</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹75</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹170</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹320</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹610</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Konaseema Kaaram -->
-                            <div id="ready-to-eat-konaseema-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/konaseema-kaaram-detail.jpg" 
-                                     alt="Konaseema Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Konaseema Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>A special spice blend from the Konaseema region, known for its unique flavor profile and traditional preparation methods.</p>
-                                    <ul>
-                                        <li>Konaseema region specialty</li>
-                                        <li>Unique flavor profile</li>
-                                        <li>Traditional methods</li>
-                                        <li>Regional authenticity</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹115</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹250</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹470</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹850</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Chutney Premix -->
-                            <div id="ready-to-eat-chutney-premix" class="product-description" style="display: none;">
-                                <img src="./images/products/chutney-premix-detail.jpg" 
-                                     alt="Chutney Premix" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Chutney Premix</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Ready-to-use chutney powder that makes instant chutneys. Just add water or oil for a quick and delicious accompaniment.</p>
-                                    <ul>
-                                        <li>Instant chutney preparation</li>
-                                        <li>Just add water or oil</li>
-                                        <li>Quick and convenient</li>
-                                        <li>Delicious accompaniment</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹70</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹160</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹300</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹570</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Palli Kaaram -->
-                            <div id="ready-to-eat-palli-kaaram" class="product-description" style="display: none;">
-                                <img src="./images/products/palli-kaaram-detail.jpg" 
-                                     alt="Palli Kaaram" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Palli Kaaram</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Roasted groundnut spice powder that's protein-rich and flavorful. Perfect with idli, dosa, or mixed with rice and ghee.</p>
-                                    <ul>
-                                        <li>Roasted groundnut base</li>
-                                        <li>High protein content</li>
-                                        <li>Rich and flavorful</li>
-                                        <li>Versatile usage</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">100g</span>
-                                        <span class="price">₹85</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹190</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹360</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹680</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="current-price">₹70</span>
                     </div>
                 </div>
 
-                <!-- Ready To Cook Category -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <img src="./images/categories/ready-to-cook.jpg" 
-                             alt="Ready To Cook Products" 
-                             class="category-image"
-                             loading="lazy">
-                        <h3 class="category-title">
-                            <span class="bilingual-title">
-                                <span class="english">Ready To Cook</span>
-                                <span class="telugu">మీ సౌకర్యం, త్వరితగతి కోసం</span>
-                            </span>
-                        </h3>
-                        <p class="category-description">Fresh, ready-to-cook Malabar Parota and Wheat Chapathi. Just heat on a pan and enjoy soft, delicious flatbreads perfect for any meal.</p>
+                <!-- Nalla Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/nalla-kaaram.jpg" alt="Nalla Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Nalla Kaaram</h3>
+                    <p class="telugu-name">నల్ల కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Premium black pepper powder blend that adds warmth and depth to any dish. Rich in antioxidants and known for its digestive properties.</p>
+                        <ul>
+                            <li>Premium black pepper blend</li>
+                            <li>Rich in antioxidants</li>
+                            <li>Aids digestion</li>
+                            <li>Perfect with idli and dosa</li>
+                        </ul>
                     </div>
                     
-                    <!-- Ready To Cook selection dropdown -->
-                    <div class="product-dropdown">
-                        <select class="product-select" 
-                                onchange="showProductDescription(this, 'ready-to-cook')"
-                                aria-label="Select ready-to-cook product">
-                            <option value="">Select Product</option>
-                            <option value="malabar-parota">Malabar Parota (మలబార్ పరోటా)</option>
-                            <option value="wheat-chapathi">Wheat Chapathi (గోధుమ చపాతీ)</option>
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="80">100g</option>
+                            <option value="250g" data-price="180">250g</option>
+                            <option value="500g" data-price="340">500g</option>
+                            <option value="1000g" data-price="650">1000g</option>
                         </select>
-                        
-                        <!-- Ready To Cook descriptions -->
-                        <div class="product-descriptions">
-                            <!-- Malabar Parota -->
-                            <div id="ready-to-cook-malabar-parota" class="product-description" style="display: none;">
-                                <img src="./images/products/malabar-parota-detail.jpg" 
-                                     alt="Malabar Parota" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Malabar Parota</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Authentic Kerala-style layered parota made with premium flour and traditional techniques. Soft, flaky layers that separate beautifully when cooked. Perfect with curry or dal.</p>
-                                    <ul>
-                                        <li>Authentic Kerala-style preparation</li>
-                                        <li>Multiple flaky layers</li>
-                                        <li>Made with premium flour</li>
-                                        <li>Ready in 3-4 minutes</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">5 pieces</span>
-                                        <span class="price">₹150</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">10 pieces</span>
-                                        <span class="price">₹280</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">20 pieces</span>
-                                        <span class="price">₹500</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Wheat Chapathi -->
-                            <div id="ready-to-cook-wheat-chapathi" class="product-description" style="display: none;">
-                                <img src="./images/products/wheat-chapathi-detail.jpg" 
-                                     alt="Wheat Chapathi" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Wheat Chapathi</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Soft, wholesome wheat chapathi made from carefully selected wheat flour. Perfect balance of nutrition and taste, ideal for wrapping curries or enjoying with dal and vegetables.</p>
-                                    <ul>
-                                        <li>100% wheat flour</li>
-                                        <li>Soft and flexible texture</li>
-                                        <li>High in fiber and nutrients</li>
-                                        <li>Perfect for healthy meals</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">5 pieces</span>
-                                        <span class="price">₹120</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">10 pieces</span>
-                                        <span class="price">₹220</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">20 pieces</span>
-                                        <span class="price">₹400</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="current-price">₹80</span>
                     </div>
                 </div>
 
-                <!-- Ready To Use Category -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <img src="./images/categories/ready-to-use.jpg" 
-                             alt="Ready To Use Products" 
-                             class="category-image"
-                             loading="lazy">
-                        <h3 class="category-title">
-                            <span class="bilingual-title">
-                                <span class="english">Ready To Use</span>
-                                <span class="telugu">నేరుగా వాడుకోవడానికి అనువైనవి</span>
-                            </span>
-                        </h3>
-                        <p class="category-description">Premium ingredients ready to use in your cooking. High-quality ghee, nutritious multigrain atta, aromatic coffee, and pure turmeric powder.</p>
+                <!-- Kandi Podi -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/kandi-podi.jpg" alt="Kandi Podi" class="product-image" loading="lazy">
+                    <h3 class="product-name">Kandi Podi</h3>
+                    <p class="telugu-name">కంది పొడి</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Traditional lentil-based spice powder that's protein-rich and flavorful. Perfect for mixing with rice and ghee for a nutritious meal.</p>
+                        <ul>
+                            <li>High protein lentil base</li>
+                            <li>Traditional Telugu recipe</li>
+                            <li>Nutritious and filling</li>
+                            <li>Great with hot rice</li>
+                        </ul>
                     </div>
                     
-                    <!-- Ready To Use selection dropdown -->
-                    <div class="product-dropdown">
-                        <select class="product-select" 
-                                onchange="showProductDescription(this, 'ready-to-use')"
-                                aria-label="Select ready-to-use product">
-                            <option value="">Select Product</option>
-                            <option value="ghee">Pure Ghee (స్వచ్ఛమైన నెయ్యి)</option>
-                            <option value="multigrain-atta">Multigrain Atta (మల్టిగ్రెయిన్ ఆటా)</option>
-                            <option value="coffee">Premium Coffee (ప్రీమియం కాఫీ)</option>
-                            <option value="pasupu">Pure Pasupu (స్వచ్ఛమైన పసుపు)</option>
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="75">100g</option>
+                            <option value="250g" data-price="170">250g</option>
+                            <option value="500g" data-price="320">500g</option>
+                            <option value="1000g" data-price="600">1000g</option>
                         </select>
-                        
-                        <!-- Ready To Use descriptions -->
-                        <div class="product-descriptions">
-                            <!-- Pure Ghee -->
-                            <div id="ready-to-use-ghee" class="product-description" style="display: none;">
-                                <img src="./images/products/ghee-detail.jpg" 
-                                     alt="Pure Ghee" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Pure Ghee</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Traditional clarified butter made from pure cow's milk. Rich in vitamins A, D, E, and K, our ghee is perfect for cooking, tempering, and adding authentic flavor to your meals.</p>
-                                    <ul>
-                                        <li>Made from pure cow's milk</li>
-                                        <li>Rich in essential vitamins</li>
-                                        <li>Perfect for cooking and tempering</li>
-                                        <li>Traditional preparation method</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹450</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹850</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹1600</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Multigrain Atta -->
-                            <div id="ready-to-use-multigrain-atta" class="product-description" style="display: none;">
-                                <img src="./images/products/multigrain-atta-detail.jpg" 
-                                     alt="Multigrain Atta" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Multigrain Atta</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>A nutritious blend of wheat, millet, barley, and other wholesome grains. Perfect for making healthy rotis, parathas, and bread with enhanced nutritional value.</p>
-                                    <ul>
-                                        <li>Blend of multiple healthy grains</li>
-                                        <li>High in fiber and protein</li>
-                                        <li>Perfect for healthy rotis</li>
-                                        <li>Enhanced nutritional value</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹120</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹220</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹400</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Premium Coffee -->
-                            <div id="ready-to-use-coffee" class="product-description" style="display: none;">
-                                <img src="./images/products/coffee-detail.jpg" 
-                                     alt="Premium Coffee" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Premium Coffee</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Aromatic South Indian filter coffee blend made from carefully selected coffee beans. Rich, smooth, and perfect for your morning ritual or evening relaxation.</p>
-                                    <ul>
-                                        <li>Premium coffee bean blend</li>
-                                        <li>Traditional South Indian style</li>
-                                        <li>Rich and aromatic</li>
-                                        <li>Perfect grind consistency</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹320</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹600</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹1150</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Pure Pasupu -->
-                            <div id="ready-to-use-pasupu" class="product-description" style="display: none;">
-                                <img src="./images/products/pasupu-detail.jpg" 
-                                     alt="Pure Pasupu Turmeric" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Pure Pasupu (Turmeric)</h4>
-                                <button class="info-toggle-btn" onclick="toggleDescription(this)" aria-label="Toggle product description">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                                <div class="description-text-content">
-                                    <p>Premium quality turmeric powder with high curcumin content. Known for its anti-inflammatory and antioxidant properties, perfect for cooking and health benefits.</p>
-                                    <ul>
-                                        <li>High curcumin content</li>
-                                        <li>Anti-inflammatory properties</li>
-                                        <li>Pure and natural</li>
-                                        <li>Vibrant color and aroma</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- Available Quantities and Prices -->
-                                <div class="product-quantities">
-                                    <h5>Available Quantities:</h5>
-                                    <div class="quantity-option">
-                                        <span class="quantity">250g</span>
-                                        <span class="price">₹180</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">500g</span>
-                                        <span class="price">₹340</span>
-                                    </div>
-                                    <div class="quantity-option">
-                                        <span class="quantity">1000g</span>
-                                        <span class="price">₹650</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <span class="current-price">₹75</span>
                     </div>
                 </div>
+
+                <!-- Godhuma Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/godhuma-kaaram.jpg" alt="Godhuma Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Godhuma Kaaram</h3>
+                    <p class="telugu-name">గోధుమ కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Roasted wheat-based spice powder with aromatic spices. A healthy and wholesome option that adds texture and flavor to your meals.</p>
+                        <ul>
+                            <li>Roasted wheat base</li>
+                            <li>Aromatic spice blend</li>
+                            <li>High fiber content</li>
+                            <li>Crunchy texture</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="65">100g</option>
+                            <option value="250g" data-price="150">250g</option>
+                            <option value="500g" data-price="280">500g</option>
+                            <option value="1000g" data-price="520">1000g</option>
+                        </select>
+                        <span class="current-price">₹65</span>
+                    </div>
+                </div>
+
+                <!-- Karivepaku Podi -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/karivepaku-podi.jpg" alt="Karivepaku Podi" class="product-image" loading="lazy">
+                    <h3 class="product-name">Karivepaku Podi</h3>
+                    <p class="telugu-name">కరివేపాకు పొడి</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Fresh curry leaves dried and ground with traditional spices. Adds authentic South Indian aroma and is known for its health benefits.</p>
+                        <ul>
+                            <li>Fresh curry leaves</li>
+                            <li>Authentic aroma</li>
+                            <li>Rich in vitamins</li>
+                            <li>Traditional preparation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="85">100g</option>
+                            <option value="250g" data-price="200">250g</option>
+                            <option value="500g" data-price="380">500g</option>
+                            <option value="1000g" data-price="720">1000g</option>
+                        </select>
+                        <span class="current-price">₹85</span>
+                    </div>
+                </div>
+
+                <!-- Palli Dhaniya Podi -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/palli-dhaniya-podi.jpg" alt="Palli Dhaniya Podi" class="product-image" loading="lazy">
+                    <h3 class="product-name">Palli Dhaniya Podi</h3>
+                    <p class="telugu-name">పల్లి ధనియా పొడి</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>A unique blend of roasted groundnuts and coriander seeds. Rich in protein and adds a nutty, aromatic flavor to rice and rotis.</p>
+                        <ul>
+                            <li>Roasted groundnuts and coriander</li>
+                            <li>High protein content</li>
+                            <li>Nutty aromatic flavor</li>
+                            <li>Great with rotis</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="90">100g</option>
+                            <option value="250g" data-price="210">250g</option>
+                            <option value="500g" data-price="400">500g</option>
+                            <option value="1000g" data-price="760">1000g</option>
+                        </select>
+                        <span class="current-price">₹90</span>
+                    </div>
+                </div>
+
+                <!-- Tamalapaaku Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/tamalapaaku-kaaram.jpg" alt="Tamalapaaku Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Tamalapaaku Kaaram</h3>
+                    <p class="telugu-name">తమలపాకు కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Bay leaf spice powder that adds a distinctive aroma and flavor. Used traditionally in Telugu cuisine for its medicinal properties.</p>
+                        <ul>
+                            <li>Distinctive bay leaf aroma</li>
+                            <li>Medicinal properties</li>
+                            <li>Traditional Telugu cuisine</li>
+                            <li>Unique flavor profile</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="95">100g</option>
+                            <option value="250g" data-price="220">250g</option>
+                            <option value="500g" data-price="420">500g</option>
+                            <option value="1000g" data-price="800">1000g</option>
+                        </select>
+                        <span class="current-price">₹95</span>
+                    </div>
+                </div>
+
+                <!-- Sambar Premix -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/sambar-premix.jpg" alt="Sambar Premix" class="product-image" loading="lazy">
+                    <h3 class="product-name">Sambar Premix</h3>
+                    <p class="telugu-name">సాంబార్ ప్రీమిక్స్</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Ready-to-use sambar masala powder with the perfect balance of tangy and spicy flavors. Makes authentic sambar in minutes.</p>
+                        <ul>
+                            <li>Perfect tangy-spicy balance</li>
+                            <li>Instant sambar preparation</li>
+                            <li>Authentic South Indian taste</li>
+                            <li>No artificial colors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="80">100g</option>
+                            <option value="250g" data-price="180">250g</option>
+                            <option value="500g" data-price="340">500g</option>
+                            <option value="1000g" data-price="650">1000g</option>
+                        </select>
+                        <span class="current-price">₹80</span>
+                    </div>
+                </div>
+
+                <!-- Velluli Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/velluli-kaaram.jpg" alt="Velluli Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Velluli Kaaram</h3>
+                    <p class="telugu-name">వెల్లుల్లి కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Fresh garlic dried and ground with aromatic spices. Known for its health benefits and bold flavor that enhances any dish.</p>
+                        <ul>
+                            <li>Fresh garlic base</li>
+                            <li>Bold flavor enhancement</li>
+                            <li>Health benefits</li>
+                            <li>Aromatic spice blend</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="100">100g</option>
+                            <option value="250g" data-price="230">250g</option>
+                            <option value="500g" data-price="440">500g</option>
+                            <option value="1000g" data-price="840">1000g</option>
+                        </select>
+                        <span class="current-price">₹100</span>
+                    </div>
+                </div>
+
+                <!-- Idli Podi -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/idli-podi.jpg" alt="Idli Podi" class="product-image" loading="lazy">
+                    <h3 class="product-name">Idli Podi</h3>
+                    <p class="telugu-name">ఇడ్లీ పొడి</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>The classic accompaniment for idli and dosa. A perfect blend of lentils, chilies, and spices ground to perfection.</p>
+                        <ul>
+                            <li>Classic idli companion</li>
+                            <li>Perfect spice blend</li>
+                            <li>Traditional recipe</li>
+                            <li>Ground to perfection</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="75">100g</option>
+                            <option value="250g" data-price="170">250g</option>
+                            <option value="500g" data-price="320">500g</option>
+                            <option value="1000g" data-price="600">1000g</option>
+                        </select>
+                        <span class="current-price">₹75</span>
+                    </div>
+                </div>
+
+                <!-- Konaseema Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/konaseema-kaaram.jpg" alt="Konaseema Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Konaseema Kaaram</h3>
+                    <p class="telugu-name">కోనసీమ కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>A special spice blend from the Konaseema region, known for its unique flavor profile and traditional preparation methods.</p>
+                        <ul>
+                            <li>Konaseema region specialty</li>
+                            <li>Unique flavor profile</li>
+                            <li>Traditional methods</li>
+                            <li>Regional authenticity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="85">100g</option>
+                            <option value="250g" data-price="200">250g</option>
+                            <option value="500g" data-price="380">500g</option>
+                            <option value="1000g" data-price="720">1000g</option>
+                        </select>
+                        <span class="current-price">₹85</span>
+                    </div>
+                </div>
+
+                <!-- Chutney Premix -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/chutney-premix.jpg" alt="Chutney Premix" class="product-image" loading="lazy">
+                    <h3 class="product-name">Chutney Premix</h3>
+                    <p class="telugu-name">చట్నీ ప్రీమిక్స్</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Ready-to-use chutney powder that makes instant chutneys. Just add water or oil for a quick and delicious accompaniment.</p>
+                        <ul>
+                            <li>Instant chutney preparation</li>
+                            <li>Just add water or oil</li>
+                            <li>Quick and convenient</li>
+                            <li>Delicious accompaniment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="70">100g</option>
+                            <option value="250g" data-price="160">250g</option>
+                            <option value="500g" data-price="300">500g</option>
+                            <option value="1000g" data-price="550">1000g</option>
+                        </select>
+                        <span class="current-price">₹70</span>
+                    </div>
+                </div>
+
+                <!-- Palli Kaaram -->
+                <div class="product-shop-card" data-category="ready-to-eat">
+                    <img src="./images/products/palli-kaaram.jpg" alt="Palli Kaaram" class="product-image" loading="lazy">
+                    <h3 class="product-name">Palli Kaaram</h3>
+                    <p class="telugu-name">పల్లి కారం</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Roasted groundnut spice powder that's protein-rich and flavorful. Perfect with idli, dosa, or mixed with rice and ghee.</p>
+                        <ul>
+                            <li>Roasted groundnut base</li>
+                            <li>High protein content</li>
+                            <li>Rich and flavorful</li>
+                            <li>Versatile usage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="100g" data-price="85">100g</option>
+                            <option value="250g" data-price="200">250g</option>
+                            <option value="500g" data-price="380">500g</option>
+                            <option value="1000g" data-price="720">1000g</option>
+                        </select>
+                        <span class="current-price">₹85</span>
+                    </div>
+                </div>
+
+                <!-- READY TO COOK PRODUCTS -->
+
+                <!-- Malabar Parota -->
+                <div class="product-shop-card" data-category="ready-to-cook">
+                    <img src="./images/products/malabar-parota.jpg" alt="Malabar Parota" class="product-image" loading="lazy">
+                    <h3 class="product-name">Malabar Parota</h3>
+                    <p class="telugu-name">మలబార్ పరోటా</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Authentic Kerala-style layered parota made with premium flour and traditional techniques. Soft, flaky layers that separate beautifully when cooked. Perfect with curry or dal.</p>
+                        <ul>
+                            <li>Authentic Kerala-style preparation</li>
+                            <li>Multiple flaky layers</li>
+                            <li>Made with premium flour</li>
+                            <li>Ready in 3-4 minutes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="5pcs" data-price="120">5 pieces</option>
+                            <option value="10pcs" data-price="220">10 pieces</option>
+                            <option value="20pcs" data-price="400">20 pieces</option>
+                        </select>
+                        <span class="current-price">₹120</span>
+                    </div>
+                </div>
+
+                <!-- Wheat Chapathi -->
+                <div class="product-shop-card" data-category="ready-to-cook">
+                    <img src="./images/products/wheat-chapathi.jpg" alt="Wheat Chapathi" class="product-image" loading="lazy">
+                    <h3 class="product-name">Wheat Chapathi</h3>
+                    <p class="telugu-name">గోధుమ చపాతీ</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Soft, wholesome wheat chapathi made from carefully selected wheat flour. Perfect balance of nutrition and taste, ideal for wrapping curries or enjoying with dal and vegetables.</p>
+                        <ul>
+                            <li>100% wheat flour</li>
+                            <li>Soft and flexible texture</li>
+                            <li>High in fiber and nutrients</li>
+                            <li>Perfect for healthy meals</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="5pcs" data-price="100">5 pieces</option>
+                            <option value="10pcs" data-price="180">10 pieces</option>
+                            <option value="20pcs" data-price="320">20 pieces</option>
+                        </select>
+                        <span class="current-price">₹100</span>
+                    </div>
+                </div>
+
+                <!-- READY TO USE PRODUCTS -->
+
+                <!-- Pure Ghee -->
+                <div class="product-shop-card" data-category="ready-to-use">
+                    <img src="./images/products/ghee.jpg" alt="Pure Ghee" class="product-image" loading="lazy">
+                    <h3 class="product-name">Pure Ghee</h3>
+                    <p class="telugu-name">స్వచ్ఛమైన నెయ్యి</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Traditional clarified butter made from pure cow's milk. Rich in vitamins A, D, E, and K, our ghee is perfect for cooking, tempering, and adding authentic flavor to your meals.</p>
+                        <ul>
+                            <li>Made from pure cow's milk</li>
+                            <li>Rich in essential vitamins</li>
+                            <li>Perfect for cooking and tempering</li>
+                            <li>Traditional preparation method</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="250ml" data-price="280">250ml</option>
+                            <option value="500ml" data-price="520">500ml</option>
+                            <option value="1000ml" data-price="980">1000ml</option>
+                        </select>
+                        <span class="current-price">₹280</span>
+                    </div>
+                </div>
+
+                <!-- Multigrain Atta -->
+                <div class="product-shop-card" data-category="ready-to-use">
+                    <img src="./images/products/multigrain-atta.jpg" alt="Multigrain Atta" class="product-image" loading="lazy">
+                    <h3 class="product-name">Multigrain Atta</h3>
+                    <p class="telugu-name">మల్టిగ్రెయిన్ ఆటా</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>A nutritious blend of wheat, millet, barley, and other wholesome grains. Perfect for making healthy rotis, parathas, and bread with enhanced nutritional value.</p>
+                        <ul>
+                            <li>Blend of multiple healthy grains</li>
+                            <li>High in fiber and protein</li>
+                            <li>Perfect for healthy rotis</li>
+                            <li>Enhanced nutritional value</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="500g" data-price="120">500g</option>
+                            <option value="1000g" data-price="220">1000g</option>
+                            <option value="2000g" data-price="400">2000g</option>
+                        </select>
+                        <span class="current-price">₹120</span>
+                    </div>
+                </div>
+
+                <!-- Premium Coffee -->
+                <div class="product-shop-card" data-category="ready-to-use">
+                    <img src="./images/products/coffee.jpg" alt="Premium Coffee" class="product-image" loading="lazy">
+                    <h3 class="product-name">Premium Coffee</h3>
+                    <p class="telugu-name">ప్రీమియం కాఫీ</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Aromatic South Indian filter coffee blend made from carefully selected coffee beans. Rich, smooth, and perfect for your morning ritual or evening relaxation.</p>
+                        <ul>
+                            <li>Premium coffee bean blend</li>
+                            <li>Traditional South Indian style</li>
+                            <li>Rich and aromatic</li>
+                            <li>Perfect grind consistency</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="250g" data-price="200">250g</option>
+                            <option value="500g" data-price="380">500g</option>
+                            <option value="1000g" data-price="720">1000g</option>
+                        </select>
+                        <span class="current-price">₹200</span>
+                    </div>
+                </div>
+
+                <!-- Pure Pasupu -->
+                <div class="product-shop-card" data-category="ready-to-use">
+                    <img src="./images/products/pasupu.jpg" alt="Pure Pasupu" class="product-image" loading="lazy">
+                    <h3 class="product-name">Pure Pasupu</h3>
+                    <p class="telugu-name">స్వచ్ఛమైన పసుపు</p>
+                    
+                    <button class="info-toggle-btn" aria-label="Toggle product description">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    
+                    <div class="description-text-content hidden">
+                        <p>Premium quality turmeric powder with high curcumin content. Known for its anti-inflammatory and antioxidant properties, perfect for cooking and health benefits.</p>
+                        <ul>
+                            <li>High curcumin content</li>
+                            <li>Anti-inflammatory properties</li>
+                            <li>Pure and natural</li>
+                            <li>Vibrant color and aroma</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quantity-price-selector">
+                        <select class="quantity-dropdown">
+                            <option value="250g" data-price="80">250g</option>
+                            <option value="500g" data-price="150">500g</option>
+                            <option value="1000g" data-price="280">1000g</option>
+                        </select>
+                        <span class="current-price">₹80</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Shop Interface JavaScript -->
     <script>
-        /**
-         * Toggles the visibility of product description text content
-         * @param {HTMLElement} button - The info toggle button that was clicked
-         */
-        function toggleDescription(button) {
-            const descriptionContent = button.nextElementSibling;
-            const icon = button.querySelector('i');
-            
-            if (descriptionContent.classList.contains('hidden')) {
-                // Show description
-                descriptionContent.classList.remove('hidden');
-                icon.className = 'fas fa-info-circle';
-                button.setAttribute('aria-expanded', 'true');
-            } else {
-                // Hide description
-                descriptionContent.classList.add('hidden');
-                icon.className = 'fas fa-info-circle';
-                button.setAttribute('aria-expanded', 'false');
-            }
-        }
-
-        // Initialize all descriptions as hidden when page loads
+        // Shop Interface Functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const allDescriptionContent = document.querySelectorAll('.description-text-content');
-            allDescriptionContent.forEach(function(content) {
-                content.classList.add('hidden');
+            
+            // Category filtering functionality
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const productCards = document.querySelectorAll('.product-shop-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const selectedCategory = this.dataset.category;
+                    
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    productCards.forEach(card => {
+                        if (selectedCategory === 'all' || card.dataset.category === selectedCategory) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
             });
-
-            // Set initial aria-expanded state for all buttons
-            const allToggleButtons = document.querySelectorAll('.info-toggle-btn');
-            allToggleButtons.forEach(function(button) {
-                button.setAttribute('aria-expanded', 'false');
+            
+            // Info toggle functionality
+            const infoButtons = document.querySelectorAll('.info-toggle-btn');
+            infoButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.product-shop-card');
+                    const descriptionContent = card.querySelector('.description-text-content');
+                    
+                    descriptionContent.classList.toggle('hidden');
+                    this.setAttribute('aria-expanded', !descriptionContent.classList.contains('hidden'));
+                });
             });
+            
+            // Quantity dropdown and price update functionality
+            const quantityDropdowns = document.querySelectorAll('.quantity-dropdown');
+            quantityDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('change', function() {
+                    const selectedOption = this.options[this.selectedIndex];
+                    const price = selectedOption.dataset.price;
+                    const card = this.closest('.product-shop-card');
+                    const priceDisplay = card.querySelector('.current-price');
+                    
+                    priceDisplay.textContent = '₹' + price;
+                });
+            });
+            
+            // Initialize all descriptions as hidden
+            const allDescriptions = document.querySelectorAll('.description-text-content');
+            allDescriptions.forEach(desc => {
+                desc.classList.add('hidden');
+            });
+            
+            console.log('Shop interface initialized successfully');
         });
     </script>
 </body>
