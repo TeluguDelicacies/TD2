@@ -8,11 +8,16 @@ Create this folder structure in your main directory:
 ├── logo.png                               # Company logo
 ├── hero-background.jpg                    # Hero section background
 ├── categories/
-│   ├── ready-to-eat.jpg                   # Ready-to-eat category
-│   └── telugu-podis.jpg                   # Telugu podis category
+│   ├── ready-to-eat-podis.jpg            # Ready-to-eat podis category  
+│   ├── ready-to-use.jpg                   # Ready-to-use category
+│   └── ready-to-cook.jpg                  # Ready-to-cook category
 └── products/
-    ├── parota.jpg                         # Product ticker items
-    ├── chapathi.jpg
+    ├── malabar-parota.jpg                 # Product ticker items
+    ├── wheat-chapathi.jpg
+    ├── ghee.jpg
+    ├── multigrain-atta.jpg
+    ├── coffee.jpg
+    ├── pasupu.jpg
     ├── kadapa-kaaram.jpg
     ├── nalla-kaaram.jpg
     ├── kandi-podi.jpg
@@ -26,7 +31,13 @@ Create this folder structure in your main directory:
     ├── konaseema-kaaram.jpg
     ├── chutney-premix.jpg
     ├── palli-kaaram.jpg
-    ├── kadapa-kaaram-detail.jpg           # Detailed product images
+    ├── malabar-parota-detail.jpg         # Detailed product images
+    ├── wheat-chapathi-detail.jpg
+    ├── ghee-detail.jpg
+    ├── multigrain-atta-detail.jpg
+    ├── coffee-detail.jpg
+    ├── pasupu-detail.jpg
+    ├── kadapa-kaaram-detail.jpg
     ├── nalla-kaaram-detail.jpg
     ├── kandi-podi-detail.jpg
     ├── godhuma-kaaram-detail.jpg
