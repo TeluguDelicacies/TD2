@@ -13,7 +13,7 @@
     
     <!-- External Stylesheets and Fonts -->
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Chatura:wght@400;700;800&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Favicon (optional - add if you have a favicon) -->
@@ -40,7 +40,7 @@
                     <!-- Brand name and tagline -->
                     <div class="brand-info">
                         <h1 class="brand-name">Telugu Delicacies</h1>
-                        <p class="tagline">Authentic South Indian Flavors</p>
+                        <p class="tagline">Modern Yet Traditional</p>
                     </div>
                 </div>
                 
@@ -75,7 +75,12 @@
             <div class="hero-overlay">
                 <div class="container">
                     <div class="hero-content">
-                        <h2 class="hero-title">Authentic Telugu Flavors</h2>
+                        <h2 class="hero-title">
+                            <span class="bilingual-title">
+                                <span class="english">Modern Yet Traditional</span>
+                                <span class="telugu">సంప్రదాయ రుచులు, ఆధునిక శైలి</span>
+                            </span>
+                        </h2>
                         <p class="hero-subtitle">From Our Kitchen to Your Table</p>
                         
                         <!-- Hero description -->
@@ -276,7 +281,7 @@
             <h2 class="section-title">Product Categories</h2>
             <div class="product-categories">
                 
-                <!-- Ready To Eat Category (Podulu) -->
+                <!-- Ready To Eat Category (All Podis) -->
                 <div class="category-card">
                     <div class="category-header">
                         <img src="/images/categories/ready-to-eat-podis.jpg" 
@@ -521,14 +526,77 @@
                     </div>
                 </div>
 
-                <!-- Ready To Use Category -->
+                <!-- Ready To Cook Category -->
                 <div class="category-card">
                     <div class="category-header">
-                        <img src="/images/categories/ready-to-use.jpg" 
-                             alt="Ready To Use Products" 
+                        <img src="/images/categories/ready-to-cook.jpg" 
+                             alt="Ready To Cook Products" 
                              class="category-image"
                              loading="lazy">
-                        <h3 class="category-title">Ready To Use</h3>
+                        <h3 class="category-title">
+                            <span class="bilingual-title">
+                                <span class="english">Ready To Cook</span>
+                                <span class="telugu">వంట చేయడానికి సిద్ధంగా</span>
+                            </span>
+                        </h3>
+                        <p class="category-description">Fresh, ready-to-cook Malabar Parota and Wheat Chapathi. Just heat on a pan and enjoy soft, delicious flatbreads perfect for any meal.</p>
+                    </div>
+                    
+                    <!-- Ready To Cook selection dropdown -->
+                    <div class="product-dropdown">
+                        <select class="product-select" 
+                                onchange="showProductDescription(this, 'ready-to-cook')"
+                                aria-label="Select ready-to-cook product">
+                            <option value="">Select Product</option>
+                            <option value="malabar-parota">Malabar Parota (మలబార్ పరోటా)</option>
+                            <option value="wheat-chapathi">Wheat Chapathi (గోధుమ చపాతీ)</option>
+                        </select>
+                        
+                        <!-- Ready To Cook descriptions -->
+                        <div class="product-descriptions">
+                            <!-- Malabar Parota -->
+                            <div id="ready-to-cook-malabar-parota" class="product-description" style="display: none;">
+                                <img src="/images/products/malabar-parota-detail.jpg" 
+                                     alt="Malabar Parota" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Malabar Parota</h4>
+                                <p>Authentic Kerala-style layered parota made with premium flour and traditional techniques. Soft, flaky layers that separate beautifully when cooked. Perfect with curry or dal.</p>
+                                <ul>
+                                    <li>Authentic Kerala-style preparation</li>
+                                    <li>Multiple flaky layers</li>
+                                    <li>Made with premium flour</li>
+                                    <li>Ready in 3-4 minutes</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Wheat Chapathi -->
+                            <div id="ready-to-cook-wheat-chapathi" class="product-description" style="display: none;">
+                                <img src="/images/products/wheat-chapathi-detail.jpg" 
+                                     alt="Wheat Chapathi" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Wheat Chapathi</h4>
+                                <p>Soft, wholesome wheat chapathi made from carefully selected wheat flour. Perfect balance of nutrition and taste, ideal for wrapping curries or enjoying with dal and vegetables.</p>
+                                <ul>
+                                    <li>100% wheat flour</li>
+                                    <li>Soft and flexible texture</li>
+                                    <li>High in fiber and nutrients</li>
+                                    <li>Perfect for healthy meals</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ready To Use Category -->
+                <div class="category-card">
+                        <h3 class="category-title">
+                            <span class="bilingual-title">
+                                <span class="english">Ready To Use</span>
+                                <span class="telugu">వాడుకకు సిద్ధంగా</span>
+                            </span>
+                        </h3>
                         <p class="category-description">Premium ingredients ready to use in your cooking. High-quality ghee, nutritious multigrain atta, aromatic coffee, and pure turmeric powder.</p>
                     </div>
                     
@@ -538,10 +606,10 @@
                                 onchange="showProductDescription(this, 'ready-to-use')"
                                 aria-label="Select ready-to-use product">
                             <option value="">Select Product</option>
-                            <option value="ghee">Pure Ghee</option>
-                            <option value="multigrain-atta">Multigrain Atta</option>
-                            <option value="coffee">Premium Coffee</option>
-                            <option value="pasupu">Pure Pasupu (Turmeric)</option>
+                            <option value="ghee">Pure Ghee (స్వచ్ఛమైన నెయ్యి)</option>
+                            <option value="multigrain-atta">Multigrain Atta (మల్టిగ్రెయిన్ ఆటా)</option>
+                            <option value="coffee">Premium Coffee (ప్రీమియం కాఫీ)</option>
+                            <option value="pasupu">Pure Pasupu (స్వచ్ఛమైన పసుపు)</option>
                         </select>
                         
                         <!-- Ready To Use descriptions -->
@@ -612,64 +680,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Ready To Cook Category -->
-                <div class="category-card">
-                    <div class="category-header">
-                        <img src="/images/categories/ready-to-cook.jpg" 
-                             alt="Ready To Cook Products" 
-                             class="category-image"
-                             loading="lazy">
-                        <h3 class="category-title">Ready To Cook</h3>
-                        <p class="category-description">Fresh, ready-to-cook Malabar Parota and Wheat Chapathi. Just heat on a pan and enjoy soft, delicious flatbreads perfect for any meal.</p>
-                    </div>
-                    
-                    <!-- Ready To Cook selection dropdown -->
-                    <div class="product-dropdown">
-                        <select class="product-select" 
-                                onchange="showProductDescription(this, 'ready-to-cook')"
-                                aria-label="Select ready-to-cook product">
-                            <option value="">Select Product</option>
-                            <option value="malabar-parota">Malabar Parota</option>
-                            <option value="wheat-chapathi">Wheat Chapathi</option>
-                        </select>
-                            
-                        <!-- Ready To Cook descriptions -->
-                        <div class="product-descriptions">
-                            <!-- Malabar Parota -->
-                            <div id="ready-to-cook-malabar-parota" class="product-description" style="display: none;">
-                                <img src="/images/products/malabar-parota-detail.jpg" 
-                                     alt="Malabar Parota" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Malabar Parota</h4>
-                                <p>Authentic Kerala-style layered parota made with premium flour and traditional techniques. Soft, flaky layers that separate beautifully when cooked. Perfect with curry or dal.</p>
-                                <ul>
-                                    <li>Authentic Kerala-style preparation</li>
-                                    <li>Multiple flaky layers</li>
-                                    <li>Made with premium flour</li>
-                                    <li>Ready in 3-4 minutes</li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Wheat Chapathi -->
-                            <div id="ready-to-cook-wheat-chapathi" class="product-description" style="display: none;">
-                                <img src="/images/products/wheat-chapathi-detail.jpg" 
-                                     alt="Wheat Chapathi" 
-                                     class="podi-image"
-                                     loading="lazy">
-                                <h4>Wheat Chapathi</h4>
-                                <p>Soft, wholesome wheat chapathi made from carefully selected wheat flour. Perfect balance of nutrition and taste, ideal for wrapping curries or enjoying with dal and vegetables.</p>
-                                <ul>
-                                    <li>100% wheat flour</li>
-                                    <li>Soft and flexible texture</li>
-                                    <li>High in fiber and nutrients</li>
-                                    <li>Perfect for healthy meals</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -682,7 +692,12 @@
     -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <h2 class="section-title">Contact Us</h2>
+            <h2 class="section-title modern-heading">
+                <span class="bilingual-title">
+                    <span class="english">Contact Us</span>
+                    <span class="telugu">మాతో సంప్రదించండి</span>
+                </span>
+            </h2>
             <div class="contact-content">
                 
                 <!-- Contact Form -->
