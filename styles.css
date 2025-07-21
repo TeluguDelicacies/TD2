@@ -131,7 +131,8 @@ Mobile-first responsive design
 /* Brand tagline */
 .tagline {
     font-family: 'MOD20', 'Times New Roman', serif;
-    font-size: 10px;
+    /* FIXED: Increased font size for better visibility */
+    font-size: 14px;
     font-weight: 300;
     opacity: 0.9;
     font-style: italic;
@@ -182,15 +183,18 @@ Eliminates all cutoff issues by letting content determine size
 ========================================
 */
 .hero {
-    margin-top: 80px; /* Header clearance - fixed value */
+    margin-top: 80px;
     position: relative;
-    height: 50vh; /* Reduced height for better balance */
-    min-height: 400px; /* Minimum height for content visibility */
-    max-height: 500px; /* Maximum height to prevent excessive size */
+    /* FIXED: Responsive height system for all orientations */
+    height: 60vh;
+    min-height: 350px;
+    max-height: 450px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* FIXED: Handle landscape orientation */
+    width: 100%;
 }
 
 /* Hero image container */
@@ -242,7 +246,10 @@ Eliminates all cutoff issues by letting content determine size
 
 /* Main hero title */
 .hero-title {
-    font-size: 22px;
+    /* FIXED: Font size for 50% horizontal width occupancy */
+    font-size: clamp(24px, 8vw, 48px);
+    width: 50%;
+    max-width: 50%;
     font-weight: 700;
     margin-bottom: 15px;
     color: #FFD700;
@@ -254,6 +261,10 @@ Eliminates all cutoff issues by letting content determine size
     display: inline-block;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    /* FIXED: Ensure text fits within specified width */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 /* Hero title fonts */
@@ -367,6 +378,28 @@ News ticker style with infinite loop
         rgba(248,249,250,0) 5%, 
         rgba(248,249,250,0) 95%, 
         rgba(248,249,250,1) 100%);
+    /* ADDED: Touch scrolling support */
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    cursor: grab;
+}
+
+/* Hide scrollbar for webkit browsers */
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Active cursor when dragging */
+.scroll-container:active {
+    cursor: grabbing;
+}
+
+/* Smooth scroll behavior for manual scrolling */
+.scroll-container.manual-scroll {
+    scroll-behavior: smooth;
 }
 
 /* Continuous scrolling product container */
@@ -375,6 +408,20 @@ News ticker style with infinite loop
     animation: tickerMobile 30s linear infinite;
     gap: 20px;
     will-change: transform; /* Optimize for smooth animation */
+    /* ADDED: Touch interaction support */
+    transition: transform 0.3s ease-out;
+    min-width: 100%;
+    touch-action: pan-x;
+}
+
+/* Paused state for manual scrolling */
+.product-scroll.paused {
+    animation-play-state: paused;
+}
+
+/* Manual scroll override */
+.product-scroll.manual-control {
+    animation: none;
 }
 
 /* Individual product items in ticker */
@@ -419,12 +466,19 @@ News ticker style with infinite loop
 /* Telugu product names in ticker */
 .product-item .telugu-name {
     font-family: 'Chathura-Bold', 'Noto Sans Telugu', sans-serif;
-    font-size: 12px;
+    /* FIXED: Font size to match English text width */
+    font-size: 14px;
+    transform: scaleX(1.2);
+    transform-origin: center;
     color: #FF6B35;
     line-height: 1.2;
     margin: 0;
     font-weight: 600;
     letter-spacing: 0.01em;
+    /* FIXED: Ensure Telugu text matches English width */
+    width: 100%;
+    display: block;
+    text-align: center;
 }
 
 /* Mobile ticker animation */
@@ -510,12 +564,20 @@ Responsive grid layout for different screen sizes
 
 /* Category titles */
 .category-title {
-    font-size: 22px;
+    /* FIXED: Font size for 40% horizontal width occupancy */
+    font-size: clamp(18px, 5vw, 32px);
+    width: 40%;
+    max-width: 40%;
     font-weight: 700;
     color: #228B22;
     margin-bottom: 8px;
     line-height: 1.3;
     font-family: 'Chathura-Bold', 'Chatura', sans-serif;
+    /* FIXED: Ensure text fits within specified width */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0 auto 8px auto;
+    text-align: center;
 }
 
 /* Bilingual title styling for categories */
@@ -564,7 +626,8 @@ Responsive grid layout for different screen sizes
     padding-right: 50px; /* Space for custom arrow */
     border: 2px solid rgba(34,139,34,0.2);
     border-radius: 12px;
-    font-size: 16px;
+    /* FIXED: Font size for proper Telugu text display */
+    font-size: 15px;
     background: linear-gradient(135deg, #ffffff, #f8fffe);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23228B22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -579,6 +642,9 @@ Responsive grid layout for different screen sizes
     font-weight: 500;
     color: #333;
     box-shadow: 0 2px 8px rgba(34,139,34,0.08);
+    /* FIXED: Proper Telugu font support */
+    font-family: 'UbuntuMono-R', 'Chathura-Bold', 'Ubuntu Mono', monospace;
+    line-height: 1.4;
 }
 
 /* Dropdown hover effects */
@@ -604,6 +670,12 @@ Responsive grid layout for different screen sizes
     background: white;
     color: #333;
     font-weight: 500;
+    /* FIXED: Proper option display for Telugu text */
+    font-family: 'UbuntuMono-R', 'Chathura-Bold', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 .product-select option:hover {
@@ -617,6 +689,32 @@ Responsive grid layout for different screen sizes
     font-style: italic;
 }
 
+/* FIXED: Enhanced dropdown styling for rebuilt component */
+.rebuilt-dropdown {
+    /* Enhanced styling for the rebuilt dropdown */
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.bilingual-option {
+    /* Specific styling for bilingual options */
+    font-family: 'UbuntuMono-R', 'Chathura-Bold', monospace !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    padding: 10px 15px !important;
+    white-space: pre-line !important;
+    word-spacing: 0.1em !important;
+}
+
+.default-option {
+    /* Default option styling */
+    font-style: italic;
+    color: #666;
+}
+</Action>
 /* Product description container */
 .product-description {
     margin-top: 20px;
@@ -984,7 +1082,8 @@ RESPONSIVE DESIGN - TABLET STYLES
     }
     
     .tagline {
-        font-size: 12px;
+        /* FIXED: Enhanced tagline size for tablet */
+        font-size: 16px;
     }
     
     .nav-buttons {
@@ -1099,8 +1198,10 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     /* Hero adjustments */
     .hero {
         margin-top: 100px;
-        height: 40vh; /* Further reduced for desktop */
-        max-height: 400px;
+        /* FIXED: Optimized for landscape and desktop */
+        height: clamp(400px, 45vh, 550px);
+        max-height: 550px;
+        max-height: 500px;
         min-height: 350px;
     }
     
@@ -1114,7 +1215,8 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     }
     
     .hero-title {
-        font-size: 48px; /* Maximum size for desktop */
+        /* FIXED: Responsive font sizing for 50% width */
+        font-size: clamp(28px, 10vw, 56px);
         font-weight: normal; /* MOD20 uses normal weight */
         margin-bottom: 25px;
         padding: 20px 30px;
@@ -1132,12 +1234,24 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     
     /* Section title adjustments */
     .section-title {
-        font-size: 48px; /* Maximum size for desktop */
+        /* FIXED: Desktop font sizing for 50% width */
+        font-size: clamp(32px, 12vw, 64px);
     }
+    /* Category title tablet adjustments */
+    .category-title {
+        font-size: clamp(20px, 6vw, 36px);
+    }
+    
     
     /* Category title adjustments */
     .category-title {
-        font-size: 36px; /* Maximum size for desktop */
+        /* FIXED: Desktop font sizing for 40% width */
+        font-size: clamp(24px, 7vw, 42px);
+    }
+    
+    .tagline {
+        /* FIXED: Enhanced tagline size for desktop */
+        font-size: 18px;
     }
     
     /* Section padding adjustments */
@@ -1171,12 +1285,24 @@ RESPONSIVE DESIGN - DESKTOP STYLES
         padding: 20px;
     }
     
+    /* FIXED: Telugu text scaling for tablet */
+    .product-item .telugu-name {
+        font-size: 15px;
+        transform: scaleX(1.3);
+    }
+    
     .product-item img {
         height: 120px;
     }
     
     .product-item h3 {
         font-size: 16px;
+    }
+    
+    /* FIXED: Telugu text scaling for desktop */
+    .product-item .telugu-name {
+        font-size: 16px;
+        transform: scaleX(1.4);
     }
     
     .logo-text {
@@ -1213,6 +1339,24 @@ RESPONSIVE DESIGN - LARGE DESKTOP STYLES
     .category-card {
         padding: 30px;
     }
+    
+    /* FIXED: Large desktop optimizations */
+    .hero-title {
+        font-size: clamp(40px, 14vw, 72px);
+    }
+    
+    .category-title {
+        font-size: clamp(28px, 8vw, 48px);
+    }
+    
+    .tagline {
+        font-size: 20px;
+    }
+    
+    .product-item .telugu-name {
+        font-size: 17px;
+        transform: scaleX(1.5);
+    }
 }
 
 /* 
@@ -1220,6 +1364,31 @@ RESPONSIVE DESIGN - LARGE DESKTOP STYLES
 ACCESSIBILITY AND PERFORMANCE OPTIMIZATIONS
 ========================================
 */
+
+/* FIXED: Landscape orientation support */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .hero {
+        height: 90vh;
+        min-height: 300px;
+        max-height: 400px;
+    }
+    
+    .hero-title {
+        font-size: clamp(20px, 6vw, 36px);
+        margin-bottom: 10px;
+        padding: 8px 12px;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(16px, 4vw, 24px);
+        margin-bottom: 15px;
+    }
+    
+    .hero-description {
+        font-size: clamp(12px, 3vw, 16px);
+        margin-bottom: 20px;
+    }
+}
 
 /* Smooth scrolling for better UX */
 html {
