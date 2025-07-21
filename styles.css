@@ -184,9 +184,9 @@ Eliminates all cutoff issues by letting content determine size
 .hero {
     margin-top: 80px; /* Header clearance - fixed value */
     position: relative;
-    height: 100vh; /* Full viewport height */
-    min-height: 600px; /* Minimum height for content visibility */
-    max-height: 800px; /* Maximum height to prevent excessive size */
+    height: 50vh; /* Reduced height for better balance */
+    min-height: 400px; /* Minimum height for content visibility */
+    max-height: 500px; /* Maximum height to prevent excessive size */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -413,6 +413,18 @@ News ticker style with infinite loop
     font-weight: 600;
     color: #228B22;
     line-height: 1.3;
+    margin-bottom: 4px;
+}
+
+/* Telugu product names in ticker */
+.product-item .telugu-name {
+    font-family: 'Chathura-Bold', 'Noto Sans Telugu', sans-serif;
+    font-size: 12px;
+    color: #FF6B35;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 }
 
 /* Mobile ticker animation */
@@ -1087,9 +1099,9 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     /* Hero adjustments */
     .hero {
         margin-top: 100px;
-        height: 85vh;
-        max-height: 800px;
-        min-height: 650px;
+        height: 40vh; /* Further reduced for desktop */
+        max-height: 400px;
+        min-height: 350px;
     }
     
     .hero-title .english {
@@ -1102,14 +1114,14 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     }
     
     .hero-title {
-        font-size: 42px;
+        font-size: 48px; /* Maximum size for desktop */
         font-weight: normal; /* MOD20 uses normal weight */
         margin-bottom: 25px;
         padding: 20px 30px;
     }
     
     .hero-subtitle {
-        font-size: 28px;
+        font-size: 32px; /* Maximum size for desktop */
         margin-bottom: 30px;
     }
     
@@ -1118,15 +1130,14 @@ RESPONSIVE DESIGN - DESKTOP STYLES
         margin-bottom: 35px;
     }
     
-    .cta-button {
-        font-size: 20px;
-        padding: 20px 40px;
-        min-height: 60px;
-    }
-    
     /* Section title adjustments */
     .section-title {
-        font-size: 36px;
+        font-size: 48px; /* Maximum size for desktop */
+    }
+    
+    /* Category title adjustments */
+    .category-title {
+        font-size: 36px; /* Maximum size for desktop */
     }
     
     /* Section padding adjustments */
@@ -1178,7 +1189,7 @@ RESPONSIVE DESIGN - DESKTOP STYLES
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-220px * 15 - 30px * 15));
+            transform: translateX(calc(-220px * 19 - 30px * 19));
         }
     }
 }
