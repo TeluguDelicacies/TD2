@@ -1,9 +1,9 @@
 /* 
 ========================================
-TELUGU DELICACIES SALES INTERFACE STYLES
+TELUGU DELICACIES SHOP INTERFACE STYLES
 ========================================
 Author: Telugu Delicacies
-Description: Dedicated CSS for the sales/catalog interface with quantities and pricing
+Description: Dedicated CSS for the shop interface with categories, product cards, and pricing
 Last Updated: 2024
 */
 
@@ -79,7 +79,7 @@ body {
     font-size: var(--font-base);
     line-height: var(--leading-normal);
     color: #333;
-    background-color: #ffffff;
+    background-color: #f8f9fa;
     font-weight: var(--weight-regular);
 }
 
@@ -185,418 +185,238 @@ h6 {
 
 /* 
 ========================================
+SHOP HEADER SECTION
+Navigation with back button and category tabs
+========================================
+*/
+.shop-header {
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.shop-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Back Button */
+.back-button {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.back-button:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateX(-2px);
+    border-color: rgba(255,255,255,0.5);
+    color: white;
+}
+
+.back-button:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Category Navigation */
+.category-nav {
+    width: 100%;
+}
+
+.category-tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tab {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: var(--weight-medium);
+    font-size: var(--font-sm);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+.category-tab:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-1px);
+}
+
+.category-tab.active {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #333;
+    border-color: #FFD700;
+    font-weight: var(--weight-bold);
+    box-shadow: 0 2px 8px rgba(255,215,0,0.3);
+}
+
+.category-tab:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Mobile adjustments for header */
+@media (max-width: 768px) {
+    .shop-header {
+        padding: 0.75rem 0;
+    }
+    
+    .shop-header-content {
+        gap: 0.75rem;
+    }
+    
+    .back-button {
+        width: 36px;
+        height: 36px;
+        font-size: 1.125rem;
+    }
+    
+    .category-tab {
+        padding: 0.5rem 1rem;
+        font-size: var(--font-xs);
+    }
+}
+
+/* 
+========================================
 PRODUCTS SECTION
-Detailed product categories with interactive dropdowns
-Responsive grid layout for different screen sizes
+Grid of individual product cards
 ========================================
 */
 .products-section {
-    padding: 3.75rem 0; /* 60px */
-    background: white;
+    padding: 2rem 0;
+    background: #f8f9fa;
+    min-height: calc(100vh - 120px);
 }
 
-/* Section title styling */
-.section-title {
-    text-align: center;
-    font-family: var(--font-primary);
-    font-size: clamp(var(--font-xl), 4vw, var(--font-3xl));
-    font-weight: var(--weight-bold);
-    margin-bottom: 2rem;
-    color: #228B22;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-    line-height: var(--leading-tight);
-}
-
-/* Product categories grid */
+/* Product cards grid */
 .product-categories {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.875rem; /* 30px */
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
 }
 
-/* Responsive grid for desktop */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .product-categories {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
     }
 }
 
 @media (min-width: 1200px) {
     .product-categories {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3rem;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2.5rem;
     }
 }
 
-/* Individual category cards */
-.category-card {
-    background: linear-gradient(135deg, #fff, #f8f9fa);
-    border-radius: 15px;
-    padding: 1.25rem; /* 20px */
-    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1); /* 0 8px 24px */
-    border: 0.125rem solid rgba(255,215,0,0.2); /* 2px */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Individual product cards */
+.product-shop-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,215,0,0.1);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Modern card accent */
-.category-card::before {
+.product-shop-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: linear-gradient(90deg, #228B22, #32CD32, #FFD700);
     z-index: 1;
 }
 
-/* Category card hover effects */
-.category-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0.75rem 1.75rem rgba(0,0,0,0.15); /* 0 12px 28px */
-    border-color: rgba(255,215,0,0.4);
+.product-shop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    border-color: rgba(255,215,0,0.3);
 }
 
-/* Category header section */
-.category-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-/* Category images */
-.category-image {
+/* Product images */
+.product-image {
     width: 100%;
-    height: 160px;
+    height: 180px;
     object-fit: cover;
     border-radius: 12px;
-    margin-bottom: 0.9375rem; /* 15px */
+    margin-bottom: 1rem;
     transition: transform 0.3s ease;
 }
 
-.category-image:hover {
+.product-image:hover {
     transform: scale(1.02);
 }
 
-/* Category titles */
-.category-title {
+/* Product names */
+.product-name {
     font-family: var(--font-primary);
-    font-size: clamp(var(--font-lg), 4vw, var(--font-xl));
-    font-weight: var(--weight-bold);
-    color: #228B22;
-    margin-bottom: 0.75rem;
-    line-height: var(--leading-tight);
-    text-align: center;
-    word-wrap: break-word;
-}
-
-/* Bilingual title styling for categories */
-.bilingual-title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    text-align: center;
-}
-
-.bilingual-title .english {
-    font-size: 1em;
-    font-family: var(--font-primary);
-    font-weight: var(--weight-bold);
-    display: block;
-    line-height: var(--leading-tight);
-}
-
-.bilingual-title .telugu {
-    font-size: 0.85em;
-    font-family: var(--font-telugu);
+    font-size: var(--font-md);
     font-weight: var(--weight-semibold);
-    color: #FF6B35;
-    display: block;
-    line-height: var(--leading-normal);
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Category descriptions */
-.category-description {
-    font-family: var(--font-body);
-    font-size: var(--font-sm);
-    color: #666;
-    line-height: var(--leading-relaxed);
-}
-
-/* Product dropdown container */
-.product-dropdown {
-    margin-top: 1.25rem; /* 20px */
-}
-
-/* Product selection dropdown */
-.product-select {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    padding-right: 50px; /* Space for custom arrow */
-    border: 2px solid rgba(34,139,34,0.2);
-    border-radius: 12px;
-    font-family: var(--font-body);
-    font-size: var(--font-sm);
-    font-weight: var(--weight-regular);
-    background: linear-gradient(135deg, #ffffff, #f8fffe);
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23228B22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 18px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-height: 2.75rem;
-    color: #333;
-    box-shadow: 0 2px 8px rgba(34,139,34,0.08);
-    line-height: var(--leading-normal);
-}
-
-/* Dropdown hover effects */
-.product-select:hover {
-    border-color: rgba(34,139,34,0.4);
-    background: linear-gradient(135deg, #f8fffe, #ffffff);
-    box-shadow: 0 4px 12px rgba(34,139,34,0.15);
-    transform: translateY(-1px);
-}
-
-/* Dropdown focus styles */
-.product-select:focus {
-    outline: none;
-    border-color: #228B22;
-    box-shadow: 0 0 0 4px rgba(34,139,34,0.15), 0 4px 16px rgba(34,139,34,0.2);
-    background: linear-gradient(135deg, #f0fff0, #ffffff);
-    transform: translateY(-2px);
-}
-
-/* Dropdown option styling */
-.product-select option {
-    padding: 0.75rem 1rem;
-    background: #ffffff;
-    color: #333;
-    font-family: var(--font-body);
-    font-weight: var(--weight-regular);
-    font-size: var(--font-xs);
-    line-height: var(--leading-normal);
-    white-space: normal;
-    word-wrap: break-word;
-}
-
-.product-select option:hover {
-    background: linear-gradient(135deg, #f0fff0, #ffffff);
     color: #228B22;
-}
-
-/* Default option styling */
-.product-select option[value=""] {
-    color: #999;
-    font-style: italic;
-}
-
-/* Enhanced dropdown styling for rebuilt component */
-.rebuilt-dropdown {
-    font-feature-settings: "liga" 1, "kern" 1;
-    -webkit-font-feature-settings: "liga" 1, "kern" 1;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.bilingual-option {
-    font-family: var(--font-telugu) !important;
-    font-size: var(--font-xs) !important;
-    font-weight: var(--weight-regular) !important;
-    line-height: var(--leading-relaxed) !important;
-    padding: 10px 15px !important;
-}
-
-.default-option {
-    font-style: italic;
-    color: #666;
-}
-
-/* Product description container */
-.product-description {
-    margin-top: 1.25rem; /* 20px */
-    padding: 1.25rem; /* 20px */
-    background: linear-gradient(135deg, #F0FFF0, #FFFACD);
-    border-radius: 0.75rem; /* 12px */
-    border-left: 4px solid #228B22;
-    animation: slideIn 0.3s ease;
-}
-
-/* Slide-in animation for product descriptions */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Product images in descriptions */
-.podi-image {
-    width: 100%;
-    max-width: 200px;
-    height: 7.5rem; /* 120px */
-    object-fit: cover;
-    border-radius: 0.5rem; /* 8px */
-    margin-bottom: 0.75rem; /* 12px */
-    transition: transform 0.3s ease;
-}
-
-.podi-image:hover {
-    transform: scale(1.05);
-}
-
-/* Product description titles */
-.product-description h4 {
-    font-family: var(--font-primary);
-    font-size: var(--font-lg);
-    font-weight: var(--weight-semibold);
-    color: #FF6B35;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     line-height: var(--leading-snug);
 }
 
-/* Product description text */
-.product-description p {
-    font-family: var(--font-body);
-    margin-bottom: 0.75rem;
-    line-height: var(--leading-relaxed);
-    color: #333;
+/* Telugu product names */
+.telugu-name {
+    font-family: var(--font-telugu);
     font-size: var(--font-sm);
-}
-
-/* Product feature lists */
-.product-description ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 0.75rem;
-}
-
-.product-description li {
-    padding: 0.25rem 0;
-    padding-left: 1.125rem;
-    position: relative;
-    color: #555;
-    font-family: var(--font-body);
-    font-size: var(--font-xs);
+    color: #FF6B35;
+    font-weight: var(--weight-medium);
+    margin-bottom: 1rem;
     line-height: var(--leading-normal);
 }
 
-/* Checkmark bullets for features */
-.product-description li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #228B22;
-    font-weight: var(--weight-bold);
-    font-size: var(--font-xs);
-}
-
 /* 
 ========================================
-PRODUCT QUANTITIES AND PRICES
-New styling for quantities and pricing information
-========================================
-*/
-.product-quantities {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px dashed #ccc;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 8px;
-    padding: 1rem;
-}
-
-.product-quantities h5 {
-    font-family: var(--font-primary);
-    font-size: var(--font-sm);
-    font-weight: var(--weight-semibold);
-    color: #228B22;
-    margin-bottom: 0.75rem;
-    text-align: center;
-    letter-spacing: var(--tracking-wide);
-}
-
-.quantity-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0.75rem;
-    margin-bottom: 0.25rem;
-    font-size: var(--font-xs);
-    color: #333;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 6px;
-    border: 1px solid rgba(34, 139, 34, 0.1);
-    transition: all 0.2s ease;
-}
-
-.quantity-option:hover {
-    background: rgba(34, 139, 34, 0.05);
-    border-color: rgba(34, 139, 34, 0.2);
-    transform: translateX(2px);
-}
-
-.quantity-option:last-child {
-    margin-bottom: 0;
-}
-
-.quantity-option .quantity {
-    font-family: var(--font-body);
-    font-weight: var(--weight-medium);
-    color: #555;
-    flex-grow: 1;
-}
-
-.quantity-option .price {
-    font-family: var(--font-primary);
-    font-weight: var(--weight-bold);
-    color: #228B22;
-    font-size: var(--font-sm);
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #333;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    min-width: 60px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
-}
-
-/* Special highlighting for bulk pricing */
-.quantity-option:last-child .price {
-    background: linear-gradient(135deg, #32CD32, #228B22);
-    color: white;
-    font-weight: var(--weight-bold);
-}
-
-.quantity-option:last-child::after {
-    content: "Best Value";
-    font-size: 0.7rem;
-    color: #32CD32;
-}
-
-/* 
-========================================
-INFO TOGGLE BUTTON STYLES
+INFO TOGGLE BUTTON
 Toggle button for showing/hiding product descriptions
 ========================================
 */
 .info-toggle-btn {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 15px;
     width: 32px;
     height: 32px;
@@ -629,6 +449,17 @@ Toggle button for showing/hiding product descriptions
     transform: scale(0.95);
 }
 
+/* Mobile optimizations for info toggle */
+@media (max-width: 768px) {
+    .info-toggle-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+        top: 12px;
+        right: 12px;
+    }
+}
+
 /* 
 ========================================
 DESCRIPTION TEXT CONTENT TOGGLE
@@ -642,69 +473,168 @@ Smooth animation for showing/hiding description text
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 opacity 0.3s ease,
                 padding 0.3s ease;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    background: rgba(240, 255, 240, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
 }
 
 .description-text-content.hidden {
     max-height: 0;
     opacity: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
+    margin-bottom: 0;
 }
 
-/* Mobile optimizations for info toggle */
+.description-text-content p {
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    color: #555;
+    line-height: var(--leading-relaxed);
+    margin-bottom: 0.75rem;
+}
+
+.description-text-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.description-text-content li {
+    padding: 0.25rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #666;
+    font-family: var(--font-body);
+    font-size: var(--font-xs);
+    line-height: var(--leading-normal);
+}
+
+.description-text-content li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #228B22;
+    font-weight: var(--weight-bold);
+    font-size: var(--font-sm);
+}
+
+/* 
+========================================
+QUANTITY AND PRICE SELECTOR
+Dropdown for quantity selection with dynamic pricing
+========================================
+*/
+.quantity-price-selector {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px dashed #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.quantity-dropdown {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid rgba(34,139,34,0.2);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: var(--font-sm);
+    font-weight: var(--weight-regular);
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    color: #333;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23228B22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.quantity-dropdown:hover {
+    border-color: rgba(34,139,34,0.4);
+    box-shadow: 0 2px 8px rgba(34,139,34,0.1);
+    transform: translateY(-1px);
+}
+
+.quantity-dropdown:focus {
+    outline: none;
+    border-color: #228B22;
+    box-shadow: 0 0 0 3px rgba(34,139,34,0.15);
+}
+
+.current-price {
+    font-family: var(--font-primary);
+    font-weight: var(--weight-bold);
+    font-size: var(--font-lg);
+    color: white;
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    padding: 0.75rem 1.25rem;
+    border-radius: 25px;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+    transition: all 0.3s ease;
+}
+
+.product-shop-card:hover .current-price {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.4);
+}
+
+/* Mobile adjustments for quantity selector */
 @media (max-width: 768px) {
-    .info-toggle-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
-        top: 8px;
-        right: 12px;
+    .quantity-price-selector {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: stretch;
     }
     
-    .product-description {
-        padding-top: 2rem; /* Reduced top padding on mobile */
+    .quantity-dropdown {
+        font-size: var(--font-xs);
+        padding: 0.5rem 0.75rem;
+        padding-right: 35px;
     }
-    font-weight: var(--weight-bold);
-    margin-left: 0.5rem;
-    padding: 0.125rem 0.25rem;
-    background: rgba(50, 205, 50, 0.1);
-    border-radius: 3px;
-    border: 1px solid rgba(50, 205, 50, 0.3);
+    
+    .current-price {
+        font-size: var(--font-md);
+        padding: 0.5rem 1rem;
+        align-self: center;
+    }
 }
 
 /* 
 ========================================
 RESPONSIVE DESIGN
-Mobile optimizations for sales interface
+Mobile and tablet optimizations
 ========================================
 */
-@media (max-width: 768px) {
-    .product-quantities {
-        padding: 0.75rem;
-        margin-top: 0.75rem;
+@media (max-width: 480px) {
+    .product-categories {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
     
-    .product-quantities h5 {
+    .product-shop-card {
+        padding: 1.25rem;
+    }
+    
+    .product-image {
+        height: 160px;
+    }
+    
+    .product-name {
+        font-size: var(--font-base);
+    }
+    
+    .telugu-name {
         font-size: var(--font-xs);
-        margin-bottom: 0.5rem;
-    }
-    
-    .quantity-option {
-        padding: 0.375rem 0.5rem;
-        font-size: 0.8rem;
-    }
-    
-    .quantity-option .price {
-        font-size: var(--font-xs);
-        padding: 0.2rem 0.4rem;
-        min-width: 50px;
-    }
-    
-    .quantity-option:last-child::after {
-        font-size: 0.6rem;
-        padding: 0.1rem 0.2rem;
     }
 }
 
@@ -742,14 +672,16 @@ img:not([src]) {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    .category-card,
-    .product-description,
-    .product-quantities {
+    .product-shop-card {
         border: 2px solid #228B22;
     }
     
-    .quantity-option {
-        border: 1px solid #228B22;
+    .quantity-dropdown {
+        border: 2px solid #228B22;
+    }
+    
+    .info-toggle-btn {
+        border: 2px solid white;
     }
 }
 
@@ -769,13 +701,39 @@ textarea:focus {
         line-height: 1.4;
     }
     
-    .product-quantities {
+    .shop-header {
+        display: none;
+    }
+    
+    .product-shop-card {
+        break-inside: avoid;
         border: 1px solid #000;
     }
     
-    .quantity-option .price {
+    .current-price {
         background: none !important;
         color: #000 !important;
         border: 1px solid #000;
     }
+}
+
+/* Loading states and animations */
+.product-shop-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effects for better interactivity */
+.quantity-dropdown:hover + .current-price {
+    transform: scale(1.02);
 }
