@@ -262,6 +262,9 @@ function initializeProductShowcaseControls() {
     const scrollContainer = productScroll?.parentElement;
     if (!productScroll) return;
     
+    // Ensure ticker animation is running by default
+    productScroll.style.animationPlayState = 'running';
+    
     // Pause animation on mouse hover for better desktop UX
     productScroll.addEventListener('mouseenter', () => {
         productScroll.style.animationPlayState = 'paused';
@@ -272,11 +275,10 @@ function initializeProductShowcaseControls() {
         productScroll.style.animationPlayState = 'running';
     });
     
-    // SIMPLIFIED: Touch scrolling support that doesn't interfere with native scrolling
+    // Touch interaction handling - only pause when user actively interacts
     let isUserInteracting = false;
     let interactionTimeout;
     
-    // Simple touch interaction detection
     const handleInteractionStart = () => {
         if (!isUserInteracting) {
             productScroll.style.animationPlayState = 'paused';
@@ -290,33 +292,60 @@ function initializeProductShowcaseControls() {
     };
     
     const handleInteractionEnd = () => {
-        // Resume animation after user stops interacting
+        // Resume ticker animation after brief delay
         interactionTimeout = setTimeout(() => {
             productScroll.style.animationPlayState = 'running';
             isUserInteracting = false;
-        }, 1500); // Resume after 1.5 seconds of inactivity
+        }, 2000); // Resume ticker after 2 seconds of inactivity
     };
     
-    // Touch events - let browser handle native scrolling
+    // Touch events - pause ticker during active touch interaction
     scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
     scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
+    scrollContainer.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
     
-    // Scroll events - pause animation when user manually scrolls
+    // Only pause ticker if user is actively scrolling (not just from ticker animation)
+    let lastScrollLeft = scrollContainer.scrollLeft;
+    let scrollCheckTimeout;
+    
     scrollContainer.addEventListener('scroll', () => {
-        handleInteractionStart();
-        handleInteractionEnd();
+        const currentScrollLeft = scrollContainer.scrollLeft;
+        
+        // Only consider it user interaction if scroll position actually changed significantly
+        if (Math.abs(currentScrollLeft - lastScrollLeft) > 5) {
+            handleInteractionStart();
+            
+            // Clear previous timeout and set new one
+            if (scrollCheckTimeout) {
+                clearTimeout(scrollCheckTimeout);
+            }
+            
+            scrollCheckTimeout = setTimeout(() => {
+                handleInteractionEnd();
+            }, 1000); // Resume ticker 1 second after scrolling stops
+        }
+        
+        lastScrollLeft = currentScrollLeft;
     }, { passive: true });
     
     // Wheel events for desktop
     scrollContainer.addEventListener('wheel', (e) => {
         handleInteractionStart();
         
-        // Allow horizontal scrolling with wheel
+        // Allow smooth horizontal scrolling with wheel
         scrollContainer.scrollLeft += e.deltaY * 0.5;
-        e.preventDefault();
         
-        handleInteractionEnd();
-    }, { passive: false });
+        // Resume ticker after wheel interaction
+        if (interactionTimeout) {
+            clearTimeout(interactionTimeout);
+        }
+        interactionTimeout = setTimeout(() => {
+            productScroll.style.animationPlayState = 'running';
+            isUserInteracting = false;
+        }, 1500);
+        
+        e.preventDefault();
+    });
 }
 
 /*
@@ -763,7 +792,7 @@ document.addEventListener('visibilitychange', () => {
             // Page is hidden - pause animations to save resources
             productScroll.style.animationPlayState = 'paused';
         } else {
-            // Page is visible - resume animations
+            // Page is visible - resume ticker animation
             productScroll.style.animationPlayState = 'running';
         }
     }
