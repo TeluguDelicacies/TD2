@@ -200,7 +200,8 @@ Mobile-first responsive design
 
 .header.hidden {
     transform: translateY(-100%);
-    opacity: 0;
+    opacity: 0.8;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 /* Header content layout */
@@ -213,6 +214,7 @@ Mobile-first responsive design
     text-align: left;
     min-height: 3.125rem; /* 50px */
     flex-wrap: wrap;
+    padding: 0 1rem; /* Add left and right padding */
 }
 
 /* Logo section with brand information */
@@ -227,8 +229,8 @@ Mobile-first responsive design
 
 /* Main logo image */
 .logo {
-    width: 3rem; /* 48px - Made taller as requested */
-    height: 3.5rem; /* 56px - Made taller as requested */
+    width: 3rem; /* 48px - Square logo */
+    height: 3rem; /* 48px - Square logo */
     object-fit: cover;
     border: 3px solid rgba(255,215,0,0.3);
     background: #228B22;
@@ -241,8 +243,8 @@ Mobile-first responsive design
 
 /* Fallback logo when image fails to load */
 .logo-fallback {
-    width: 3rem; /* 48px */
-    height: 3.5rem; /* 56px */
+    width: 3rem; /* 48px - Square logo */
+    height: 3rem; /* 48px - Square logo */
     background: linear-gradient(135deg, #228B22, #32CD32);
     display: flex;
     align-items: center;
