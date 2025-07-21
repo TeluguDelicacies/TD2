@@ -119,6 +119,7 @@ Mobile-first responsive design
 
 /* Brand name styling */
 .brand-name {
+    font-family: 'MOD20', 'Times New Roman', serif;
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 1px;
@@ -129,6 +130,7 @@ Mobile-first responsive design
 
 /* Brand tagline */
 .tagline {
+    font-family: 'MOD20', 'Times New Roman', serif;
     font-size: 10px;
     font-weight: 300;
     opacity: 0.9;
@@ -1101,6 +1103,7 @@ RESPONSIVE DESIGN - DESKTOP STYLES
     
     .hero-title {
         font-size: 42px;
+        font-weight: normal; /* MOD20 uses normal weight */
         margin-bottom: 25px;
         padding: 20px 30px;
     }
