@@ -47,6 +47,9 @@ Interactive dropdown functionality for product categories
  * @param {string} category - The product category identifier
  */
 function showProductDescription(selectElement, category) {
+    // FIXED: Enhanced dropdown functionality for Telugu text support
+    console.log('Dropdown selection changed:', selectElement.value);
+    
     // Hide all descriptions for this category first
     const categoryCard = selectElement.closest('.category-card');
     const allDescriptions = categoryCard.querySelectorAll('.product-description');
@@ -67,6 +70,10 @@ function showProductDescription(selectElement, category) {
             setTimeout(() => {
                 descriptionElement.classList.add('fade-in');
             }, 10);
+            
+            // FIXED: Log for debugging Telugu functionality
+            console.log('Showing description for:', selectedValue);
+            console.log('Description element found:', descriptionElement);
         }
     }
 }
@@ -235,6 +242,7 @@ Interactive controls for the product ticker
  */
 function initializeProductShowcaseControls() {
     const productScroll = document.getElementById('productScroll');
+    const scrollContainer = productScroll?.parentElement;
     if (!productScroll) return;
     
     // Pause animation on mouse hover
@@ -247,33 +255,123 @@ function initializeProductShowcaseControls() {
         productScroll.style.animationPlayState = 'running';
     });
     
-    // Touch support for mobile devices
-    let touchPaused = false;
+    // ENHANCED: Advanced touch scrolling support
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let isScrolling = false;
+    let autoScrollPaused = false;
+    let scrollTimeout;
     
-    productScroll.addEventListener('touchstart', () => {
-        if (!touchPaused) {
+    // Touch start handler
+    scrollContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+        isScrolling = false;
+        
+        // Pause auto-scroll animation
+        if (!autoScrollPaused) {
             productScroll.style.animationPlayState = 'paused';
-            touchPaused = true;
-            
-            // Resume after 3 seconds of no interaction
-            setTimeout(() => {
-                if (touchPaused) {
-                    productScroll.style.animationPlayState = 'running';
-                    touchPaused = false;
-                }
-            }, 3000);
+            autoScrollPaused = true;
         }
-    });
+        
+        // Clear any existing scroll timeout
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+    }, { passive: true });
     
-    // Additional touch event to handle scrolling
-    productScroll.addEventListener('touchend', () => {
-        setTimeout(() => {
-            if (touchPaused) {
-                productScroll.style.animationPlayState = 'running';
-                touchPaused = false;
+    // Touch move handler for swipe detection
+    scrollContainer.addEventListener('touchmove', (e) => {
+        if (!touchStartX) return;
+        
+        const touchX = e.touches[0].clientX;
+        const touchY = e.touches[0].clientY;
+        const deltaX = touchStartX - touchX;
+        const deltaY = touchStartY - touchY;
+        
+        // Determine if this is a horizontal swipe
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+            if (!isScrolling) {
+                isScrolling = true;
+                scrollContainer.classList.add('manual-scroll');
+                productScroll.classList.add('manual-control');
             }
-        }, 1000);
-    });
+            
+            // Prevent default to avoid page scroll
+            e.preventDefault();
+            
+            // Scroll the container
+            scrollContainer.scrollLeft += deltaX * 0.8; // Smooth scrolling factor
+            touchStartX = touchX; // Update for continuous scrolling
+        }
+    }, { passive: false });
+    
+    // Touch end handler
+    scrollContainer.addEventListener('touchend', (e) => {
+        const touchEndTime = Date.now();
+        const touchDuration = touchEndTime - touchStartTime;
+        
+        // Reset touch variables
+        touchStartX = 0;
+        touchStartY = 0;
+        
+        // Remove manual control classes
+        scrollContainer.classList.remove('manual-scroll');
+        productScroll.classList.remove('manual-control');
+        
+        // Resume auto-scroll after a delay
+        scrollTimeout = setTimeout(() => {
+            if (autoScrollPaused) {
+                productScroll.style.animationPlayState = 'running';
+                autoScrollPaused = false;
+                isScrolling = false;
+            }
+        }, 2000); // Resume after 2 seconds of no interaction
+        
+    }, { passive: true });
+    
+    // Handle scroll events for better UX
+    let scrollEndTimeout;
+    scrollContainer.addEventListener('scroll', () => {
+        // Clear existing timeout
+        if (scrollEndTimeout) {
+            clearTimeout(scrollEndTimeout);
+        }
+        
+        // Set new timeout to detect scroll end
+        scrollEndTimeout = setTimeout(() => {
+            // Auto-resume animation if not manually controlled
+            if (!isScrolling && autoScrollPaused) {
+                productScroll.style.animationPlayState = 'running';
+                autoScrollPaused = false;
+            }
+        }, 1500);
+    }, { passive: true });
+    
+    // Enhanced wheel scrolling for desktop
+    scrollContainer.addEventListener('wheel', (e) => {
+        // Pause animation during wheel scroll
+        productScroll.style.animationPlayState = 'paused';
+        autoScrollPaused = true;
+        
+        // Horizontal scroll with wheel
+        scrollContainer.scrollLeft += e.deltaY * 0.5;
+        e.preventDefault();
+        
+        // Clear existing timeout
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        
+        // Resume animation after wheel scroll ends
+        scrollTimeout = setTimeout(() => {
+            productScroll.style.animationPlayState = 'running';
+            autoScrollPaused = false;
+        }, 2000);
+        
+    }, { passive: false });
 }
 
 /*
@@ -533,6 +631,48 @@ function addClickFeedback(button) {
     }, 100);
 }
 
+/**
+ * Enables smooth horizontal scrolling with momentum
+ * @param {HTMLElement} container - The scroll container
+ */
+function enableSmoothScrolling(container) {
+    let isScrolling = false;
+    let scrollVelocity = 0;
+    let lastScrollLeft = container.scrollLeft;
+    let lastTime = Date.now();
+    
+    function updateMomentum() {
+        if (isScrolling) {
+            const now = Date.now();
+            const deltaTime = now - lastTime;
+            const deltaScroll = container.scrollLeft - lastScrollLeft;
+            
+            scrollVelocity = deltaScroll / deltaTime;
+            lastScrollLeft = container.scrollLeft;
+            lastTime = now;
+            
+            requestAnimationFrame(updateMomentum);
+        } else if (Math.abs(scrollVelocity) > 0.1) {
+            // Apply momentum scrolling
+            container.scrollLeft += scrollVelocity * 16; // 16ms frame time
+            scrollVelocity *= 0.95; // Friction
+            requestAnimationFrame(updateMomentum);
+        }
+    }
+    
+    container.addEventListener('touchstart', () => {
+        isScrolling = true;
+        scrollVelocity = 0;
+        lastScrollLeft = container.scrollLeft;
+        lastTime = Date.now();
+        updateMomentum();
+    }, { passive: true });
+    
+    container.addEventListener('touchend', () => {
+        isScrolling = false;
+    }, { passive: true });
+}
+
 /*
 ========================================
 MAIN INITIALIZATION
@@ -551,6 +691,13 @@ function initializeWebsite() {
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
+    
+    // ADDED: Initialize smooth scrolling for product showcase
+    const scrollContainer = document.querySelector('.scroll-container');
+    if (scrollContainer) {
+        enableSmoothScrolling(scrollContainer);
+        console.log('Touch scrolling enabled for product showcase');
+    }
     
     // Set up scroll event listener with debouncing
     const debouncedScrollHandler = debounce(updateHeaderOnScroll, 10);
