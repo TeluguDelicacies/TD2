@@ -262,6 +262,9 @@ function initializeProductShowcaseControls() {
     const scrollContainer = productScroll?.parentElement;
     if (!productScroll) return;
     
+    // Initialize showcase mode management
+    initializeShowcaseMode();
+    
     // Ensure ticker animation is running by default
     productScroll.style.animationPlayState = 'running';
     
@@ -346,6 +349,131 @@ function initializeProductShowcaseControls() {
         
         e.preventDefault();
     });
+}
+
+/*
+========================================
+SHOWCASE MODE MANAGEMENT
+Intelligent automatic/manual mode switching
+========================================
+*/
+
+/**
+ * Initializes the intelligent showcase mode system
+ * Handles automatic/manual mode transitions
+ */
+function initializeShowcaseMode() {
+    const productScroll = document.getElementById('productScroll');
+    const scrollContainer = productScroll?.parentElement;
+    if (!productScroll || !scrollContainer) return;
+    
+    let isManualMode = false;
+    let autoReturnTimeout;
+    let hoverTimeout;
+    
+    // Configuration
+    const config = {
+        autoReturnDelay: 3000,
+        hoverActivationDelay: 500,
+        transitionDuration: 300
+    };
+    
+    /**
+     * Switches to manual mode
+     */
+    function activateManualMode() {
+        if (isManualMode) return;
+        
+        isManualMode = true;
+        productScroll.style.animationPlayState = 'paused';
+        scrollContainer.style.cursor = 'grab';
+        
+        // Clear any existing timeout
+        if (autoReturnTimeout) {
+            clearTimeout(autoReturnTimeout);
+        }
+        
+        console.log('Manual mode activated');
+    }
+    
+    /**
+     * Returns to automatic mode
+     */
+    function activateAutoMode() {
+        if (!isManualMode) return;
+        
+        isManualMode = false;
+        productScroll.style.animationPlayState = 'running';
+        scrollContainer.style.cursor = '';
+        
+        console.log('Auto mode activated');
+    }
+    
+    /**
+     * Sets up auto-return timer
+     */
+    function setupAutoReturn() {
+        if (autoReturnTimeout) {
+            clearTimeout(autoReturnTimeout);
+        }
+        
+        autoReturnTimeout = setTimeout(() => {
+            activateAutoMode();
+        }, config.autoReturnDelay);
+    }
+    
+    // Hover intent detection (desktop)
+    scrollContainer.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+            activateManualMode();
+        }, config.hoverActivationDelay);
+    });
+    
+    scrollContainer.addEventListener('mouseleave', () => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
+        setupAutoReturn();
+    });
+    
+    // Touch intent detection (mobile)
+    scrollContainer.addEventListener('touchstart', () => {
+        activateManualMode();
+    }, { passive: true });
+    
+    scrollContainer.addEventListener('touchend', () => {
+        setupAutoReturn();
+    }, { passive: true });
+    
+    // Scroll wheel intent detection
+    scrollContainer.addEventListener('wheel', (e) => {
+        activateManualMode();
+        scrollContainer.scrollLeft += e.deltaY * 0.5;
+        setupAutoReturn();
+        e.preventDefault();
+    });
+    
+    // Focus intent detection (accessibility)
+    scrollContainer.addEventListener('focus', () => {
+        activateManualMode();
+    });
+    
+    scrollContainer.addEventListener('blur', () => {
+        setupAutoReturn();
+    });
+    
+    // Manual scrolling detection
+    let lastScrollLeft = scrollContainer.scrollLeft;
+    scrollContainer.addEventListener('scroll', () => {
+        const currentScrollLeft = scrollContainer.scrollLeft;
+        
+        if (Math.abs(currentScrollLeft - lastScrollLeft) > 5) {
+            activateManualMode();
+            setupAutoReturn();
+        }
+        
+        lastScrollLeft = currentScrollLeft;
+    }, { passive: true });
 }
 
 /*
