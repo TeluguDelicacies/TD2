@@ -687,6 +687,75 @@ Sets up all functionality when the page loads
 ========================================
 */
 
+/*
+========================================
+MOBILE MENU FUNCTIONALITY
+Hamburger menu toggle and navigation
+========================================
+*/
+
+/**
+ * Toggles the mobile navigation menu visibility
+ * Animates hamburger icon and shows/hides menu
+ */
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    // Toggle menu visibility
+    const isVisible = mobileNav.style.display === 'block';
+    
+    if (isVisible) {
+        // Hide menu
+        mobileNav.style.display = 'none';
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore page scrolling
+    } else {
+        // Show menu
+        mobileNav.style.display = 'block';
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent page scrolling
+    }
+}
+
+/**
+ * Closes the mobile navigation menu
+ * Used when navigation buttons are clicked
+ */
+function closeMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    // Hide menu and reset hamburger icon
+    mobileNav.style.display = 'none';
+    hamburgerBtn.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restore page scrolling
+}
+
+/**
+ * Initializes click-outside-to-close functionality for mobile menu
+ */
+function initializeClickOutsideClose() {
+    document.addEventListener('click', (event) => {
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        
+        if (!mobileNav || !hamburgerBtn) return;
+        
+        // Check if menu is open and click is outside menu and hamburger button
+        const isMenuOpen = mobileNav.style.display === 'block';
+        const isClickOnMenu = mobileNav.contains(event.target);
+        const isClickOnHamburger = hamburgerBtn.contains(event.target);
+        
+        if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
+            closeMobileMenu();
+        }
+    });
+}
 /**
  * Main initialization function
  * Called when the DOM is fully loaded
@@ -711,6 +780,19 @@ function initializeWebsite() {
     const debouncedScrollHandler = debounce(updateHeaderOnScroll, 10);
     window.addEventListener('scroll', debouncedScrollHandler);
     
+    // Initialize mobile menu functionality
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    if (hamburgerBtn) {
+        console.log('Mobile hamburger menu initialized');
+    }
+    
+    // Handle escape key to close mobile menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+        }
+    });
+    
     // Add smooth page entrance animation for better UX
     document.body.style.opacity = '0';
     setTimeout(() => {
@@ -719,7 +801,7 @@ function initializeWebsite() {
     }, 100);
     
     // Log successful initialization with font information
-    console.log('Telugu Delicacies website initialized successfully with Montserrat headers and Roboto body text');
+    console.log('Telugu Delicacies website initialized successfully with Poppins headers and system font body text');
 }
 
 /*
