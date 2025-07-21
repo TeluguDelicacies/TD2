@@ -1,0 +1,98 @@
+# Telugu Delicacies Website - Git Ignore File
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor and IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# Node.js (if using build tools in future)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Build Output Directories
+dist/
+build/
+.output/
+.cache/
+
+# Environment Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Log Files
+*.log
+logs/
+
+# Runtime Files
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Directory
+coverage/
+.nyc_output/
+
+# Dependency Directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Backup Files
+*.backup
+*.bak
+*.tmp
+
+# Compressed Files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Database Files
+*.sqlite
+*.sqlite3
+*.db
+
+# Local Configuration
+config.local.js
+settings.local.json
+
+# Test Files (if added in future)
+test-results/
+e2e-results/
+
+# Deployment Files
+.vercel
+.netlify/
+
+# Temporary Folders
+temp/
+tmp/
