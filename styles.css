@@ -927,6 +927,7 @@ Responsive grid layout for different screen sizes
     font-size: var(--font-sm);
     color: #666;
     line-height: var(--leading-relaxed);
+    text-align: justify;
 }
 
 /* Product dropdown container */
