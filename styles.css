@@ -17,6 +17,15 @@ a[href^="tel:"]:hover {
     text-decoration: underline;
 }
 
+a[href^="mailto:"] {
+    color: white; /* white text */
+    text-decoration: underline; /* always underlined */
+}
+
+a[href^="mailto:"]:hover {
+    color: #FFD700; /* gold/yellow hover */
+}
+
 /* Container styles */
 .container {
     max-width: 100%;
