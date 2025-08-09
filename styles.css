@@ -8,18 +8,22 @@ Last Updated: 2024
 */
 
 a[href^="tel:"] { 
-    color: white; /* white phone number text */
-    text-decoration: none; /* remove underline */
+    color: white;
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 0.5px;
 }
 
 a[href^="tel:"]:hover {
-    color: black; /* light green on hover */
+    color: #FFD700; /* gold/yellow hover */
     text-decoration: underline;
 }
 
 a[href^="mailto:"] {
-    color: white; /* white text */
-    text-decoration: underline; /* always underlined */
+    color: white;
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: 0.5px;
 }
 
 a[href^="mailto:"]:hover {
