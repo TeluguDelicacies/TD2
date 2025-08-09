@@ -1136,6 +1136,54 @@ Responsive layout with form validation styles
     }
 }
 
+/* Landscape mode contact grid layout */
+@media screen and (orientation: landscape) and (min-width: 768px) {
+    .contact-content {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+    
+    .contact-form-container {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    .contact-info {
+        position: sticky;
+        top: 1rem;
+    }
+}
+
+/* Enhanced landscape mode for smaller heights */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .contact-section {
+        padding: 2rem 0;
+    }
+    
+    .contact-content {
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .contact-form {
+        padding: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.75rem;
+    }
+    
+    .info-card {
+        padding: 0.75rem;
+    }
+    
+    .info-card i {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
 /* Contact form container */
 .contact-form {
     background: white;

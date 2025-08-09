@@ -742,7 +742,20 @@
                 
                 <!-- Contact Form -->
                 <div class="contact-form-container">
-                    <form class="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
+                    <form class="contact-form" 
+                          name="contact" 
+                          method="POST" 
+                          data-netlify="true" 
+                          data-netlify-honeypot="bot-field"
+                          onsubmit="handleFormSubmit(event)" 
+                          novalidate>
+                        
+                        <!-- Hidden field for Netlify bot detection -->
+                        <input type="hidden" name="form-name" value="contact" />
+                        <div style="display: none;">
+                            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" required aria-describedby="name-error">
