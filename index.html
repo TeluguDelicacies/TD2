@@ -741,13 +741,14 @@
             <div class="contact-content">
                 
                 <!-- Contact Form -->
-                <div class="contact-form-container">
-                    <form class="contact-form" onsubmit="handleFormSubmit(event)" novalidate>
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required aria-describedby="name-error">
-                        </div>
-                        
+                <form class="contact-form" 
+                  name="contact" 
+                    method="POST" 
+                  data-netlify="true" 
+                  onsubmit="handleFormSubmit(event)" 
+                novalidate>
+                    <input type="hidden" name="form-name" value="contact">
+                       
                         <div class="form-group">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required aria-describedby="email-error">
@@ -757,19 +758,13 @@
                             <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" name="phone" aria-describedby="phone-error">
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="company">Company Name</label>
-                            <input type="text" id="company" name="company">
-                        </div>
-                        
+                                          
                         <div class="form-group">
                             <label for="subject">Subject *</label>
                             <select id="subject" name="subject" required>
                                 <option value="">Select Subject</option>
                                 <option value="product-inquiry">Product Inquiry</option>
                                 <option value="bulk-order">Bulk Order</option>
-                                <option value="distributorship">Distributorship</option>
                                 <option value="general">General Inquiry</option>
                             </select>
                         </div>
