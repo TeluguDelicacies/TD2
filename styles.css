@@ -7,6 +7,16 @@ Description: Responsive CSS for authentic South Indian food company website
 Last Updated: 2024
 */
 
+a[href^="tel:"] { 
+    color: white; /* white phone number text */
+    text-decoration: none; /* remove underline */
+}
+
+a[href^="tel:"]:hover {
+    color: black; /* light green on hover */
+    text-decoration: underline;
+}
+
 /* Container styles */
 .container {
     max-width: 100%;
