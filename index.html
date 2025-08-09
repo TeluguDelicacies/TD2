@@ -742,13 +742,18 @@
                 
                 <!-- Contact Form -->
                 <form class="contact-form" 
-                  name="contact" 
-                    method="POST" 
+                  name="Contact Form" 
+                  method="POST" 
                   data-netlify="true" 
                   onsubmit="handleFormSubmit(event)" 
                 novalidate>
                     <input type="hidden" name="form-name" value="contact">
                        
+                        <div class="form-group">
+                            <label for="Name">Name *</label>
+                            <input type="name" id="name" name="name" required aria-describedby="name-error">
+                        </div>
+                    
                         <div class="form-group">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required aria-describedby="email-error">
