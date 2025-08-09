@@ -8,6 +8,7 @@ Last Updated: 2024
 */
 
 a[href^="tel:"] { 
+    font-family: monospace;
     color: white;
     text-decoration-line: underline;
     text-decoration-style: dashed;
@@ -20,6 +21,7 @@ a[href^="tel:"]:hover {
 }
 
 a[href^="mailto:"] {
+    font-family: monospace;
     color: white;
     text-decoration-line: underline;
     text-decoration-style: dashed;
