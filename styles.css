@@ -292,7 +292,7 @@ Mobile-first responsive design
     width: 3rem; /* 48px - Square logo */
     height: 3rem; /* 48px - Square logo */
     object-fit: cover;
-    border: 3px solid rgba(255,215,0,0.3);
+    border: 3px solid rgba(205, 133, 63, 0.8);
     background: #228B22;
     transition: transform 0.3s ease;
 }
