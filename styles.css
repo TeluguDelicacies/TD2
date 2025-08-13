@@ -1218,8 +1218,10 @@ Responsive layout with form validation styles
     border: 2px solid rgba(255,215,0,0.2);
     transition: box-shadow 0.3s ease;
     grid-column: 1 / -1;   /* Span all grid columns */
-    justify-self: center;  /* Center horizontally */
     max-width: 1000px;
+    margin: 0 auto; /* forces the smaller width to center */
+    width: 100%;    /* ensures it doesn’t shrink below content width */
+    justify-self: center; 
 }
 
 .contact-form:hover {
