@@ -1279,7 +1279,7 @@ Responsive layout with form validation styles
     display: flex;
     align-items: center;
     gap: 0.5rem; /* 8px */
-    width: 100%;
+    width: 80%;
     justify-content: center;
     min-height: 44px;
 }
