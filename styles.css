@@ -1219,7 +1219,7 @@ Responsive layout with form validation styles
     transition: box-shadow 0.3s ease;
     grid-column: 1 / -1;   /* Span all grid columns */
     justify-self: center;  /* Center horizontally */
-    max-width: 500px;
+    max-width: 1000px;
 }
 
 .contact-form:hover {
