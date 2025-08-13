@@ -237,7 +237,7 @@ Mobile-first responsive design
 */
 .header {
     /*background: linear-gradient(135deg, #228B22, #32CD32);*/
-    background: linear-gradient(135deg, #008080, #40E0D0);
+    background: linear-gradient(135deg, #FF8C00, #FF0000);
     color: white;
     padding: 12px 0;
     position: fixed;
