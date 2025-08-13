@@ -1218,7 +1218,7 @@ Responsive layout with form validation styles
     border: 2px solid rgba(255,215,0,0.2);
     transition: box-shadow 0.3s ease;
     margin: 0 auto;
-    max-width: 500px
+    max-width: 1500px
 }
 
 .contact-form:hover {
