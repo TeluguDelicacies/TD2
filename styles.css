@@ -253,7 +253,7 @@ Mobile-first responsive design
 
 /* Header states for scroll behavior */
 .header.scrolled-up {
-    background: linear-gradient(135deg, rgba(34,139,34,0.95), rgba(50,205,50,0.95));
+    background: linear-gradient(135deg, #FF8C00, #FF0000);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
@@ -294,7 +294,8 @@ Mobile-first responsive design
     height: 3rem; /* 48px - Square logo */
     object-fit: cover;
     border: 3px solid rgba(205, 133, 63, 0.8);
-    background: #228B22;
+    /*background: #228B22;*/
+    background: #008080;
     transition: transform 0.3s ease;
 }
 
