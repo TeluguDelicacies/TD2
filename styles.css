@@ -476,21 +476,14 @@ HERO SECTION
 New approach: Auto height based on content with proper spacing
 Elimates all cutoff issues by letting content determine size
 ========================================
-/* 
-========================================
-HERO SECTION
-New approach: Auto height based on content with proper spacing
-Elimates all cutoff issues by letting content determine size
-========================================
 */
 .hero { /* Adjusted margin-top to rem */
     margin-top: 70px; /* Fixed header height */
     position: relative;
     /* Responsive height system for all orientations */
-    /*height: 60vh;
+    height: 60vh;
     min-height: 350px;
-    max-height: 450px;*/
-    padding: 2rem 0;
+    max-height: 450px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -506,9 +499,9 @@ Elimates all cutoff issues by letting content determine size
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
     height: 100%;
     width: 100%;
-    z-index: 1;
 }
 
 /* Hero background image */
@@ -676,7 +669,7 @@ Elimates all cutoff issues by letting content determine size
     background: linear-gradient(135deg, #FFA500, #FFD700);
 }
 
-/*
+/* 
 ========================================
 PRODUCT SHOWCASE SECTION
 Continuous horizontal scrolling ticker for all products
