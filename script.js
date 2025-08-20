@@ -12,6 +12,44 @@ Last Updated: 2024 - Updated for comprehensive font and scaling strategy
 
 /*
 ========================================
+DYNAMIC LAYOUT ADJUSTMENTS
+Functions for responsive layout calculations
+========================================
+*/
+
+/**
+ * Dynamically adjusts the hero section margin based on actual header height
+ * This prevents overlapping issues across different screen sizes and orientations
+ */
+function adjustHeroMargin() {
+    const header = document.querySelector('.header');
+    const hero = document.querySelector('.hero');
+    
+    if (!header || !hero) return;
+    
+    // Get the actual rendered height of the header
+    const headerHeight = header.offsetHeight;
+    
+    // Add a small buffer (10px) for visual breathing room
+    const marginTop = headerHeight + 10;
+    
+    // Apply the calculated margin to the hero section
+    hero.style.marginTop = `${marginTop}px`;
+    
+    console.log(`Header height: ${headerHeight}px, Hero margin-top set to: ${marginTop}px`);
+}
+
+/**
+ * Adjusts layout elements that depend on header height
+ * Called on load and resize events
+ */
+function adjustDynamicLayout() {
+    adjustHeroMargin();
+    // Add other dynamic layout adjustments here if needed
+}
+
+/*
+========================================
 SMOOTH SCROLLING NAVIGATION
 Functions for smooth page navigation
 ========================================
@@ -987,6 +1025,9 @@ function initializeWebsite() {
     enhanceAccessibility();
     initializeMobileInteractions();
     
+    // Initialize dynamic layout adjustments
+    adjustDynamicLayout();
+    
     // Initialize enhanced smooth scrolling for product showcase
     const scrollContainer = document.querySelector('.scroll-container');
     if (scrollContainer) {
@@ -1051,7 +1092,8 @@ document.addEventListener('visibilitychange', () => {
 
 // Handle window resize events
 window.addEventListener('resize', debounce(() => {
-    // Recalculate any layout-dependent values if needed
+    // Recalculate layout-dependent values
+    adjustDynamicLayout();
     console.log('Window resized - layouts may need adjustment');
 }, 250));
 

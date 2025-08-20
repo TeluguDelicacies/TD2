@@ -473,12 +473,12 @@ Mobile-first responsive design
 /* 
 ========================================
 HERO SECTION
-New approach: Auto height based on content with proper spacing
-Elimates all cutoff issues by letting content determine size
+Dynamic margin approach: JavaScript calculates header height
+Eliminates all cutoff issues by using actual rendered header height
 ========================================
 */
-.hero { /* Adjusted margin-top to rem */
-    margin-top: 70px; /* Fixed header height */
+.hero {
+    /* margin-top will be set dynamically by JavaScript */
     position: relative;
     /* Responsive height system for all orientations */
     height: 60vh;
@@ -1158,6 +1158,11 @@ Responsive layout with form validation styles
     .contact-content {
         grid-template-columns: 2fr 1fr;
         gap: 4rem;
+    }
+    
+    /* Make contact form wider on desktop */
+    .contact-form {
+        max-width: 1000px;
     }
 }
 
