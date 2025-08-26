@@ -313,6 +313,7 @@ The system works seamlessly across all device sizes:
 ## 📖 Integration Examples
 
 ### React/Vue Components
+{% raw %}
 ```jsx
 // React component using the system
 const MyButton = ({ variant = 'primary', children, ...props }) => (
@@ -328,8 +329,10 @@ const MyButton = ({ variant = 'primary', children, ...props }) => (
   </button>
 );
 ```
+{% endraw %}
 
 ### CSS Preprocessors
+{% raw %}
 ```scss
 // SCSS mixin using the palette
 @mixin themed-button($variant: primary) {
@@ -346,5 +349,6 @@ const MyButton = ({ variant = 'primary', children, ...props }) => (
 
 .my-button { @include themed-button(primary); }
 ```
+{% endraw %}
 
 This system provides a robust, accessible foundation for any web application's color scheme while maintaining simplicity and performance.
