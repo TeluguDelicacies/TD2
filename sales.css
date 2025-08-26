@@ -12,6 +12,15 @@ Last Updated: 2024
 
 /* 
 ========================================
+INHERIT CENTRALIZED COLOR PALETTE
+Colors are defined in styles.css and inherited here
+========================================
+*/
+/* All color variables are inherited from styles.css :root */
+/* This ensures consistency across all stylesheets */
+
+/* 
+========================================
 COHESIVE TYPOGRAPHY SYSTEM
 Designed for readability, visibility, and perfect scaling
 ========================================
@@ -78,8 +87,8 @@ body {
     font-family: var(--font-body);
     font-size: var(--font-base);
     line-height: var(--leading-normal);
-    color: #333;
-    background-color: #f8f9fa;
+    color: var(--color-text-dark);
+    background-color: var(--color-background-gray);
     font-weight: var(--weight-regular);
 }
 
@@ -88,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--weight-semibold);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);
-    color: #228B22;
+    color: var(--color-primary-green);
     margin: 0 0 0.75rem 0;
     
     /* Allow text to wrap naturally for better readability */
@@ -190,14 +199,14 @@ Navigation with back button and category tabs
 ========================================
 */
 .shop-header {
-    background: linear-gradient(135deg, #228B22, #32CD32);
-    color: white;
+    background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
+    color: var(--color-text-light);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--color-shadow-medium);
 }
 
 .shop-header-content {
@@ -210,8 +219,8 @@ Navigation with back button and category tabs
 .back-button {
     width: 40px;
     height: 40px;
-    background: rgba(255,255,255,0.2);
-    color: white;
+    background: color-mix(in srgb, var(--color-text-light) 20%, transparent 80%);
+    color: var(--color-text-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -220,18 +229,18 @@ Navigation with back button and category tabs
     font-size: 1.25rem;
     transition: all 0.3s ease;
     align-self: flex-start;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid color-mix(in srgb, var(--color-text-light) 30%, transparent 70%);
 }
 
 .back-button:hover {
-    background: rgba(255,255,255,0.3);
+    background: color-mix(in srgb, var(--color-text-light) 30%, transparent 70%);
     transform: translateX(-2px);
-    border-color: rgba(255,255,255,0.5);
-    color: white;
+    border-color: color-mix(in srgb, var(--color-text-light) 50%, transparent 50%);
+    color: var(--color-text-light);
 }
 
 .back-button:focus {
-    outline: 2px solid #FFD700;
+    outline: 2px solid var(--color-accent-gold);
     outline-offset: 2px;
 }
 
@@ -254,9 +263,9 @@ Navigation with back button and category tabs
 }
 
 .category-tab {
-    background: rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,255,255,0.2);
-    color: white;
+    background: color-mix(in srgb, var(--color-text-light) 10%, transparent 90%);
+    border: 2px solid color-mix(in srgb, var(--color-text-light) 20%, transparent 80%);
+    color: var(--color-text-light);
     padding: 0.75rem 1.5rem;
     border-radius: 25px;
     cursor: pointer;
@@ -269,21 +278,21 @@ Navigation with back button and category tabs
 }
 
 .category-tab:hover {
-    background: rgba(255,255,255,0.2);
-    border-color: rgba(255,255,255,0.4);
+    background: color-mix(in srgb, var(--color-text-light) 20%, transparent 80%);
+    border-color: color-mix(in srgb, var(--color-text-light) 40%, transparent 60%);
     transform: translateY(-1px);
 }
 
 .category-tab.active {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-    color: #333;
-    border-color: #FFD700;
+    background: linear-gradient(135deg, var(--color-accent-gold), var(--color-gold-hover));
+    color: var(--color-text-dark);
+    border-color: var(--color-accent-gold);
     font-weight: var(--weight-bold);
-    box-shadow: 0 2px 8px rgba(255,215,0,0.3);
+    box-shadow: 0 2px 8px var(--color-shadow-gold);
 }
 
 .category-tab:focus {
-    outline: 2px solid #FFD700;
+    outline: 2px solid var(--color-accent-gold);
     outline-offset: 2px;
 }
 
@@ -317,7 +326,7 @@ Grid of individual product cards
 */
 .products-section {
     padding: 2rem 0;
-    background: #f8f9fa;
+    background: var(--color-background-gray);
     min-height: calc(100vh - 120px);
 }
 
@@ -345,11 +354,11 @@ Grid of individual product cards
 
 /* Individual product cards */
 .product-shop-card {
-    background: white;
+    background: var(--color-background-light);
     border-radius: 16px;
     padding: 1.5rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid rgba(255,215,0,0.1);
+    box-shadow: 0 4px 20px var(--color-shadow-light);
+    border: 1px solid var(--color-border-accent-light);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -364,14 +373,14 @@ Grid of individual product cards
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #228B22, #32CD32, #FFD700);
+    background: linear-gradient(90deg, var(--color-primary-green), var(--color-secondary-green), var(--color-accent-gold));
     z-index: 1;
 }
 
 .product-shop-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    border-color: rgba(255,215,0,0.3);
+    box-shadow: 0 8px 30px color-mix(in srgb, black 12%, transparent 88%);
+    border-color: var(--color-border-accent-dark);
 }
 
 /* Product images */
@@ -393,7 +402,7 @@ Grid of individual product cards
     font-family: var(--font-primary);
     font-size: var(--font-md);
     font-weight: var(--weight-semibold);
-    color: #228B22;
+    color: var(--color-primary-green);
     margin-bottom: 0.25rem;
     line-height: var(--leading-snug);
 }
@@ -402,7 +411,7 @@ Grid of individual product cards
 .telugu-name {
     font-family: var(--font-telugu);
     font-size: var(--font-sm);
-    color: #FF6B35;
+    color: var(--color-text-telugu);
     font-weight: var(--weight-medium);
     margin-bottom: 1rem;
     line-height: var(--leading-normal);
@@ -421,8 +430,8 @@ Modal overlay for displaying product information
     width: 32px;
     height: 32px;
     border: none;
-    background: linear-gradient(135deg, #228B22, #32CD32);
-    color: white;
+    background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
+    color: var(--color-text-light);
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -431,17 +440,17 @@ Modal overlay for displaying product information
     font-size: 14px;
     z-index: 10;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+    box-shadow: 0 2px 8px var(--color-shadow-green);
 }
 
 .info-toggle-btn:hover {
-    background: linear-gradient(135deg, #32CD32, #228B22);
+    background: linear-gradient(135deg, var(--color-secondary-green), var(--color-primary-green));
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.4);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary-green) 40%, transparent 60%);
 }
 
 .info-toggle-btn:focus {
-    outline: 2px solid #FFD700;
+    outline: 2px solid var(--color-accent-gold);
     outline-offset: 2px;
 }
 
@@ -487,19 +496,19 @@ Modal overlay for displaying product information
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: color-mix(in srgb, black 70%, transparent 30%);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
 
 .overlay-content {
     position: relative;
-    background: white;
+    background: var(--color-background-light);
     border-radius: 16px;
     max-width: 90vw;
     max-height: 85vh;
     width: 500px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px color-mix(in srgb, black 30%, transparent 70%);
     overflow: hidden;
     transform: scale(1);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -515,7 +524,7 @@ Modal overlay for displaying product information
     right: 15px;
     width: 36px;
     height: 36px;
-    background: rgba(0, 0, 0, 0.1);
+    background: color-mix(in srgb, black 10%, transparent 90%);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -523,14 +532,14 @@ Modal overlay for displaying product information
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: #666;
+    color: var(--color-text-muted);
     transition: all 0.3s ease;
     z-index: 10;
 }
 
 .close-overlay-btn:hover {
-    background: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
+    background: color-mix(in srgb, var(--color-accent-red) 10%, transparent 90%);
+    color: var(--color-accent-red);
     transform: scale(1.1);
 }
 
@@ -550,14 +559,14 @@ Modal overlay for displaying product information
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 1rem;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px var(--color-shadow-dark);
 }
 
 .overlay-product-title {
     font-family: var(--font-primary);
     font-size: var(--font-xl);
     font-weight: var(--weight-bold);
-    color: #228B22;
+    color: var(--color-primary-green);
     margin-bottom: 1.5rem;
     line-height: var(--leading-snug);
 }
@@ -569,7 +578,7 @@ Modal overlay for displaying product information
 .overlay-description p {
     font-family: var(--font-body);
     font-size: var(--font-sm);
-    color: #555;
+    color: color-mix(in srgb, var(--color-text-dark) 80%, var(--color-text-muted) 20%);
     line-height: var(--leading-relaxed);
     margin-bottom: 0.75rem;
 }
@@ -584,7 +593,7 @@ Modal overlay for displaying product information
     padding: 0.25rem 0;
     padding-left: 1.5rem;
     position: relative;
-    color: #666;
+    color: var(--color-text-muted);
     font-family: var(--font-body);
     font-size: var(--font-xs);
     line-height: var(--leading-normal);
@@ -594,7 +603,7 @@ Modal overlay for displaying product information
     content: "✓";
     position: absolute;
     left: 0;
-    color: #228B22;
+    color: var(--color-primary-green);
     font-weight: var(--weight-bold);
     font-size: var(--font-sm);
 }
@@ -650,16 +659,16 @@ Dropdown for quantity selection with dynamic pricing
 .quantity-dropdown {
     flex: 1;
     padding: 0.75rem 1rem;
-    border: 2px solid rgba(34,139,34,0.2);
+    border: 2px solid var(--color-border-green-light);
     border-radius: 8px;
     font-family: var(--font-body);
     font-size: var(--font-sm);
     font-weight: var(--weight-regular);
-    background: white;
+    background: var(--color-background-light);
     cursor: pointer;
     transition: all 0.3s ease;
     min-height: 44px;
-    color: #333;
+    color: var(--color-text-dark);
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23228B22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -669,34 +678,34 @@ Dropdown for quantity selection with dynamic pricing
 }
 
 .quantity-dropdown:hover {
-    border-color: rgba(34,139,34,0.4);
-    box-shadow: 0 2px 8px rgba(34,139,34,0.1);
+    border-color: var(--color-border-green-medium);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--color-primary-green) 10%, transparent 90%);
     transform: translateY(-1px);
 }
 
 .quantity-dropdown:focus {
     outline: none;
-    border-color: #228B22;
-    box-shadow: 0 0 0 3px rgba(34,139,34,0.15);
+    border-color: var(--color-primary-green);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
 }
 
 .current-price {
     font-family: var(--font-primary);
     font-weight: var(--weight-bold);
     font-size: var(--font-lg);
-    color: white;
-    background: linear-gradient(135deg, #228B22, #32CD32);
+    color: var(--color-text-light);
+    background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
     padding: 0.75rem 1.25rem;
     border-radius: 25px;
     text-align: center;
     min-width: 80px;
-    box-shadow: 0 2px 8px rgba(34, 139, 34, 0.3);
+    box-shadow: 0 2px 8px var(--color-shadow-green);
     transition: all 0.3s ease;
 }
 
 .product-shop-card:hover .current-price {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.4);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary-green) 40%, transparent 60%);
 }
 
 /* Mobile adjustments for quantity selector */
@@ -784,15 +793,15 @@ img:not([src]) {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
     .product-shop-card {
-        border: 2px solid #228B22;
+        border: 2px solid var(--color-primary-green);
     }
     
     .quantity-dropdown {
-        border: 2px solid #228B22;
+        border: 2px solid var(--color-primary-green);
     }
     
     .info-toggle-btn {
-        border: 2px solid white;
+        border: 2px solid var(--color-text-light);
     }
 }
 
@@ -801,7 +810,7 @@ button:focus,
 select:focus,
 input:focus,
 textarea:focus {
-    outline: 2px solid #228B22;
+    outline: 2px solid var(--color-primary-green);
     outline-offset: 2px;
 }
 
@@ -823,8 +832,8 @@ textarea:focus {
     
     .current-price {
         background: none !important;
-        color: #000 !important;
-        border: 1px solid #000;
+        color: var(--color-text-dark) !important;
+        border: 1px solid var(--color-text-dark);
     }
 }
 
