@@ -865,107 +865,88 @@ Modern card design with enhanced styling
 
 /* 
 ========================================
-CUSTOMER TESTIMONIALS SECTION
-Scrolling testimonials with modern card design
+CONTACT SECTION
+Modern card-based contact information
 ========================================
 */
-.testimonials-section {
-  padding: var(--space-16) 0;
-  background: var(--bg-secondary);
+.call-us-section {
+  padding: var(--space-20) 0;
+  background: var(--bg-gradient-primary);
+  color: var(--text-inverse);
 }
 
-.testimonials-content {
+.call-us-content {
   text-align: center;
 }
 
-.testimonials-container {
-  position: relative;
-  overflow: hidden;
+.call-us-section .section-title {
+  color: var(--text-inverse);
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
   margin-top: var(--space-12);
 }
 
-.testimonials-scroll {
-  display: grid;
-  grid-template-columns: repeat(7, 350px);
-  gap: var(--space-6);
-  animation: testimonial-scroll 35s linear infinite;
-  will-change: transform;
+@media (min-width: 768px) {
+  .info-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-@keyframes testimonial-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-1050px); } /* Move by 3 cards * 350px */
-}
-
-.testimonial-card {
-  background: var(--bg-primary);
+.info-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
   border-radius: var(--radius-2xl);
   padding: var(--space-8);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-light);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-  width: 350px;
-  flex-shrink: 0;
 }
 
-.testimonial-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--bg-gradient-primary);
-}
-
-.testimonial-card:hover {
+.info-card:hover {
   transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.15);
   box-shadow: var(--shadow-xl);
 }
 
-.testimonial-content {
+.card-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
   display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.stars {
-  display: flex;
+  align-items: center;
   justify-content: center;
+  margin: 0 auto var(--space-4);
+  font-size: var(--font-2xl);
+  color: var(--text-inverse);
+}
+
+.info-card h3 {
+  font-size: var(--font-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text-inverse);
   margin-bottom: var(--space-4);
-  color: #FFD700;
-  font-size: var(--font-lg);
 }
 
-.testimonial-text {
-  font-size: var(--font-base);
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-6);
-  flex-grow: 1;
-  font-style: italic;
+.contact-details p {
+  margin-bottom: var(--space-2);
+  color: var(--text-inverse);
 }
 
-.testimonial-author {
-  text-align: center;
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--border-light);
-}
-
-.testimonial-author strong {
-  display: block;
-  font-size: var(--font-lg);
-  font-weight: var(--weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--space-1);
-}
-
-.testimonial-author span {
-  font-size: var(--font-sm);
-  color: var(--text-muted);
+.contact-details a {
+  color: var(--text-inverse);
+  text-decoration: none;
   font-weight: var(--weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.contact-details a:hover {
+  color: var(--color-accent-light);
+  text-decoration: underline;
 }
 
 /* 
@@ -1122,97 +1103,122 @@ Modern form design with enhanced UX
 /* 
 ========================================
 FOOTER SECTION - REDESIGNED
-Modern, sleek footer with proper hierarchy
+Compact footer with Google Maps integration
 ========================================
 */
 .footer {
   background: var(--color-gray-900);
   color: var(--text-inverse);
-  padding: var(--space-20) 0 var(--space-8);
+  padding: var(--space-12) 0 var(--space-6);
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-12);
-  margin-bottom: var(--space-12);
+  gap: var(--space-8);
+  margin-bottom: var(--space-8);
 }
 
 @media (min-width: 768px) {
   .footer-content {
-    grid-template-columns: 2fr 1fr;
-    gap: var(--space-16);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
   }
 }
 
-.footer-brand {
-  max-width: 500px;
-}
-
-.footer-brand h3 {
-  font-size: var(--font-3xl);
-  font-weight: var(--weight-bold);
-  color: var(--text-inverse);
-  margin-bottom: var(--space-3);
-}
-
-.footer-tagline {
-  font-size: var(--font-xl);
-  font-weight: var(--weight-semibold);
-  color: var(--color-accent-blue);
-  margin-bottom: var(--space-4);
-  font-style: italic;
-}
-
-.footer-description {
-  font-size: var(--font-base);
-  line-height: 1.7;
-  color: var(--color-gray-400);
-  margin-bottom: 0;
-}
-
-.footer-info {
+.footer-left {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-8);
+  gap: var(--space-6);
 }
 
 @media (min-width: 640px) {
-  .footer-info {
-    grid-template-columns: repeat(2, 1fr);
+  .footer-left {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
   }
 }
 
-.footer-section h4 {
+@media (min-width: 768px) {
+  .footer-left {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.footer-brand h3 {
+  font-size: var(--font-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-inverse);
+  margin-bottom: var(--space-2);
+}
+
+.footer-tagline {
   font-size: var(--font-lg);
   font-weight: var(--weight-semibold);
+  color: var(--color-accent-blue);
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.footer-contact h4,
+.footer-address h4 {
+  font-size: var(--font-base);
+  font-weight: var(--weight-semibold);
   color: var(--text-inverse);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
   border-bottom: 2px solid var(--color-primary-blue);
   padding-bottom: var(--space-2);
   display: inline-block;
 }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.footer-contact p,
+.footer-address p {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-sm);
+  line-height: 1.5;
 }
 
-.footer-section li {
-  margin-bottom: var(--space-3);
-}
-
-.footer-section a {
+.footer-contact a {
   color: var(--color-gray-400);
   text-decoration: none;
   transition: color var(--transition-fast);
   font-weight: var(--weight-medium);
 }
 
-.footer-section a:hover {
+.footer-contact a:hover {
   color: var(--color-accent-blue);
-  text-decoration: none;
+}
+
+.footer-address p {
+  color: var(--color-gray-400);
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.map-container {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--color-gray-700);
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .map-container {
+    height: 200px;
+    margin-top: var(--space-4);
+  }
 }
 
 .footer-bottom {
