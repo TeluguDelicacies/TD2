@@ -297,38 +297,20 @@ Clean, minimal, transparent design
 ========================================
 */
 .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--color-text-dark);
-    padding: 16px 0;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+    padding: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
-    min-height: 72px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
     transform: translateY(0);
     opacity: 1;
-}
-
-/* Header states for scroll behavior */
-.header.scrolled-up {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(25px) saturate(180%);
-    -webkit-backdrop-filter: blur(25px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 2px 40px rgba(0, 0, 0, 0.12);
-    padding: 12px 0;
-    min-height: 64px;
-}
-
-.header.hidden {
-    transform: translateY(-100%);
-    opacity: 0.9;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 /* Header content layout */
@@ -336,52 +318,41 @@ Clean, minimal, transparent design
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    padding: 16px 32px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 32px;
-    height: 100%;
 }
 
 /* Logo section with brand information */
 .logo-section {
     display: flex;
     align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.logo-section:hover {
-    opacity: 0.8;
+    gap: 16px;
 }
 
 /* Main logo image */
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 /* Brand name styling - Modern clean typography */
 .brand-name {
     font-family: var(--font-primary);
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     color: #1a1a1a;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.3px;
     margin: 0;
-}
-
-/* Hide tagline in desktop for cleaner look */
-.tagline {
-    display: none;
 }
 
 /* Desktop Navigation - Modern button style */
 .nav-buttons {
-    display: none;
-    gap: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -394,17 +365,27 @@ Clean, minimal, transparent design
     }
 }
 
+@media (max-width: 767px) {
+    .nav-buttons {
+        display: none;
+    }
+    
+    .hamburger-btn {
+        display: flex;
+    }
+}
+
 .nav-btn {
     background: transparent;
-    border: 1px solid rgba(26, 26, 26, 0.15);
-    color: #4a5568;
-    padding: 10px 20px;
+    border: none;
+    color: #6b7280;
+    padding: 8px 16px;
     border-radius: 8px;
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -412,140 +393,108 @@ Clean, minimal, transparent design
 }
 
 .nav-btn:hover {
-    background: rgba(26, 26, 26, 0.05);
-    border-color: rgba(26, 26, 26, 0.2);
-    color: #2d3748;
+    color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.05);
 }
 
-/* CTA Button in header */
+/* Shop Now CTA Button */
 .nav-btn.cta {
-    background: linear-gradient(135deg, var(--color-primary-green), #2d7d2d);
+    background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
     color: white;
-    border: 1px solid transparent;
     font-weight: 600;
+    padding: 10px 20px;
 }
 
 .nav-btn.cta:hover {
-    background: linear-gradient(135deg, #1e6b1e, var(--color-primary-green));
+    background: linear-gradient(135deg, #1e7e1e, var(--color-primary-green));
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3);
+    box-shadow: 0 4px 12px rgba(34, 139, 34, 0.25);
 }
 
 /* Hamburger button - simplified for mobile */
 .hamburger-btn {
-    background: rgba(26, 26, 26, 0.05);
-    border: 1px solid rgba(26, 26, 26, 0.1);
-    padding: 8px;
-    width: 40px;
-    height: 40px;
+    background: none;
+    border: none;
+    padding: 6px;
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.hamburger-btn:hover {
-    background: rgba(26, 26, 26, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
 
 .hamburger-line {
-    width: 20px;
+    width: 18px;
     height: 2px;
-    background: #4a5568;
-    border-radius: 2px;
+    background: #374151;
+    border-radius: 1px;
     transition: all 0.3s ease;
-}
-
-/* Hamburger animation when menu is open */
-.hamburger-btn.active .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translateY(7px);
-}
-
-.hamburger-btn.active .hamburger-line:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
-}
-
-.hamburger-btn.active .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translateY(-7px);
 }
 
 /* Mobile Navigation Menu */
 .mobile-nav {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
-    background: color-mix(in srgb, var(--color-background-light) 95%, transparent 5%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 0 0 16px 16px;
-    border: 1px solid color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
-    border-top: none;
-    box-shadow: 0 8px 32px color-mix(in srgb, black 10%, transparent 90%);
-    padding: 1rem;
-    gap: 0.5rem;
-    flex-direction: column;
-    z-index: 999;
-    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    width: auto;
-    max-width: 220px;
-    right: 1rem;
     left: auto;
-}
-
-/* Slide down animation for mobile menu */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    width: 200px;
+    margin-right: 32px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0 0 16px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    flex-direction: column;
+    gap: 8px;
 }
 
 /* Mobile navigation buttons */
 .mobile-nav-btn {
     width: 100%;
-    margin-bottom: 0.25rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: 12px;
-    background: color-mix(in srgb, var(--color-primary-green) 8%, transparent 92%);
-    border: 1px solid color-mix(in srgb, var(--color-primary-green) 20%, transparent 80%);
-    color: var(--color-primary-green);
-    font-weight: var(--weight-medium);
-    transition: all 0.2s ease;
-    font-size: 0.875rem;
-    min-height: 36px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    color: #374151;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    text-align: left;
+    cursor: pointer;
 }
 
 .mobile-nav-btn:hover,
 .mobile-nav-btn:focus {
-    background: color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
-    border-color: color-mix(in srgb, var(--color-primary-green) 40%, transparent 60%);
-    transform: scale(1.02);
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
 }
 
 /* Mobile adjustments */
 @media (max-width: 767px) {
-    .header {
-        padding: 12px 0;
-        min-height: 64px;
-    }
-    
     .header-content {
-        padding: 0 20px;
+        padding: 12px 20px;
     }
     
     .brand-name {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .logo {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .mobile-nav {
+        margin-right: 20px;
+        width: 180px;
     }
 }
 
