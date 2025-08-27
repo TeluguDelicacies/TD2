@@ -595,14 +595,13 @@ Enhanced product cards and modern styling
 .product-scroll {
   display: flex;
   gap: var(--space-6);
-  animation: scroll-ticker 30s linear infinite;
+  animation: scroll-ticker 40s linear infinite;
   will-change: transform;
-  width: calc(200% + var(--space-6));
 }
 
 @keyframes scroll-ticker {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - var(--space-3))); }
+  100% { transform: translateX(-50%); }
 }
 
 .product-item {
@@ -1111,14 +1110,14 @@ Compact footer with Google Maps integration
 .footer {
   background: var(--color-gray-900);
   color: var(--text-inverse);
-  padding: var(--space-12) 0 var(--space-6);
+  padding: var(--space-8) 0 var(--space-4);
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-8);
-  margin-bottom: var(--space-8);
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
 }
 
 @media (min-width: 768px) {
