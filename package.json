@@ -1,0 +1,27 @@
+{
+  "name": "telugu-delicacies-website",
+  "version": "1.0.0",
+  "description": "A modern, responsive website for Telugu Delicacies - authentic South Indian food manufacturer",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/telugu-delicacies-website.git"
+  },
+  "keywords": [
+    "telugu",
+    "delicacies",
+    "south-indian",
+    "food",
+    "website",
+    "static"
+  ],
+  "author": "Telugu Delicacies",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
