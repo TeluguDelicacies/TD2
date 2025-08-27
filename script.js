@@ -12,44 +12,6 @@ Last Updated: 2024 - Updated for comprehensive font and scaling strategy
 
 /*
 ========================================
-DYNAMIC LAYOUT ADJUSTMENTS
-Functions for responsive layout calculations
-========================================
-*/
-
-/**
- * Dynamically adjusts the hero section margin based on actual header height
- * This prevents overlapping issues across different screen sizes and orientations
- */
-function adjustHeroMargin() {
-    const header = document.querySelector('.header');
-    const hero = document.querySelector('.hero');
-    
-    if (!header || !hero) return;
-    
-    // Get the actual rendered height of the header
-    const headerHeight = header.offsetHeight;
-    
-    // Add a small buffer (10px) for visual breathing room
-    const marginTop = headerHeight + 10;
-    
-    // Apply the calculated margin to the hero section
-    hero.style.marginTop = `${marginTop}px`;
-    
-    console.log(`Header height: ${headerHeight}px, Hero margin-top set to: ${marginTop}px`);
-}
-
-/**
- * Adjusts layout elements that depend on header height
- * Called on load and resize events
- */
-function adjustDynamicLayout() {
-    adjustHeroMargin();
-    // Add other dynamic layout adjustments here if needed
-}
-
-/*
-========================================
 SMOOTH SCROLLING NAVIGATION
 Functions for smooth page navigation
 ========================================
@@ -64,7 +26,7 @@ function scrollToSection(sectionId) {
     if (section) {
         // Get header height to account for fixed positioning
         const headerHeight = document.querySelector('.header').offsetHeight;
-        const targetPosition = section.offsetTop - headerHeight - 20;
+        const targetPosition = section.offsetTop - headerHeight - 10;
         
         // Perform smooth scroll
         window.scrollTo({
@@ -1011,24 +973,21 @@ function initializeClickOutsideClose() {
 /**
  * Main initialization function
  * Called when the DOM is fully loaded
- * Initializes all interactive features with rem-based responsive scaling
+ * Initializes all interactive features
  */
 function initializeWebsite() {
-    // Initialize all interactive features for responsive design
+    // Initialize all interactive features
     initializeScrollAnimations();
     initializeProductShowcaseControls();
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
     
-    // Initialize dynamic layout adjustments
-    adjustDynamicLayout();
-    
     // Initialize enhanced smooth scrolling for product showcase
     const scrollContainer = document.querySelector('.scroll-container');
     if (scrollContainer) {
         enableSmoothScrolling(scrollContainer);
-        console.log('Enhanced touch scrolling enabled for product showcase with rem-based scaling');
+        console.log('Enhanced touch scrolling enabled for product showcase');
     }
     
     // Set up optimized scroll event listener with debouncing for performance
@@ -1058,8 +1017,8 @@ function initializeWebsite() {
         document.body.style.opacity = '1';
     }, 100);
     
-    // Log successful initialization with font information
-    console.log('Telugu Delicacies website initialized successfully with Poppins headers and system font body text');
+    // Log successful initialization
+    console.log('Telugu Delicacies website initialized successfully');
 }
 
 /*
@@ -1087,11 +1046,6 @@ document.addEventListener('visibilitychange', () => {
 });
 
 // Handle window resize events
-window.addEventListener('resize', debounce(() => {
-    // Recalculate layout-dependent values
-    adjustDynamicLayout();
-    console.log('Window resized - layouts may need adjustment');
-}, 250));
 
 // Handle connection changes (for progressive enhancement)
 if ('connection' in navigator) {
