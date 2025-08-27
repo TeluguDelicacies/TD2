@@ -9,7 +9,7 @@
     <meta name="author" content="Telugu Delicacies">
     
     <!-- Page Title -->
-    <title>Telugu Delicacies - Modern Yet Treditional</title>
+    <title>Telugu Delicacies - Modern Yet Traditional</title>
     
     <!-- External Stylesheets and Fonts -->
     <link rel="stylesheet" href="styles.css">
@@ -23,15 +23,14 @@
     <!-- 
     ========================================
     HEADER SECTION
-    Fixed navigation header with logo and navigation buttons
+    Modern transparent header with navigation
     ========================================
     -->
     <header class="header">
-        <div class="container">
+        <div class="header-container">
             <div class="header-content">
                 <!-- Logo and Brand Information -->
                 <div class="logo-section">
-                    <!-- Logo image with fallback -->
                     <img src="./images/logo.png" alt="Telugu Delicacies Logo" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <!-- Fallback logo if image fails to load -->
                     <div class="logo-fallback" style="display: none;">
@@ -51,7 +50,7 @@
                     <button class="nav-btn" onclick="scrollToSection('call-us')" aria-label="Contact us">
                         Contact
                     </button>
-                    <button class="nav-btn cta" onclick="window.open('sales.html', '_blank')" aria-label="Visit our online shop">
+                    <button class="nav-btn nav-btn-cta" onclick="window.open('sales.html', '_blank')" aria-label="Visit our online shop">
                         Shop Now
                     </button>
                 </nav>
@@ -67,7 +66,7 @@
             <!-- Mobile Navigation Menu -->
             <nav class="mobile-nav" id="mobileNav">
                 <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('products'); closeMobileMenu()" aria-label="View product catalog">
-                    <i class="fas fa-book"></i> Catalog
+                    <i class="fas fa-book"></i> Products
                 </button>
                 <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('call-us'); closeMobileMenu()" aria-label="Call us directly">
                     <i class="fas fa-phone"></i> Contact
@@ -82,20 +81,22 @@
     <!-- 
     ========================================
     HERO SECTION
-    Main banner with modern design
+    Modern clean hero with gradient background
     ========================================
     -->
     <section class="hero">
-        <div class="hero-content">
-            <h2 class="hero-title">
-                Modern Yet Traditional
-                <span class="telugu-subtitle">సంప్రదాయ రుచులు, ఆధునిక శైలి</span>
-            </h2>
-            <p class="hero-subtitle">Time-honored flavors, perfected for today's lifestyle.</p>
-            
-            <button class="hero-cta" onclick="window.open('sales.html', '_blank')">
-                Shop Now <i class="fas fa-arrow-right"></i>
-            </button>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h2 class="hero-title">
+                    Modern Yet Traditional
+                    <span class="telugu-subtitle">సంప్రదాయ రుచులు, ఆధునిక శైలి</span>
+                </h2>
+                <p class="hero-subtitle">Time-honored flavors, perfected for today's lifestyle.</p>
+                
+                <button class="hero-cta" onclick="window.open('sales.html', '_blank')">
+                    Shop Now <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
     </section>
 
