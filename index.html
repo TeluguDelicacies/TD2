@@ -37,14 +37,25 @@
                     <div class="logo-fallback" style="display: none;">
                         <div class="logo-text">TD</div>
                     </div>
-                    <!-- Brand name and tagline -->
+                    <!-- Brand name -->
                     <div class="brand-info">
                         <h1 class="brand-name">Telugu Delicacies</h1>
-                        <p class="tagline">Modern Yet Traditional</p>
                     </div>
                 </div>
                 
-                <!-- Navigation Buttons -->
+                <!-- Desktop Navigation -->
+                <nav class="nav-buttons">
+                    <button class="nav-btn" onclick="scrollToSection('products')" aria-label="View product catalog">
+                        Products
+                    </button>
+                    <button class="nav-btn" onclick="scrollToSection('call-us')" aria-label="Contact us">
+                        Contact
+                    </button>
+                    <button class="nav-btn cta" onclick="window.open('sales.html', '_blank')" aria-label="Visit our online shop">
+                        Shop Now
+                    </button>
+                </nav>
+
                 <!-- Hamburger Menu Button -->
                 <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
                     <span class="hamburger-line"></span>
@@ -71,25 +82,20 @@
     <!-- 
     ========================================
     HERO SECTION
-    Main banner with background image and call-to-action
+    Main banner with modern design
     ========================================
     -->
     <section class="hero">
         <div class="hero-content">
             <h2 class="hero-title">
-                <span class="bilingual-title">
-                    <span class="english">Modern Yet Traditional</span>
-                    <span class="telugu">సంప్రదాయ రుచులు, ఆధునిక శైలి</span>
-                </span>
+                Modern Yet Traditional
+                <span class="telugu-subtitle">సంప్రదాయ రుచులు, ఆధునిక శైలి</span>
             </h2>
             <p class="hero-subtitle">Time-honored flavors, perfected for today's lifestyle.</p>
             
-            <!-- Hero description -->
-            <div class="hero-description">
-                <p>We make premium ready-to-eat Parotas, Chapathis, and a variety of authentic Telugu Podis, inspired by the rich culinary traditions of South India.</p>
-                <p>Rooted in tradition and perfected with modern food science, every bite offers the ideal harmony of taste, nutrition, and convenience—bringing the warmth of home cooking with the reliability of world-class quality.</p>
-                <p>Crafted with the finest ingredients and meticulous care, our products capture the essence of authentic flavors while meeting the highest standards of quality and freshness.</p>
-            </div>
+            <button class="hero-cta" onclick="window.open('sales.html', '_blank')">
+                Shop Now <i class="fas fa-arrow-right"></i>
+            </button>
         </div>
     </section>
 
@@ -222,7 +228,7 @@
                     
                     <div class="product-item">
                         <img src="./images/products/konaseema-kaaram.jpg" 
-                             alt="Konaseema Kaaram" loading="lazy">
+                             alt="Konaseema Kaarem" loading="lazy">
                         <h3>Konaseema Kaaram</h3>
                         <p class="telugu-name">కోనసీమ కారం</p>
                     </div>
@@ -626,4 +632,252 @@
                                 <span class="telugu">నేరుగా వాడుకోవడానికి అనువైనవి</span>
                             </span>
                         </h3>
-                        <p class="category-description">Premium Culinary Essentials – Carefully selected to enhance your everyday cooking. Includes rich ghee, wholesome multigrain 
+                        <p class="category-description">Premium Culinary Essentials – Carefully selected to enhance your everyday cooking. Includes rich ghee, wholesome multigrain atta, aromatic coffee, and pure turmeric. Ready to use directly in your favorite recipes.</p>
+                    </div>
+                    
+                    <!-- Ready To Use selection dropdown -->
+                    <div class="product-dropdown">
+                        <select class="product-select" 
+                                onchange="showProductDescription(this, 'ready-to-use')"
+                                aria-label="Select ready-to-use product">
+                            <option value="">Select Product</option>
+                            <option value="pure-ghee">Pure Ghee (స్వచ్ఛమైన నెయ్యి)</option>
+                            <option value="multigrain-atta">Multigrain Atta (మల్టిగ్రెయిన్ ఆటా)</option>
+                            <option value="premium-coffee">Premium Coffee (ప్రీమియం కాఫీ)</option>
+                            <option value="pure-pasupu">Pure Pasupu (స్వచ్ఛమైన పసుపు)</option>
+                        </select>
+                        
+                        <!-- Ready To Use descriptions -->
+                        <div class="product-descriptions">
+                            <!-- Pure Ghee -->
+                            <div id="ready-to-use-pure-ghee" class="product-description" style="display: none;">
+                                <img src="/images/products/ghee-detail.jpg" 
+                                     alt="Pure Ghee" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Pure Ghee</h4>
+                                <p>Traditional clarified butter made from pure cow's milk. Rich in vitamins A, D, E, and K, our ghee is perfect for cooking, tempering, and adding authentic flavor to your meals.</p>
+                                <ul>
+                                    <li>Made from pure cow's milk</li>
+                                    <li>Rich in essential vitamins</li>
+                                    <li>Perfect for cooking and tempering</li>
+                                    <li>Traditional preparation method</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Multigrain Atta -->
+                            <div id="ready-to-use-multigrain-atta" class="product-description" style="display: none;">
+                                <img src="/images/products/multigrain-atta-detail.jpg" 
+                                     alt="Multigrain Atta" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Multigrain Atta</h4>
+                                <p>A nutritious blend of wheat, millet, barley, and other wholesome grains. Perfect for making healthy rotis, parathas, and bread with enhanced nutritional value.</p>
+                                <ul>
+                                    <li>Blend of multiple healthy grains</li>
+                                    <li>High in fiber and protein</li>
+                                    <li>Perfect for healthy rotis</li>
+                                    <li>Enhanced nutritional value</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Premium Coffee -->
+                            <div id="ready-to-use-premium-coffee" class="product-description" style="display: none;">
+                                <img src="/images/products/coffee-detail.jpg" 
+                                     alt="Premium Coffee" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Premium Coffee</h4>
+                                <p>Aromatic South Indian filter coffee blend made from carefully selected coffee beans. Rich, smooth, and perfect for your morning ritual or evening relaxation.</p>
+                                <ul>
+                                    <li>Premium coffee bean blend</li>
+                                    <li>Traditional South Indian style</li>
+                                    <li>Rich and aromatic</li>
+                                    <li>Perfect grind consistency</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Pure Pasupu -->
+                            <div id="ready-to-use-pure-pasupu" class="product-description" style="display: none;">
+                                <img src="/images/products/pasupu-detail.jpg" 
+                                     alt="Pure Pasupu" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Pure Pasupu</h4>
+                                <p>Premium quality turmeric powder with high curcumin content. Known for its anti-inflammatory and antioxidant properties, perfect for cooking and health benefits.</p>
+                                <ul>
+                                    <li>High curcumin content</li>
+                                    <li>Anti-inflammatory properties</li>
+                                    <li>Pure and natural</li>
+                                    <li>Vibrant color and aroma</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    CALL TO ACTION SECTION
+    Contact information with phone numbers and address
+    ========================================
+    -->
+    <section id="call-us" class="call-us-section">
+        <div class="container">
+            <div class="call-us-content">
+                <h2 class="section-title">Get In Touch</h2>
+                
+                <div class="info-cards">
+                    <!-- Quick Call Card -->
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Quick Call</h3>
+                        <div class="contact-details">
+                            <p><a href="tel:+919676712031">+91 96767 12031</a></p>
+                            <p><a href="tel:+919618513131">+91 96185 13131</a></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Location Card -->
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <div class="contact-details">
+                            <p>II, Western Part, Plot No: 121/3</p>
+                            <p>B N Reddy Nagar, Cherlapalli</p>
+                            <p>Hyderabad, Telangana 500051</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Card -->
+                    <div class="info-card">
+                        <div class="card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <div class="contact-details">
+                            <p><a href="mailto:info@telugudelicacies.com">info@telugudelicacies.com</a></p>
+                            <p><strong>FSSAI License:</strong> 13623999000239</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    CONTACT FORM SECTION
+    Interactive contact form with validation
+    ========================================
+    -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-content">
+                <h2 class="section-title">Send Us a Message</h2>
+                <p class="form-subtitle">Have questions about our products or want to place a custom order? We'd love to hear from you!</p>
+                
+                <form class="contact-form" onsubmit="handleFormSubmit(event)" method="POST" netlify>
+                    <input type="hidden" name="form-name" value="contact">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="">Select Subject</option>
+                                <option value="product-inquiry">Product Inquiry</option>
+                                <option value="bulk-order">Bulk Order</option>
+                                <option value="distributor">Become a Distributor</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your inquiry..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ========================================
+    FOOTER SECTION
+    Company information and final branding
+    ========================================
+    -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Telugu Delicacies</h3>
+                    <p class="footer-tagline">Modern Yet Traditional</p>
+                    <p class="footer-description">Bringing you authentic South Indian flavors with modern convenience. From traditional podis to ready-to-cook delights.</p>
+                </div>
+                
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>Products</h4>
+                        <ul>
+                            <li>Ready To Eat Podis</li>
+                            <li>Ready To Cook Items</li>
+                            <li>Premium Ingredients</li>
+                            <li>Bulk Orders</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="tel:+919676712031">+91 96767 12031</a></li>
+                            <li><a href="tel:+919618513131">+91 96185 13131</a></li>
+                            <li><a href="mailto:info@telugudelicacies.com">info@telugudelicacies.com</a></li>
+                            <li>Hyderabad, Telangana</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Telugu Delicacies. All rights reserved. | FSSAI License: 13623999000239</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
