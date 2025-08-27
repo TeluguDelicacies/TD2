@@ -334,7 +334,7 @@ Keeping existing modern header design
   font-family: var(--font-primary);
   font-size: var(--font-xl);
   font-weight: var(--weight-bold);
-  color: var(--text-primary);
+  color: var(--color-primary-blue);
   margin: 0;
 }
 
@@ -343,6 +343,7 @@ Keeping existing modern header design
   display: none;
   gap: var(--space-2);
   align-items: center;
+  margin-left: auto;
 }
 
 @media (min-width: 768px) {
