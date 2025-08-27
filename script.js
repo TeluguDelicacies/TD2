@@ -341,14 +341,12 @@ function updateHeaderOnScroll() {
     const scrollDirection = scrollY > (window.lastScrollY || 0) ? 'down' : 'up';
     window.lastScrollY = scrollY;
     
-    if (scrollY > 100) {
+    if (scrollY > 50) {
         // Scrolled state - change background
-        header.style.background = 'linear-gradient(135deg, rgba(34,139,34,0.95), rgba(50,205,50,0.95))';
-        header.style.backdropFilter = 'blur(10px)';
-        header.style.webkitBackdropFilter = 'blur(10px)'; // Safari support
+        header.classList.add('scrolled-up');
         
         // Auto-hide logic
-        if (scrollDirection === 'down' && scrollY > 200) {
+        if (scrollDirection === 'down' && scrollY > 150) {
             // Hide header when scrolling down
             header.classList.add('hidden');
         } else if (scrollDirection === 'up') {
@@ -357,9 +355,7 @@ function updateHeaderOnScroll() {
         }
     } else {
         // Top of page state - original gradient
-        header.style.background = 'linear-gradient(135deg, #228B22, #32CD32)';
-        header.style.backdropFilter = 'none';
-        header.style.webkitBackdropFilter = 'none';
+        header.classList.remove('scrolled-up');
         header.classList.remove('hidden');
     }
 }

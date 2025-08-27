@@ -95,21 +95,6 @@ from three primary colors while maintaining accessibility
   --color-error: color-mix(in srgb, var(--color-accent) 60%, #dc3545 40%);
   --color-info: color-mix(in srgb, var(--color-primary) 50%, #17a2b8 50%);
   
-  /* ================================
-     ACCESSIBILITY OVERRIDES
-     Automatically applied for better contrast
-     ================================ */
-  
-  /* High contrast text combinations */
-  --text-on-primary: var(--text-inverse);
-  --text-on-secondary: var(--text-primary);
-  --text-on-accent: var(--text-inverse);
-  --text-on-dark: var(--text-inverse);
-  --text-on-light: var(--text-primary);
-  
-  /* Focus indicators */
-  --focus-color: var(--color-secondary);
-  --focus-shadow: 0 0 0 3px color-mix(in srgb, var(--color-secondary) 30%, transparent 70%);
 }
 
 /* ================================

@@ -68,16 +68,6 @@ Derived from base colors for maximum maintainability
     --color-button-hover: color-mix(in srgb, var(--base-green) 90%, black 10%);
 }
 
-/* Dark Theme - Override only base colors, derived colors update automatically */
-body.dark-theme {
-    --base-green: #004d00;    /* Darker base green */
-    --base-gold: #FFC107;     /* Adjusted gold for dark theme */
-    --base-gray: #e0e0e0;     /* Light gray for text in dark theme */
-    --base-white: #1a1a1a;    /* Dark background for "white" elements */
-    --base-red: #ff6b6b;      /* Lighter red for dark theme */
-    --base-orange: #FFD700;   /* Gold for Telugu names in dark theme */
-}
-
 a[href^="tel:"] { 
     font-family: monospace;
     color: var(--color-text-light);
@@ -307,15 +297,18 @@ Mobile-first responsive design
 ========================================
 */
 .header {
-    background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
+    background: color-mix(in srgb, var(--color-primary-green) 8%, transparent 92%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
     color: var(--color-text-light);
-    padding: 12px 0;
+    padding: 8px 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px var(--color-shadow-medium);
-    min-height: 70px;
+    box-shadow: 0 1px 20px color-mix(in srgb, black 5%, transparent 95%);
+    min-height: 60px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateY(0);
     opacity: 1;
@@ -323,15 +316,16 @@ Mobile-first responsive design
 
 /* Header states for scroll behavior */
 .header.scrolled-up {
-    background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px var(--color-shadow-dark);
+    background: color-mix(in srgb, var(--color-primary-green) 12%, transparent 88%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-primary-green) 20%, transparent 80%);
+    box-shadow: 0 2px 30px color-mix(in srgb, black 8%, transparent 92%);
 }
 
 .header.hidden {
     transform: translateY(-100%);
-    opacity: 0.8;
+    opacity: 0.9;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
@@ -341,11 +335,11 @@ Mobile-first responsive design
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     text-align: left;
-    min-height: 3.125rem; /* 50px */
+    min-height: 2.75rem; /* 44px */
     flex-wrap: wrap;
-    padding: 0 1rem; /* Add left and right padding */
+    padding: 0 1.5rem;
 }
 
 /* Logo section with brand information */
@@ -353,41 +347,45 @@ Mobile-first responsive design
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex: 1;
     min-width: 0;
 }
 
 /* Main logo image */
 .logo {
-    width: 3rem; /* 48px - Square logo */
-    height: 3rem; /* 48px - Square logo */
+    width: 2.5rem; /* 40px - Smaller for sleek look */
+    height: 2.5rem; /* 40px - Smaller for sleek look */
     object-fit: cover;
-    border: 3px solid var(--color-border-accent-medium);
+    border: 2px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent 70%);
+    border-radius: 8px;
     background: var(--color-primary-green);
     transition: transform 0.3s ease;
+    box-shadow: 0 2px 8px color-mix(in srgb, black 10%, transparent 90%);
 }
 
 .logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    border-color: color-mix(in srgb, var(--color-accent-gold) 50%, transparent 50%);
 }
 
 /* Fallback logo when image fails to load */
 .logo-fallback {
-    width: 3rem; /* 48px - Square logo */
-    height: 3rem; /* 48px - Square logo */
+    width: 2.5rem;
+    height: 2.5rem;
     background: linear-gradient(135deg, var(--color-primary-green), var(--color-secondary-green));
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid var(--color-border-accent-dark);
+    border: 2px solid color-mix(in srgb, var(--color-accent-gold) 30%, transparent 70%);
+    border-radius: 8px;
 }
 
 /* Fallback logo text */
 .logo-text {
     color: var(--color-accent-gold);
     font-weight: var(--weight-bold);
-    font-size: 1.125rem; /* 18px */
+    font-size: 1rem;
 }
 
 /* Brand name styling */
@@ -396,8 +394,8 @@ Mobile-first responsive design
     font-size: var(--font-lg);
     font-weight: var(--weight-bold);
     margin-bottom: 2px;
-    color: var(--color-accent-gold);
-    text-shadow: 1px 1px 2px var(--color-shadow-dark);
+    color: var(--color-primary-green);
+    text-shadow: 0 1px 2px color-mix(in srgb, white 50%, transparent 50%);
     line-height: var(--leading-tight);
 }
 
@@ -406,14 +404,15 @@ Mobile-first responsive design
     font-family: var(--font-primary);
     font-size: var(--font-sm);
     font-weight: var(--weight-regular);
-    opacity: 0.9;
+    opacity: 0.8;
+    color: color-mix(in srgb, var(--color-primary-green) 80%, black 20%);
     font-style: italic;
     line-height: var(--leading-snug);
 }
 
 /* Navigation buttons container */
 .hamburger-btn {
-    background: transparent;
+    background: color-mix(in srgb, var(--color-primary-green) 10%, transparent 90%);
     border: none;
     cursor: pointer;
     padding: 8px;
@@ -424,20 +423,25 @@ Mobile-first responsive design
     gap: 4px;
     width: 40px;
     height: 40px;
-    border-radius: 6px;
+    border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--color-primary-green) 20%, transparent 80%);
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .hamburger-btn:hover {
-    background: color-mix(in srgb, var(--color-text-light) 10%, transparent 90%);
+    background: color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
+    border-color: color-mix(in srgb, var(--color-primary-green) 30%, transparent 70%);
+    transform: scale(1.05);
 }
 
 /* Hamburger menu lines */
 .hamburger-line {
     width: 24px;
     height: 3px;
-    background: var(--color-text-light);
-    border-radius: 2px;
+    background: var(--color-primary-green);
+    border-radius: 3px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: center;
 }
@@ -463,18 +467,20 @@ Mobile-first responsive design
     top: 100%;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary-green) 98%, transparent 2%), color-mix(in srgb, var(--color-secondary-green) 98%, transparent 2%));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 4px 20px var(--color-shadow-dark);
-    padding: 0.75rem;
+    background: color-mix(in srgb, var(--color-background-light) 95%, transparent 5%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 0 0 16px 16px;
+    border: 1px solid color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
+    border-top: none;
+    box-shadow: 0 8px 32px color-mix(in srgb, black 10%, transparent 90%);
+    padding: 1rem;
     gap: 0.5rem;
     flex-direction: column;
     z-index: 999;
     animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     width: auto;
-    max-width: 200px;
+    max-width: 220px;
     right: 1rem;
     left: auto;
 }
@@ -483,11 +489,11 @@ Mobile-first responsive design
 @keyframes slideDown {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-20px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -496,9 +502,11 @@ Mobile-first responsive design
     width: 100%;
     margin-bottom: 0.25rem;
     padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    background: var(--color-border-accent-light);
-    border: 2px solid var(--color-border-accent-dark);
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--color-primary-green) 8%, transparent 92%);
+    border: 1px solid color-mix(in srgb, var(--color-primary-green) 20%, transparent 80%);
+    color: var(--color-primary-green);
+    font-weight: var(--weight-medium);
     transition: all 0.2s ease;
     font-size: 0.875rem;
     min-height: 36px;
@@ -506,18 +514,18 @@ Mobile-first responsive design
 
 .mobile-nav-btn:hover,
 .mobile-nav-btn:focus {
-    background: var(--color-border-accent-medium);
-    border-color: color-mix(in srgb, var(--color-accent-gold) 50%, transparent 50%);
-    transform: translateY(-1px);
+    background: color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
+    border-color: color-mix(in srgb, var(--color-primary-green) 40%, transparent 60%);
+    transform: scale(1.02);
 }
 
 /* Individual navigation buttons */
 .nav-btn {
-    background: var(--color-border-accent-light);
-    border: 2px solid var(--color-border-accent-dark);
-    color: var(--color-text-light);
-    padding: 0.5rem 1rem;
-    border-radius: 1.5rem;
+    background: color-mix(in srgb, var(--color-primary-green) 8%, transparent 92%);
+    border: 1px solid color-mix(in srgb, var(--color-primary-green) 20%, transparent 80%);
+    color: var(--color-primary-green);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
     cursor: pointer;
     font-family: var(--font-body);
     font-weight: var(--weight-medium);
@@ -526,19 +534,21 @@ Mobile-first responsive design
     display: flex;
     align-items: center;
     gap: 5px;
-    min-height: 2.25rem;
+    min-height: 2rem;
     width: auto;
-    min-width: 90px;
+    min-width: 80px;
     justify-content: center;
     text-decoration: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Navigation button hover effects */
 .nav-btn:hover {
-    background: var(--color-border-accent-medium);
-    border-color: color-mix(in srgb, var(--color-accent-gold) 50%, transparent 50%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--color-shadow-medium);
+    background: color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
+    border-color: color-mix(in srgb, var(--color-primary-green) 40%, transparent 60%);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-primary-green) 15%, transparent 85%);
 }
 
 /* 
@@ -690,19 +700,33 @@ Eliminates all cutoff issues by using actual rendered header height
         white-space: normal;
         overflow: visible;
         text-overflow: initial;
-    }
+        padding: 0.5rem 0;
+        min-height: 55px;
     
     .hero-title .english,
     .hero-title .telugu {
-        white-space: normal;
+        gap: 0.5rem;
         overflow: visible;
         text-overflow: initial;
     }
-    
-    .hero-subtitle {
+        width: 35px;
+        height: 35px;
         font-size: var(--font-md);
         margin-bottom: 1rem;
     }
+    .logo {
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+    
+    .brand-name {
+        font-size: var(--font-md);
+    }
+    
+    .tagline {
+        font-size: var(--font-xs);
+    }
+    
     
     .hero-description {
         font-size: var(--font-xs);
@@ -1296,7 +1320,7 @@ Responsive layout with form validation styles
     grid-column: 1 / -1;   /* Span all grid columns */
     max-width: 800px;
     margin: 0 auto; /* forces the smaller width to center */
-    width: 100%;    /* ensures it doesn’t shrink below content width */
+    width: 100%;    /* ensures it doesn't shrink below content width */
     justify-self: center; 
 }
 
