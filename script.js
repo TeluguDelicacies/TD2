@@ -293,32 +293,19 @@ Dynamic header styling based on scroll position
 
 /**
  * Updates header appearance based on scroll position
- * Creates auto-hide behavior and background changes when scrolling
  */
 function updateHeaderOnScroll() {
     const header = document.querySelector('.header');
     if (!header) return;
     
     const scrollY = window.scrollY;
-    const scrollDirection = scrollY > (window.lastScrollY || 0) ? 'down' : 'up';
-    window.lastScrollY = scrollY;
     
-    if (scrollY > 50) {
-        // Scrolled state - change background
-        header.classList.add('scrolled-up');
-        
-        // Auto-hide logic
-        if (scrollDirection === 'down' && scrollY > 150) {
-            // Hide header when scrolling down
-            header.classList.add('hidden');
-        } else if (scrollDirection === 'up') {
-            // Show header when scrolling up
-            header.classList.remove('hidden');
-        }
+    if (scrollY > 20) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.15)';
     } else {
-        // Top of page state - original gradient
-        header.classList.remove('scrolled-up');
-        header.classList.remove('hidden');
+        header.style.background = 'rgba(255, 255, 255, 0.9)';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
     }
 }
 

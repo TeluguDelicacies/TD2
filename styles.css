@@ -501,155 +501,90 @@ Clean, minimal, transparent design
 /* 
 ========================================
 HERO SECTION - MODERN CLEAN DESIGN
-Clean, bold typography with modern gradients
-Inspired by modern AI/tech websites
+Clean, bold design inspired by modern AI/tech websites
 ========================================
 */
 .hero {
-    margin-top: 72px;
+    margin-top: 64px;
     position: relative;
-    min-height: calc(100vh - 72px);
+    min-height: calc(100vh - 64px);
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, 
-        #f8fafc 0%, 
-        #f1f5f9 50%, 
-        #e2e8f0 100%
-    );
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     overflow: hidden;
 }
 
-/* Remove background image for cleaner look */
-.hero-image {
-    display: none;
-}
-
-/* Simplified hero overlay */
-.hero-overlay {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 80px 0;
-}
-
 .hero-content {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 32px;
-    text-align: left;
+    padding: 80px 32px;
+    width: 100%;
     color: #1a1a1a;
-    animation: heroFadeIn 1s ease-out;
+    text-align: left;
 }
 
-@keyframes heroFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Modern hero title */
 .hero-title {
     font-family: var(--font-primary);
-    font-size: clamp(48px, 6vw, 72px);
+    font-size: clamp(36px, 6vw, 64px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     color: #1a1a1a;
-    letter-spacing: -2px;
-    text-shadow: none;
+    letter-spacing: -1.5px;
 }
 
-.hero-title .english {
+.hero-title .bilingual-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hero-title .bilingual-title .english {
     display: block;
-    margin-bottom: 8px;
 }
 
-.hero-title .telugu {
-    font-family: var(--font-primary);
+.hero-title .bilingual-title .telugu {
+    font-family: var(--font-telugu);
     font-size: 0.7em;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-primary-green);
     display: block;
 }
 
-/* Modern hero subtitle */
 .hero-subtitle {
     font-family: var(--font-primary);
-    font-size: clamp(20px, 2.5vw, 28px);
+    font-size: clamp(18px, 3vw, 24px);
     font-weight: 400;
-    line-height: 1.4;
-    margin-bottom: 32px;
+    line-height: 1.5;
+    margin-bottom: 40px;
     color: #64748b;
-    max-width: 600px;
+    max-width: 500px;
 }
 
-/* Hide description for cleaner look */
 .hero-description {
     display: none;
-}
-
-/* Modern CTA button */
-.cta-button {
-    background: linear-gradient(135deg, var(--color-primary-green), #2d7d2d);
-    color: white;
-    border: none;
-    padding: 16px 32px;
-    border-radius: 12px;
-    font-family: var(--font-primary);
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(34, 139, 34, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.cta-button:hover {
-    background: linear-gradient(135deg, #1e6b1e, var(--color-primary-green));
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(34, 139, 34, 0.4);
-}
-
-.cta-button:active {
-    transform: translateY(0);
 }
 
 /* Mobile hero adjustments */
 @media (max-width: 767px) {
     .hero {
-        margin-top: 64px;
-        min-height: calc(100vh - 64px);
+        margin-top: 56px;
+        min-height: calc(100vh - 56px);
         text-align: center;
     }
     
     .hero-content {
-        padding: 0 20px;
+        padding: 60px 20px;
     }
     
     .hero-title {
-        font-size: clamp(32px, 8vw, 48px);
-        letter-spacing: -1px;
+        font-size: clamp(28px, 8vw, 40px);
+        letter-spacing: -0.5px;
     }
     
     .hero-subtitle {
-        font-size: clamp(16px, 4vw, 20px);
-        margin-bottom: 24px;
-    }
-    
-    .cta-button {
-        padding: 14px 28px;
-        font-size: 14px;
+        font-size: clamp(16px, 4vw, 18px);
+        margin-bottom: 32px;
     }
 }
 
