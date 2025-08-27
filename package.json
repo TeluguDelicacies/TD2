@@ -4,8 +4,8 @@
   "description": "A modern, responsive website for Telugu Delicacies - authentic South Indian food manufacturer",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 8000",
-    "serve": "python3 -m http.server 8000",
+    "start": "npx serve -s . -l 8000",
+    "serve": "npx serve -s . -l 8000",
     "test": "echo \"No tests specified\" && exit 0"
   },
   "repository": {
