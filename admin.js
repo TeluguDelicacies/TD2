@@ -95,7 +95,6 @@ class AdminPanel {
 
   async loadData() {
     try {
-      console.log('Starting to load categories and products...')
       const [categoriesData, productsData] = await Promise.all([
         getCategories(),
         getProductsForDisplay()
@@ -104,12 +103,9 @@ class AdminPanel {
       this.categories = categoriesData
       this.products = productsData
       
-      console.log('Successfully loaded:', this.products.length, 'products and', this.categories.length, 'categories')
-      console.log('Categories:', this.categories)
-      console.log('Products sample:', this.products.slice(0, 2))
+      console.log('Loaded:', this.products.length, 'products and', this.categories.length, 'categories')
     } catch (error) {
       console.error('Error loading data:', error)
-      console.error('Detailed data loading error:', error.message, error.stack)
       throw error
     }
   }
