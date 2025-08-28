@@ -41,7 +41,6 @@ class AuthManager {
   setupEventListeners() {
     const form = document.getElementById('authForm')
     const loginBtn = document.getElementById('loginBtn')
-    const signupBtn = document.getElementById('signupBtn')
     const passwordToggle = document.getElementById('passwordToggle')
     
     // Form submission for login
@@ -52,12 +51,6 @@ class AuthManager {
       })
     }
 
-    // Signup button
-    if (signupBtn) {
-      signupBtn.addEventListener('click', () => {
-        this.handleSignup()
-      })
-    }
 
     // Password visibility toggle
     if (passwordToggle) {
@@ -126,63 +119,6 @@ class AuthManager {
     }
   }
 
-  async handleSignup() {
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
-
-    if (!email || !password) {
-      this.showError('Please enter both email and password')
-      return
-    }
-
-    if (password.length < 6) {
-      this.showError('Password must be at least 6 characters long')
-      return
-    }
-
-    try {
-      this.showLoading('Creating your account...')
-      
-      const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-          emailRedirectTo: window.location.origin + '/login.html'
-        }
-      })
-
-      if (error) {
-        throw error
-      }
-
-      console.log('Signup successful:', data)
-      this.hideLoading()
-      
-      if (data.user && !data.session) {
-        // Email confirmation required
-        this.showSuccess('Account created! Please check your email to confirm your account before signing in.')
-      } else if (data.session) {
-        // Auto sign-in successful
-        this.showSuccess('Account created and signed in! Redirecting...')
-      }
-      
-    } catch (error) {
-      console.error('Signup error:', error)
-      this.hideLoading()
-      
-      let errorMessage = 'Account creation failed. Please try again.'
-      
-      if (error.message.includes('User already registered')) {
-        errorMessage = 'An account with this email already exists. Please sign in instead.'
-      } else if (error.message.includes('Password should be at least')) {
-        errorMessage = 'Password must be at least 6 characters long.'
-      } else if (error.message.includes('Unable to validate email')) {
-        errorMessage = 'Please enter a valid email address.'
-      }
-      
-      this.showError(errorMessage)
-    }
-  }
 
   togglePasswordVisibility() {
     const passwordInput = document.getElementById('password')

@@ -34,7 +34,10 @@ class AdminPanel {
   async init() {
     try {
       // Check authentication first
-      await this.checkAuthentication()
+      const isAuthenticated = await this.checkAuthentication()
+      if (!isAuthenticated) {
+        return // Stop initialization if not authenticated
+      }
       
       this.showLoading()
       await this.loadData()
@@ -46,9 +49,7 @@ class AdminPanel {
       console.log('Admin panel initialized successfully')
     } catch (error) {
       console.error('Error initializing admin panel:', error)
-      if (error.message !== 'Authentication required') {
-        this.showToast('Failed to initialize admin panel: ' + error.message, 'error')
-      }
+      this.showToast('Failed to initialize admin panel: ' + error.message, 'error')
       this.hideLoading()
     }
   }
@@ -60,7 +61,7 @@ class AdminPanel {
       if (!session) {
         console.log('No active session found, redirecting to login')
         window.location.href = 'login.html'
-        throw new Error('Authentication required')
+        return false // Stop execution immediately
       }
       
       this.currentUser = session.user
@@ -69,13 +70,22 @@ class AdminPanel {
       // Update UI with user info
       this.updateUserInfo()
       
+      return true
     } catch (error) {
       console.error('Authentication check failed:', error)
+      window.location.href = 'login.html'
       throw error
     }
   }
 
   updateUserInfo() {
+    // Show user info section
+    const userInfoSection = document.querySelector('.user-info')
+    if (userInfoSection) {
+      userInfoSection.classList.remove('hidden')
+    }
+    
+    // Update user email
     const userEmail = document.getElementById('userEmail')
     if (userEmail && this.currentUser) {
       userEmail.textContent = this.currentUser.email
