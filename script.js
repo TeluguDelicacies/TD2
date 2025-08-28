@@ -966,6 +966,7 @@ function initializeWebsite() {
     // Initialize all interactive features
     initializeScrollAnimations();
     initializeProductShowcaseControls();
+    initializeTestimonialsControls();
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
@@ -979,21 +980,7 @@ function initializeWebsite() {
     }
     
     // Initialize testimonials hover controls
-    const testimonialsScrollContainer = document.querySelector('.testimonials-scroll-container');
-    const testimonialsScroll = document.getElementById('testimonialsScroll');
-    if (testimonialsScroll && testimonialsScrollContainer) {
-        // Pause animation on hover
-        testimonialsScrollContainer.addEventListener('mouseenter', () => {
-            testimonialsScroll.style.animationPlayState = 'paused';
-        });
-        
-        // Resume animation on mouse leave
-        testimonialsScrollContainer.addEventListener('mouseleave', () => {
-            testimonialsScroll.style.animationPlayState = 'running';
-        });
-        
-        console.log('Testimonials scroll controls initialized');
-    }
+    // This is now handled by initializeTestimonialsControls()
     
     // Set up optimized scroll event listener with debouncing for performance
     const debouncedScrollHandler = debounce(updateHeaderOnScroll, 10);
@@ -1028,6 +1015,74 @@ function initializeWebsite() {
 
 /*
 ========================================
+TESTIMONIALS SHOWCASE CONTROLS
+Interactive controls for the testimonials ticker
+========================================
+*/
+
+/**
+ * Initializes hover and touch controls for the testimonials showcase
+ * Pauses animation on interaction for better user experience
+ */
+function initializeTestimonialsControls() {
+    const testimonialsScroll = document.getElementById('testimonialsScroll');
+    const scrollContainer = testimonialsScroll?.parentElement;
+    if (!testimonialsScroll || !scrollContainer) {
+        console.log('Testimonials scroll elements not found');
+        return;
+    }
+    
+    console.log('Initializing testimonials controls...');
+    
+    // Ensure ticker animation is running by default
+    testimonialsScroll.style.animationPlayState = 'running';
+    
+    // Pause animation on mouse hover for better desktop UX
+    scrollContainer.addEventListener('mouseenter', () => {
+        testimonialsScroll.style.animationPlayState = 'paused';
+        console.log('Testimonials animation paused');
+    });
+    
+    // Resume animation when mouse leaves
+    scrollContainer.addEventListener('mouseleave', () => {
+        testimonialsScroll.style.animationPlayState = 'running';
+        console.log('Testimonials animation resumed');
+    });
+    
+    // Touch interaction handling
+    let isUserInteracting = false;
+    let interactionTimeout;
+    
+    const handleInteractionStart = () => {
+        if (!isUserInteracting) {
+            testimonialsScroll.style.animationPlayState = 'paused';
+            isUserInteracting = true;
+            console.log('Testimonials touch interaction started');
+        }
+        
+        if (interactionTimeout) {
+            clearTimeout(interactionTimeout);
+        }
+    };
+    
+    const handleInteractionEnd = () => {
+        interactionTimeout = setTimeout(() => {
+            testimonialsScroll.style.animationPlayState = 'running';
+            isUserInteracting = false;
+            console.log('Testimonials touch interaction ended');
+        }, 2000);
+    };
+    
+    // Touch events
+    scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
+    scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
+    scrollContainer.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
+    
+    console.log('Testimonials controls initialized successfully');
+}
+
+/*
+========================================
 EVENT LISTENERS
 Set up main event listeners when DOM is ready
 ========================================
@@ -1039,6 +1094,8 @@ document.addEventListener('DOMContentLoaded', initializeWebsite);
 // Handle page visibility changes (for performance optimization)
 document.addEventListener('visibilitychange', () => {
     const productScroll = document.getElementById('productScroll');
+    const testimonialsScroll = document.getElementById('testimonialsScroll');
+    
     if (productScroll) {
         if (document.hidden) {
             // Page is hidden - pause animations to save resources
@@ -1046,6 +1103,14 @@ document.addEventListener('visibilitychange', () => {
         } else {
             // Page is visible - resume ticker animation
             productScroll.style.animationPlayState = 'running';
+        }
+    }
+    
+    if (testimonialsScroll) {
+        if (document.hidden) {
+            testimonialsScroll.style.animationPlayState = 'paused';
+        } else {
+            testimonialsScroll.style.animationPlayState = 'running';
         }
     }
 });
