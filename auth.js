@@ -200,20 +200,21 @@ class AuthManager {
   // Static method to check authentication status (for use in admin.js)
   static async checkAuthStatus() {
     try {
-      const { data: { session }, error } = await supabase.auth.getSession()
+      const { data: { session }, error } = await supabase.auth.getSession();
       
-      console.log('supabase.auth.getSession data:', session)
-      console.log('supabase.auth.getSession error:', error)
-      
+      console.log('AuthManager: supabase.auth.getSession data:', session);
+      console.log('AuthManager: supabase.auth.getSession error:', error);
+
       if (error) {
-        console.error('Error checking auth status:', error)
-        return null
+        console.error('AuthManager: Error getting session:', error);
+        return null; // Return null on error
       }
       
-      console.log('Session status:', session ? 'Active' : 'No session')
+      console.log('AuthManager: Session status:', session ? 'Active' : 'No session');
+      // Return session or null if no session
       return session
     } catch (error) {
-      console.error('Error in checkAuthStatus:', error)
+      console.error('AuthManager: Error in checkAuthStatus:', error);
       return null
     }
   }

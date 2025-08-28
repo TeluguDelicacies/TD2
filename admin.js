@@ -56,24 +56,25 @@ class AdminPanel {
 
   async checkAuthentication() {
     try {
-      const session = await AuthManager.checkAuthStatus()
-      console.log('AuthManager.checkAuthStatus returned session:', session)
-      
+      const session = await AuthManager.checkAuthStatus();
+      console.log('AdminPanel: AuthManager.checkAuthStatus returned session:', session);
+
       if (!session) {
-        console.log('No active session found, redirecting to login')
-        window.location.href = 'login.html'
+        console.log('AdminPanel: No active session found. Redirecting to login.html...');
+        window.location.href = 'login.html';
+        // Crucially, return false to stop further init
         return false // Stop execution immediately
       }
       
-      this.currentUser = session.user
-      console.log('Authenticated user:', this.currentUser.email)
+      this.currentUser = session.user;
+      console.log('AdminPanel: Authenticated user:', this.currentUser.email);
       
       // Update UI with user info
       this.updateUserInfo()
       
       return true
     } catch (error) {
-      console.error('Authentication check failed:', error)
+      console.error('AdminPanel: Authentication check failed:', error);
       window.location.href = 'login.html'
       return false
     }
