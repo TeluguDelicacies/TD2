@@ -59,13 +59,21 @@ Last Updated: 2024
   padding: 0;
 }
 
+html {
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-primary);
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-secondary);
-  margin: 0;
-  padding: 0;
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -293,10 +301,10 @@ Modern header with glassmorphism effects
 
 /* Adjust products section to account for fixed header */
 .products-section {
-  padding-top: calc(2rem + 80px + 60px); /* header height + category nav + spacing */
+  padding-top: 160px; /* Fixed value instead of calc - header + category nav + spacing */
   padding-bottom: 2rem;
   background: var(--bg-gradient-card);
-  min-height: 100vh;
+  min-height: calc(100vh - 160px);
 }
 
 
