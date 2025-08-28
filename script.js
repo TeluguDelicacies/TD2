@@ -977,6 +977,23 @@ function initializeWebsite() {
         console.log('Enhanced touch scrolling enabled for product showcase');
     }
     
+    // Initialize testimonials hover controls
+    const testimonialsScrollContainer = document.querySelector('.testimonials-scroll-container');
+    const testimonialsScroll = document.getElementById('testimonialsScroll');
+    if (testimonialsScroll && testimonialsScrollContainer) {
+        // Pause animation on hover
+        testimonialsScrollContainer.addEventListener('mouseenter', () => {
+            testimonialsScroll.style.animationPlayState = 'paused';
+        });
+        
+        // Resume animation on mouse leave
+        testimonialsScrollContainer.addEventListener('mouseleave', () => {
+            testimonialsScroll.style.animationPlayState = 'running';
+        });
+        
+        console.log('Testimonials scroll controls initialized');
+    }
+    
     // Set up optimized scroll event listener with debouncing for performance
     const debouncedScrollHandler = debounce(updateHeaderOnScroll, 10);
     window.addEventListener('scroll', debouncedScrollHandler);

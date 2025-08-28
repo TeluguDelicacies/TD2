@@ -788,10 +788,10 @@ Modern card design with enhanced styling
 }
 
 .category-description {
-  font-size: var(--font-base);
+  font-size: var(--font-sm);
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 
 /* Product Dropdown Styling */
@@ -1187,7 +1187,7 @@ Compact footer with Google Maps integration
   color: var(--color-gray-400);
   font-weight: var(--weight-medium);
   margin-bottom: var(--space-2);
-}
+  font-size: var(--font-sm);
 
 .footer-contact h4,
 .footer-address h4 {
