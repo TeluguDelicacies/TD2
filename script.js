@@ -969,6 +969,7 @@ function initializeWebsite() {
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
+    initializeImageFallbacks();
     
     // Initialize enhanced smooth scrolling for product showcase
     const scrollContainer = document.querySelector('.scroll-container');
