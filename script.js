@@ -459,131 +459,6 @@ function initializeProductShowcaseControls() {
 
 /*
 ========================================
-SHOWCASE MODE MANAGEMENT
-Intelligent automatic/manual mode switching
-========================================
-*/
-
-/**
- * Initializes the intelligent showcase mode system
- * Handles automatic/manual mode transitions
- */
-function initializeShowcaseMode() {
-    const productScroll = document.getElementById('productScroll');
-    const scrollContainer = productScroll?.parentElement;
-    if (!productScroll || !scrollContainer) return;
-    
-    let isManualMode = false;
-    let autoReturnTimeout;
-    let hoverTimeout;
-    
-    // Configuration
-    const config = {
-        autoReturnDelay: 3000,
-        hoverActivationDelay: 500,
-        transitionDuration: 300
-    };
-    
-    /**
-     * Switches to manual mode
-     */
-    function activateManualMode() {
-        if (isManualMode) return;
-        
-        isManualMode = true;
-        productScroll.style.animationPlayState = 'paused';
-        scrollContainer.style.cursor = 'grab';
-        
-        // Clear any existing timeout
-        if (autoReturnTimeout) {
-            clearTimeout(autoReturnTimeout);
-        }
-        
-        console.log('Manual mode activated');
-    }
-    
-    /**
-     * Returns to automatic mode
-     */
-    function activateAutoMode() {
-        if (!isManualMode) return;
-        
-        isManualMode = false;
-        productScroll.style.animationPlayState = 'running';
-        scrollContainer.style.cursor = '';
-        
-        console.log('Auto mode activated');
-    }
-    
-    /**
-     * Sets up auto-return timer
-     */
-    function setupAutoReturn() {
-        if (autoReturnTimeout) {
-            clearTimeout(autoReturnTimeout);
-        }
-        
-        autoReturnTimeout = setTimeout(() => {
-            activateAutoMode();
-        }, config.autoReturnDelay);
-    }
-    
-    // Hover intent detection (desktop)
-    scrollContainer.addEventListener('mouseenter', () => {
-        hoverTimeout = setTimeout(() => {
-            activateManualMode();
-        }, config.hoverActivationDelay);
-    });
-    
-    scrollContainer.addEventListener('mouseleave', () => {
-        if (hoverTimeout) {
-            clearTimeout(hoverTimeout);
-        }
-        setupAutoReturn();
-    });
-    
-    // Touch intent detection (mobile)
-    scrollContainer.addEventListener('touchstart', () => {
-        activateManualMode();
-    }, { passive: true });
-    
-    scrollContainer.addEventListener('touchend', () => {
-        setupAutoReturn();
-    }, { passive: true });
-    
-    // Scroll wheel intent detection
-    scrollContainer.addEventListener('wheel', (e) => {
-        activateManualMode();
-        scrollContainer.scrollLeft += e.deltaY * 0.5;
-        setupAutoReturn();
-        e.preventDefault();
-    });
-    
-    // Focus intent detection (accessibility)
-    scrollContainer.addEventListener('focus', () => {
-        activateManualMode();
-    });
-    
-    scrollContainer.addEventListener('blur', () => {
-        setupAutoReturn();
-    });
-    
-    // Manual scrolling detection
-    let lastScrollLeft = scrollContainer.scrollLeft;
-    scrollContainer.addEventListener('scroll', () => {
-        const currentScrollLeft = scrollContainer.scrollLeft;
-        
-        if (Math.abs(currentScrollLeft - lastScrollLeft) > 5) {
-            activateManualMode();
-            setupAutoReturn();
-        }
-        
-        lastScrollLeft = currentScrollLeft;
-    }, { passive: true });
-}
-
-/*
-========================================
 FORM VALIDATION SYSTEM
 Real-time form validation with user feedback
 ========================================
@@ -958,71 +833,6 @@ function initializeClickOutsideClose() {
     });
 }
 
-========================================
-TESTIMONIALS SHOWCASE CONTROLS
-Interactive controls for the testimonials ticker
-========================================
-*/
-
-/**
- * Initializes hover and touch controls for the testimonials showcase
- * Pauses animation on interaction for better user experience
- */
-function initializeTestimonialsControls() {
-    const testimonialsScroll = document.getElementById('testimonialsScroll');
-    const scrollContainer = testimonialsScroll?.parentElement;
-    if (!testimonialsScroll) {
-        console.log('Testimonials scroll element not found - may not be loaded yet');
-        return;
-    }
-    if (!scrollContainer) {
-        console.log('Testimonials scroll container not found');
-        return;
-    }
-    
-    console.log('Testimonials controls initialized successfully');
-    
-    // Ensure ticker animation is running by default
-    testimonialsScroll.style.animationPlayState = 'running';
-    
-    // Pause animation on mouse hover for better desktop UX
-    scrollContainer.addEventListener('mouseenter', () => {
-        testimonialsScroll.style.animationPlayState = 'paused';
-    });
-    
-    // Resume animation when mouse leaves
-    scrollContainer.addEventListener('mouseleave', () => {
-        testimonialsScroll.style.animationPlayState = 'running';
-    });
-    
-    // Touch interaction handling
-    let isUserInteracting = false;
-    let interactionTimeout;
-    
-    const handleInteractionStart = () => {
-        if (!isUserInteracting) {
-            testimonialsScroll.style.animationPlayState = 'paused';
-            isUserInteracting = true;
-        }
-        
-        if (interactionTimeout) {
-            clearTimeout(interactionTimeout);
-        }
-    };
-    
-    const handleInteractionEnd = () => {
-        interactionTimeout = setTimeout(() => {
-            testimonialsScroll.style.animationPlayState = 'running';
-            isUserInteracting = false;
-        }, 2000);
-    };
-    
-    // Touch events
-    scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
-    scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
-    scrollContainer.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
-}
-
 /*
 ========================================
 EVENT LISTENERS
@@ -1030,13 +840,44 @@ Set up main event listeners when DOM is ready
 ========================================
 */
 
+/**
+ * Main initialization function
+ * Sets up all website functionality when DOM is loaded
+ */
+function initializeWebsite() {
+    console.log('Initializing Telugu Delicacies website...');
+    
+    // Initialize mobile menu functionality
+    initializeClickOutsideClose();
+    
+    // Initialize mobile interactions
+    initializeMobileInteractions();
+    
+    // Initialize product showcase controls
+    initializeProductShowcaseControls();
+    
+    // Initialize image optimizations
+    initializeImageOptimizations();
+    
+    // Enhance accessibility
+    enhanceAccessibility();
+    
+    // Initialize scroll animations
+    initializeScrollAnimations();
+}
+
+// Debounced scroll handler for performance
+const debouncedScrollHandler = debounce(updateHeaderOnScroll, 10);
+
 // Initialize everything when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeWebsite);
+
+// Handle scroll events with debouncing
+window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
 
 // Handle page visibility changes (for performance optimization)
 document.addEventListener('visibilitychange', () => {
     const productScroll = document.getElementById('productScroll');
-    const testimonialsScroll = document.getElementById('testimonialsScroll');
     
     if (productScroll) {
         if (document.hidden) {
@@ -1045,14 +886,6 @@ document.addEventListener('visibilitychange', () => {
         } else {
             // Page is visible - resume ticker animation
             productScroll.style.animationPlayState = 'running';
-        }
-    }
-    
-    if (testimonialsScroll) {
-        if (document.hidden) {
-            testimonialsScroll.style.animationPlayState = 'paused';
-        } else {
-            testimonialsScroll.style.animationPlayState = 'running';
         }
     }
 });

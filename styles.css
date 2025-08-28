@@ -886,41 +886,49 @@ Modern card design with enhanced styling
 
 /* 
 ========================================
-TESTIMONIALS SECTION
-Styled exactly like product showcase
+CUSTOMER REVIEWS SECTION
+Clean, modern testimonial grid
 ========================================
 */
-.testimonials-showcase {
-  padding: var(--space-16) 0;
+.customer-reviews {
+  padding: var(--space-20) 0;
   background: var(--bg-secondary);
 }
 
-.testimonials-scroll {
-  display: flex;
-  gap: var(--space-6);
-  animation: testimonials-scroll 50s linear infinite;
-  will-change: transform;
+.reviews-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-12);
 }
 
-@keyframes testimonials-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@media (min-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.testimonial-item {
-  flex-shrink: 0;
-  width: 320px;
+@media (min-width: 1024px) {
+  .reviews-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.review-card {
   background: var(--bg-primary);
   border-radius: var(--radius-2xl);
-  padding: var(--space-6);
+  padding: var(--space-8);
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-light);
   transition: all var(--transition-normal);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.testimonial-item::before {
+.review-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -930,54 +938,54 @@ Styled exactly like product showcase
   background: var(--bg-gradient-primary);
 }
 
-.testimonial-item:hover {
-  transform: translateY(-8px);
+.review-card:hover {
+  transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
   border-color: var(--border-accent);
 }
 
-.testimonial-content {
+.review-rating {
   text-align: center;
+  margin-bottom: var(--space-4);
 }
 
 .stars {
   font-size: var(--font-lg);
   color: #FFD700;
-  margin-bottom: var(--space-4);
   letter-spacing: 2px;
 }
 
-.testimonial-content p {
-  font-size: var(--font-sm);
-  line-height: 1.6;
+.review-text {
+  font-size: var(--font-base);
+  line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: var(--space-6);
   font-style: italic;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
+  flex-grow: 1;
+  text-align: center;
 }
 
-.testimonial-author {
-  border-top: 1px solid var(--border-light);
+.reviewer-info {
+  text-align: center;
   padding-top: var(--space-4);
+  border-top: 1px solid var(--border-light);
+  margin-top: auto;
 }
 
-.testimonial-author strong {
-  display: block;
+.reviewer-name {
   font-size: var(--font-base);
   font-weight: var(--weight-semibold);
   color: var(--text-primary);
-  margin-bottom: var(--space-1);
+  margin-bottom: var(--space-2);
 }
 
-.testimonial-author span {
+.reviewer-location {
   font-size: var(--font-sm);
   color: var(--text-muted);
   font-weight: var(--weight-medium);
 }
 
-
+/* 
 ========================================
 CONTACT FORM SECTION
 Modern form design with enhanced UX
