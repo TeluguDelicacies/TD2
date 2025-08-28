@@ -659,7 +659,135 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
-    <script type="module" src="sales-dynamic.js"></script>
+    
+    <!-- Static Product Functionality -->
+    <script>
+        // Sales Page Functionality - Static Version
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sales page loaded');
+            
+            // Category filtering functionality
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const productCards = document.querySelectorAll('.product-shop-card');
+            
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const selectedCategory = this.dataset.category;
+                    console.log('Category selected:', selectedCategory);
+                    
+                    // Update active tab
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    productCards.forEach(card => {
+                        if (selectedCategory === 'all' || card.dataset.category === selectedCategory) {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.3s ease-out';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Info toggle functionality
+            const infoButtons = document.querySelectorAll('.info-toggle-btn');
+            const overlay = document.getElementById('infoOverlay');
+            
+            if (overlay) {
+                const overlayBody = document.getElementById('overlayBody');
+                const closeOverlay = document.getElementById('closeOverlay');
+                
+                infoButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        console.log('Info button clicked');
+                        
+                        const card = this.closest('.product-shop-card');
+                        const descriptionContent = card.querySelector('.description-text-content');
+                        const productName = card.querySelector('.product-name').textContent;
+                        const teluguName = card.querySelector('.telugu-name');
+                        
+                        // Update modal header
+                        document.getElementById('modalTitle').textContent = productName;
+                        if (teluguName) {
+                            document.getElementById('modalTeluguName').textContent = teluguName.textContent;
+                            document.getElementById('modalTeluguName').style.display = 'block';
+                        } else {
+                            document.getElementById('modalTeluguName').style.display = 'none';
+                        }
+                        
+                        // Create overlay content
+                        if (descriptionContent && overlayBody) {
+                            overlayBody.innerHTML = `
+                                <div class="product-details">
+                                    <h4>Product Details</h4>
+                                    <div class="product-description">
+                                        ${descriptionContent.innerHTML}
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        
+                        // Show overlay
+                        overlay.classList.remove('hidden');
+                        
+                        // Focus management for accessibility
+                        if (closeOverlay) {
+                            closeOverlay.focus();
+                        }
+                    });
+                });
+                
+                // Close overlay functionality
+                function closeOverlayModal() {
+                    console.log('Closing overlay');
+                    overlay.classList.add('hidden');
+                }
+                
+                if (closeOverlay) {
+                    closeOverlay.addEventListener('click', closeOverlayModal);
+                }
+                
+                // Close overlay when clicking backdrop
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay || e.target.classList.contains('overlay-backdrop')) {
+                        closeOverlayModal();
+                    }
+                });
+                
+                // Close overlay with Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+                        closeOverlayModal();
+                    }
+                });
+            }
+            
+            // Quantity dropdown and price update functionality
+            const quantityDropdowns = document.querySelectorAll('.quantity-dropdown');
+            quantityDropdowns.forEach(dropdown => {
+                dropdown.addEventListener('change', function() {
+                    const selectedOption = this.options[this.selectedIndex];
+                    const price = selectedOption.dataset.price;
+                    const card = this.closest('.product-shop-card');
+                    const priceDisplay = card.querySelector('.current-price');
+                    
+                    if (priceDisplay && price) {
+                        priceDisplay.textContent = '₹' + price;
+                        console.log('Price updated to:', price);
+                    }
+                });
+            });
+            
+            console.log('Sales page functionality initialized');
+        });
+    </script>
+</body>
+</html>
 
     <!-- Info Overlay Modal -->
     <div id="infoOverlay" class="info-overlay hidden">
@@ -677,152 +805,3 @@
             </div>
         </div>
     </div>
-    
-    <!-- Shop Interface JavaScript -->
-    <script>
-        // Shop Interface Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Category filtering functionality
-            const categoryTabs = document.querySelectorAll('.category-tab');
-            const productCards = document.querySelectorAll('.product-shop-card');
-            
-            categoryTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const selectedCategory = this.dataset.category;
-                    
-                    // Update active tab
-                    categoryTabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter products
-                    productCards.forEach(card => {
-                        if (selectedCategory === 'all' || card.dataset.category === selectedCategory) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // Info toggle functionality
-            const infoButtons = document.querySelectorAll('.info-toggle-btn');
-            const overlay = document.getElementById('infoOverlay');
-            const overlayBody = document.getElementById('overlayBody');
-            const closeOverlay = document.getElementById('closeOverlay');
-            
-            infoButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const card = this.closest('.product-shop-card');
-                    const descriptionContent = card.querySelector('.description-text-content');
-                    const productName = card.querySelector('.product-name').textContent;
-                    const teluguName = card.querySelector('.telugu-name').textContent;
-                    
-                    // Update modal header
-                    document.getElementById('modalTitle').textContent = productName;
-                    document.getElementById('modalTeluguName').textContent = teluguName;
-                    
-                    // Create overlay content
-                    overlayBody.innerHTML = `
-                        <div class="product-details">
-                            <h4>Product Details</h4>
-                            <div class="product-description">
-                                ${descriptionContent.innerHTML}
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Show overlay
-                    overlay.classList.remove('hidden');
-                    
-                    // Focus management for accessibility
-                    document.getElementById('closeOverlay').focus();
-                });
-            });
-            
-            // Close overlay functionality
-            function closeOverlayModal() {
-                overlay.classList.add('hidden');
-                
-                // Announce to screen readers
-                const announcement = document.createElement('div');
-                announcement.setAttribute('aria-live', 'polite');
-                announcement.setAttribute('aria-atomic', 'true');
-                announcement.textContent = 'Product information dialog closed';
-                announcement.style.position = 'absolute';
-                announcement.style.left = '-10000px';
-                document.body.appendChild(announcement);
-                setTimeout(() => document.body.removeChild(announcement), 1000);
-            }
-            
-            closeOverlay.addEventListener('click', closeOverlayModal);
-            
-            // Close overlay when clicking backdrop
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay || e.target.classList.contains('overlay-backdrop')) {
-                    closeOverlayModal();
-                }
-            });
-            
-            // Close overlay with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
-                    closeOverlayModal();
-                }
-            });
-            
-            // Quantity dropdown and price update functionality
-            const quantityDropdowns = document.querySelectorAll('.quantity-dropdown');
-            quantityDropdowns.forEach(dropdown => {
-                dropdown.addEventListener('change', function() {
-                    const selectedOption = this.options[this.selectedIndex];
-                    const price = selectedOption.dataset.price;
-                    const card = this.closest('.product-shop-card');
-                    const priceDisplay = card.querySelector('.current-price');
-                    
-                    priceDisplay.textContent = '₹' + price;
-                    
-                    // Announce price change to screen readers
-                    const announcement = document.createElement('div');
-                    announcement.setAttribute('aria-live', 'polite');
-                    announcement.textContent = `Price updated to ${price} rupees`;
-                    announcement.style.position = 'absolute';
-                    announcement.style.left = '-10000px';
-                    document.body.appendChild(announcement);
-                    setTimeout(() => document.body.removeChild(announcement), 1000);
-                });
-            });
-            
-            // Initialize all descriptions as hidden
-            const allDescriptions = document.querySelectorAll('.description-text-content');
-            allDescriptions.forEach(desc => {
-                desc.classList.add('hidden');
-            });
-            
-            // Focus trap for modal accessibility
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Tab' && !overlay.classList.contains('hidden')) {
-                    const focusableElements = overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                    const firstElement = focusableElements[0];
-                    const lastElement = focusableElements[focusableElements.length - 1];
-                    
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstElement) {
-                            lastElement.focus();
-                            e.preventDefault();
-                        }
-                    } else {
-                        if (document.activeElement === lastElement) {
-                            firstElement.focus();
-                            e.preventDefault();
-                        }
-                    }
-                }
-            });
-            
-            console.log('Shop interface initialized successfully');
-        });
-    </script>
-</body>
-</html>
