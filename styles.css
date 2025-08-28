@@ -886,10 +886,98 @@ Modern card design with enhanced styling
 
 /* 
 ========================================
-CUSTOMER REVIEWS SECTION
-Clean, modern testimonial grid
+TESTIMONIALS SECTION
+Styled exactly like product showcase
+========================================
+*/
+.testimonials-showcase {
+  padding: var(--space-16) 0;
+  background: var(--bg-secondary);
+}
 
-/* 
+.testimonials-scroll {
+  display: flex;
+  gap: var(--space-6);
+  animation: testimonials-scroll 50s linear infinite;
+  will-change: transform;
+}
+
+@keyframes testimonials-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.testimonial-item {
+  flex-shrink: 0;
+  width: 320px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--bg-gradient-primary);
+}
+
+.testimonial-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--border-accent);
+}
+
+.testimonial-content {
+  text-align: center;
+}
+
+.stars {
+  font-size: var(--font-lg);
+  color: #FFD700;
+  margin-bottom: var(--space-4);
+  letter-spacing: 2px;
+}
+
+.testimonial-content p {
+  font-size: var(--font-sm);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  font-style: italic;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.testimonial-author {
+  border-top: 1px solid var(--border-light);
+  padding-top: var(--space-4);
+}
+
+.testimonial-author strong {
+  display: block;
+  font-size: var(--font-base);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.testimonial-author span {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  font-weight: var(--weight-medium);
+}
+
+
 ========================================
 CONTACT FORM SECTION
 Modern form design with enhanced UX

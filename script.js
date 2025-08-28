@@ -459,6 +459,131 @@ function initializeProductShowcaseControls() {
 
 /*
 ========================================
+SHOWCASE MODE MANAGEMENT
+Intelligent automatic/manual mode switching
+========================================
+*/
+
+/**
+ * Initializes the intelligent showcase mode system
+ * Handles automatic/manual mode transitions
+ */
+function initializeShowcaseMode() {
+    const productScroll = document.getElementById('productScroll');
+    const scrollContainer = productScroll?.parentElement;
+    if (!productScroll || !scrollContainer) return;
+    
+    let isManualMode = false;
+    let autoReturnTimeout;
+    let hoverTimeout;
+    
+    // Configuration
+    const config = {
+        autoReturnDelay: 3000,
+        hoverActivationDelay: 500,
+        transitionDuration: 300
+    };
+    
+    /**
+     * Switches to manual mode
+     */
+    function activateManualMode() {
+        if (isManualMode) return;
+        
+        isManualMode = true;
+        productScroll.style.animationPlayState = 'paused';
+        scrollContainer.style.cursor = 'grab';
+        
+        // Clear any existing timeout
+        if (autoReturnTimeout) {
+            clearTimeout(autoReturnTimeout);
+        }
+        
+        console.log('Manual mode activated');
+    }
+    
+    /**
+     * Returns to automatic mode
+     */
+    function activateAutoMode() {
+        if (!isManualMode) return;
+        
+        isManualMode = false;
+        productScroll.style.animationPlayState = 'running';
+        scrollContainer.style.cursor = '';
+        
+        console.log('Auto mode activated');
+    }
+    
+    /**
+     * Sets up auto-return timer
+     */
+    function setupAutoReturn() {
+        if (autoReturnTimeout) {
+            clearTimeout(autoReturnTimeout);
+        }
+        
+        autoReturnTimeout = setTimeout(() => {
+            activateAutoMode();
+        }, config.autoReturnDelay);
+    }
+    
+    // Hover intent detection (desktop)
+    scrollContainer.addEventListener('mouseenter', () => {
+        hoverTimeout = setTimeout(() => {
+            activateManualMode();
+        }, config.hoverActivationDelay);
+    });
+    
+    scrollContainer.addEventListener('mouseleave', () => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout);
+        }
+        setupAutoReturn();
+    });
+    
+    // Touch intent detection (mobile)
+    scrollContainer.addEventListener('touchstart', () => {
+        activateManualMode();
+    }, { passive: true });
+    
+    scrollContainer.addEventListener('touchend', () => {
+        setupAutoReturn();
+    }, { passive: true });
+    
+    // Scroll wheel intent detection
+    scrollContainer.addEventListener('wheel', (e) => {
+        activateManualMode();
+        scrollContainer.scrollLeft += e.deltaY * 0.5;
+        setupAutoReturn();
+        e.preventDefault();
+    });
+    
+    // Focus intent detection (accessibility)
+    scrollContainer.addEventListener('focus', () => {
+        activateManualMode();
+    });
+    
+    scrollContainer.addEventListener('blur', () => {
+        setupAutoReturn();
+    });
+    
+    // Manual scrolling detection
+    let lastScrollLeft = scrollContainer.scrollLeft;
+    scrollContainer.addEventListener('scroll', () => {
+        const currentScrollLeft = scrollContainer.scrollLeft;
+        
+        if (Math.abs(currentScrollLeft - lastScrollLeft) > 5) {
+            activateManualMode();
+            setupAutoReturn();
+        }
+        
+        lastScrollLeft = currentScrollLeft;
+    }, { passive: true });
+}
+
+/*
+========================================
 FORM VALIDATION SYSTEM
 Real-time form validation with user feedback
 ========================================
@@ -657,3 +782,294 @@ function enhanceAccessibility() {
             }
         });
     });
+}
+
+/**
+ * Gets the next form field for keyboard navigation
+ * @param {HTMLElement} currentField - The current form field
+ * @returns {HTMLElement|null} - The next form field or null
+ */
+function getNextFormField(currentField) {
+    const form = currentField.closest('form');
+    const fields = Array.from(form.querySelectorAll('input, select, textarea'));
+    const currentIndex = fields.indexOf(currentField);
+    return fields[currentIndex + 1] || null;
+}
+
+/*
+========================================
+MOBILE MENU FUNCTIONALITY
+Enhanced mobile navigation (for future use)
+========================================
+*/
+
+/**
+ * Initializes mobile menu functionality
+ * Currently handles navigation button interactions
+ */
+function initializeMobileInteractions() {
+    const navButtons = document.querySelectorAll('.nav-btn');
+    
+    navButtons.forEach(btn => {
+        // Add touch feedback
+        btn.addEventListener('touchstart', () => {
+            btn.style.transform = 'scale(0.95)';
+        });
+        
+        btn.addEventListener('touchend', () => {
+            btn.style.transform = '';
+        });
+        
+        // Handle click events
+        btn.addEventListener('click', () => {
+            // Add ripple effect or other feedback if desired
+            addClickFeedback(btn);
+        });
+    });
+}
+
+/**
+ * Adds visual feedback for button clicks
+ * @param {HTMLElement} button - The button element
+ */
+function addClickFeedback(button) {
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = '';
+    }, 100);
+}
+
+/**
+ * Enables smooth horizontal scrolling with momentum
+ * @param {HTMLElement} container - The scroll container
+ */
+function enableSmoothScrolling(container) {
+    let isScrolling = false;
+    let scrollVelocity = 0;
+    let lastScrollLeft = container.scrollLeft;
+    let lastTime = Date.now();
+    
+    function updateMomentum() {
+        if (isScrolling) {
+            const now = Date.now();
+            const deltaTime = now - lastTime;
+            const deltaScroll = container.scrollLeft - lastScrollLeft;
+            
+            scrollVelocity = deltaScroll / deltaTime;
+            lastScrollLeft = container.scrollLeft;
+            lastTime = now;
+            
+            requestAnimationFrame(updateMomentum);
+        } else if (Math.abs(scrollVelocity) > 0.1) {
+            // Apply momentum scrolling
+            container.scrollLeft += scrollVelocity * 16; // 16ms frame time
+            scrollVelocity *= 0.95; // Friction
+            requestAnimationFrame(updateMomentum);
+        }
+    }
+    
+    container.addEventListener('touchstart', () => {
+        isScrolling = true;
+        scrollVelocity = 0;
+        lastScrollLeft = container.scrollLeft;
+        lastTime = Date.now();
+        updateMomentum();
+    }, { passive: true });
+    
+    container.addEventListener('touchend', () => {
+        isScrolling = false;
+    }, { passive: true });
+}
+
+/*
+========================================
+MAIN INITIALIZATION
+Sets up all functionality when the page loads
+========================================
+*/
+
+/*
+========================================
+MOBILE MENU FUNCTIONALITY
+Hamburger menu toggle and navigation
+========================================
+*/
+
+/**
+ * Toggles the mobile navigation menu visibility
+ * Animates hamburger icon and shows/hides menu
+ */
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    // Toggle menu visibility
+    const isVisible = mobileNav.style.display === 'block';
+    
+    if (isVisible) {
+        // Hide menu
+        mobileNav.style.display = 'none';
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore page scrolling
+    } else {
+        // Show menu
+        mobileNav.style.display = 'block';
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent page scrolling
+    }
+}
+
+/**
+ * Closes the mobile navigation menu
+ * Used when navigation buttons are clicked
+ */
+function closeMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    // Hide menu and reset hamburger icon
+    mobileNav.style.display = 'none';
+    hamburgerBtn.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restore page scrolling
+}
+
+/**
+ * Initializes click-outside-to-close functionality for mobile menu
+ */
+function initializeClickOutsideClose() {
+    document.addEventListener('click', (event) => {
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        
+        if (!mobileNav || !hamburgerBtn) return;
+        
+        // Check if menu is open and click is outside menu and hamburger button
+        const isMenuOpen = mobileNav.style.display === 'block';
+        const isClickOnMenu = mobileNav.contains(event.target);
+        const isClickOnHamburger = hamburgerBtn.contains(event.target);
+        
+        if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
+            closeMobileMenu();
+        }
+    });
+}
+
+========================================
+TESTIMONIALS SHOWCASE CONTROLS
+Interactive controls for the testimonials ticker
+========================================
+*/
+
+/**
+ * Initializes hover and touch controls for the testimonials showcase
+ * Pauses animation on interaction for better user experience
+ */
+function initializeTestimonialsControls() {
+    const testimonialsScroll = document.getElementById('testimonialsScroll');
+    const scrollContainer = testimonialsScroll?.parentElement;
+    if (!testimonialsScroll) {
+        console.log('Testimonials scroll element not found - may not be loaded yet');
+        return;
+    }
+    if (!scrollContainer) {
+        console.log('Testimonials scroll container not found');
+        return;
+    }
+    
+    console.log('Testimonials controls initialized successfully');
+    
+    // Ensure ticker animation is running by default
+    testimonialsScroll.style.animationPlayState = 'running';
+    
+    // Pause animation on mouse hover for better desktop UX
+    scrollContainer.addEventListener('mouseenter', () => {
+        testimonialsScroll.style.animationPlayState = 'paused';
+    });
+    
+    // Resume animation when mouse leaves
+    scrollContainer.addEventListener('mouseleave', () => {
+        testimonialsScroll.style.animationPlayState = 'running';
+    });
+    
+    // Touch interaction handling
+    let isUserInteracting = false;
+    let interactionTimeout;
+    
+    const handleInteractionStart = () => {
+        if (!isUserInteracting) {
+            testimonialsScroll.style.animationPlayState = 'paused';
+            isUserInteracting = true;
+        }
+        
+        if (interactionTimeout) {
+            clearTimeout(interactionTimeout);
+        }
+    };
+    
+    const handleInteractionEnd = () => {
+        interactionTimeout = setTimeout(() => {
+            testimonialsScroll.style.animationPlayState = 'running';
+            isUserInteracting = false;
+        }, 2000);
+    };
+    
+    // Touch events
+    scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
+    scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
+    scrollContainer.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
+}
+
+/*
+========================================
+EVENT LISTENERS
+Set up main event listeners when DOM is ready
+========================================
+*/
+
+// Initialize everything when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeWebsite);
+
+// Handle page visibility changes (for performance optimization)
+document.addEventListener('visibilitychange', () => {
+    const productScroll = document.getElementById('productScroll');
+    const testimonialsScroll = document.getElementById('testimonialsScroll');
+    
+    if (productScroll) {
+        if (document.hidden) {
+            // Page is hidden - pause animations to save resources
+            productScroll.style.animationPlayState = 'paused';
+        } else {
+            // Page is visible - resume ticker animation
+            productScroll.style.animationPlayState = 'running';
+        }
+    }
+    
+    if (testimonialsScroll) {
+        if (document.hidden) {
+            testimonialsScroll.style.animationPlayState = 'paused';
+        } else {
+            testimonialsScroll.style.animationPlayState = 'running';
+        }
+    }
+});
+
+// Handle window resize events
+
+// Handle connection changes (for progressive enhancement)
+if ('connection' in navigator) {
+    navigator.connection.addEventListener('change', () => {
+        // Could adjust image quality or disable heavy animations on slow connections
+        console.log('Connection changed:', navigator.connection.effectiveType);
+    });
+}
+
+/*
+========================================
+UTILITY FUNCTIONS
+Helper functions for various website features
+========================================
+*/
