@@ -1024,10 +1024,7 @@ function initializeWebsite() {
     // Initialize all interactive features
     initializeScrollAnimations();
     initializeProductShowcaseControls();
-    
-    // Load testimonials dynamically
-    loadTestimonials();
-    
+    initializeTestimonialsControls();
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
