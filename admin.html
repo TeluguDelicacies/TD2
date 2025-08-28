@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Telugu Delicacies</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="admin-container">
+            <div class="admin-header-content">
+                <h1><i class="fas fa-cog"></i> Telugu Delicacies Admin</h1>
+                <div class="admin-nav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="sales.html" class="nav-link">
+                        <i class="fas fa-shopping-bag"></i> Shop
+                    </a>
+                    <button id="refreshData" class="refresh-btn">
+                        <i class="fas fa-refresh"></i> Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <div class="admin-container">
+            
+            <!-- Admin Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total Products</h3>
+                        <span class="card-number" id="totalProducts">0</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Categories</h3>
+                        <span class="card-number" id="totalCategories">0</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <div class="card-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Active Products</h3>
+                        <span class="card-number" id="activeProducts">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="admin-actions">
+                <button class="action-btn primary" id="addProductBtn">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+                <button class="action-btn secondary" id="manageCategoriesBtn">
+                    <i class="fas fa-folder"></i> Manage Categories
+                </button>
+            </div>
+
+            <!-- Products Management Table -->
+            <div class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-inventory"></i> Products Management</h2>
+                    <div class="section-filters">
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                        </select>
+                        <input type="text" id="searchProducts" placeholder="Search products..." class="search-input">
+                    </div>
+                </div>
+
+                <div class="products-table-container">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Pricing Options</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Dynamic content will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Product</h3>
+                <button class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="productForm" class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productNameTelugu">Telugu Name</label>
+                        <input type="text" id="productNameTelugu" name="name_telugu">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productCategory">Category *</label>
+                    <select id="productCategory" name="category_id" required>
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea id="productDescription" name="description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImage">Image URL</label>
+                    <input type="url" id="productImage" name="image_url" placeholder="https://example.com/image.jpg">
+                </div>
+
+                <div class="form-group">
+                    <label>Product Features</label>
+                    <div id="featuresContainer">
+                        <div class="feature-input">
+                            <input type="text" placeholder="Enter feature" class="feature-field">
+                            <button type="button" class="remove-feature">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" id="addFeature" class="add-btn">
+                        <i class="fas fa-plus"></i> Add Feature
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label>Pricing Options</label>
+                    <div id="pricingContainer">
+                        <div class="pricing-input">
+                            <input type="text" placeholder="Quantity (e.g., 100g)" class="quantity-field">
+                            <input type="number" placeholder="Price" class="price-field" step="0.01" min="0">
+                            <button type="button" class="remove-pricing">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" id="addPricing" class="add-btn">
+                        <i class="fas fa-plus"></i> Add Pricing Option
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="productActive" name="is_active" checked>
+                        <span class="checkmark"></span>
+                        Product is active
+                    </label>
+                </div>
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn secondary" id="cancelBtn">Cancel</button>
+                <button type="submit" form="productForm" class="btn primary" id="saveBtn">
+                    <i class="fas fa-save"></i> Save Product
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Success/Error Toast -->
+    <div id="toast" class="toast hidden">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>
