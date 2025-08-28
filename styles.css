@@ -606,7 +606,6 @@ Enhanced product cards and modern styling
   padding: var(--space-4) 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  position: relative;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -615,20 +614,19 @@ Enhanced product cards and modern styling
 
 .product-scroll {
   display: flex;
-  gap: var(--space-8);
-  animation: scroll-testimonials 45s linear infinite;
+  gap: var(--space-6);
+  animation: scroll-ticker 40s linear infinite;
   will-change: transform;
-  width: max-content;
 }
 
 @keyframes scroll-ticker {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% + 100vw)); }
+  100% { transform: translateX(-50%); }
 }
 
 .product-item {
-  flex: 0 0 320px;
-  width: 320px;
+  flex-shrink: 0;
+  width: 200px;
   background: var(--bg-primary);
   border-radius: var(--radius-2xl);
   padding: var(--space-6);
@@ -1182,6 +1180,13 @@ Compact footer with Google Maps integration
   color: var(--color-accent-blue);
   margin-bottom: 0;
   font-style: italic;
+}
+
+.fssai-license {
+  font-size: var(--font-sm);
+  color: var(--color-gray-400);
+  font-weight: var(--weight-medium);
+  margin-bottom: var(--space-2);
 }
 
 .footer-contact h4,
