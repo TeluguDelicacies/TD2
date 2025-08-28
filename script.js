@@ -966,7 +966,9 @@ function initializeWebsite() {
     // Initialize all interactive features
     initializeScrollAnimations();
     initializeProductShowcaseControls();
-    initializeTestimonialsControls();
+    
+    // Testimonials will be initialized after content is loaded via fetch
+    // See the script in index.html that calls initializeTestimonialsControls()
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
@@ -1026,12 +1028,16 @@ Interactive controls for the testimonials ticker
 function initializeTestimonialsControls() {
     const testimonialsScroll = document.getElementById('testimonialsScroll');
     const scrollContainer = testimonialsScroll?.parentElement;
-    if (!testimonialsScroll || !scrollContainer) {
-        console.log('Testimonials scroll elements not found');
+    if (!testimonialsScroll) {
+        console.log('Testimonials scroll element not found - may not be loaded yet');
+        return;
+    }
+    if (!scrollContainer) {
+        console.log('Testimonials scroll container not found');
         return;
     }
     
-    console.log('Initializing testimonials controls...');
+    console.log('Testimonials controls initialized successfully');
     
     // Ensure ticker animation is running by default
     testimonialsScroll.style.animationPlayState = 'running';
@@ -1039,13 +1045,11 @@ function initializeTestimonialsControls() {
     // Pause animation on mouse hover for better desktop UX
     scrollContainer.addEventListener('mouseenter', () => {
         testimonialsScroll.style.animationPlayState = 'paused';
-        console.log('Testimonials animation paused');
     });
     
     // Resume animation when mouse leaves
     scrollContainer.addEventListener('mouseleave', () => {
         testimonialsScroll.style.animationPlayState = 'running';
-        console.log('Testimonials animation resumed');
     });
     
     // Touch interaction handling
@@ -1056,7 +1060,6 @@ function initializeTestimonialsControls() {
         if (!isUserInteracting) {
             testimonialsScroll.style.animationPlayState = 'paused';
             isUserInteracting = true;
-            console.log('Testimonials touch interaction started');
         }
         
         if (interactionTimeout) {
@@ -1068,7 +1071,6 @@ function initializeTestimonialsControls() {
         interactionTimeout = setTimeout(() => {
             testimonialsScroll.style.animationPlayState = 'running';
             isUserInteracting = false;
-            console.log('Testimonials touch interaction ended');
         }, 2000);
     };
     
@@ -1076,8 +1078,6 @@ function initializeTestimonialsControls() {
     scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
     scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
     scrollContainer.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
-    
-    console.log('Testimonials controls initialized successfully');
 }
 
 /*

@@ -722,6 +722,11 @@ Crafted with the finest ingredients and meticulous care, our products capture th
         </div>
     </section>
 
+    <!-- Customer Testimonials Section (Loaded from external file) -->
+    <section id="testimonials-placeholder">
+        <!-- Testimonials will be loaded here -->
+    </section>
+
     <!-- 
     ========================================
     CALL TO ACTION SECTION
@@ -975,7 +980,32 @@ Crafted with the finest ingredients and meticulous care, our products capture th
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Load testimonials content -->
+    <script>
+        // Load testimonials HTML content
+        fetch('testimonials.html')
+            .then(response => response.text())
+            .then(data => {
+                // Extract just the testimonials section content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const testimonialsSection = doc.querySelector('.testimonials-showcase');
+                
+                if (testimonialsSection) {
+                    document.getElementById('testimonials-placeholder').innerHTML = testimonialsSection.outerHTML;
+                    
+                    // Initialize testimonials controls after content is loaded
+                    setTimeout(() => {
+                        initializeTestimonialsControls();
+                    }, 100);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading testimonials:', error);
+            });
+    </script>
+
+    <!-- Main JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
