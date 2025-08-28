@@ -735,7 +735,6 @@
                     
                     // Show overlay
                     overlay.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden'; // Prevent background scroll
                     
                     // Focus management for accessibility
                     document.getElementById('closeOverlay').focus();
@@ -745,7 +744,6 @@
             // Close overlay functionality
             function closeOverlayModal() {
                 overlay.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Restore scroll
                 
                 // Announce to screen readers
                 const announcement = document.createElement('div');

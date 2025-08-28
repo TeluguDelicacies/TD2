@@ -338,7 +338,6 @@ class SalesPageManager {
     const overlay = document.getElementById('infoOverlay')
     if (overlay) {
       overlay.classList.add('hidden')
-      document.body.style.overflow = 'auto'
       
       this.announceToScreenReader('Product information dialog closed')
     }
