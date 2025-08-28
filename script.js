@@ -1024,7 +1024,7 @@ function initializeWebsite() {
     // Initialize all interactive features
     initializeScrollAnimations();
     initializeProductShowcaseControls();
-    initializeTestimonialsControls();
+    initializeTestimonialsControls(); // Direct call since testimonials are now in main HTML
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
@@ -1051,6 +1051,9 @@ function initializeWebsite() {
     
     // Initialize click outside to close functionality
     initializeClickOutsideClose();
+    
+    // Load testimonials dynamically (now disabled since they're in main HTML)
+    // loadTestimonials();
     
     // Handle escape key to close mobile menu
     document.addEventListener('keydown', (e) => {
