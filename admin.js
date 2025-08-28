@@ -33,13 +33,14 @@ class AdminPanel {
 
   async init() {
     try {
-      // Check authentication first
       const isAuthenticated = await this.checkAuthentication()
       if (!isAuthenticated) {
+        console.log('Authentication failed, stopping admin panel initialization')
         return // Stop initialization if not authenticated
       }
       
       this.showLoading()
+      console.log('Loading admin data...')
       await this.loadData()
       this.renderDashboard()
       this.renderProductsTable()
@@ -49,6 +50,7 @@ class AdminPanel {
       console.log('Admin panel initialized successfully')
     } catch (error) {
       console.error('Error initializing admin panel:', error)
+      console.error('Detailed error:', error.message, error.stack)
       this.showToast('Failed to initialize admin panel: ' + error.message, 'error')
       this.hideLoading()
     }
