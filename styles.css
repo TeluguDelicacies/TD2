@@ -892,14 +892,19 @@ Styled exactly like product showcase
 */
 .testimonials-showcase {
   padding: var(--space-16) 0;
-  background: var(--bg-tertiary);
+  background: var(--bg-secondary);
 }
 
 .testimonials-scroll {
   display: flex;
   gap: var(--space-6);
-  animation: scroll-ticker 50s linear infinite;
+  animation: testimonials-scroll 50s linear infinite;
   will-change: transform;
+}
+
+@keyframes testimonials-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .testimonial-item {

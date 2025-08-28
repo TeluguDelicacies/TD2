@@ -967,8 +967,9 @@ function initializeWebsite() {
     initializeScrollAnimations();
     initializeProductShowcaseControls();
     
-    // Testimonials will be initialized after content is loaded via fetch
-    // See the script in index.html that calls initializeTestimonialsControls()
+    // Load testimonials dynamically
+    loadTestimonials();
+    
     initializeImageOptimizations();
     enhanceAccessibility();
     initializeMobileInteractions();
