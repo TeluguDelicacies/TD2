@@ -97,10 +97,27 @@ class AdminPanel {
   async loadData() {
     try {
       console.log('Starting to load categories and products...')
-      const [categoriesData, productsData] = await Promise.all([
-        getCategories(),
-        getProductsForDisplay()
-      ])
+      
+      // Load categories and products concurrently with enhanced error handling
+      let categoriesData, productsData;
+      try {
+        [categoriesData, productsData] = await Promise.all([
+          getCategories(),
+          getProductsForDisplay()
+        ]);
+        
+        // Log raw data returned from Supabase
+        console.log('Admin: Raw categories data from Supabase:', categoriesData);
+        console.log('Admin: Raw products data from Supabase:', productsData);
+      } catch (fetchError) {
+        console.error('Admin: Error during data fetching from Supabase:', fetchError);
+        console.error('Admin: Fetch error details:', {
+          message: fetchError.message,
+          stack: fetchError.stack,
+          name: fetchError.name
+        });
+        throw fetchError;
+      }
       
       this.categories = categoriesData
       this.products = productsData
