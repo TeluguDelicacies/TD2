@@ -17,6 +17,8 @@ import {
   formatPrice 
 } from './lib/supabase.js'
 
+import { AuthManager } from './auth.js'
+
 class AdminPanel {
   constructor() {
     this.products = []
@@ -24,12 +26,16 @@ class AdminPanel {
     this.currentEditingProduct = null
     this.currentFilter = 'all'
     this.searchTerm = ''
+    this.currentUser = null
     
     this.init()
   }
 
   async init() {
     try {
+      // Check authentication first
+      await this.checkAuthentication()
+      
       this.showLoading()
       await this.loadData()
       this.renderDashboard()
@@ -40,8 +46,39 @@ class AdminPanel {
       console.log('Admin panel initialized successfully')
     } catch (error) {
       console.error('Error initializing admin panel:', error)
-      this.showToast('Failed to initialize admin panel', 'error')
+      if (error.message !== 'Authentication required') {
+        this.showToast('Failed to initialize admin panel: ' + error.message, 'error')
+      }
       this.hideLoading()
+    }
+  }
+
+  async checkAuthentication() {
+    try {
+      const session = await AuthManager.checkAuthStatus()
+      
+      if (!session) {
+        console.log('No active session found, redirecting to login')
+        window.location.href = 'login.html'
+        throw new Error('Authentication required')
+      }
+      
+      this.currentUser = session.user
+      console.log('Authenticated user:', this.currentUser.email)
+      
+      // Update UI with user info
+      this.updateUserInfo()
+      
+    } catch (error) {
+      console.error('Authentication check failed:', error)
+      throw error
+    }
+  }
+
+  updateUserInfo() {
+    const userEmail = document.getElementById('userEmail')
+    if (userEmail && this.currentUser) {
+      userEmail.textContent = this.currentUser.email
     }
   }
 
@@ -173,6 +210,11 @@ class AdminPanel {
     // Refresh button
     document.getElementById('refreshData')?.addEventListener('click', () => {
       this.refresh()
+    })
+
+    // Logout button
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      this.handleLogout()
     })
 
     // Modal events
@@ -440,6 +482,20 @@ class AdminPanel {
     } catch (error) {
       console.error('Error refreshing data:', error)
       this.showToast('Failed to refresh data', 'error')
+    }
+  }
+
+  async handleLogout() {
+    if (confirm('Are you sure you want to sign out?')) {
+      try {
+        this.showLoading()
+        await AuthManager.signOut()
+        // Redirect happens in AuthManager.signOut()
+      } catch (error) {
+        console.error('Error signing out:', error)
+        this.showToast('Failed to sign out: ' + error.message, 'error')
+        this.hideLoading()
+      }
     }
   }
 
