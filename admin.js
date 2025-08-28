@@ -33,14 +33,13 @@ class AdminPanel {
 
   async init() {
     try {
+      // Check authentication first
       const isAuthenticated = await this.checkAuthentication()
       if (!isAuthenticated) {
-        console.log('Authentication failed, stopping admin panel initialization')
         return // Stop initialization if not authenticated
       }
       
       this.showLoading()
-      console.log('Loading admin data...')
       await this.loadData()
       this.renderDashboard()
       this.renderProductsTable()
@@ -50,7 +49,6 @@ class AdminPanel {
       console.log('Admin panel initialized successfully')
     } catch (error) {
       console.error('Error initializing admin panel:', error)
-      console.error('Detailed error:', error.message, error.stack)
       this.showToast('Failed to initialize admin panel: ' + error.message, 'error')
       this.hideLoading()
     }
@@ -97,6 +95,7 @@ class AdminPanel {
 
   async loadData() {
     try {
+      console.log('Starting to load categories and products...')
       const [categoriesData, productsData] = await Promise.all([
         getCategories(),
         getProductsForDisplay()
@@ -105,9 +104,12 @@ class AdminPanel {
       this.categories = categoriesData
       this.products = productsData
       
-      console.log('Loaded:', this.products.length, 'products and', this.categories.length, 'categories')
+      console.log('Successfully loaded:', this.products.length, 'products and', this.categories.length, 'categories')
+      console.log('Categories:', this.categories)
+      console.log('Products sample:', this.products.slice(0, 2))
     } catch (error) {
       console.error('Error loading data:', error)
+      console.error('Detailed data loading error:', error.message, error.stack)
       throw error
     }
   }
