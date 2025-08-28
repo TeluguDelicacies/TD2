@@ -984,12 +984,12 @@ function loadTestimonials() {
             return response.text();
         })
         .then(html => {
-            // Use DOMParser to properly parse the full HTML document
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
+            // Create temporary div to parse HTML content
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
             
             // Extract just the testimonials section content
-            const testimonialsSection = doc.querySelector('.testimonials-showcase');
+            const testimonialsSection = tempDiv.querySelector('.testimonials-showcase');
             if (testimonialsSection) {
                 // Replace placeholder with loaded content
                 testimonialsPlaceholder.outerHTML = testimonialsSection.outerHTML;
