@@ -41,6 +41,7 @@ class SalesPageManager {
 
   async loadData() {
     try {
+      console.log('Sales page: Starting to load categories and products...')
       // Load categories and products concurrently
       const [categoriesData, productsData] = await Promise.all([
         getCategories(),
@@ -50,9 +51,12 @@ class SalesPageManager {
       this.categories = categoriesData
       this.products = productsData
       
-      console.log('Loaded:', this.products.length, 'products and', this.categories.length, 'categories')
+      console.log('Sales page: Successfully loaded', this.products.length, 'products and', this.categories.length, 'categories')
+      console.log('Sales page categories:', this.categories)
+      console.log('Sales page products sample:', this.products.slice(0, 2))
     } catch (error) {
-      console.error('Error loading data from Supabase:', error)
+      console.error('Sales page: Error loading data from Supabase:', error)
+      console.error('Sales page: Detailed error:', error.message, error.stack)
       throw error
     }
   }
@@ -77,6 +81,9 @@ class SalesPageManager {
           <i class="fas fa-exclamation-triangle"></i>
           <h3>Unable to load products</h3>
           <p>${message}</p>
+          <p style="font-size: 0.875rem; color: #666; margin-top: 1rem;">
+            Check browser console for detailed error information.
+          </p>
           <button onclick="location.reload()" class="retry-btn">
             <i class="fas fa-refresh"></i> Try Again
           </button>

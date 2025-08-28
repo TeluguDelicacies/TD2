@@ -202,11 +202,15 @@ class AuthManager {
     try {
       const { data: { session }, error } = await supabase.auth.getSession()
       
+      console.log('supabase.auth.getSession data:', session)
+      console.log('supabase.auth.getSession error:', error)
+      
       if (error) {
         console.error('Error checking auth status:', error)
         return null
       }
       
+      console.log('Session status:', session ? 'Active' : 'No session')
       return session
     } catch (error) {
       console.error('Error in checkAuthStatus:', error)

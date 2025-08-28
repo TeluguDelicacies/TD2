@@ -55,8 +55,8 @@ class AdminPanel {
   }
 
   async checkAuthentication() {
-    try {
       const session = await AuthManager.checkAuthStatus()
+      console.log('AuthManager.checkAuthStatus returned session:', session)
       
       if (!session) {
         console.log('No active session found, redirecting to login')
@@ -74,7 +74,7 @@ class AdminPanel {
     } catch (error) {
       console.error('Authentication check failed:', error)
       window.location.href = 'login.html'
-      throw error
+      return false
     }
   }
 
@@ -94,6 +94,7 @@ class AdminPanel {
 
   async loadData() {
     try {
+      console.log('Starting to load categories and products...')
       const [categoriesData, productsData] = await Promise.all([
         getCategories(),
         getProductsForDisplay()
@@ -102,9 +103,12 @@ class AdminPanel {
       this.categories = categoriesData
       this.products = productsData
       
-      console.log('Loaded:', this.products.length, 'products and', this.categories.length, 'categories')
+      console.log('Successfully loaded:', this.products.length, 'products and', this.categories.length, 'categories')
+      console.log('Categories:', this.categories)
+      console.log('Products sample:', this.products.slice(0, 2))
     } catch (error) {
       console.error('Error loading data:', error)
+      console.error('Detailed data loading error:', error.message, error.stack)
       throw error
     }
   }
