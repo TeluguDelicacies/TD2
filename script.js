@@ -957,6 +957,64 @@ function initializeClickOutsideClose() {
         }
     });
 }
+
+/*
+========================================
+TESTIMONIALS LOADING AND INITIALIZATION
+Dynamic loading of testimonials from separate HTML file
+========================================
+*/
+
+/**
+ * Loads testimonials from separate HTML file and initializes controls
+ */
+function loadTestimonials() {
+    const testimonialsPlaceholder = document.getElementById('testimonials-placeholder');
+    if (!testimonialsPlaceholder) {
+        console.warn('Testimonials placeholder not found');
+        return;
+    }
+    
+    // Fetch testimonials HTML
+    fetch('testimonials.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(html => {
+            // Create a temporary div to parse the HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            
+            // Extract just the testimonials section content
+            const testimonialsSection = tempDiv.querySelector('.testimonials-showcase');
+            if (testimonialsSection) {
+                // Replace placeholder with loaded content
+                testimonialsPlaceholder.outerHTML = testimonialsSection.outerHTML;
+                
+                // Initialize controls after content is loaded
+                setTimeout(() => {
+                    initializeTestimonialsControls();
+                    console.log('Testimonials loaded and initialized successfully');
+                }, 100);
+            } else {
+                console.error('Testimonials section not found in loaded HTML');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading testimonials:', error);
+            // Show fallback content
+            testimonialsPlaceholder.innerHTML = `
+                <div class="container">
+                    <h2 class="section-title">Customer Reviews</h2>
+                    <p style="text-align: center; color: var(--text-muted);">Testimonials are temporarily unavailable.</p>
+                </div>
+            `;
+        });
+}
+
 /**
  * Main initialization function
  * Called when the DOM is fully loaded
