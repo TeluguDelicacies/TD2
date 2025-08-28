@@ -20,19 +20,37 @@
     <!-- 
     ========================================
     SHOP HEADER SECTION
-    Navigation with back button and category tabs
+    Consistent header design with main page
     ========================================
     -->
-    <header class="shop-header">
+    <header class="header">
         <div class="container">
-            <div class="shop-header-content">
-                <!-- Back Button -->
-                <a href="index.html" class="back-button" aria-label="Back to main website">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
+            <div class="header-container">
+                <div class="header-content">
+                    <!-- Logo and Brand Section -->
+                    <div class="logo-section">
+                        <img src="./images/logo.png" alt="Telugu Delicacies Logo" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="logo-fallback logo-text" style="display: none;">TD</div>
+                        <h1 class="brand-name">Telugu Delicacies</h1>
+                    </div>
+                    
+                    <!-- Desktop Navigation -->
+                    <div class="nav-buttons">
+                        <a href="index.html" class="nav-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Main
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile Hamburger Menu -->
+                    <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" aria-expanded="false">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
                 
                 <!-- Category Navigation -->
-                <nav class="category-nav">
+                <nav class="category-nav" style="margin-top: 1rem;">
                     <div class="category-tabs">
                         <button class="category-tab active" data-category="all">All Products</button>
                         <button class="category-tab" data-category="ready-to-eat">Ready To Eat</button>
@@ -40,9 +58,15 @@
                         <button class="category-tab" data-category="ready-to-use">Ready To Use</button>
                     </div>
                 </nav>
+                
+                <!-- Mobile Navigation Menu -->
+                <div id="mobileNav" class="mobile-nav" style="display: none;">
+                    <button class="mobile-nav-btn" onclick="window.location.href='index.html'; closeMobileMenu();">
+                        <i class="fas fa-arrow-left"></i> Back to Main
+                    </button>
+                </div>
             </div>
         </div>
-    </header>
 
     <!-- 
     ========================================
