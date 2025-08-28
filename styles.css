@@ -346,7 +346,16 @@ Keeping existing modern header design
   margin-left: auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (orientation: landscape) {
+  .nav-buttons {
+    display: flex;
+  }
+  .hamburger-btn {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
   .nav-buttons {
     display: flex;
   }
@@ -403,6 +412,17 @@ Keeping existing modern header design
   transition: all var(--transition-fast);
 }
 
+@media (orientation: portrait) and (max-width: 767px) {
+  .hamburger-btn {
+    display: flex;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 768px) {
+  .hamburger-btn {
+    display: none !important;
+  }
+}
 .hamburger-btn:hover {
   background: var(--bg-tertiary);
 }
@@ -483,7 +503,7 @@ Enhanced visual appeal with modern design
 }
 
 .hero-content {
-  padding-top: var(--space-20);
+  padding: var(--space-20) var(--space-8) var(--space-16) var(--space-8);
   max-width: 600px;
 }
 
