@@ -890,6 +890,82 @@ Sets up all functionality when the page loads
 
 /*
 ========================================
+MOBILE MENU FUNCTIONALITY 
+Hamburger menu toggle and navigation
+========================================
+*/
+
+/**
+ * Toggles the mobile navigation menu visibility
+ * Animates hamburger icon and shows/hides menu
+ */
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    if (!mobileNav || !hamburgerBtn) {
+        console.error('Mobile nav elements not found');
+        return;
+    }
+    
+    // Toggle menu visibility
+    const isVisible = mobileNav.style.display === 'block';
+    
+    if (isVisible) {
+        // Hide menu
+        mobileNav.style.display = 'none';
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore page scrolling
+        console.log('Mobile menu closed');
+    } else {
+        // Show menu
+        mobileNav.style.display = 'block';
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent page scrolling
+        console.log('Mobile menu opened');
+    }
+}
+
+/**
+ * Closes the mobile navigation menu
+ * Used when navigation buttons are clicked
+ */
+function closeMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    // Hide menu and reset hamburger icon
+    mobileNav.style.display = 'none';
+    hamburgerBtn.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restore page scrolling
+    console.log('Mobile menu closed via navigation');
+}
+
+/**
+ * Initializes click-outside-to-close functionality for mobile menu
+ */
+function initializeClickOutsideClose() {
+    document.addEventListener('click', (event) => {
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerBtn = document.querySelector('.hamburger-btn');
+        
+        if (!mobileNav || !hamburgerBtn) return;
+        
+        // Check if menu is open and click is outside menu and hamburger button
+        const isMenuOpen = mobileNav.style.display === 'block';
+        const isClickOnMenu = mobileNav.contains(event.target);
+        const isClickOnHamburger = hamburgerBtn.contains(event.target);
+        
+        if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
+            closeMobileMenu();
+        }
+    });
+}
+
+/*
+========================================
 MOBILE MENU FUNCTIONALITY
 Hamburger menu toggle and navigation
 ========================================
@@ -920,118 +996,6 @@ function toggleMobileMenu() {
         document.body.style.overflow = 'hidden'; // Prevent page scrolling
     }
 }
-
-/**
- * Closes the mobile navigation menu
- * Used when navigation buttons are clicked
- */
-function closeMobileMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    
-    if (!mobileNav || !hamburgerBtn) return;
-    
-    // Hide menu and reset hamburger icon
-    mobileNav.style.display = 'none';
-    hamburgerBtn.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Restore page scrolling
-}
-
-/**
- * Initializes click-outside-to-close functionality for mobile menu
- */
-function initializeClickOutsideClose() {
-    document.addEventListener('click', (event) => {
-        const mobileNav = document.getElementById('mobileNav');
-        const hamburgerBtn = document.querySelector('.hamburger-btn');
-        
-        if (!mobileNav || !hamburgerBtn) return;
-        
-        // Check if menu is open and click is outside menu and hamburger button
-        const isMenuOpen = mobileNav.style.display === 'block';
-        const isClickOnMenu = mobileNav.contains(event.target);
-        const isClickOnHamburger = hamburgerBtn.contains(event.target);
-        
-        if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
-            closeMobileMenu();
-        }
-    });
-}
-
-========================================
-TESTIMONIALS SHOWCASE CONTROLS
-Interactive controls for the testimonials ticker
-========================================
-*/
-
-/**
- * Initializes hover and touch controls for the testimonials showcase
- * Pauses animation on interaction for better user experience
- */
-function initializeTestimonialsControls() {
-    const testimonialsScroll = document.getElementById('testimonialsScroll');
-    const scrollContainer = testimonialsScroll?.parentElement;
-    if (!testimonialsScroll) {
-        console.log('Testimonials scroll element not found - may not be loaded yet');
-        return;
-    }
-    if (!scrollContainer) {
-        console.log('Testimonials scroll container not found');
-        return;
-    }
-    
-    console.log('Testimonials controls initialized successfully');
-    
-    // Ensure ticker animation is running by default
-    testimonialsScroll.style.animationPlayState = 'running';
-    
-    // Pause animation on mouse hover for better desktop UX
-    scrollContainer.addEventListener('mouseenter', () => {
-        testimonialsScroll.style.animationPlayState = 'paused';
-    });
-    
-    // Resume animation when mouse leaves
-    scrollContainer.addEventListener('mouseleave', () => {
-        testimonialsScroll.style.animationPlayState = 'running';
-    });
-    
-    // Touch interaction handling
-    let isUserInteracting = false;
-    let interactionTimeout;
-    
-    const handleInteractionStart = () => {
-        if (!isUserInteracting) {
-            testimonialsScroll.style.animationPlayState = 'paused';
-            isUserInteracting = true;
-        }
-        
-        if (interactionTimeout) {
-            clearTimeout(interactionTimeout);
-        }
-    };
-    
-    const handleInteractionEnd = () => {
-        interactionTimeout = setTimeout(() => {
-            testimonialsScroll.style.animationPlayState = 'running';
-            isUserInteracting = false;
-        }, 2000);
-    };
-    
-    // Touch events
-    scrollContainer.addEventListener('touchstart', handleInteractionStart, { passive: true });
-    scrollContainer.addEventListener('touchend', handleInteractionEnd, { passive: true });
-    scrollContainer.addEventListener('touchcancel', handleInteractionEnd, { passive: true });
-}
-
-/*
-========================================
-EVENT LISTENERS
-Set up main event listeners when DOM is ready
-========================================
-*/
-
-// Initialize everything when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initializeWebsite);
 
 // Handle page visibility changes (for performance optimization)
 document.addEventListener('visibilitychange', () => {
