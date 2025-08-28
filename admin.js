@@ -55,6 +55,7 @@ class AdminPanel {
   }
 
   async checkAuthentication() {
+    try {
       const session = await AuthManager.checkAuthStatus()
       console.log('AuthManager.checkAuthStatus returned session:', session)
       
