@@ -64,9 +64,8 @@ body {
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--bg-secondary);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -125,8 +124,8 @@ Modern header with glassmorphism effects
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 76px;
-  min-height: 76px;
+  height: 80px;
+  min-height: 80px;
 }
 
 .logo-section {
@@ -179,7 +178,7 @@ Modern header with glassmorphism effects
 .nav-btn {
   background: transparent;
   border: 1px solid transparent;
-  padding: 0.75rem 1.25rem;
+  padding: 0.6rem 1rem;
   border-radius: 0.75rem;
   font-family: var(--font-primary);
   font-size: 0.875rem;
@@ -191,7 +190,7 @@ Modern header with glassmorphism effects
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  height: 40px;
+  height: 36px;
 }
 
 .nav-btn:hover {
@@ -294,11 +293,10 @@ Modern header with glassmorphism effects
 
 /* Adjust products section to account for fixed header */
 .products-section {
-  padding-top: calc(2rem + 76px + 60px); /* header height + category nav + spacing */
+  padding-top: calc(2rem + 80px + 60px); /* header height + category nav + spacing */
   padding-bottom: 2rem;
   background: var(--bg-gradient-card);
-  min-height: calc(100vh - 140px);
-  overflow-y: visible;
+  min-height: 100vh;
 }
 
 
