@@ -50,8 +50,8 @@
                     <button class="nav-btn" onclick="scrollToSection('call-us')" aria-label="Contact us">
                         Contact
                     </button>
-                    <button class="nav-btn nav-btn-cta" onclick="window.open('sales.html', '_blank')" aria-label="Visit our online shop">
-                        Shop Now
+                    <button class="nav-btn nav-btn-cta" onclick="redirectToWhatsApp()" aria-label="Visit our online shop">
+                        <i class="fab fa-whatsapp"></i> Buy Now
                     </button>
                 </nav>
 
@@ -71,8 +71,8 @@
                 <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('call-us'); closeMobileMenu()" aria-label="Call us directly">
                     <i class="fas fa-phone"></i> Contact
                 </button>
-                <button class="nav-btn mobile-nav-btn" onclick="window.open('sales.html', '_blank'); closeMobileMenu()" aria-label="Visit our online shop">
-                    <i class="fas fa-shopping-cart"></i> Shop
+                <button class="nav-btn mobile-nav-btn" onclick="redirectToWhatsApp(); closeMobileMenu()" aria-label="Visit our online shop">
+                    <i class="fab fa-whatsapp"></i> Buy Now
                 </button>
             </nav>
         </div>
@@ -1023,5 +1023,16 @@ Crafted with the finest ingredients and meticulous care, our products capture th
 
     <!-- Main JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- WhatsApp Buy Now Functionality -->
+    <script>
+        /**
+         * Redirects user to WhatsApp catalog
+         */
+        function redirectToWhatsApp() {
+            const whatsappUrl = 'https://wa.me/c/919618519191';
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+    </script>
 </body>
 </html>
