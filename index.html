@@ -1,223 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for proper rendering and SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telugu Delicacies - Authentic South Indian Ready-to-Eat Foods</title>
-    <meta name="description" content="Telugu Delicacies specializes in authentic South Indian ready-to-eat Parota, Chapathi, and traditional Telugu Podis. FSSAI licensed, preservative-free, and made with love in Hyderabad.">
-    <meta name="keywords" content="Telugu food, South Indian food, ready to eat parota, chapathi, Telugu podis, Hyderabad food, authentic Indian food, FSSAI licensed">
+    <meta name="description" content="Telugu Delicacies - Authentic South Indian food manufacturer specializing in ready-to-eat Parota, Chapathi, and traditional Telugu Podis.">
+    <meta name="keywords" content="Telugu Delicacies, South Indian Food, Parota, Chapathi, Telugu Podis, Authentic Indian Food">
+    <meta name="author" content="Telugu Delicacies">
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Page Title -->
+    <title>Telugu Delicacies - Modern Yet Traditional</title>
     
-    <!-- Font Awesome -->
+    <!-- External Stylesheets and Fonts -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500;700&family=Noto+Sans+Telugu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="color-system.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="./images/logo.png" type="image/png">
+    <!-- Favicon (optional - add if you have a favicon) -->
+    <!-- <link rel="icon" type="image/png" href="/favicon.png"> -->
 </head>
 <body>
     <!-- 
     ========================================
     HEADER SECTION
-    Fixed navigation with modern glassmorphism design
+    Modern transparent header with navigation
     ========================================
     -->
     <header class="header">
         <div class="header-container">
             <div class="header-content">
-                <!-- Logo and Brand Section -->
+                <!-- Logo and Brand Information -->
                 <div class="logo-section">
                     <img src="./images/logo.png" alt="Telugu Delicacies Logo" class="logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="logo-fallback logo-text" style="display: none;">TD</div>
-                    <h1 class="brand-name">Telugu Delicacies</h1>
+                    <!-- Fallback logo if image fails to load -->
+                    <div class="logo-fallback" style="display: none;">
+                        <div class="logo-text">TD</div>
+                    </div>
+                    <!-- Brand name -->
+                    <div class="brand-info">
+                        <h1 class="brand-name">Telugu Delicacies</h1>
+                    </div>
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="nav-buttons">
-                    <button class="nav-btn" onclick="scrollToSection('products')">Products</button>
-                    <button class="nav-btn" onclick="scrollToSection('contact')">Contact</button>
-                    <!-- UPDATED: Replaced Shop Now with Buy Now WhatsApp button -->
-                    <button class="nav-btn nav-btn-cta" onclick="handleBuyNowClick()">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                <nav class="nav-buttons">
+                    <button class="nav-btn" onclick="scrollToSection('products')" aria-label="View product catalog">
+                        Products
                     </button>
-                </div>
+                    <button class="nav-btn" onclick="scrollToSection('call-us')" aria-label="Contact us">
+                        Contact
+                    </button>
+                    <button class="nav-btn nav-btn-cta" onclick="window.open('sales.html', '_blank')" aria-label="Visit our online shop">
+                        Shop Now
+                    </button>
+                </nav>
 
-                <!-- Mobile Hamburger Menu Button -->
+                <!-- Hamburger Menu Button -->
                 <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
-                    <div class="hamburger-line"></div>
-                    <div class="hamburger-line"></div>
-                    <div class="hamburger-line"></div>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
                 </button>
-                
-                <!-- Mobile Navigation Menu -->
-                <div id="mobileNav" class="mobile-nav">
-                    <button class="mobile-nav-btn" onclick="scrollToSection('products'); closeMobileMenu()">
-                        <i class="fas fa-box"></i> Products
-                    </button>
-                    <button class="mobile-nav-btn" onclick="scrollToSection('contact'); closeMobileMenu()">
-                        <i class="fas fa-envelope"></i> Contact
-                    </button>
-                    <!-- UPDATED: Replaced Shop Now with Buy Now WhatsApp button -->
-                    <button class="mobile-nav-btn" onclick="handleBuyNowClick(); closeMobileMenu()">
-                        <i class="fab fa-whatsapp"></i> Buy Now
-                    </button>
-                </div>
             </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <nav class="mobile-nav" id="mobileNav">
+                <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('products'); closeMobileMenu()" aria-label="View product catalog">
+                    <i class="fas fa-book"></i> Products
+                </button>
+                <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('call-us'); closeMobileMenu()" aria-label="Call us directly">
+                    <i class="fas fa-phone"></i> Contact
+                </button>
+                <button class="nav-btn mobile-nav-btn" onclick="window.open('sales.html', '_blank'); closeMobileMenu()" aria-label="Visit our online shop">
+                    <i class="fas fa-shopping-cart"></i> Shop
+                </button>
+            </nav>
         </div>
     </header>
 
     <!-- 
     ========================================
     HERO SECTION
-    Full-screen hero with responsive background
+    Modern clean hero with gradient background
     ========================================
     -->
     <section class="hero">
         <div class="hero-container">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Authentic Telugu Delicacies
-                        <span class="telugu-subtitle">తెలుగు రుచులు</span>
-                    </h1>
-                    <p class="hero-subtitle">
-                        Experience the rich flavors of traditional South Indian cuisine with our premium ready-to-eat Parota, Chapathi, and authentic Telugu Podis.
-                    </p>
-                    <!-- UPDATED: Changed hero CTA to Buy Now as well -->
-                    <button class="hero-cta" onclick="handleBuyNowClick()">
-                        <i class="fab fa-whatsapp"></i>
-                        Order Now via WhatsApp
-                    </button>
-                </div>
+            <div class="hero-content">
+                <h2 class="hero-title">
+                    Modern Yet Traditional
+                    <span class="telugu-subtitle">సాంప్రదాయ రుచులు, ఆధునిక శైలి</span>
+                </h2>
+                <p class="hero-subtitle">Time-honored flavors, perfected for today's lifestyle.</p>
+                <p class="hero-subtitle">Rooted in tradition and perfected with modern food science, every bite offers the ideal harmony of taste, nutrition, and convenience—bringing the warmth of home cooking with the reliability of world-class quality.
+Crafted with the finest ingredients and meticulous care, our products capture the essence of authentic flavors while meeting the highest standards of quality and freshness.</p>
+                <button class="hero-cta" onclick="window.open('sales.html', '_blank')">
+                    Shop Now <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- 
     ========================================
-    PRODUCT SHOWCASE SECTION  
-    Infinite scrolling product ticker with hover controls
+    PRODUCT SHOWCASE SECTION
+    Continuous horizontal scroll of all products (news ticker style)
     ========================================
     -->
     <section class="product-showcase">
         <div class="container">
-            <h2 class="section-title">Our Premium Products</h2>
+            <h2 class="section-title">Our Products</h2>
             
+            <!-- Scrolling container with fade effects -->
             <div class="scroll-container">
+                <!-- Continuous scrolling product list -->
                 <div class="product-scroll" id="productScroll">
-                    <!-- First set of products -->
+                    <!-- Product items - each represents a different product -->
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg" alt="Ready-to-Eat Parota" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Ready-to-Eat Parota</div>
-                        </div>
-                        <h3>Ready-to-Eat Parota</h3>
-                        <p class="telugu-name">పరోటా</p>
+                        <img src="./images/products/malabar-parota.jpg" 
+                             alt="Malabar Parota" loading="lazy">
+                        <h3>Malabar Parota</h3>
+                        <p class="telugu-name">మలబార్ పరోటా</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg" alt="Authentic Chapathi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Authentic Chapathi</div>
-                        </div>
-                        <h3>Authentic Chapathi</h3>
-                        <p class="telugu-name">చపాతి</p>
+                        <img src="./images/products/wheat-chapathi.jpg" 
+                             alt="Wheat Chapathi" loading="lazy">
+                        <h3>Wheat Chapathi</h3>
+                        <p class="telugu-name">గోధుమ చపాతీ</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4686775/pexels-photo-4686775.jpeg" alt="Gongura Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Gongura Podi</div>
-                        </div>
-                        <h3>Gongura Podi</h3>
-                        <p class="telugu-name">గోంగూర పొడి</p>
+                        <img src="./images/products/ghee.jpg" 
+                             alt="Pure Ghee" loading="lazy">
+                        <h3>Pure Ghee</h3>
+                        <p class="telugu-name">స్వచ్ఛమైన నెయ్యి</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4198015/pexels-photo-4198015.jpeg" alt="Pesalu Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Pesalu Podi</div>
-                        </div>
-                        <h3>Pesalu Podi</h3>
-                        <p class="telugu-name">పెసలు పొడి</p>
+                        <img src="./images/products/multigrain-atta.jpg" 
+                             alt="Multigrain Atta" loading="lazy">
+                        <h3>Multigrain Atta</h3>
+                        <p class="telugu-name">మల్టిగ్రెయిన్ ఆటా</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4552990/pexels-photo-4552990.jpeg" alt="Nuvvula Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Nuvvula Podi</div>
-                        </div>
-                        <h3>Nuvvula Podi</h3>
-                        <p class="telugu-name">నువ్వుల పొడి</p>
+                        <img src="./images/products/coffee.jpg" 
+                             alt="Premium Coffee" loading="lazy">
+                        <h3>Premium Coffee</h3>
+                        <p class="telugu-name">ప్రీమియం కాఫీ</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4686887/pexels-photo-4686887.jpeg" alt="Kobbari Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Kobbari Podi</div>
-                        </div>
-                        <h3>Kobbari Podi</h3>
-                        <p class="telugu-name">కొబ్బరి పొడి</p>
-                    </div>
-
-                    <!-- Duplicate set for continuous scrolling -->
-                    <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg" alt="Ready-to-Eat Parota" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Ready-to-Eat Parota</div>
-                        </div>
-                        <h3>Ready-to-Eat Parota</h3>
-                        <p class="telugu-name">పరోటా</p>
+                        <img src="./images/products/pasupu.jpg" 
+                             alt="Pure Pasupu" loading="lazy">
+                        <h3>Pure Pasupu</h3>
+                        <p class="telugu-name">స్వచ్ఛమైన పసుపు</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg" alt="Authentic Chapathi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Authentic Chapathi</div>
-                        </div>
-                        <h3>Authentic Chapathi</h3>
-                        <p class="telugu-name">చపాతి</p>
+                        <img src="./images/products/kadapa-kaaram.jpg" 
+                             alt="Kadapa Kaaram" loading="lazy">
+                        <h3>Kadapa Kaaram</h3>
+                        <p class="telugu-name">కడప కారం</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4686775/pexels-photo-4686775.jpeg" alt="Gongura Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Gongura Podi</div>
-                        </div>
-                        <h3>Gongura Podi</h3>
-                        <p class="telugu-name">గోంగూర పొడి</p>
+                        <img src="./images/products/nalla-kaaram.jpg" 
+                             alt="Nalla Kaaram" loading="lazy">
+                        <h3>Nalla Kaaram</h3>
+                        <p class="telugu-name">నల్ల కారం</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4198015/pexels-photo-4198015.jpeg" alt="Pesalu Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Pesalu Podi</div>
-                        </div>
-                        <h3>Pesalu Podi</h3>
-                        <p class="telugu-name">పెసలు పొడి</p>
+                        <img src="./images/products/kandi-podi.jpg" 
+                             alt="Kandi Podi" loading="lazy">
+                        <h3>Kandi Podi</h3>
+                        <p class="telugu-name">కంది పొడి</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4552990/pexels-photo-4552990.jpeg" alt="Nuvvula Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Nuvvula Podi</div>
-                        </div>
-                        <h3>Nuvvula Podi</h3>
-                        <p class="telugu-name">నువ్వుల పొడి</p>
+                        <img src="./images/products/karivepaku-podi.jpg" 
+                             alt="Karivepaku Podi" loading="lazy">
+                        <h3>Karivepaku Podi</h3>
+                        <p class="telugu-name">కరివేపాకు పొడి</p>
                     </div>
                     
                     <div class="product-item">
-                        <div class="product-image-container">
-                            <img src="https://images.pexels.com/photos/4686887/pexels-photo-4686887.jpeg" alt="Kobbari Podi" class="product-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="product-image-fallback">Kobbari Podi</div>
-                        </div>
-                        <h3>Kobbari Podi</h3>
-                        <p class="telugu-name">కొబ్బరి పొడి</p>
+                        <img src="./images/products/idli-podi.jpg" 
+                             alt="Idli Podi" loading="lazy">
+                        <h3>Idli Podi</h3>
+                        <p class="telugu-name">ఇడ్లీ పొడి</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/sambar-premix.jpg" 
+                             alt="Sambar Premix" loading="lazy">
+                        <h3>Sambar Premix</h3>
+                        <p class="telugu-name">సాంబార్ ప్రీమిక్స్</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/godhuma-kaaram.jpg" 
+                             alt="Godhuma Kaaram" loading="lazy">
+                        <h3>Godhuma Kaaram</h3>
+                        <p class="telugu-name">గోధుమ కారం</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/palli-dhaniya-podi.jpg" 
+                             alt="Palli Dhaniya Podi" loading="lazy">
+                        <h3>Palli Dhaniya Podi</h3>
+                        <p class="telugu-name">పల్లి ధనియా పొడి</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/tamalapaaku-kaaram.jpg" 
+                             alt="Tamalapaaku Kaaram" loading="lazy">
+                        <h3>Tamalapaaku Kaaram</h3>
+                        <p class="telugu-name">తమలపాకు కారం</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/velluli-kaaram.jpg" 
+                             alt="Velluli Kaaram" loading="lazy">
+                        <h3>Velluli Kaaram</h3>
+                        <p class="telugu-name">వెల్లుల్లి కారం</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/konaseema-kaaram.jpg" 
+                             alt="Konaseema Kaarem" loading="lazy">
+                        <h3>Konaseema Kaaram</h3>
+                        <p class="telugu-name">కోనసీమ కారం</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/chutney-premix.jpg" 
+                             alt="Chutney Premix" loading="lazy">
+                        <h3>Chutney Premix</h3>
+                        <p class="telugu-name">చట్నీ ప్రీమిక్స్</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/palli-kaaram.jpg" 
+                             alt="Palli Kaaram" loading="lazy">
+                        <h3>Palli Kaaram</h3>
+                        <p class="telugu-name">పల్లి కారం</p>
+                    </div>
+                    
+                    <!-- Duplicate items for seamless infinite loop -->
+                    <div class="product-item">
+                        <img src="./images/products/malabar-parota.jpg" 
+                             alt="Malabar Parota" loading="lazy">
+                        <h3>Malabar Parota</h3>
+                        <p class="telugu-name">మలబార్ పరోటా</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/wheat-chapathi.jpg" 
+                             alt="Wheat Chapathi" loading="lazy">
+                        <h3>Wheat Chapathi</h3>
+                        <p class="telugu-name">గోధుమ చపాతీ</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/ghee.jpg" 
+                             alt="Pure Ghee" loading="lazy">
+                        <h3>Pure Ghee</h3>
+                        <p class="telugu-name">స్వచ్ఛమైన నెయ్యి</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/multigrain-atta.jpg" 
+                             alt="Multigrain Atta" loading="lazy">
+                        <h3>Multigrain Atta</h3>
+                        <p class="telugu-name">మల్టిగ్రెయిన్ ఆటా</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/kadapa-kaaram.jpg" 
+                             alt="Kadapa Kaaram" loading="lazy">
+                        <h3>Kadapa Kaaram</h3>
+                        <p class="telugu-name">కడప కారం</p>
+                    </div>
+                    
+                    <div class="product-item">
+                        <img src="./images/products/nalla-kaaram.jpg" 
+                             alt="Nalla Kaaram" loading="lazy">
+                        <h3>Nalla Kaaram</h3>
+                        <p class="telugu-name">నల్ల కారం</p>
                     </div>
                 </div>
             </div>
@@ -226,367 +298,620 @@
 
     <!-- 
     ========================================
-    PRODUCTS SECTION
-    Interactive product categories with detailed descriptions
+    PRODUCT CATEGORIES SECTION
+    Detailed product information with interactive dropdowns
     ========================================
     -->
     <section id="products" class="products-section">
         <div class="container">
-            <h2 class="section-title">Our Product Categories</h2>
-            
+            <h2 class="section-title">Product Categories</h2>
             <div class="product-categories">
-                <!-- Ready-to-Eat Category -->
+                
+                <!-- Ready To Eat Category (All Podis) -->
                 <div class="category-card">
                     <div class="category-header">
-                        <div class="category-image-container">
-                            <img src="./images/categories/ready-to-eat-podis-n.jpg" alt="Ready-to-Eat Products" class="category-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="category-image-fallback">Ready-to-Eat</div>
-                        </div>
+                        <img src="./images/categories/ready-to-eat-podis-n.jpg" 
+                             alt="Ready To Eat Podis" 
+                             class="category-image"
+                             loading="lazy">
                         <h3 class="category-title">
-                            <div class="bilingual-title">
-                                <span class="english">Ready-to-Eat</span>
-                                <span class="telugu">తినడానికి సిద్ధం</span>
-                            </div>
+                            <span class="bilingual-title">
+                                <span class="english">Ready To Eat</span>
+                                <span class="telugu">పచ్చళ్ళు - పొడులు</span>
+                            </span>
                         </h3>
-                        <p class="category-description">
-                            Convenient and delicious ready-to-eat items that save time without compromising on authentic taste. Perfect for busy lifestyles.
-                        </p>
+                        <p class="category-description">Authentic Traditional Telugu Spice Powders – Perfectly prepared to complement rice, idli, or dosa. Simply blend with oil or ghee to experience the rich and genuine flavors of Telugu cuisine instantaneously</p>
                     </div>
                     
+                    <!-- Product selection dropdown -->
                     <div class="product-dropdown">
-                        <select class="product-select" onchange="showProductDescription(this, 'ready-to-eat')">
-                            <option value="">Select a product...</option>
-                            <option value="parota">Ready-to-Eat Parota</option>
-                            <option value="chapathi">Ready-to-Eat Chapathi</option>
+                        <!-- FIXED: Completely rebuilt dropdown for proper Telugu functionality -->
+                        <select class="product-select rebuilt-dropdown" 
+                                onchange="showProductDescription(this, 'ready-to-eat')"
+                                aria-label="Select ready-to-eat podi">
+                            <option value="" class="default-option">Select Podi</option>
+                            <option value="kadapa-kaaram" class="bilingual-option">Kadapa Kaaram (కడప కారం)</option>
+                            <option value="nalla-kaaram" class="bilingual-option">Nalla Kaaram (నల్ల కారం)</option>
+                            <option value="kandi-podi" class="bilingual-option">Kandi Podi (కంది పొడి)</option>
+                            <option value="godhuma-kaaram" class="bilingual-option">Godhuma Kaaram (గోధుమ కారం)</option>
+                            <option value="karivepaku-podi" class="bilingual-option">Karivepaku Podi (కరివేపాకు పొడి)</option>
+                            <option value="palli-dhaniya-podi" class="bilingual-option">Palli Dhaniya Podi (పల్లి ధనియా పొడి)</option>
+                            <option value="tamalapaaku-kaaram" class="bilingual-option">Tamalapaaku Kaaram (తమలపాకు కారం)</option>
+                            <option value="sambar-premix" class="bilingual-option">Sambar Premix (సాంబార్ ప్రీమిక్స్)</option>
+                            <option value="velluli-kaaram" class="bilingual-option">Velluli Kaaram (వెల్లుల్లి కారం)</option>
+                            <option value="idli-podi" class="bilingual-option">Idli Podi (ఇడ్లీ పొడి)</option>
+                            <option value="konaseema-kaaram" class="bilingual-option">Konaseema Kaaram (కోనసీమ కారం)</option>
+                            <option value="chutney-premix" class="bilingual-option">Chutney Premix (చట్నీ ప్రీమిక్స్)</option>
+                            <option value="palli-kaaram" class="bilingual-option">Palli Kaaram (పల్లి కారం)</option>
                         </select>
                         
-                        <div id="ready-to-eat-parota" class="product-description" style="display: none;">
-                            <h4>Ready-to-Eat Parota</h4>
-                            <p>Soft, flaky, and authentic Parota that's ready to eat in minutes. Made with traditional recipes and premium ingredients.</p>
-                            <ul>
-                                <li>No preservatives or artificial flavors</li>
-                                <li>Traditional South Indian taste</li>
-                                <li>Convenient packaging for freshness</li>
-                                <li>Ready in just 2-3 minutes</li>
-                            </ul>
-                        </div>
-                        
-                        <div id="ready-to-eat-chapathi" class="product-description" style="display: none;">
-                            <h4>Ready-to-Eat Chapathi</h4>
-                            <p>Wholesome and nutritious Chapathi made from quality wheat flour. Perfect for healthy meals anytime.</p>
-                            <ul>
-                                <li>Made from premium wheat flour</li>
-                                <li>Soft and fresh texture</li>
-                                <li>No artificial additives</li>
-                                <li>Ideal for daily consumption</li>
-                            </ul>
+                        <!-- Product descriptions (initially hidden) -->
+                        <div class="product-descriptions">
+                            <!-- Kadapa Kaaram -->
+                            <div id="ready-to-eat-kadapa-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/kadapa-kaaram-detail.jpg" 
+                                     alt="Kadapa Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Kadapa Kaaram</h4>
+                                <p>A fiery and flavorful spice blend from the Kadapa region, known for its perfect balance of heat and taste. Made with carefully selected red chilies and traditional spices.</p>
+                                <ul>
+                                    <li>Authentic Kadapa region recipe</li>
+                                    <li>Perfect balance of heat and flavor</li>
+                                    <li>Made with premium red chilies</li>
+                                    <li>Ready to eat with rice and ghee</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Nalla Kaaram -->
+                            <div id="ready-to-eat-nalla-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/nalla-kaaram-detail.jpg" 
+                                     alt="Nalla Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Nalla Kaaram</h4>
+                                <p>Premium black pepper powder blend that adds warmth and depth to any dish. Rich in antioxidants and known for its digestive properties.</p>
+                                <ul>
+                                    <li>Premium black pepper blend</li>
+                                    <li>Rich in antioxidants</li>
+                                    <li>Aids digestion</li>
+                                    <li>Perfect with idli and dosa</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Kandi Podi -->
+                            <div id="ready-to-eat-kandi-podi" class="product-description" style="display: none;">
+                                <img src="/images/products/kandi-podi-detail.jpg" 
+                                     alt="Kandi Podi" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Kandi Podi</h4>
+                                <p>Traditional lentil-based spice powder that's protein-rich and flavorful. Perfect for mixing with rice and ghee for a nutritious meal.</p>
+                                <ul>
+                                    <li>High protein lentil base</li>
+                                    <li>Traditional Telugu recipe</li>
+                                    <li>Nutritious and filling</li>
+                                    <li>Great with hot rice</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Godhuma Kaaram -->
+                            <div id="ready-to-eat-godhuma-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/godhuma-kaaram-detail.jpg" 
+                                     alt="Godhuma Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Godhuma Kaaram</h4>
+                                <p>Roasted wheat-based spice powder with aromatic spices. A healthy and wholesome option that adds texture and flavor to your meals.</p>
+                                <ul>
+                                    <li>Roasted wheat base</li>
+                                    <li>Aromatic spice blend</li>
+                                    <li>High fiber content</li>
+                                    <li>Crunchy texture</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Karivepaku Podi -->
+                            <div id="ready-to-eat-karivepaku-podi" class="product-description" style="display: none;">
+                                <img src="/images/products/karivepaku-podi-detail.jpg" 
+                                     alt="Karivepaku Podi" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Karivepaku Podi</h4>
+                                <p>Fresh curry leaves dried and ground with traditional spices. Adds authentic South Indian aroma and is known for its health benefits.</p>
+                                <ul>
+                                    <li>Fresh curry leaves</li>
+                                    <li>Authentic aroma</li>
+                                    <li>Rich in vitamins</li>
+                                    <li>Traditional preparation</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Palli Dhaniya Podi -->
+                            <div id="ready-to-eat-palli-dhaniya-podi" class="product-description" style="display: none;">
+                                <img src="/images/products/palli-dhaniya-podi-detail.jpg" 
+                                     alt="Palli Dhaniya Podi" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Palli Dhaniya Podi</h4>
+                                <p>A unique blend of roasted groundnuts and coriander seeds. Rich in protein and adds a nutty, aromatic flavor to rice and rotis.</p>
+                                <ul>
+                                    <li>Roasted groundnuts and coriander</li>
+                                    <li>High protein content</li>
+                                    <li>Nutty aromatic flavor</li>
+                                    <li>Great with rotis</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Tamalapaaku Kaaram -->
+                            <div id="ready-to-eat-tamalapaaku-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/tamalapaaku-kaaram-detail.jpg" 
+                                     alt="Tamalapaaku Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Tamalapaaku Kaaram</h4>
+                                <p>Bay leaf spice powder that adds a distinctive aroma and flavor. Used traditionally in Telugu cuisine for its medicinal properties.</p>
+                                <ul>
+                                    <li>Distinctive bay leaf aroma</li>
+                                    <li>Medicinal properties</li>
+                                    <li>Traditional Telugu cuisine</li>
+                                    <li>Unique flavor profile</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Sambar Premix -->
+                            <div id="ready-to-eat-sambar-premix" class="product-description" style="display: none;">
+                                <img src="/images/products/sambar-premix-detail.jpg" 
+                                     alt="Sambar Premix" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Sambar Premix</h4>
+                                <p>Ready-to-use sambar masala powder with the perfect balance of tangy and spicy flavors. Makes authentic sambar in minutes.</p>
+                                <ul>
+                                    <li>Perfect tangy-spicy balance</li>
+                                    <li>Instant sambar preparation</li>
+                                    <li>Authentic South Indian taste</li>
+                                    <li>No artificial colors</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Velluli Kaaram -->
+                            <div id="ready-to-eat-velluli-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/velluli-kaaram-detail.jpg" 
+                                     alt="Velluli Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Velluli Kaaram</h4>
+                                <p>Fresh garlic dried and ground with aromatic spices. Known for its health benefits and bold flavor that enhances any dish.</p>
+                                <ul>
+                                    <li>Fresh garlic base</li>
+                                    <li>Bold flavor enhancement</li>
+                                    <li>Health benefits</li>
+                                    <li>Aromatic spice blend</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Idli Podi -->
+                            <div id="ready-to-eat-idli-podi" class="product-description" style="display: none;">
+                                <img src="/images/products/idli-podi-detail.jpg" 
+                                     alt="Idli Podi" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Idli Podi</h4>
+                                <p>The classic accompaniment for idli and dosa. A perfect blend of lentils, chilies, and spices ground to perfection.</p>
+                                <ul>
+                                    <li>Classic idli companion</li>
+                                    <li>Perfect spice blend</li>
+                                    <li>Traditional recipe</li>
+                                    <li>Ground to perfection</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Konaseema Kaaram -->
+                            <div id="ready-to-eat-konaseema-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/konaseema-kaaram-detail.jpg" 
+                                     alt="Konaseema Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Konaseema Kaaram</h4>
+                                <p>A special spice blend from the Konaseema region, known for its unique flavor profile and traditional preparation methods.</p>
+                                <ul>
+                                    <li>Konaseema region specialty</li>
+                                    <li>Unique flavor profile</li>
+                                    <li>Traditional methods</li>
+                                    <li>Regional authenticity</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Chutney Premix -->
+                            <div id="ready-to-eat-chutney-premix" class="product-description" style="display: none;">
+                                <img src="/images/products/chutney-premix-detail.jpg" 
+                                     alt="Chutney Premix" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Chutney Premix</h4>
+                                <p>Ready-to-use chutney powder that makes instant chutneys. Just add water or oil for a quick and delicious accompaniment.</p>
+                                <ul>
+                                    <li>Instant chutney preparation</li>
+                                    <li>Just add water or oil</li>
+                                    <li>Quick and convenient</li>
+                                    <li>Delicious accompaniment</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Palli Kaaram -->
+                            <div id="ready-to-eat-palli-kaaram" class="product-description" style="display: none;">
+                                <img src="/images/products/palli-kaaram-detail.jpg" 
+                                     alt="Palli Kaaram" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Palli Kaaram</h4>
+                                <p>Roasted groundnut spice powder that's protein-rich and flavorful. Perfect with idli, dosa, or mixed with rice and ghee.</p>
+                                <ul>
+                                    <li>Roasted groundnut base</li>
+                                    <li>High protein content</li>
+                                    <li>Rich and flavorful</li>
+                                    <li>Versatile usage</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Ready-to-Cook Category -->
+                <!-- Ready To Cook Category -->
                 <div class="category-card">
                     <div class="category-header">
-                        <div class="category-image-container">
-                            <img src="./images/categories/ready-to-cook-n.jpg" alt="Ready-to-Cook Products" class="category-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="category-image-fallback">Ready-to-Cook</div>
-                        </div>
+                        <img src="./images/categories/ready-to-cook-n.jpg" 
+                             alt="Ready To Cook Products" 
+                             class="category-image"
+                             loading="lazy">
                         <h3 class="category-title">
-                            <div class="bilingual-title">
-                                <span class="english">Ready-to-Cook</span>
-                                <span class="telugu">వండటానికి సిద్ధం</span>
-                            </div>
+                            <span class="bilingual-title">
+                                <span class="english">Ready To Cook</span>
+                                <span class="telugu">మీ సౌకర్యం, త్వరితగతి కోసం</span>
+                            </span>
                         </h3>
-                        <p class="category-description">
-                            Semi-prepared items that require minimal cooking. Enjoy homemade taste with reduced preparation time.
-                        </p>
+                        <p class="category-description">Fresh, Ready-to-Cook Malabar Parota and Wheat Chapathi – Expertly prepared for your convenience. Simply heat on a pan to enjoy soft, flavorful flatbreads that complement any meal with authentic taste and texture.</p>
                     </div>
                     
+                    <!-- Ready To Cook selection dropdown -->
                     <div class="product-dropdown">
-                        <select class="product-select" onchange="showProductDescription(this, 'ready-to-cook')">
-                            <option value="">Select a product...</option>
-                            <option value="frozen-parota">Frozen Parota</option>
-                            <option value="frozen-chapathi">Frozen Chapathi</option>
+                        <select class="product-select" 
+                                onchange="showProductDescription(this, 'ready-to-cook')"
+                                aria-label="Select ready-to-cook product">
+                            <option value="">Select Product</option>
+                            <option value="malabar-parota">Malabar Parota (మలబార్ పరోటా)</option>
+                            <option value="wheat-chapathi">Wheat Chapathi (గోధుమ చపాతీ)</option>
                         </select>
                         
-                        <div id="ready-to-cook-frozen-parota" class="product-description" style="display: none;">
-                            <h4>Frozen Parota</h4>
-                            <p>Premium frozen Parota that cooks to perfection in minutes. Maintains the authentic taste and texture of freshly made Parota.</p>
-                            <ul>
-                                <li>Flash-frozen to preserve freshness</li>
-                                <li>Cooks in 3-4 minutes on tawa</li>
-                                <li>No thawing required</li>
-                                <li>Restaurant-quality taste at home</li>
-                            </ul>
-                        </div>
-                        
-                        <div id="ready-to-cook-frozen-chapathi" class="product-description" style="display: none;">
-                            <h4>Frozen Chapathi</h4>
-                            <p>Nutritious frozen Chapathi made from whole wheat. Quick to cook and perfect for healthy everyday meals.</p>
-                            <ul>
-                                <li>100% whole wheat flour</li>
-                                <li>No artificial preservatives</li>
-                                <li>Soft and fluffy texture</li>
-                                <li>Long shelf life when frozen</li>
-                            </ul>
+                        <!-- Ready To Cook descriptions -->
+                        <div class="product-descriptions">
+                            <!-- Malabar Parota -->
+                            <div id="ready-to-cook-malabar-parota" class="product-description" style="display: none;">
+                                <img src="/images/products/malabar-parota-detail.jpg" 
+                                     alt="Malabar Parota" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Malabar Parota</h4>
+                                <p>Authentic Kerala-style layered parota made with premium flour and traditional techniques. Soft, flaky layers that separate beautifully when cooked. Perfect with curry or dal.</p>
+                                <ul>
+                                    <li>Authentic Kerala-style preparation</li>
+                                    <li>Multiple flaky layers</li>
+                                    <li>Made with premium flour</li>
+                                    <li>Ready in 3-4 minutes</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Wheat Chapathi -->
+                            <div id="ready-to-cook-wheat-chapathi" class="product-description" style="display: none;">
+                                <img src="/images/products/wheat-chapathi-detail.jpg" 
+                                     alt="Wheat Chapathi" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Wheat Chapathi</h4>
+                                <p>Soft, wholesome wheat chapathi made from carefully selected wheat flour. Perfect balance of nutrition and taste, ideal for wrapping curries or enjoying with dal and vegetables.</p>
+                                <ul>
+                                    <li>100% wheat flour</li>
+                                    <li>Soft and flexible texture</li>
+                                    <li>High in fiber and nutrients</li>
+                                    <li>Perfect for healthy meals</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Ready-to-Use Category (Podis) -->
+                <!-- Ready To Use Category -->
                 <div class="category-card">
                     <div class="category-header">
-                        <div class="category-image-container">
-                            <img src="./images/categories/ready-to-use.jpg" alt="Traditional Telugu Podis" class="category-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.classList.add('show')">
-                            <div class="category-image-fallback">Telugu Podis</div>
-                        </div>
+                        <img src="./images/categories/ready-to-use.jpg" 
+                             alt="Ready To Use Products" 
+                             class="category-image"
+                             loading="lazy">
                         <h3 class="category-title">
-                            <div class="bilingual-title">
-                                <span class="english">Ready-to-Use Podis</span>
-                                <span class="telugu">తెలుగు పొడులు</span>
-                            </div>
+                            <span class="bilingual-title">
+                                <span class="english">Ready To Use</span>
+                                <span class="telugu">నేరుగా వాడుకోవడానికి అనువైనవి</span>
+                            </span>
                         </h3>
-                        <p class="category-description">
-                            Traditional Telugu spice powders that instantly enhance your meals. Made with authentic recipes passed down through generations.
-                        </p>
+                        <p class="category-description">Premium Culinary Essentials – Carefully selected to enhance your everyday cooking. Includes rich ghee, wholesome multigrain atta, aromatic coffee, and pure turmeric. Ready to use directly in your favorite recipes.</p>
                     </div>
                     
+                    <!-- Ready To Use selection dropdown -->
                     <div class="product-dropdown">
-                        <select class="product-select" onchange="showProductDescription(this, 'podis')">
-                            <option value="">Select a podi...</option>
-                            <option value="gongura">Gongura Podi</option>
-                            <option value="pesalu">Pesalu Podi</option>
-                            <option value="nuvvula">Nuvvula Podi</option>
-                            <option value="kobbari">Kobbari Podi</option>
+                        <select class="product-select" 
+                                onchange="showProductDescription(this, 'ready-to-use')"
+                                aria-label="Select ready-to-use product">
+                            <option value="">Select Product</option>
+                            <option value="pure-ghee">Pure Ghee (స్వచ్ఛమైన నెయ్యి)</option>
+                            <option value="multigrain-atta">Multigrain Atta (మల్టిగ్రెయిన్ ఆటా)</option>
+                            <option value="premium-coffee">Premium Coffee (ప్రీమియం కాఫీ)</option>
+                            <option value="pure-pasupu">Pure Pasupu (స్వచ్ఛమైన పసుపు)</option>
                         </select>
                         
-                        <div id="podis-gongura" class="product-description" style="display: none;">
-                            <h4>Gongura Podi (గోంగూర పొడి)</h4>
-                            <div class="podi-image-container">
-                                <img src="https://images.pexels.com/photos/4686775/pexels-photo-4686775.jpeg" alt="Gongura Podi" class="podi-image" loading="lazy">
+                        <!-- Ready To Use descriptions -->
+                        <div class="product-descriptions">
+                            <!-- Pure Ghee -->
+                            <div id="ready-to-use-pure-ghee" class="product-description" style="display: none;">
+                                <img src="/images/products/ghee-detail.jpg" 
+                                     alt="Pure Ghee" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Pure Ghee</h4>
+                                <p>Traditional clarified butter made from pure cow's milk. Rich in vitamins A, D, E, and K, our ghee is perfect for cooking, tempering, and adding authentic flavor to your meals.</p>
+                                <ul>
+                                    <li>Made from pure cow's milk</li>
+                                    <li>Rich in essential vitamins</li>
+                                    <li>Perfect for cooking and tempering</li>
+                                    <li>Traditional preparation method</li>
+                                </ul>
                             </div>
-                            <p>Tangy and flavorful podi made from fresh Gongura leaves, a signature taste of Telugu cuisine.</p>
-                            <ul>
-                                <li>Made from fresh Gongura leaves</li>
-                                <li>Traditional Andhra recipe</li>
-                                <li>Perfect with rice and ghee</li>
-                                <li>Rich in vitamins and antioxidants</li>
-                            </ul>
-                        </div>
-                        
-                        <div id="podis-pesalu" class="product-description" style="display: none;">
-                            <h4>Pesalu Podi (పెసలు పొడి)</h4>
-                            <div class="podi-image-container">
-                                <img src="https://images.pexels.com/photos/4198015/pexels-photo-4198015.jpeg" alt="Pesalu Podi" class="podi-image" loading="lazy">
+                            
+                            <!-- Multigrain Atta -->
+                            <div id="ready-to-use-multigrain-atta" class="product-description" style="display: none;">
+                                <img src="/images/products/multigrain-atta-detail.jpg" 
+                                     alt="Multigrain Atta" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Multigrain Atta</h4>
+                                <p>A nutritious blend of wheat, millet, barley, and other wholesome grains. Perfect for making healthy rotis, parathas, and bread with enhanced nutritional value.</p>
+                                <ul>
+                                    <li>Blend of multiple healthy grains</li>
+                                    <li>High in fiber and protein</li>
+                                    <li>Perfect for healthy rotis</li>
+                                    <li>Enhanced nutritional value</li>
+                                </ul>
                             </div>
-                            <p>Protein-rich podi made from green gram (pesalu), offering a nutty flavor and nutritional benefits.</p>
-                            <ul>
-                                <li>High in plant-based protein</li>
-                                <li>Roasted to perfection</li>
-                                <li>Naturally gluten-free</li>
-                                <li>Great for weight management</li>
-                            </ul>
-                        </div>
-                        
-                        <div id="podis-nuvvula" class="product-description" style="display: none;">
-                            <h4>Nuvvula Podi (నువ్వుల పొడి)</h4>
-                            <div class="podi-image-container">
-                                <img src="https://images.pexels.com/photos/4552990/pexels-photo-4552990.jpeg" alt="Nuvvula Podi" class="podi-image" loading="lazy">
+                            
+                            <!-- Premium Coffee -->
+                            <div id="ready-to-use-premium-coffee" class="product-description" style="display: none;">
+                                <img src="/images/products/coffee-detail.jpg" 
+                                     alt="Premium Coffee" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Premium Coffee</h4>
+                                <p>Aromatic South Indian filter coffee blend made from carefully selected coffee beans. Rich, smooth, and perfect for your morning ritual or evening relaxation.</p>
+                                <ul>
+                                    <li>Premium coffee bean blend</li>
+                                    <li>Traditional South Indian style</li>
+                                    <li>Rich and aromatic</li>
+                                    <li>Perfect grind consistency</li>
+                                </ul>
                             </div>
-                            <p>Aromatic sesame seed powder that adds a rich, nutty flavor to your meals.</p>
-                            <ul>
-                                <li>Made from premium sesame seeds</li>
-                                <li>Rich in healthy fats and minerals</li>
-                                <li>Enhances flavor of any dish</li>
-                                <li>Traditional preparation method</li>
-                            </ul>
-                        </div>
-                        
-                        <div id="podis-kobbari" class="product-description" style="display: none;">
-                            <h4>Kobbari Podi (కొబ్బరి పొడి)</h4>
-                            <div class="podi-image-container">
-                                <img src="https://images.pexels.com/photos/4686887/pexels-photo-4686887.jpeg" alt="Kobbari Podi" class="podi-image" loading="lazy">
+                            
+                            <!-- Pure Pasupu -->
+                            <div id="ready-to-use-pure-pasupu" class="product-description" style="display: none;">
+                                <img src="/images/products/pasupu-detail.jpg" 
+                                     alt="Pure Pasupu" 
+                                     class="podi-image"
+                                     loading="lazy">
+                                <h4>Pure Pasupu</h4>
+                                <p>Premium quality turmeric powder with high curcumin content. Known for its anti-inflammatory and antioxidant properties, perfect for cooking and health benefits.</p>
+                                <ul>
+                                    <li>High curcumin content</li>
+                                    <li>Anti-inflammatory properties</li>
+                                    <li>Pure and natural</li>
+                                    <li>Vibrant color and aroma</li>
+                                </ul>
                             </div>
-                            <p>Sweet and fragrant coconut-based podi that's perfect for rice, dosas, and idlis.</p>
-                            <ul>
-                                <li>Fresh coconut and jaggery</li>
-                                <li>Natural sweetness</li>
-                                <li>Perfect for breakfast items</li>
-                                <li>No refined sugar added</li>
-                            </ul>
                         </div>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials-showcase section">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="scroll-container">
+                <div class="testimonials-scroll" id="testimonialsScroll">
+                    
+                    <!-- Original Testimonials -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"The best Telugu Podis I've tasted outside of my grandmother's kitchen! The authentic flavors bring back memories of home."</p>
+                            <div class="testimonial-author">
+                                <strong>Priya Sharma</strong>
+                                <span>Hyderabad</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Finally found Parotas that taste just like the ones from Kerala! Perfectly flaky and delicious every time."</p>
+                            <div class="testimonial-author">
+                                <strong>Rajesh Kumar</strong>
+                                <span>Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"The convenience of ready-to-cook Chapathis without compromising on taste. My family loves them!"</p>
+                            <div class="testimonial-author">
+                                <strong>Meera Reddy</strong>
+                                <span>Chennai</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Telugu Delicacies has made my busy mornings so much easier. Quality food with authentic taste!"</p>
+                            <div class="testimonial-author">
+                                <strong>Anil Krishna</strong>
+                                <span>Mumbai</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Outstanding quality and taste! The Kadapa Kaaram is exactly how my mother used to make it."</p>
+                            <div class="testimonial-author">
+                                <strong>Lakshmi Devi</strong>
+                                <span>Vijayawada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Excellent packaging and fast delivery! The products arrived fresh and tasty. Highly recommended!"</p>
+                            <div class="testimonial-author">
+                                <strong>Sunita Rao</strong>
+                                <span>Pune</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate testimonials for seamless infinite scroll -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"The best Telugu Podis I've tasted outside of my grandmother's kitchen! The authentic flavors bring back memories of home."</p>
+                            <div class="testimonial-author">
+                                <strong>Priya Sharma</strong>
+                                <span>Hyderabad</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Finally found Parotas that taste just like the ones from Kerala! Perfectly flaky and delicious every time."</p>
+                            <div class="testimonial-author">
+                                <strong>Rajesh Kumar</strong>
+                                <span>Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"The convenience of ready-to-cook Chapathis without compromising on taste. My family loves them!"</p>
+                            <div class="testimonial-author">
+                                <strong>Meera Reddy</strong>
+                                <span>Chennai</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Telugu Delicacies has made my busy mornings so much easier. Quality food with authentic taste!"</p>
+                            <div class="testimonial-author">
+                                <strong>Anil Krishna</strong>
+                                <span>Mumbai</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Outstanding quality and taste! The Kadapa Kaaram is exactly how my mother used to make it."</p>
+                            <div class="testimonial-author">
+                                <strong>Lakshmi Devi</strong>
+                                <span>Vijayawada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <div class="testimonial-content">
+                            <div class="stars">★★★★★</div>
+                            <p>"Excellent packaging and fast delivery! The products arrived fresh and tasty. Highly recommended!"</p>
+                            <div class="testimonial-author">
+                                <strong>Sunita Rao</strong>
+                                <span>Pune</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Customer Testimonials Section (Loaded from external file) -->
+    <section id="testimonials-placeholder">
+        <!-- Testimonials will be loaded here -->
     </section>
 
     <!-- 
-    ========================================
-    TESTIMONIALS SECTION
-    Customer testimonials with continuous scroll
-    ========================================
-    -->
-    <section class="testimonials-showcase">
-        <div class="container">
-            <h2 class="section-title">What Our Customers Say</h2>
-            
-            <div class="scroll-container">
-                <div class="testimonials-scroll" id="testimonialsScroll">
-                    <!-- First set of testimonials -->
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"The Gongura Podi tastes exactly like my grandmother's recipe! Absolutely authentic and delicious."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Priya Sharma</strong>
-                            <span>Hyderabad</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Ready-to-eat Parota is a lifesaver for busy mornings. Tastes fresh and homemade every time."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Rajesh Kumar</strong>
-                            <span>Bangalore</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Finally found authentic Telugu podis outside Andhra! The quality and taste are exceptional."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Lakshmi Devi</strong>
-                            <span>Chennai</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Excellent packaging and freshness. The Pesalu Podi is my favorite - so healthy and tasty!"</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Venkat Rao</strong>
-                            <span>Mumbai</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Great service and authentic products. Highly recommend to anyone missing home-cooked Telugu food."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Anitha Reddy</strong>
-                            <span>Delhi</span>
-                        </div>
-                    </div>
-
-                    <!-- Duplicate set for continuous scrolling -->
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"The Gongura Podi tastes exactly like my grandmother's recipe! Absolutely authentic and delicious."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Priya Sharma</strong>
-                            <span>Hyderabad</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Ready-to-eat Parota is a lifesaver for busy mornings. Tastes fresh and homemade every time."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Rajesh Kumar</strong>
-                            <span>Bangalore</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Finally found authentic Telugu podis outside Andhra! The quality and taste are exceptional."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Lakshmi Devi</strong>
-                            <span>Chennai</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Excellent packaging and freshness. The Pesalu Podi is my favorite - so healthy and tasty!"</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Venkat Rao</strong>
-                            <span>Mumbai</span>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-item">
-                        <div class="testimonial-content">
-                            <div class="stars">★★★★★</div>
-                            <p>"Great service and authentic products. Highly recommend to anyone missing home-cooked Telugu food."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Anitha Reddy</strong>
-                            <span>Delhi</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- 
     ========================================
     CONTACT FORM SECTION
     Interactive contact form with validation
     ========================================
     -->
-    <section id="contact" class="contact-form-section">
+    <section class="contact-form-section">
         <div class="container">
             <div class="contact-form-content">
-                <h2 class="section-title">Get in Touch</h2>
-                <p class="form-subtitle">Have questions about our products? We'd love to hear from you!</p>
+                <h2 class="section-title">Send Us a Message</h2>
+                <p class="form-subtitle">Have questions about our products or want to place a custom order? We'd love to hear from you!</p>
                 
-                <form class="contact-form" onsubmit="handleFormSubmit(event)" netlify netlify-honeypot="bot-field">
-                    <!-- Hidden bot field for Netlify spam protection -->
-                    <input type="hidden" name="bot-field">
+                <form class="contact-form" onsubmit="handleFormSubmit(event)" method="POST" netlify>
+                    <input type="hidden" name="form-name" value="contact">
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your full name" aria-describedby="name-help">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required placeholder="Enter your email address" aria-describedby="email-help">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" aria-describedby="phone-help">
+                            <input type="tel" id="phone" name="phone">
                         </div>
                         
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <select id="subject" name="subject" required aria-describedby="subject-help">
-                                <option value="">Select a topic</option>
+                            <select id="subject" name="subject">
+                                <option value="">Select Subject</option>
                                 <option value="product-inquiry">Product Inquiry</option>
                                 <option value="bulk-order">Bulk Order</option>
                                 <option value="distributor">Become a Distributor</option>
@@ -597,8 +922,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required placeholder="Tell us about your inquiry..." aria-describedby="message-help"></textarea>
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell us about your inquiry..." required></textarea>
                     </div>
                     
                     <button type="submit" class="submit-btn">
@@ -613,111 +938,90 @@
     <!-- 
     ========================================
     FOOTER SECTION
-    Company information and location
+    Compact footer with embedded Google Maps and essential information
     ========================================
     -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <!-- Footer Information Grid -->
+                <!-- Company Information -->
                 <div class="footer-info">
-                    <!-- Brand and Company Info -->
+                    <!-- Brand section -->
                     <div class="footer-brand">
                         <h2>Telugu Delicacies</h2>
-                        <p class="footer-tagline">Authentic. Traditional. Delicious.</p>
-                        <div class="fssai-license">FSSAI License: 13623999000239</div>
+                        <p class="footer-tagline">Authentic South Indian Flavors</p>
+                        <p class="fssai-license">FSSAI License: 13623999000239</p>
                     </div>
-
+                    
                     <!-- Contact Information -->
-                    <div class="footer-section">
-                        <h4>Contact Information</h4>
-                        <p><i class="fas fa-map-marker-alt" style="margin-right: 8px; color: var(--color-accent-light);"></i>
-                           Plot No: 121/3, B N Reddy Nagar<br>
-                           Cherlapalli, Hyderabad, Telangana 500051</p>
-                        <p><i class="fas fa-phone" style="margin-right: 8px; color: var(--color-accent-light);"></i>
-                           <a href="tel:+919676712031">+91 96767 12031</a></p>
-                        <p><i class="fas fa-phone" style="margin-right: 8px; color: var(--color-accent-light);"></i>
-                           <a href="tel:+919618513131">+91 96185 13131</a></p>
+                    <div class="footer-section footer-contact">
+                        <h4><i class="fas fa-phone"></i> Contact Us</h4>
+                        <p><a href="tel:+919676712031">+91 96767 12031</a></p>
+                        <p><a href="tel:+919618513131">+91 96185 13131</a></p>
+                        <p><a href="mailto:info@telugudelicacies.com">info@telugudelicacies.com</a></p>
+                    </div>
+                    
+                    <!-- Address Information -->
+                    <div class="footer-section footer-address">
+                        <h4><i class="fas fa-map-marker-alt"></i> Our Location</h4>
+                        <p>II, Western Part, Plot No: 121/3</p>
+                        <p>B N Reddy Nagar, Cherlapalli</p>
+                        <p>Hyderabad, Telangana 500051</p>
+                        <p>India</p>
                     </div>
                 </div>
                 
-                <!-- Embedded Google Map -->
+                <!-- Google Maps Section -->
                 <div class="footer-map">
-                    <h4>Find Us Here</h4>
+                    <h4><i class="fas fa-location-dot"></i> Find Us Here</h4>
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.550826249338!2d78.60823987594556!3d17.430346683431892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9908b9b9b9b9%3A0x9b9b9b9b9b9b9b9b!2sB%20N%20Reddy%20Nagar%2C%20Cherlapalli%2C%20Hyderabad%2C%20Telangana%20500051!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Telugu Delicacies Location Map"
-                                aria-label="Google Maps showing Telugu Delicacies location in Cherlapalli, Hyderabad">
+                        <!-- Google Maps Embed -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.8428871601745!2d78.60164107521217!3d17.46723238343367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9d007f562aaf%3A0x2f13d0ef2a0f7614!2sTelugu%20Delicacies!5e0!3m2!1sen!2sin!4v1756361897165!5m2!1sen!2sin"
+                            width="100%" 
+                            height="250" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
             </div>
-
-            <!-- Footer Bottom -->
+                
+            <!-- Copyright -->
             <div class="footer-bottom">
-                <p>&copy; 2024 Telugu Delicacies. All rights reserved.</p>
+                <p>&copy; 2024 Telugu Delicacies. All rights reserved. | Crafted with ❤️ for authentic South Indian taste</p>
             </div>
         </div>
     </footer>
 
-    <!-- 
-    ========================================
-    WHATSAPP BUY NOW POPUP MODAL
-    Shows instructions for desktop users on how to buy via WhatsApp
-    ========================================
-    -->
-    <div id="whatsappBuyPopup" class="whatsapp-popup-overlay hidden">
-        <div class="whatsapp-popup-backdrop"></div>
-        <div class="whatsapp-popup-content">
-            <button class="whatsapp-popup-close" onclick="closeWhatsAppBuyPopup()">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div class="whatsapp-popup-header">
-                <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25D366; margin-bottom: 1rem;"></i>
-                <h3>Buy via WhatsApp</h3>
-                <p>Browse our complete catalog and place orders directly through WhatsApp for personalized service</p>
-            </div>
-            
-            <div class="whatsapp-popup-body">
-                <div class="whatsapp-option">
-                    <h4><i class="fas fa-mobile-alt"></i> For Mobile Users</h4>
-                    <p>Click the button below to open our WhatsApp catalog directly</p>
-                    <a href="https://wa.me/c/919618519191" target="_blank" rel="noopener noreferrer" class="whatsapp-btn mobile">
-                        <i class="fab fa-whatsapp"></i> Open WhatsApp Catalog
-                    </a>
-                </div>
+                        <button class="nav-btn nav-btn-cta" onclick="handleBuyNowClick()">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+        // Load testimonials HTML content
+        fetch('testimonials.html')
+            .then(response => response.text())
+            .then(data => {
+                // Extract just the testimonials section content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const testimonialsSection = doc.querySelector('.testimonials-showcase');
                 
-                <div class="whatsapp-divider">
-                    <span>OR</span>
-                </div>
-                
-                <div class="whatsapp-option">
-                    <h4><i class="fas fa-desktop"></i> For Desktop Users</h4>
-                    <p>Use WhatsApp Web to browse our catalog and place orders</p>
-                    <a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" class="whatsapp-btn web">
-                        <i class="fas fa-external-link-alt"></i> Open WhatsApp Web
-                    </a>
-                    <small style="display: block; margin-top: 0.75rem; color: var(--text-muted); line-height: 1.4;">
-                        After opening WhatsApp Web, search for <strong>+91 96185 19191</strong> or click 
-                        <a href="https://wa.me/c/919618519191" target="_blank" style="color: #25D366; font-weight: 600;">this direct link</a>
-                    </small>
-                </div>
-                
-                <div class="whatsapp-contact-info">
-                    <p><strong>Prefer to Call?</strong></p>
-                    <div class="contact-numbers">
-                        <a href="tel:+919676712031"><i class="fas fa-phone"></i> +91 96767 12031</a>
-                        <a href="tel:+919618513131"><i class="fas fa-phone"></i> +91 96185 13131</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                if (testimonialsSection) {
+                    document.getElementById('testimonials-placeholder').innerHTML = testimonialsSection.outerHTML;
+                    
+                    // Initialize testimonials controls after content is loaded
+                    setTimeout(() => {
+                        initializeTestimonialsControls();
+                    }, 100);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading testimonials:', error);
+            });
+    </script>
 
+    <!-- Main JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
