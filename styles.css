@@ -480,7 +480,7 @@ Enhanced visual appeal with modern design
   display: flex;
   align-items: center;
   background: var(--bg-gradient-hero);
-  background-image: url('./images/hero-background.png');
+  background-image: url('./images/hero-background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
