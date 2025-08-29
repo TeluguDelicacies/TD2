@@ -509,24 +509,24 @@ Enhanced visual appeal with modern design
 }
 
 .hero-content {
-  padding: var(--space-8) 0;
+  padding: var(--space-12) 0 var(--space-8) 0;
 }
 
 .hero-title {
-  font-size: clamp(var(--font-4xl), 8vw, var(--font-6xl));
+  font-size: clamp(var(--font-3xl), 6vw, var(--font-4xl));
   font-weight: var(--weight-extrabold);
   line-height: 1.1;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
   color: var(--text-primary);
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hero-subtitle {
-  font-size: var(--font-xl);
+  font-size: var(--font-lg);
   font-weight: var(--weight-medium);
   line-height: 1.6;
   color: var(--text-primary);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
   max-width: 500px;
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
