@@ -541,7 +541,7 @@ Enhanced visual appeal with modern design
 }
 
 .hero-cta {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: var(--space-3);
   background: var(--bg-gradient-primary);
