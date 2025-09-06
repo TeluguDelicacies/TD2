@@ -991,6 +991,27 @@ Crafted with the finest ingredients and meticulous care, our products capture th
             <!-- Copyright -->
             <div class="footer-bottom">
                 <p>&copy; 2024 Telugu Delicacies. All rights reserved. | Crafted with ❤️ for authentic South Indian taste</p>
+
+                
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Buy Now Button -->
+<button class="nav-btn nav-btn-cta" onclick="redirectToWhatsApp()">
+    <i class="fab fa-whatsapp"></i> Buy Now
+</button>
+
+<!-- WhatsApp Buy Now Functionality -->
+<script>
+    /**
+     * Redirects the user to the WhatsApp catalog in a new tab.
+     * - Uses wa.me short link with country code and number.
+     * - Opens safely in a new tab without giving referrer info.
+     */
+    function redirectToWhatsApp() {
+        const whatsappUrl = 'https://wa.me/c/919618519191';
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+</script>
+    </html>
