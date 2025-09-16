@@ -1031,9 +1031,42 @@ if ('connection' in navigator) {
     });
 }
 
-/*
-========================================
-UTILITY FUNCTIONS
-Helper functions for various website features
-========================================
-*/
+// ============================
+// WhatsApp QR integration
+// ============================
+const whatsappUrl = "https://wa.me/c/919618519191";
+
+document.addEventListener("click", function (e) {
+  const btn = e.target.closest(".whatsapp-btn");
+  if (!btn) return;
+  e.preventDefault();
+  redirectToWhatsApp();
+});
+
+function redirectToWhatsApp() {
+  if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  } else {
+    openQrModal();
+  }
+}
+
+function openQrModal() {
+  const modal = document.getElementById("qrModal");
+  modal.style.display = "flex";
+  const canvas = document.getElementById("qrCodeCanvas");
+  QRCode.toCanvas(canvas, whatsappUrl, { width: 220 }, function (error) {
+    if (error) console.error(error);
+  });
+  document.body.style.overflow = "hidden";
+}
+
+function closeQrModal() {
+  const modal = document.getElementById("qrModal");
+  modal.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+document.getElementById("qrModal").addEventListener("click", function (e) {
+  if (e.target.id === "qrModal") closeQrModal();
+});
