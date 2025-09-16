@@ -1013,43 +1013,45 @@
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     }
 </script>-->
-<button class="whatsapp-btn">Buy on WhatsApp</button>
+<!-- WhatsApp Button -->
+<button type="button" class="whatsapp-btn">Buy on WhatsApp</button>
 
+<!-- QR Modal -->
 <div id="qrModal" 
-      style="display:none; position:fixed; inset:0; 
-             background:rgba(0,0,0,0.6); 
-             align-items:center; justify-content:center; 
-             z-index:2000; pointer-events:auto;">
+     style="display:none; position:fixed; inset:0; 
+            background:rgba(0,0,0,0.6); 
+            align-items:center; justify-content:center; 
+            z-index:2000;">
   <div style="background:#fff; padding:30px; border-radius:16px; 
               text-align:center; width:320px; max-width:90%;
               box-shadow:0 8px 24px rgba(0,0,0,0.25); position:relative;">
+    <button onclick="closeQrModal()" 
+            style="position:absolute; top:8px; right:8px; 
+                   border:none; background:none; font-size:20px; cursor:pointer;">×</button>
     <h2 style="margin-bottom:15px; font-family:sans-serif;">Scan to Chat on WhatsApp</h2>
     <canvas id="qrCodeCanvas"></canvas>
     <p style="margin-top:10px; font-size:14px; color:#555;">
       Point your phone camera at the QR
     </p>
-    <button onclick="closeQrModal()" 
-            style="margin-top:20px; padding:10px 20px; 
-                   border:none; border-radius:8px; background:#004D4D; color:#fff;
-                   cursor:pointer; font-size:14px;">
-      Close
-    </button>
   </div>
 </div>
 
+<!-- QRCode library -->
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
 <script>
   const whatsappUrl = 'https://wa.me/c/919618519191';
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Attach to ALL WhatsApp buttons (works in header + hamburger)
-    const buttons = document.querySelectorAll(".whatsapp-btn");
-    buttons.forEach(btn => {
-      btn.addEventListener("click", function (e) {
-        // The line e.stopPropagation() has been removed.
-        redirectToWhatsApp();
-      });
+    document.addEventListener("click", function (e) {
+      const btn = e.target.closest(".whatsapp-btn");
+      if (!btn) return;
+
+      // If it's inside an <a>, stop navigation
+      const anchor = btn.closest("a");
+      if (anchor) e.preventDefault();
+
+      redirectToWhatsApp();
     });
   });
 
@@ -1066,17 +1068,25 @@
   function openQrModal() {
     const modal = document.getElementById("qrModal");
     modal.style.display = "flex";
-    const canvas = document.getElementById('qrCodeCanvas');
+
+    // Generate QR only when opening
+    const canvas = document.getElementById("qrCodeCanvas");
     QRCode.toCanvas(canvas, whatsappUrl, { width: 220 }, function (error) {
       if (error) console.error(error);
     });
+
     document.body.style.overflow = "hidden";
   }
 
   function closeQrModal() {
-    document.getElementById("qrModal").style.display = "none";
+    const modal = document.getElementById("qrModal");
+    modal.style.display = "none";
     document.body.style.overflow = "";
   }
-</script>
 
+  // Close if clicking outside modal content
+  document.getElementById("qrModal").addEventListener("click", function (e) {
+    if (e.target.id === "qrModal") closeQrModal();
+  });
+</script>
     </html>
