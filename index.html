@@ -996,12 +996,12 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Buy Now Button -->
+    <!-- WhatsApp Buy Now Button 
 <button class="nav-btn nav-btn-cta" onclick="redirectToWhatsApp()">
     <i class="fab fa-whatsapp"></i> Buy Now
-</button>
+</button>-->
 
-<!-- WhatsApp Buy Now Functionality -->
+<!-- WhatsApp Buy Now Functionality 
 <script>
     /**
      * Redirects the user to the WhatsApp catalog in a new tab.
@@ -1012,5 +1012,45 @@
         const whatsappUrl = 'https://wa.me/c/919618519191';
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     }
+</script>-->
+
+    <!-- Button -->
+<button onclick="redirectToWhatsApp()">Buy on WhatsApp</button>
+
+<!-- Hidden QR Modal -->
+<div id="qrModal" 
+     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:20px; border-radius:12px; text-align:center;">
+    <h3>Scan to chat on WhatsApp</h3>
+    <canvas id="qrCodeCanvas"></canvas>
+    <br>
+    <button onclick="closeQrModal()">Close</button>
+  </div>
+</div>
+
+<!-- Script -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script>
+  function redirectToWhatsApp() {
+    const whatsappUrl = 'https://wa.me/c/919618519191';
+
+    // Check if device is mobile
+    if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      // Show QR code modal
+      document.getElementById("qrModal").style.display = "flex";
+      const canvas = document.getElementById('qrCodeCanvas');
+      QRCode.toCanvas(canvas, whatsappUrl, { width: 200 }, function (error) {
+        if (error) console.error(error);
+      });
+    }
+  }
+
+  function closeQrModal() {
+    document.getElementById("qrModal").style.display = "none";
+  }
 </script>
+
     </html>
