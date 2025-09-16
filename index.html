@@ -1014,17 +1014,18 @@
     }
 </script>-->
 
-<!-- WhatsApp Button -->
-<button id="whatsappBtn">Buy on WhatsApp</button>
+<!-- WhatsApp Button (can be inside hamburger or header) -->
+<button class="whatsapp-btn">Buy on WhatsApp</button>
 
 <!-- QR Modal -->
 <div id="qrModal" 
      style="display:none; position:fixed; inset:0; 
             background:rgba(0,0,0,0.6); 
-            align-items:center; justify-content:center; z-index:9999;">
+            align-items:center; justify-content:center; 
+            z-index:2000; pointer-events:auto;">
   <div style="background:#fff; padding:30px; border-radius:16px; 
               text-align:center; width:320px; max-width:90%;
-              box-shadow:0 8px 24px rgba(0,0,0,0.2); position:relative;">
+              box-shadow:0 8px 24px rgba(0,0,0,0.25); position:relative;">
     <h2 style="margin-bottom:15px; font-family:sans-serif;">Scan to Chat on WhatsApp</h2>
     <canvas id="qrCodeCanvas"></canvas>
     <p style="margin-top:10px; font-size:14px; color:#555;">
@@ -1044,13 +1045,16 @@
 
 <script>
   const whatsappUrl = 'https://wa.me/c/919618519191';
-  const whatsappBtn = document.getElementById("whatsappBtn");
 
-  // Attach click after DOM is ready (prevents hamburger menu conflicts)
   document.addEventListener("DOMContentLoaded", function () {
-    whatsappBtn.addEventListener("click", function (e) {
-      e.preventDefault();
-      redirectToWhatsApp();
+    // Attach to ALL WhatsApp buttons (works in header + hamburger)
+    const buttons = document.querySelectorAll(".whatsapp-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", function (e) {
+        // Only block default if it's our WhatsApp button
+        e.stopPropagation(); // avoid breaking hamburger toggle
+        redirectToWhatsApp();
+      });
     });
   });
 
@@ -1079,6 +1083,5 @@
     document.body.style.overflow = "";
   }
 </script>
-
 
     </html>
