@@ -1013,145 +1013,70 @@
         window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     }
 </script>-->
+<button class="whatsapp-btn">Buy on WhatsApp</button>
 
-<!-- Example nav (you may already have your own) -->
-<nav>
-  <button id="menuToggle" class="hamburger">☰</button>
-  <ul id="menu" class="menu">
-    <li><a href="/products">Products</a></li>
-    <li><a href="/shop">Shop</a></li>
-    <li><a href="/contact">Contact</a></li>
-    <!-- Put this button where you want (header or inside hamburger). Prefer <button type="button"> -->
-    <li><button type="button" class="whatsapp-btn">Buy on WhatsApp</button></li>
-  </ul>
-</nav>
+<div id="qrModal" 
+      style="display:none; position:fixed; inset:0; 
+             background:rgba(0,0,0,0.6); 
+             align-items:center; justify-content:center; 
+             z-index:2000; pointer-events:auto;">
+  <div style="background:#fff; padding:30px; border-radius:16px; 
+              text-align:center; width:320px; max-width:90%;
+              box-shadow:0 8px 24px rgba(0,0,0,0.25); position:relative;">
+    <h2 style="margin-bottom:15px; font-family:sans-serif;">Scan to Chat on WhatsApp</h2>
+    <canvas id="qrCodeCanvas"></canvas>
+    <p style="margin-top:10px; font-size:14px; color:#555;">
+      Point your phone camera at the QR
+    </p>
+    <button onclick="closeQrModal()" 
+            style="margin-top:20px; padding:10px 20px; 
+                   border:none; border-radius:8px; background:#004D4D; color:#fff;
+                   cursor:pointer; font-size:14px;">
+      Close
+    </button>
+  </div>
+</div>
 
-<!-- The script (paste at end of body) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
 <script>
-(function () {
-  const WA_URL = 'https://wa.me/c/919618519191';
+  const whatsappUrl = 'https://wa.me/c/919618519191';
 
-  function isMobile() {
-    return /Mobi|Android|iPhone|iPad|Windows Phone|Mobile/i.test(navigator.userAgent || '');
-  }
-
-  // Lazy-load QR library only when necessary
-  function loadQrLib(callback) {
-    if (window.QRCode && window.QRCode.toCanvas) return callback();
-    const s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js';
-    s.async = true;
-    s.onload = () => callback();
-    s.onerror = () => {
-      console.error('Failed to load QR library');
-      callback(new Error('QR lib load error'));
-    };
-    document.head.appendChild(s);
-  }
-
-  // Create modal once and append to body (hidden by default)
-  function createModal() {
-    if (document.getElementById('qrModal')) return document.getElementById('qrModal');
-
-    const modal = document.createElement('div');
-    modal.id = 'qrModal';
-    modal.setAttribute('aria-hidden', 'true');
-    // Basic unobtrusive styles; you can replace with your CSS
-    modal.style.cssText = [
-      'display:none',
-      'position:fixed',
-      'inset:0',
-      'z-index:99999',
-      'align-items:center',
-      'justify-content:center',
-      'background:rgba(0,0,0,0.6)',
-      'backdrop-filter: blur(2px)'
-    ].join(';');
-
-    modal.innerHTML = `
-      <div class="qr-panel" role="dialog" aria-modal="true"
-           style="position:relative; background:#fff; padding:24px; border-radius:12px; width:320px; max-width:92%; text-align:center; box-shadow:0 18px 40px rgba(0,0,0,0.25);">
-        <button class="qr-close" aria-label="Close" style="position:absolute; right:10px; top:8px; border:none; background:transparent; font-size:20px; cursor:pointer;">×</button>
-        <h3 style="margin:0 0 12px; font-size:18px;">Scan to open WhatsApp</h3>
-        <canvas id="qrCanvas" style="display:block; margin:0 auto 8px;"></canvas>
-        <p style="margin:0; font-size:13px; color:#666;">Point your phone camera at this QR code</p>
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-
-    // close handlers
-    modal.querySelector('.qr-close').addEventListener('click', closeQrModal);
-    modal.addEventListener('click', function (ev) {
-      if (ev.target === modal) closeQrModal(); // click outside panel closes
+  document.addEventListener("DOMContentLoaded", function () {
+    // Attach to ALL WhatsApp buttons (works in header + hamburger)
+    const buttons = document.querySelectorAll(".whatsapp-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", function (e) {
+        // The line e.stopPropagation() has been removed.
+        redirectToWhatsApp();
+      });
     });
-    document.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Escape') closeQrModal();
-    });
+  });
 
-    return modal;
+  function redirectToWhatsApp() {
+    if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+      // Mobile → open WhatsApp
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    } else {
+      // Desktop → show QR
+      openQrModal();
+    }
   }
 
   function openQrModal() {
-    const modal = createModal();
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    loadQrLib(function (err) {
-      const canvas = document.getElementById('qrCanvas');
-      if (err) {
-        canvas.style.display = 'none';
-        return;
-      }
-      try {
-        // generate QR to canvas
-        QRCode.toCanvas(canvas, WA_URL, { width: 220 }, function (error) {
-          if (error) {
-            console.error('QR render error', error);
-          }
-        });
-      } catch (ex) {
-        console.error('QR generation exception', ex);
-      }
+    const modal = document.getElementById("qrModal");
+    modal.style.display = "flex";
+    const canvas = document.getElementById('qrCodeCanvas');
+    QRCode.toCanvas(canvas, whatsappUrl, { width: 220 }, function (error) {
+      if (error) console.error(error);
     });
+    document.body.style.overflow = "hidden";
   }
 
   function closeQrModal() {
-    const modal = document.getElementById('qrModal');
-    if (!modal) return;
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    // clear canvas pixels
-    const canvas = document.getElementById('qrCanvas');
-    if (canvas && canvas.getContext) {
-      const ctx = canvas.getContext('2d');
-      ctx && ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
+    document.getElementById("qrModal").style.display = "none";
+    document.body.style.overflow = "";
   }
-
-  // Delegated click handler - does NOT stopPropagation globally
-  document.addEventListener('click', function (ev) {
-    const btn = ev.target.closest && ev.target.closest('.whatsapp-btn');
-    if (!btn) return;
-
-    // If the button is wrapped in an <a>, prevent that anchor from navigating,
-    // but do not stop other events (keeps hamburger toggle code working).
-    const anchor = btn.closest('a');
-    if (anchor) ev.preventDefault();
-
-    if (isMobile()) {
-      // open whatsapp on mobile in the same tab (safer on mobiles)
-      // you may opt for window.open(..., '_blank') if you prefer new tab.
-      window.location.href = WA_URL;
-    } else {
-      openQrModal();
-    }
-  }, false);
-
-})();
 </script>
-
 
     </html>
