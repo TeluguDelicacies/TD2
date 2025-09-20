@@ -893,145 +893,312 @@ Sets up all functionality when the page loads
 
 /*
 ========================================
-MOBILE MENU FUNCTIONALITY 
-Hamburger menu toggle and navigation
+HEADER NAVIGATION FUNCTIONALITY
+Complete header navigation with WhatsApp integration
 ========================================
 */
 
+// WhatsApp catalog configuration
+const WHATSAPP_CATALOG_URL = "https://wa.me/c/919618519191";
+
 /**
- * Toggles the mobile navigation menu visibility
- * Animates hamburger icon and shows/hides menu
+ * Check if user is on mobile device
+ * @returns {boolean} True if mobile device detected
  */
-function toggleMobileMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    
-    if (!mobileNav || !hamburgerBtn) {
-        return;
-    }
-    
-    // Toggle menu visibility
-    const isVisible = !mobileNav.classList.contains('hidden');
-    
-    if (isVisible) {
-        // Hide menu
-        mobileNav.classList.add('hidden');
-        hamburgerBtn.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Restore page scrolling
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+}
+
+/**
+ * Handle WhatsApp button click
+ * Mobile: Direct to catalog, Desktop: Show QR modal
+ */
+function handleWhatsAppClick() {
+    if (isMobileDevice()) {
+        // Direct to WhatsApp catalog on mobile
+        window.open(WHATSAPP_CATALOG_URL, '_blank', 'noopener,noreferrer');
     } else {
-        // Show menu
-        mobileNav.classList.remove('hidden');
-        hamburgerBtn.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent page scrolling
+        // Show QR code modal on desktop
+        showWhatsAppQR();
     }
 }
 
 /**
- * Closes the mobile navigation menu
- * Used when navigation buttons are clicked
+ * Show WhatsApp QR code modal for desktop users
  */
-function closeMobileMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    
-    if (!mobileNav || !hamburgerBtn) return;
-    
-    // Hide menu and reset hamburger icon
-    mobileNav.classList.add('hidden');
-    hamburgerBtn.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Restore page scrolling
-}
-
-/**
- * Initializes click-outside-to-close functionality for mobile menu
- */
-function initializeClickOutsideClose() {
-    document.addEventListener('click', (event) => {
-        const mobileNav = document.getElementById('mobileNav');
-        const hamburgerBtn = document.querySelector('.hamburger-btn');
+function showWhatsAppQR() {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('whatsappQRModal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'whatsappQRModal';
+        modal.className = 'whatsapp-qr-modal';
+        modal.innerHTML = `
+            <div class="whatsapp-qr-backdrop"></div>
+            <div class="whatsapp-qr-content">
+                <button class="whatsapp-qr-close" onclick="closeWhatsAppQR()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="whatsapp-qr-header">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>Scan to Open Catalog</h3>
+                    <p>Scan this QR code with your phone to view our products on WhatsApp</p>
+                </div>
+                <div class="whatsapp-qr-code">
+                    <canvas id="qrCanvas"></canvas>
+                </div>
+                <div class="whatsapp-qr-footer">
+                    <p>Or visit: <a href="${WHATSAPP_CATALOG_URL}" target="_blank">${WHATSAPP_CATALOG_URL}</a></p>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
         
-        if (!mobileNav || !hamburgerBtn) return;
-        
-        // Check if menu is open and click is outside menu and hamburger button
-        const isMenuOpen = !mobileNav.classList.contains('hidden');
-        const isClickOnMenu = mobileNav.contains(event.target);
-        const isClickOnHamburger = hamburgerBtn.contains(event.target);
-        
-        if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
-            closeMobileMenu();
+        // Add modal styles
+        if (!document.getElementById('whatsapp-qr-styles')) {
+            const styles = document.createElement('style');
+            styles.id = 'whatsapp-qr-styles';
+            styles.textContent = `
+                .whatsapp-qr-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 1;
+                    visibility: visible;
+                    transition: all 0.3s ease;
+                }
+                .whatsapp-qr-modal.hidden {
+                    opacity: 0;
+                    visibility: hidden;
+                }
+                .whatsapp-qr-backdrop {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.7);
+                    backdrop-filter: blur(8px);
+                }
+                .whatsapp-qr-content {
+                    position: relative;
+                    background: white;
+                    border-radius: 1rem;
+                    padding: 2rem;
+                    max-width: 400px;
+                    width: 90vw;
+                    text-align: center;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                }
+                .whatsapp-qr-close {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #666;
+                    transition: color 0.2s ease;
+                }
+                .whatsapp-qr-close:hover {
+                    color: #333;
+                }
+                .whatsapp-qr-header i {
+                    font-size: 3rem;
+                    color: #25D366;
+                    margin-bottom: 1rem;
+                }
+                .whatsapp-qr-header h3 {
+                    margin: 0 0 0.5rem 0;
+                    color: #333;
+                }
+                .whatsapp-qr-header p {
+                    margin: 0 0 2rem 0;
+                    color: #666;
+                    font-size: 0.9rem;
+                }
+                .whatsapp-qr-code {
+                    margin: 2rem 0;
+                }
+                .whatsapp-qr-code canvas {
+                    max-width: 200px;
+                    height: auto;
+                }
+                .whatsapp-qr-footer p {
+                    font-size: 0.8rem;
+                    color: #666;
+                    margin: 0;
+                }
+                .whatsapp-qr-footer a {
+                    color: #0077B6;
+                    text-decoration: none;
+                }
+            `;
+            document.head.appendChild(styles);
         }
-    });
+    }
+    
+    // Show modal
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Generate QR code if library is available
+    if (typeof QRCode !== 'undefined') {
+        const canvas = document.getElementById('qrCanvas');
+        if (canvas) {
+            QRCode.toCanvas(canvas, WHATSAPP_CATALOG_URL, { width: 200 }, function (error) {
+                if (error) console.error('QR Code generation error:', error);
+            });
+        }
+    } else {
+        // Fallback if QR library not available
+        document.querySelector('.whatsapp-qr-code').innerHTML = `
+            <p style="color: #666; font-size: 0.9rem;">QR Code library not loaded.<br>
+            <a href="${WHATSAPP_CATALOG_URL}" target="_blank" style="color: #25D366;">Click here to open catalog</a></p>
+        `;
+    }
 }
 
 /*
 ========================================
-NAVIGATION SCROLL HANDLERS
-Handle navigation button clicks and scrolling
+Close WhatsApp QR Modal
 ========================================
 */
-
-/**
- * Handle products button click - scroll to products section
- */
-function handleProductsClick() {
-    scrollToSection('products');
-    closeMobileMenu(); // Close mobile menu if open
+function closeWhatsAppQR() {
+    const modal = document.getElementById('whatsappQRModal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
 }
 
 /**
- * Handle contact button click - scroll to footer
+ * Toggle mobile navigation menu
  */
-function handleContactClick() {
-    scrollToSection('contact');
-    closeMobileMenu(); // Close mobile menu if open
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    const isOpen = mobileNav.classList.contains('show');
+    
+    if (isOpen) {
+        mobileNav.classList.remove('show');
+        hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    } else {
+        mobileNav.classList.add('show');
+        hamburgerBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 /**
- * Initialize navigation event listeners
+ * Close mobile navigation menu
  */
-function initializeNavigation() {
+function closeMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    
+    if (!mobileNav || !hamburgerBtn) return;
+    
+    mobileNav.classList.remove('show');
+    hamburgerBtn.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+/**
+ * Handle navigation button clicks
+ * @param {string} target - Target section to scroll to
+ */
+function handleNavigation(target) {
+    scrollToSection(target);
+    closeMobileMenu();
+}
+
+/**
+ * Initialize header navigation functionality
+ */
+function initializeHeaderNavigation() {
     // Hamburger menu toggle
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', toggleMobileMenu);
     }
     
     // Desktop navigation buttons
-    const desktopNavButtons = document.querySelectorAll('.nav-buttons .nav-btn');
-    desktopNavButtons.forEach(button => {
-        const text = button.textContent.trim().toLowerCase();
-        if (text.includes('products') || text.includes('shop')) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleProductsClick();
-            });
-        } else if (text.includes('contact')) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleContactClick();
-            });
-        }
-    });
+    const productsBtn = document.getElementById('productsBtn');
+    const contactBtn = document.getElementById('contactBtn');
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    
+    if (productsBtn) {
+        productsBtn.addEventListener('click', () => handleNavigation('products'));
+    }
+    
+    if (contactBtn) {
+        contactBtn.addEventListener('click', () => handleNavigation('contact'));
+    }
+    
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', handleWhatsAppClick);
+    }
     
     // Mobile navigation buttons
-    const mobileNavButtons = document.querySelectorAll('.mobile-nav-btn');
-    mobileNavButtons.forEach(button => {
-        const text = button.textContent.trim().toLowerCase();
-        if (text.includes('products') || text.includes('shop')) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleProductsClick();
-            });
-        } else if (text.includes('contact')) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleContactClick();
-            });
+    const mobileProductsBtn = document.getElementById('mobileProductsBtn');
+    const mobileContactBtn = document.getElementById('mobileContactBtn');
+    const mobileWhatsappBtn = document.getElementById('mobileWhatsappBtn');
+    
+    if (mobileProductsBtn) {
+        mobileProductsBtn.addEventListener('click', () => handleNavigation('products'));
+    }
+    
+    if (mobileContactBtn) {
+        mobileContactBtn.addEventListener('click', () => handleNavigation('contact'));
+    }
+    
+    if (mobileWhatsappBtn) {
+        mobileWhatsappBtn.addEventListener('click', handleWhatsAppClick);
+    }
+    
+    // Click outside to close mobile menu
+    document.addEventListener('click', (e) => {
+        const mobileNav = document.getElementById('mobileNav');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        
+        if (!mobileNav || !hamburgerBtn) return;
+        
+        const isMenuOpen = mobileNav.classList.contains('show');
+        const isClickOnMenu = mobileNav.contains(e.target);
+        const isClickOnHamburger = hamburgerBtn.contains(e.target);
+        
+        if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
+            closeMobileMenu();
         }
     });
     
-    // Initialize click-outside-to-close
-    initializeClickOutsideClose();
+    // Click outside to close WhatsApp QR modal
+    document.addEventListener('click', (e) => {
+        const modal = document.getElementById('whatsappQRModal');
+        if (modal && e.target.classList.contains('whatsapp-qr-backdrop')) {
+            closeWhatsAppQR();
+        }
+    });
+    
+    // ESC key to close modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+            closeWhatsAppQR();
+        }
+    });
 }
 
 /*
@@ -1042,8 +1209,8 @@ MAIN INITIALIZATION FUNCTION
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize navigation and mobile menu
-    initializeNavigation();
+    // Initialize header navigation
+    initializeHeaderNavigation();
     
     // Initialize other functionality
     initializeScrollAnimations();
@@ -1078,10 +1245,7 @@ document.addEventListener('visibilitychange', () => {
 
 // Add scroll header effects
 let lastScrollY = window.scrollY;
-window.addEventListener('scroll', debounce(() => {
-    updateHeaderOnScroll();
-    lastScrollY = window.scrollY;
-}, 16)); // 60fps throttling
+// Removed scroll effects to keep header persistent as requested
 
 // Handle connection changes (for progressive enhancement)
 if ('connection' in navigator) {
@@ -1091,42 +1255,5 @@ if ('connection' in navigator) {
     });
 }
 
-// ============================
-// WhatsApp QR integration
-// ============================
-const whatsappUrl = "https://wa.me/c/919618519191";
-
-document.addEventListener("click", function (e) {
-  const btn = e.target.closest(".whatsapp-btn");
-  if (!btn) return;
-  e.preventDefault();
-  redirectToWhatsApp();
-});
-
-function redirectToWhatsApp() {
-  if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  } else {
-    openQrModal();
-  }
-}
-
-function openQrModal() {
-  const modal = document.getElementById("qrModal");
-  modal.style.display = "flex";
-  const canvas = document.getElementById("qrCodeCanvas");
-  QRCode.toCanvas(canvas, whatsappUrl, { width: 220 }, function (error) {
-    if (error) console.error(error);
-  });
-  document.body.style.overflow = "hidden";
-}
-
-function closeQrModal() {
-  const modal = document.getElementById("qrModal");
-  modal.style.display = "none";
-  document.body.style.overflow = "";
-}
-
-document.getElementById("qrModal").addEventListener("click", function (e) {
-  if (e.target.id === "qrModal") closeQrModal();
-});
+// Make functions globally available
+window.closeWhatsAppQR = closeWhatsAppQR;
