@@ -436,7 +436,8 @@ Keeping existing modern header design
 }
 
 .mobile-nav {
-  display: none;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 100%;
   right: var(--space-6);
@@ -447,7 +448,10 @@ Keeping existing modern header design
   box-shadow: var(--shadow-xl);
   padding: var(--space-4);
   gap: var(--space-2);
-  flex-direction: column;
+}
+
+.mobile-nav.hidden {
+  display: none;
 }
 
 .mobile-nav-btn {

@@ -904,25 +904,22 @@ function toggleMobileMenu() {
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     
     if (!mobileNav || !hamburgerBtn) {
-        console.error('Mobile nav elements not found');
         return;
     }
     
     // Toggle menu visibility
-    const isVisible = mobileNav.style.display === 'block';
+    const isVisible = !mobileNav.classList.contains('hidden');
     
     if (isVisible) {
         // Hide menu
-        mobileNav.style.display = 'none';
+        mobileNav.classList.add('hidden');
         hamburgerBtn.classList.remove('active');
         document.body.style.overflow = 'auto'; // Restore page scrolling
-        console.log('Mobile menu closed');
     } else {
         // Show menu
-        mobileNav.style.display = 'block';
+        mobileNav.classList.remove('hidden');
         hamburgerBtn.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent page scrolling
-        console.log('Mobile menu opened');
     }
 }
 
@@ -937,10 +934,9 @@ function closeMobileMenu() {
     if (!mobileNav || !hamburgerBtn) return;
     
     // Hide menu and reset hamburger icon
-    mobileNav.style.display = 'none';
+    mobileNav.classList.add('hidden');
     hamburgerBtn.classList.remove('active');
     document.body.style.overflow = 'auto'; // Restore page scrolling
-    console.log('Mobile menu closed via navigation');
 }
 
 /**
@@ -954,7 +950,7 @@ function initializeClickOutsideClose() {
         if (!mobileNav || !hamburgerBtn) return;
         
         // Check if menu is open and click is outside menu and hamburger button
-        const isMenuOpen = mobileNav.style.display === 'block';
+        const isMenuOpen = !mobileNav.classList.contains('hidden');
         const isClickOnMenu = mobileNav.contains(event.target);
         const isClickOnHamburger = hamburgerBtn.contains(event.target);
         
@@ -966,41 +962,105 @@ function initializeClickOutsideClose() {
 
 /*
 ========================================
-MOBILE MENU FUNCTIONALITY
-Hamburger menu toggle and navigation
+NAVIGATION SCROLL HANDLERS
+Handle navigation button clicks and scrolling
 ========================================
 */
 
 /**
- * Toggles the mobile navigation menu visibility
- * Animates hamburger icon and shows/hides menu
+ * Handle products button click - scroll to products section
  */
-function toggleMobileMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    
-    if (!mobileNav || !hamburgerBtn) return;
-    
-    // Toggle menu visibility
-    const isVisible = mobileNav.style.display === 'block';
-    
-    if (isVisible) {
-        // Hide menu
-        mobileNav.style.display = 'none';
-        hamburgerBtn.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Restore page scrolling
-    } else {
-        // Show menu
-        mobileNav.style.display = 'block';
-        hamburgerBtn.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent page scrolling
-    }
+function handleProductsClick() {
+    scrollToSection('products');
+    closeMobileMenu(); // Close mobile menu if open
 }
+
+/**
+ * Handle contact button click - scroll to footer
+ */
+function handleContactClick() {
+    scrollToSection('contact');
+    closeMobileMenu(); // Close mobile menu if open
+}
+
+/**
+ * Initialize navigation event listeners
+ */
+function initializeNavigation() {
+    // Hamburger menu toggle
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    }
+    
+    // Desktop navigation buttons
+    const desktopNavButtons = document.querySelectorAll('.nav-buttons .nav-btn');
+    desktopNavButtons.forEach(button => {
+        const text = button.textContent.trim().toLowerCase();
+        if (text.includes('products') || text.includes('shop')) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleProductsClick();
+            });
+        } else if (text.includes('contact')) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleContactClick();
+            });
+        }
+    });
+    
+    // Mobile navigation buttons
+    const mobileNavButtons = document.querySelectorAll('.mobile-nav-btn');
+    mobileNavButtons.forEach(button => {
+        const text = button.textContent.trim().toLowerCase();
+        if (text.includes('products') || text.includes('shop')) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleProductsClick();
+            });
+        } else if (text.includes('contact')) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleContactClick();
+            });
+        }
+    });
+    
+    // Initialize click-outside-to-close
+    initializeClickOutsideClose();
+}
+
+/*
+========================================
+MAIN INITIALIZATION FUNCTION
+========================================
+*/
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize navigation and mobile menu
+    initializeNavigation();
+    
+    // Initialize other functionality
+    initializeScrollAnimations();
+    initializeProductShowcaseControls();
+    initializeMobileInteractions();
+    enhanceAccessibility();
+    initializeImageOptimizations();
+    
+    // Setup form validation if contact form exists
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleFormSubmit);
+    }
+    
+    console.log('All functionality initialized successfully');
+});
 
 // Handle page visibility changes (for performance optimization)
 document.addEventListener('visibilitychange', () => {
     const productScroll = document.getElementById('productScroll');
-    const testimonialsScroll = document.getElementById('testimonialsScroll');
     
     if (productScroll) {
         if (document.hidden) {
@@ -1011,17 +1071,14 @@ document.addEventListener('visibilitychange', () => {
             productScroll.style.animationPlayState = 'running';
         }
     }
-    
-    if (testimonialsScroll) {
-        if (document.hidden) {
-            testimonialsScroll.style.animationPlayState = 'paused';
-        } else {
-            testimonialsScroll.style.animationPlayState = 'running';
-        }
-    }
 });
 
-// Handle window resize events
+// Add scroll header effects
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', debounce(() => {
+    updateHeaderOnScroll();
+    lastScrollY = window.scrollY;
+}, 16)); // 60fps throttling
 
 // Handle connection changes (for progressive enhancement)
 if ('connection' in navigator) {
@@ -1029,7 +1086,6 @@ if ('connection' in navigator) {
         // Could adjust image quality or disable heavy animations on slow connections
         console.log('Connection changed:', navigator.connection.effectiveType);
     });
-}
 
 // ============================
 // WhatsApp QR integration
