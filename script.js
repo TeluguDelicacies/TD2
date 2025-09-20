@@ -1086,6 +1086,7 @@ if ('connection' in navigator) {
         // Could adjust image quality or disable heavy animations on slow connections
         console.log('Connection changed:', navigator.connection.effectiveType);
     });
+}
 
 // ============================
 // WhatsApp QR integration
