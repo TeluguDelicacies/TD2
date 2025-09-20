@@ -36,6 +36,9 @@ function scrollToSection(sectionId) {
     }
 }
 
+// Make scrollToSection globally accessible for inline onclick handlers
+window.scrollToSection = scrollToSection;
+
 /*
 ========================================
 PRODUCT DESCRIPTION DISPLAY
