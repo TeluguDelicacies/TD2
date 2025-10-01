@@ -1122,20 +1122,8 @@ function closeMobileMenu() {
 function handleNavigation(target) {
     scrollToSection(target);
     closeMobileMenu();
-}
-
-/**
- * Initialize header navigation functionality
- */
-function initializeHeaderNavigation() {
-    // Hamburger menu toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    if (hamburgerBtn) {
-        hamburgerBtn.addEventListener('click', toggleMobileMenu);
-    }
-    
-    // Desktop navigation buttons
-    const productsBtn = document.getElementById('productsBtn');
+  // Use scrollToSection for consistent behavior
+  scrollToSection(target);
     const contactBtn = document.getElementById('contactBtn');
     const whatsappBtn = document.getElementById('whatsappBtn');
     
