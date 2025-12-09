@@ -1151,7 +1151,7 @@ function initializeHeaderNavigation() {
     if (contactBtn) {
         contactBtn.addEventListener('click', () => {
             console.log('Desktop contact button clicked');
-            handleNavigation('footer-contact');
+            handleNavigation('contact');
         });
     }
 
@@ -1176,7 +1176,7 @@ function initializeHeaderNavigation() {
     if (mobileContactBtn) {
         mobileContactBtn.addEventListener('click', () => {
             console.log('Mobile contact button clicked');
-            handleNavigation('footer-contact');
+            handleNavigation('contact');
         });
     }
 
