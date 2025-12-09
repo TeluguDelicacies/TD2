@@ -22,17 +22,25 @@ Functions for smooth page navigation
  * @param {string} sectionId - The ID of the section to scroll to
  */
 function scrollToSection(sectionId) {
+    console.log('Scrolling to section:', sectionId);
     const section = document.getElementById(sectionId);
+    console.log('Section found:', section);
+
     if (section) {
         // Get header height to account for fixed positioning
-        const headerHeight = document.querySelector('.header').offsetHeight;
-        const targetPosition = section.offsetTop - headerHeight - 10;
-        
+        const header = document.querySelector('.header');
+        const headerHeight = header ? header.offsetHeight : 0;
+        const targetPosition = section.offsetTop - headerHeight - 20;
+
+        console.log('Scrolling to position:', targetPosition);
+
         // Perform smooth scroll
         window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
         });
+    } else {
+        console.error('Section not found:', sectionId);
     }
 }
 
@@ -1141,7 +1149,10 @@ function initializeHeaderNavigation() {
     }
 
     if (contactBtn) {
-        contactBtn.addEventListener('click', () => handleNavigation('footer-contact'));
+        contactBtn.addEventListener('click', () => {
+            console.log('Desktop contact button clicked');
+            handleNavigation('footer-contact');
+        });
     }
 
     if (whatsappBtn) {
@@ -1163,7 +1174,10 @@ function initializeHeaderNavigation() {
     }
 
     if (mobileContactBtn) {
-        mobileContactBtn.addEventListener('click', () => handleNavigation('footer-contact'));
+        mobileContactBtn.addEventListener('click', () => {
+            console.log('Mobile contact button clicked');
+            handleNavigation('footer-contact');
+        });
     }
 
     if (mobileWhatsappBtn) {
@@ -1175,7 +1189,10 @@ function initializeHeaderNavigation() {
     const heroWhatsappBtn = document.getElementById('heroWhatsappBtn');
 
     if (heroContactBtn) {
-        heroContactBtn.addEventListener('click', () => handleNavigation('footer-contact'));
+        heroContactBtn.addEventListener('click', () => {
+            console.log('Hero contact button clicked');
+            handleNavigation('footer-contact');
+        });
     }
 
     if (heroWhatsappBtn) {
