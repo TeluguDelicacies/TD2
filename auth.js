@@ -238,10 +238,5 @@ class AuthManager {
   }
 }
 
-// Initialize auth manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  window.authManager = new AuthManager()
-})
-
 // Export for use in other modules
 export { AuthManager }
