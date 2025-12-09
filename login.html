@@ -5,97 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Telugu Delicacies</title>
     <link rel="stylesheet" href="login.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4"></script>
 </head>
 <body>
-    <!-- Background Pattern -->
-    <div class="auth-background">
-        <div class="pattern-overlay"></div>
-    </div>
-
-    <!-- Main Authentication Container -->
-    <div class="auth-container">
-        <div class="auth-card">
-            <!-- Header -->
-            <div class="auth-header">
-                <div class="logo-section">
-                    <img src="./images/logo.png" alt="Telugu Delicacies Logo" class="auth-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="auth-logo-fallback" style="display: none;">TD</div>
-                </div>
-                <h1>Admin Access</h1>
-                <p>Sign in to manage Telugu Delicacies</p>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="logo-section">
+                <img src="images/logo.png" alt="Telugu Delicacies" class="login-logo">
+                <h1>Admin Login</h1>
             </div>
 
-            <!-- Authentication Form -->
-            <form id="authForm" class="auth-form">
+            <form id="loginForm" class="login-form">
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <div class="input-container">
-                        <i class="fas fa-envelope input-icon"></i>
-                        <input type="email" id="email" name="email" required placeholder="Enter your email">
-                    </div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <div class="input-container">
-                        <i class="fas fa-lock input-icon"></i>
-                        <input type="password" id="password" name="password" required placeholder="Enter your password">
-                        <button type="button" class="password-toggle" id="passwordToggle">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="auth-actions">
-                    <button type="submit" class="auth-btn primary" id="loginBtn">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Sign In
-                    </button>
-                </div>
+                <div id="errorMessage" class="error-message"></div>
 
-                <div class="auth-links">
-                    <a href="index.html" class="back-link">
-                        <i class="fas fa-arrow-left"></i>
-                        Back to Website
-                    </a>
-                </div>
+                <button type="submit" class="login-button" id="loginButton">
+                    <span id="buttonText">Sign In</span>
+                    <span id="buttonLoader" class="loader" style="display: none;"></span>
+                </button>
             </form>
 
-            <!-- Loading State -->
-            <div id="authLoading" class="auth-loading hidden">
-                <div class="loading-spinner"></div>
-                <p id="loadingMessage">Signing you in...</p>
+            <div class="login-footer">
+                <a href="index.html">← Back to Website</a>
             </div>
-
-            <!-- Error Messages -->
-            <div id="authError" class="auth-error hidden">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span id="errorMessage"></span>
-            </div>
-
-            <!-- Success Messages -->
-            <div id="authSuccess" class="auth-success hidden">
-                <i class="fas fa-check-circle"></i>
-                <span id="successMessage"></span>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="auth-footer">
-            <p>&copy; 2024 Telugu Delicacies. All rights reserved.</p>
         </div>
     </div>
 
-    <script type="module">
-        import { AuthManager } from './auth.js';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            window.authManager = new AuthManager();
-        });
-    </script>
+    <script type="module" src="login.js"></script>
 </body>
 </html>
