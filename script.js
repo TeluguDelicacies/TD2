@@ -27,18 +27,20 @@ function scrollToSection(sectionId) {
     console.log('Section found:', section);
 
     if (section) {
-        // Get header height to account for fixed positioning
         const header = document.querySelector('.header');
         const headerHeight = header ? header.offsetHeight : 0;
-        const targetPosition = section.offsetTop - headerHeight - 20;
 
-        console.log('Scrolling to position:', targetPosition);
+        if (sectionId === 'footer-contact') {
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            const targetPosition = section.offsetTop - headerHeight - 20;
+            console.log('Scrolling to position:', targetPosition);
 
-        // Perform smooth scroll
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
     } else {
         console.error('Section not found:', sectionId);
     }
@@ -1151,7 +1153,7 @@ function initializeHeaderNavigation() {
     if (contactBtn) {
         contactBtn.addEventListener('click', () => {
             console.log('Desktop contact button clicked');
-            handleNavigation('contact');
+            handleNavigation('footer-contact');
         });
     }
 
@@ -1176,7 +1178,7 @@ function initializeHeaderNavigation() {
     if (mobileContactBtn) {
         mobileContactBtn.addEventListener('click', () => {
             console.log('Mobile contact button clicked');
-            handleNavigation('contact');
+            handleNavigation('footer-contact');
         });
     }
 
