@@ -5,16 +5,16 @@ ADMIN PANEL FUNCTIONALITY
 Manages products, categories, and pricing through Supabase
 */
 
-import { 
-  getProductsForDisplay, 
-  getCategories, 
-  addProduct, 
-  updateProduct, 
+import {
+  getProductsForAdmin,
+  getCategories,
+  addProduct,
+  updateProduct,
   deleteProduct,
   addPricingOption,
   updatePricing,
   deletePricingOption,
-  formatPrice 
+  formatPrice
 } from './lib/supabase.js'
 
 import { AuthManager } from './auth.js'
@@ -97,15 +97,15 @@ class AdminPanel {
   async loadData() {
     try {
       console.log('Starting to load categories and products...')
-      
+
       // Load categories and products concurrently with enhanced error handling
       let categoriesData, productsData;
       try {
         [categoriesData, productsData] = await Promise.all([
           getCategories(),
-          getProductsForDisplay()
+          getProductsForAdmin()
         ]);
-        
+
         // Log raw data returned from Supabase
         console.log('Admin: Raw categories data from Supabase:', categoriesData);
         console.log('Admin: Raw products data from Supabase:', productsData);
@@ -118,10 +118,10 @@ class AdminPanel {
         });
         throw fetchError;
       }
-      
+
       this.categories = categoriesData
       this.products = productsData
-      
+
       console.log('Successfully loaded:', this.products.length, 'products and', this.categories.length, 'categories')
       console.log('Categories:', this.categories)
       console.log('Products sample:', this.products.slice(0, 2))
