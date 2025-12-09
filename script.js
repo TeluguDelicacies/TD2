@@ -1184,21 +1184,6 @@ function initializeHeaderNavigation() {
         mobileWhatsappBtn.addEventListener('click', handleWhatsAppClick);
     }
 
-    // Hero section buttons
-    const heroContactBtn = document.getElementById('heroContactBtn');
-    const heroWhatsappBtn = document.getElementById('heroWhatsappBtn');
-
-    if (heroContactBtn) {
-        heroContactBtn.addEventListener('click', () => {
-            console.log('Hero contact button clicked');
-            handleNavigation('footer-contact');
-        });
-    }
-
-    if (heroWhatsappBtn) {
-        heroWhatsappBtn.addEventListener('click', handleWhatsAppClick);
-    }
-
     // Click outside to close mobile menu
     document.addEventListener('click', (e) => {
         const mobileNav = document.getElementById('mobileNav');
