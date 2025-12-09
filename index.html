@@ -69,10 +69,10 @@
                     <i class="fas fa-shopping-bag"></i>
                     <span>Products</span>
                 </button>
-                <button class="nav-btn mobile-nav-btn" onclick="scrollToSection('call-us'); closeMobileMenu()" aria-label="Call us directly">
+                <button class="nav-btn mobile-nav-btn" id="mobileContactBtn" aria-label="Contact us">
                     <i class="fas fa-phone"></i> Contact
                 </button>
-                <button class="nav-btn mobile-nav-btn" onclick="redirectToWhatsApp(); closeMobileMenu()" aria-label="Visit our online shop">
+                <button class="nav-btn mobile-nav-btn whatsapp-btn" id="mobileWhatsappBtn" aria-label="Buy on WhatsApp">
                     <i class="fab fa-whatsapp"></i> Buy Now
                 </button>
             </div>
@@ -94,11 +94,11 @@
                 </h2>
                 <p class="hero-subtitle">Timeless tradition, created for today.</p>
                 <p class="hero-subtitle">Every recipe begins by hand—carefully crafted, tested, and refined until it carries both a unique signature and the warmth of familiar flavors that bring you back to childhood kitchens. Made with thoughtfully chosen ingredients and deep care, our products are more than just food—they are moments of comfort, memory, and authenticity, prepared to the highest standards of quality.</p>
-                <button class="mobile-nav-btn" id="mobileContactBtn">
+                <button class="mobile-nav-btn" id="heroContactBtn">
                     <i class="fas fa-envelope"></i>
                     <span>Contact</span>
                 </button>
-                <button class="mobile-nav-btn whatsapp-btn" id="mobileWhatsappBtn">
+                <button class="mobile-nav-btn whatsapp-btn" id="heroWhatsappBtn">
                     <i class="fab fa-whatsapp"></i>
                     <span>Buy Now</span>
                 </button>
@@ -1091,4 +1091,8 @@
     if (e.target.id === "qrModal") closeQrModal();
   });
 </script>
-    </html>
+
+<!-- Main JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>

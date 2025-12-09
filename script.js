@@ -1122,56 +1122,82 @@ function closeMobileMenu() {
 function handleNavigation(target) {
     scrollToSection(target);
     closeMobileMenu();
-  // Use scrollToSection for consistent behavior
-  scrollToSection(target);
+}
+
+/**
+ * Initialize header navigation functionality
+ * Sets up all event listeners for navigation buttons
+ */
+function initializeHeaderNavigation() {
+    // Query all button elements
+    const productsBtn = document.getElementById('productsBtn');
     const contactBtn = document.getElementById('contactBtn');
     const whatsappBtn = document.getElementById('whatsappBtn');
-    
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+    // Desktop navigation buttons
     if (productsBtn) {
         productsBtn.addEventListener('click', () => handleNavigation('products'));
     }
-    
+
     if (contactBtn) {
         contactBtn.addEventListener('click', () => handleNavigation('contact'));
     }
-    
+
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', handleWhatsAppClick);
     }
-    
+
+    // Hamburger menu button
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+    }
+
     // Mobile navigation buttons
     const mobileProductsBtn = document.getElementById('mobileProductsBtn');
     const mobileContactBtn = document.getElementById('mobileContactBtn');
     const mobileWhatsappBtn = document.getElementById('mobileWhatsappBtn');
-    
+
     if (mobileProductsBtn) {
         mobileProductsBtn.addEventListener('click', () => handleNavigation('products'));
     }
-    
+
     if (mobileContactBtn) {
         mobileContactBtn.addEventListener('click', () => handleNavigation('contact'));
     }
-    
+
     if (mobileWhatsappBtn) {
         mobileWhatsappBtn.addEventListener('click', handleWhatsAppClick);
     }
-    
+
+    // Hero section buttons
+    const heroContactBtn = document.getElementById('heroContactBtn');
+    const heroWhatsappBtn = document.getElementById('heroWhatsappBtn');
+
+    if (heroContactBtn) {
+        heroContactBtn.addEventListener('click', () => handleNavigation('contact'));
+    }
+
+    if (heroWhatsappBtn) {
+        heroWhatsappBtn.addEventListener('click', handleWhatsAppClick);
+    }
+
     // Click outside to close mobile menu
     document.addEventListener('click', (e) => {
         const mobileNav = document.getElementById('mobileNav');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
-        
+
         if (!mobileNav || !hamburgerBtn) return;
-        
+
         const isMenuOpen = mobileNav.classList.contains('show');
         const isClickOnMenu = mobileNav.contains(e.target);
         const isClickOnHamburger = hamburgerBtn.contains(e.target);
-        
+
         if (isMenuOpen && !isClickOnMenu && !isClickOnHamburger) {
             closeMobileMenu();
         }
     });
-    
+
     // Click outside to close WhatsApp QR modal
     document.addEventListener('click', (e) => {
         const modal = document.getElementById('whatsappQRModal');
@@ -1179,7 +1205,7 @@ function handleNavigation(target) {
             closeWhatsAppQR();
         }
     });
-    
+
     // ESC key to close modals
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -1245,3 +1271,4 @@ if ('connection' in navigator) {
 
 // Make functions globally available
 window.closeWhatsAppQR = closeWhatsAppQR;
+window.closeMobileMenu = closeMobileMenu;
