@@ -11,10 +11,8 @@ import {
   addProduct,
   updateProduct,
   deleteProduct,
-  addPricingOption,
-  updatePricing,
-  deletePricingOption,
-  formatPrice
+  formatPrice,
+  getQuantityVariants
 } from './lib/supabase.js'
 
 import { AuthManager } from './auth.js'
@@ -136,23 +134,23 @@ class AdminPanel {
     const totalProducts = this.products.length
     const totalCategories = this.categories.length
     const activeProducts = this.products.filter(p => p.is_active).length
-    
+
     document.getElementById('totalProducts').textContent = totalProducts
     document.getElementById('totalCategories').textContent = totalCategories
     document.getElementById('activeProducts').textContent = activeProducts
-    
+
     // Populate category filter
     const categoryFilter = document.getElementById('categoryFilter')
     const productCategorySelect = document.getElementById('productCategory')
-    
+
     if (categoryFilter) {
       categoryFilter.innerHTML = '<option value="all">All Categories</option>' +
         this.categories.map(cat => `<option value="${cat.name}">${cat.display_name}</option>`).join('')
     }
-    
+
     if (productCategorySelect) {
       productCategorySelect.innerHTML = '<option value="">Select Category</option>' +
-        this.categories.map(cat => `<option value="${cat.id}">${cat.display_name}</option>`).join('')
+        this.categories.map(cat => `<option value="${cat.display_name}">${cat.display_name}</option>`).join('')
     }
   }
 
@@ -164,16 +162,20 @@ class AdminPanel {
 
     // Apply category filter
     if (this.currentFilter !== 'all') {
-      filteredProducts = filteredProducts.filter(product => 
-        product.category?.name === this.currentFilter
+      const displayCategory = this.currentFilter
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+      filteredProducts = filteredProducts.filter(product =>
+        product.product_category === displayCategory
       )
     }
 
     // Apply search filter
     if (this.searchTerm) {
       filteredProducts = filteredProducts.filter(product =>
-        product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        (product.name_telugu && product.name_telugu.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        product.product_name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        (product.product_tagline && product.product_tagline.toLowerCase().includes(this.searchTerm.toLowerCase()))
       )
     }
 
@@ -189,37 +191,42 @@ class AdminPanel {
       return
     }
 
-    tbody.innerHTML = filteredProducts.map(product => `
-      <tr>
-        <td class="product-image-cell">
-          <img src="${product.image_url || './images/placeholder-product.jpg'}" 
-               alt="${product.name}"
-               onerror="this.src='./images/placeholder-product.jpg'">
-        </td>
-        <td>
-          <div class="product-name-cell">${product.name}</div>
-          ${product.name_telugu ? `<div class="telugu-name">${product.name_telugu}</div>` : ''}
-        </td>
-        <td>${product.category?.display_name || 'Uncategorized'}</td>
-        <td class="pricing-cell">
-          ${product.pricing?.map(p => `${p.quantity}: ${formatPrice(p.price)}`).join('<br>') || 'No pricing'}
-        </td>
-        <td>
-          <span class="status-badge ${product.is_active ? 'active' : 'inactive'}">
-            <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
-            ${product.is_active ? 'Active' : 'Inactive'}
-          </span>
-        </td>
-        <td class="actions-cell">
-          <button class="action-icon-btn edit" onclick="adminPanel.editProduct('${product.id}')" title="Edit Product">
-            <i class="fas fa-edit"></i>
-          </button>
-          <button class="action-icon-btn delete" onclick="adminPanel.confirmDeleteProduct('${product.id}')" title="Delete Product">
-            <i class="fas fa-trash"></i>
-          </button>
-        </td>
-      </tr>
-    `).join('')
+    tbody.innerHTML = filteredProducts.map(product => {
+      const variants = getQuantityVariants(product)
+      const pricingDisplay = variants.length > 0
+        ? variants.map(v => `${v.quantity}: ${formatPrice(v.price)}`).join('<br>')
+        : 'No pricing'
+
+      return `
+        <tr>
+          <td class="product-image-cell">
+            <img src="${product.showcase_image || './images/placeholder-product.jpg'}"
+                 alt="${product.product_name}"
+                 onerror="this.src='./images/placeholder-product.jpg'">
+          </td>
+          <td>
+            <div class="product-name-cell">${product.product_name}</div>
+            ${product.product_tagline ? `<div class="telugu-name">${product.product_tagline}</div>` : ''}
+          </td>
+          <td>${product.product_category || 'Uncategorized'}</td>
+          <td class="pricing-cell">${pricingDisplay}</td>
+          <td>
+            <span class="status-badge ${product.is_active ? 'active' : 'inactive'}">
+              <i class="fas fa-circle" style="font-size: 0.5rem;"></i>
+              ${product.is_active ? 'Active' : 'Inactive'}
+            </span>
+          </td>
+          <td class="actions-cell">
+            <button class="action-icon-btn edit" onclick="adminPanel.editProduct('${product.id}')" title="Edit Product">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="action-icon-btn delete" onclick="adminPanel.confirmDeleteProduct('${product.id}')" title="Delete Product">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `
+    }).join('')
   }
 
   setupEventListeners() {
@@ -265,11 +272,7 @@ class AdminPanel {
       this.saveProduct()
     })
 
-    // Feature and pricing management
-    document.getElementById('addFeature')?.addEventListener('click', () => {
-      this.addFeatureField()
-    })
-
+    // Pricing management
     document.getElementById('addPricing')?.addEventListener('click', () => {
       this.addPricingField()
     })
@@ -297,49 +300,48 @@ class AdminPanel {
     const modal = document.getElementById('productModal')
     const modalTitle = document.getElementById('modalTitle')
     const form = document.getElementById('productForm')
-    
+
     if (!modal || !form) return
 
     // Set modal title
     modalTitle.textContent = product ? 'Edit Product' : 'Add New Product'
-    
+
     // Reset form
     form.reset()
-    
+
     // Clear dynamic fields
     this.resetDynamicFields()
-    
+
     if (product) {
       // Populate form with product data
-      document.getElementById('productName').value = product.name || ''
-      document.getElementById('productNameTelugu').value = product.name_telugu || ''
-      document.getElementById('productCategory').value = product.category_id || ''
-      document.getElementById('productDescription').value = product.description || ''
-      document.getElementById('productImage').value = product.image_url || ''
+      document.getElementById('productName').value = product.product_name || ''
+      document.getElementById('productTagline').value = product.product_tagline || ''
+      document.getElementById('productCategory').value = product.product_category || ''
+      document.getElementById('productDescription').value = product.product_description || ''
+      document.getElementById('productShowcaseImage').value = product.showcase_image || ''
+      document.getElementById('productInfoImage').value = product.info_image || ''
+      document.getElementById('productMrp').value = product.mrp || ''
+      document.getElementById('productNetWeight').value = product.net_weight || ''
+      document.getElementById('productStock').value = product.total_stock || ''
       document.getElementById('productActive').checked = product.is_active !== false
-      
-      // Populate features
-      if (Array.isArray(product.features)) {
-        product.features.forEach(feature => {
-          this.addFeatureField(feature)
+
+      // Populate quantity variants
+      const variants = getQuantityVariants(product)
+      if (variants.length > 0) {
+        variants.forEach(variant => {
+          this.addPricingField(variant.quantity, variant.price, variant.stock, variant.mrp)
         })
-      }
-      
-      // Populate pricing
-      if (Array.isArray(product.pricing)) {
-        product.pricing.forEach(price => {
-          this.addPricingField(price.quantity, price.price)
-        })
+      } else {
+        this.addPricingField()
       }
     } else {
-      // Add default empty fields
-      this.addFeatureField()
+      // Add default empty pricing field
       this.addPricingField()
     }
-    
+
     modal.classList.remove('hidden')
     document.body.style.overflow = 'hidden'
-    
+
     // Focus first input
     setTimeout(() => {
       document.getElementById('productName')?.focus()
@@ -356,12 +358,6 @@ class AdminPanel {
   }
 
   resetDynamicFields() {
-    // Reset features
-    const featuresContainer = document.getElementById('featuresContainer')
-    if (featuresContainer) {
-      featuresContainer.innerHTML = ''
-    }
-    
     // Reset pricing
     const pricingContainer = document.getElementById('pricingContainer')
     if (pricingContainer) {
@@ -369,109 +365,74 @@ class AdminPanel {
     }
   }
 
-  addFeatureField(value = '') {
-    const container = document.getElementById('featuresContainer')
-    if (!container) return
-
-    const div = document.createElement('div')
-    div.className = 'feature-input'
-    div.innerHTML = `
-      <input type="text" placeholder="Enter feature" class="feature-field" value="${value}">
-      <button type="button" class="remove-feature">
-        <i class="fas fa-trash"></i>
-      </button>
-    `
-    
-    // Add remove functionality
-    div.querySelector('.remove-feature').addEventListener('click', () => {
-      div.remove()
-    })
-    
-    container.appendChild(div)
-  }
-
-  addPricingField(quantity = '', price = '') {
+  addPricingField(quantity = '', price = '', stock = '', mrp = '') {
     const container = document.getElementById('pricingContainer')
     if (!container) return
 
     const div = document.createElement('div')
     div.className = 'pricing-input'
     div.innerHTML = `
-      <input type="text" placeholder="Quantity (e.g., 100g)" class="quantity-field" value="${quantity}">
+      <input type="text" placeholder="Quantity (e.g., 100g, 5pcs)" class="quantity-field" value="${quantity}">
       <input type="number" placeholder="Price" class="price-field" step="0.01" min="0" value="${price}">
+      <input type="number" placeholder="Stock" class="stock-field" min="0" value="${stock}">
+      <input type="number" placeholder="MRP" class="mrp-field" step="0.01" min="0" value="${mrp}">
       <button type="button" class="remove-pricing">
         <i class="fas fa-trash"></i>
       </button>
     `
-    
+
     // Add remove functionality
     div.querySelector('.remove-pricing').addEventListener('click', () => {
       div.remove()
     })
-    
+
     container.appendChild(div)
   }
 
   async saveProduct() {
     try {
       this.showLoading()
-      
+
       const form = document.getElementById('productForm')
       const formData = new FormData(form)
-      
-      // Collect features
-      const features = Array.from(document.querySelectorAll('.feature-field'))
-        .map(input => input.value.trim())
-        .filter(value => value)
-      
-      // Collect pricing
+
+      // Collect quantity variants
       const pricingInputs = document.querySelectorAll('.pricing-input')
-      const pricing = Array.from(pricingInputs).map((input, index) => ({
+      const quantityVariants = Array.from(pricingInputs).map(input => ({
         quantity: input.querySelector('.quantity-field').value.trim(),
         price: parseFloat(input.querySelector('.price-field').value) || 0,
-        sort_order: index
-      })).filter(p => p.quantity && p.price > 0)
-      
+        stock: parseInt(input.querySelector('.stock-field').value) || 0,
+        mrp: parseFloat(input.querySelector('.mrp-field').value) || 0
+      })).filter(v => v.quantity && v.price > 0)
+
       const productData = {
-        name: formData.get('name'),
-        name_telugu: formData.get('name_telugu'),
-        description: formData.get('description'),
-        category_id: formData.get('category_id'),
-        image_url: formData.get('image_url'),
-        is_active: formData.get('is_active') === 'on',
-        features: features
+        product_name: formData.get('name'),
+        product_category: formData.get('category'),
+        product_description: formData.get('description'),
+        product_tagline: formData.get('tagline'),
+        showcase_image: formData.get('showcase_image'),
+        info_image: formData.get('info_image'),
+        mrp: parseFloat(formData.get('mrp')) || 0,
+        net_weight: formData.get('net_weight'),
+        total_stock: parseInt(formData.get('stock')) || 0,
+        quantity_variants: quantityVariants,
+        is_active: formData.get('is_active') === 'on'
       }
-      
-      let savedProduct
-      
+
       if (this.currentEditingProduct) {
         // Update existing product
-        savedProduct = await updateProduct(this.currentEditingProduct.id, productData)
-        
-        // TODO: Handle pricing updates (would need more complex logic)
-        // For now, we'll show a message about pricing updates
-        this.showToast('Product updated successfully! Note: Pricing updates require manual management.', 'success')
+        await updateProduct(this.currentEditingProduct.id, productData)
+        this.showToast('Product updated successfully!', 'success')
       } else {
         // Create new product
-        savedProduct = await addProduct(productData)
-        
-        // Add pricing options
-        for (const price of pricing) {
-          await addPricingOption({
-            product_id: savedProduct.id,
-            quantity: price.quantity,
-            price: price.price,
-            sort_order: price.sort_order
-          })
-        }
-        
+        await addProduct(productData)
         this.showToast('Product added successfully!', 'success')
       }
-      
+
       // Refresh data and UI
       await this.refresh()
       this.hideProductModal()
-      
+
     } catch (error) {
       console.error('Error saving product:', error)
       this.showToast('Failed to save product: ' + error.message, 'error')
@@ -491,7 +452,7 @@ class AdminPanel {
     const product = this.products.find(p => p.id === productId)
     if (!product) return
 
-    if (confirm(`Are you sure you want to delete "${product.name}"? This action cannot be undone.`)) {
+    if (confirm(`Are you sure you want to delete "${product.product_name}"? This action cannot be undone.`)) {
       try {
         this.showLoading()
         await deleteProduct(productId)

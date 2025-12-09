@@ -5,7 +5,7 @@ DYNAMIC SALES PAGE FUNCTIONALITY
 Loads products from Supabase and manages the sales interface
 */
 
-import { getProductsForDisplay, getCategories, formatPrice } from './lib/supabase.js'
+import { getProductsForDisplay, getCategories, formatPrice, getQuantityVariants } from './lib/supabase.js'
 
 class SalesPageManager {
   constructor() {
@@ -135,9 +135,15 @@ class SalesPageManager {
     const container = document.querySelector('.product-categories')
     if (!container) return
 
-    const filteredProducts = this.currentFilter === 'all' 
-      ? this.products 
-      : this.products.filter(product => product.category?.name === this.currentFilter)
+    const filteredProducts = this.currentFilter === 'all'
+      ? this.products
+      : this.products.filter(product => {
+          const displayCategory = this.currentFilter
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ')
+          return product.product_category === displayCategory
+        })
 
     if (filteredProducts.length === 0) {
       container.innerHTML = `
@@ -155,50 +161,46 @@ class SalesPageManager {
   }
 
   renderProductCard(product) {
-    const features = Array.isArray(product.features) ? product.features : []
-    const pricing = product.pricing || []
-    
+    const variants = getQuantityVariants(product)
+
     // Get first available pricing option for default display
-    const defaultPricing = pricing.length > 0 ? pricing[0] : null
-    
+    const defaultVariant = variants.length > 0 ? variants[0] : null
+
+    const categoryName = product.product_category ? product.product_category.toLowerCase().replace(/\s+/g, '-') : 'uncategorized'
+
     return `
-      <div class="product-shop-card" data-category="${product.category?.name || 'uncategorized'}">
-        <img src="${product.image_url || './images/placeholder-product.jpg'}" 
-             alt="${product.name}" 
-             class="product-image" 
+      <div class="product-shop-card" data-category="${categoryName}">
+        <img src="${product.showcase_image || './images/placeholder-product.jpg'}"
+             alt="${product.product_name}"
+             class="product-image"
              loading="lazy"
              onerror="this.src='./images/placeholder-product.jpg'">
-        
-        <h3 class="product-name">${product.name}</h3>
-        ${product.name_telugu ? `<p class="telugu-name">${product.name_telugu}</p>` : ''}
-        
-        <button class="info-toggle-btn" 
+
+        <h3 class="product-name">${product.product_name}</h3>
+        ${product.product_tagline ? `<p class="telugu-name">${product.product_tagline}</p>` : ''}
+
+        <button class="info-toggle-btn"
                 aria-label="Toggle product description"
                 data-product-id="${product.id}">
           <i class="fas fa-info-circle"></i>
         </button>
-        
+
         <div class="description-text-content hidden">
-          <p>${product.description || ''}</p>
-          ${features.length > 0 ? `
-            <ul>
-              ${features.map(feature => `<li>${feature}</li>`).join('')}
-            </ul>
-          ` : ''}
+          <p>${product.product_description || ''}</p>
         </div>
-        
-        ${pricing.length > 0 ? `
+
+        ${variants.length > 0 ? `
           <div class="quantity-price-selector">
             <select class="quantity-dropdown" data-product-id="${product.id}">
-              ${pricing.map((price, index) => `
-                <option value="${price.id}" 
-                        data-price="${price.price}"
+              ${variants.map((variant, index) => `
+                <option value="${index}"
+                        data-price="${variant.price}"
                         ${index === 0 ? 'selected' : ''}>
-                  ${price.quantity}
+                  ${variant.quantity}
                 </option>
               `).join('')}
             </select>
-            <span class="current-price">${formatPrice(defaultPricing?.price || 0)}</span>
+            <span class="current-price">${formatPrice(defaultVariant?.price || 0)}</span>
           </div>
         ` : `
           <div class="quantity-price-selector">
@@ -272,25 +274,18 @@ class SalesPageManager {
     const overlayBody = overlay.querySelector('#overlayBody')
 
     // Update modal content
-    if (modalTitle) modalTitle.textContent = product.name
+    if (modalTitle) modalTitle.textContent = product.product_name
     if (modalTeluguName) {
-      modalTeluguName.textContent = product.name_telugu || ''
-      modalTeluguName.style.display = product.name_telugu ? 'block' : 'none'
+      modalTeluguName.textContent = product.product_tagline || ''
+      modalTeluguName.style.display = product.product_tagline ? 'block' : 'none'
     }
 
-    const features = Array.isArray(product.features) ? product.features : []
-    
     if (overlayBody) {
       overlayBody.innerHTML = `
         <div class="product-details">
           <h4>Product Details</h4>
           <div class="product-description">
-            <p>${product.description || 'No description available.'}</p>
-            ${features.length > 0 ? `
-              <ul class="features-list">
-                ${features.map(feature => `<li>${feature}</li>`).join('')}
-              </ul>
-            ` : ''}
+            <p>${product.product_description || 'No description available.'}</p>
           </div>
         </div>
       `
