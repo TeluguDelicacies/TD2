@@ -1141,7 +1141,7 @@ function initializeHeaderNavigation() {
     }
 
     if (contactBtn) {
-        contactBtn.addEventListener('click', () => handleNavigation('contact'));
+        contactBtn.addEventListener('click', () => handleNavigation('footer-contact'));
     }
 
     if (whatsappBtn) {
@@ -1163,7 +1163,7 @@ function initializeHeaderNavigation() {
     }
 
     if (mobileContactBtn) {
-        mobileContactBtn.addEventListener('click', () => handleNavigation('contact'));
+        mobileContactBtn.addEventListener('click', () => handleNavigation('footer-contact'));
     }
 
     if (mobileWhatsappBtn) {
@@ -1175,7 +1175,7 @@ function initializeHeaderNavigation() {
     const heroWhatsappBtn = document.getElementById('heroWhatsappBtn');
 
     if (heroContactBtn) {
-        heroContactBtn.addEventListener('click', () => handleNavigation('contact'));
+        heroContactBtn.addEventListener('click', () => handleNavigation('footer-contact'));
     }
 
     if (heroWhatsappBtn) {
